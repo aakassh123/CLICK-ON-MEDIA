@@ -1,0 +1,10 @@
+# Robots.txt for Click On Media
+User-agent: *
+Allow: /
+
+# Host
+Host: https://clickonmedia.com
+
+# Sitemaps
+Sitemap: https://clickonmedia.com/sitemap.xml
+

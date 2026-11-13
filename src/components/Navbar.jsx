@@ -1,0 +1,332 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, ChevronDown, Phone, ArrowRight, Sparkles, Globe, Code2, Megaphone, Search, Palette, Film } from 'lucide-react';
+import Logo from './Logo';
+
+export default function Navbar({ onOpenQuote, onSelectService }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close dropdown on outside click or escape key
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsServicesDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsServicesDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const serviceSubItems = [
+    { title: 'Website Development', desc: 'Modern, responsive & sub-second performance flagships.', id: 'web-dev', icon: Globe, color: 'text-[var(--primary-blue)]' },
+    { title: 'Software & App Development', desc: 'Custom cloud software, SaaS & mobile applications.', id: 'software-dev', icon: Code2, color: 'text-[var(--brand-orange)]' },
+    { title: 'Digital Marketing & Ads', desc: 'High-ROAS Meta & Google Performance Max funnels.', id: 'marketing', icon: Megaphone, color: 'text-[var(--primary-blue)]' },
+    { title: 'SEO & Performance', desc: '100+ point technical audits & regional search domination.', id: 'seo', icon: Search, color: 'text-[var(--brand-orange)]' },
+    { title: 'Branding & Creative Design', desc: 'Iconic 3D brand personality, guidelines & collateral.', id: 'branding', icon: Palette, color: 'text-[var(--primary-blue)]' },
+    { title: 'Content & Viral Reels', desc: 'High-retention 9:16 reels, shorts & ad video production.', id: 'content', icon: Film, color: 'text-[var(--brand-orange)]' },
+  ];
+
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { 
+      name: 'Services', 
+      href: '#services',
+      hasDropdown: true,
+      subItems: serviceSubItems
+    },
+    { name: 'About', href: '#about' },
+    { name: 'Work', href: '#work' },
+    { name: 'Process', href: '#process' },
+  ];
+
+  const handleServicesNavClick = (e) => {
+    setIsServicesDropdownOpen(false);
+    const el = document.getElementById('services');
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-slate-200/90 shadow-sm backdrop-blur-xl ${
+        isScrolled ? 'py-2 sm:py-2.5 shadow-md' : 'py-2.5 sm:py-3 shadow-xs'
+      }`}
+      style={{
+        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)'
+      }}
+    >
+      {/* Top Luminous Brand Accent Line */}
+      <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-[var(--cyan-accent)] via-[var(--primary-blue)] to-[var(--brand-orange)] pointer-events-none opacity-90" />
+
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex items-center justify-between">
+          
+          {/* Logo on Left - Integrates 100% seamlessly with navbar background */}
+          <a 
+            href="#home" 
+            className="focus:outline-none focus:ring-2 focus:ring-[var(--primary-blue)]/40 rounded-xl transition-transform hover:scale-[1.01] flex items-center" 
+            aria-label="Click On Media Home"
+          >
+            <Logo variant="light" size="md" />
+          </a>
+
+          {/* Desktop Navigation Command Pill */}
+          <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 border border-slate-200/90 rounded-full px-2.5 py-1.5 shadow-xs backdrop-blur-md">
+            {navLinks.map((link) => {
+              if (link.hasDropdown) {
+                return (
+                  <div 
+                    key={link.name} 
+                    ref={dropdownRef}
+                    className="relative"
+                    onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                    onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                  >
+                    <div className="flex items-center rounded-full text-slate-800 hover:text-[var(--primary-blue)] hover:bg-white transition-all shadow-none hover:shadow-xs">
+                      <a
+                        href={link.href}
+                        onClick={handleServicesNavClick}
+                        className="pl-3.5 pr-1.5 py-1.5 text-xs xl:text-sm font-bold tracking-wide cursor-pointer"
+                      >
+                        {link.name}
+                      </a>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsServicesDropdownOpen(!isServicesDropdownOpen);
+                        }}
+                        className="pr-3 pl-1 py-1.5 text-slate-500 hover:text-[var(--brand-orange)] transition-colors cursor-pointer"
+                        aria-label="Toggle Services menu"
+                      >
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180 text-[var(--brand-orange)]' : 'text-slate-500'}`} />
+                      </button>
+                    </div>
+
+                    {/* Dropdown Menu for Services - 100% Solid White & Wide */}
+                    {isServicesDropdownOpen && (
+                      <div 
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+                        style={{ width: '420px', maxWidth: 'calc(100vw - 2rem)' }}
+                      >
+                        <div 
+                          className="border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(10,31,107,0.18)] p-3.5 ring-1 ring-slate-900/5"
+                          style={{ backgroundColor: '#ffffff' }}
+                        >
+                          {/* Dropdown Header Pill */}
+                          <div className="flex items-center justify-between px-2.5 pb-2.5 mb-2 border-b border-slate-100">
+                            <span className="text-xs font-heading font-black text-[var(--brand-orange)] uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap">
+                              <Sparkles className="w-3.5 h-3.5 text-[var(--brand-orange)] flex-shrink-0" />
+                              <span>Core Capabilities</span>
+                            </span>
+                            <span className="text-[11px] text-slate-600 font-mono font-bold bg-slate-100 px-2 py-0.5 rounded-full whitespace-nowrap">
+                              06 Solutions
+                            </span>
+                          </div>
+
+                          {/* Dropdown Items List */}
+                          <div className="space-y-1">
+                            {link.subItems.map((item) => {
+                              const ItemIcon = item.icon;
+                              return (
+                                <button
+                                  key={item.id}
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setIsServicesDropdownOpen(false);
+                                    if (onSelectService) onSelectService(item.id);
+                                    const el = document.getElementById('services');
+                                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                  }}
+                                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-all group flex items-start gap-3 cursor-pointer border border-transparent hover:border-slate-200"
+                                >
+                                  <div className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xs transition-all">
+                                    <ItemIcon className={`w-4 h-4 ${item.color}`} />
+                                  </div>
+                                  <div className="flex-grow min-w-0">
+                                    <div className="text-xs font-bold text-slate-900 group-hover:text-[var(--primary-blue)] transition-colors flex items-center justify-between">
+                                      <span>{item.title}</span>
+                                      <ArrowRight className="w-3.5 h-3.5 text-slate-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all flex-shrink-0 ml-1" />
+                                    </div>
+                                    <div className="text-[11px] text-slate-500 leading-tight mt-0.5 truncate">
+                                      {item.desc}
+                                    </div>
+                                  </div>
+                                </button>
+                              );
+                            })}
+                          </div>
+
+                          {/* Dropdown Footer CTA */}
+                          <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between px-2 text-[11px]">
+                            <span className="text-slate-500 font-medium">Looking for full scale?</span>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setIsServicesDropdownOpen(false);
+                                const el = document.getElementById('services');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                              }}
+                              className="text-[var(--primary-blue)] hover:text-[var(--brand-orange)] font-bold font-heading flex items-center gap-1 cursor-pointer transition-colors"
+                            >
+                              <span>Explore Orbit</span>
+                              <ArrowRight className="w-3 h-3" />
+                            </button>
+                          </div>
+
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="px-3.5 xl:px-4 py-1.5 text-xs xl:text-sm font-bold tracking-wide transition-all rounded-full text-slate-800 hover:text-[var(--primary-blue)] hover:bg-white shadow-none hover:shadow-xs"
+                >
+                  {link.name}
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* Right Action CTA Cluster */}
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4">
+            
+            {/* Direct Phone Support Pill */}
+            <a 
+              href="tel:+919876543210" 
+              className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-100/90 hover:bg-slate-200/70 border border-slate-200/90 transition-all text-xs font-bold text-slate-800 shadow-xs group min-h-[40px]"
+              aria-label="Call Click On Media at +91 98765 43210"
+            >
+              <div className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </div>
+              <Phone className="w-3.5 h-3.5 text-[var(--brand-orange)] group-hover:scale-110 transition-transform" />
+              <span className="hidden xl:inline font-mono font-bold tracking-tight text-slate-800">+91 98765 43210</span>
+            </a>
+
+            {/* Primary High-Conversion CTA */}
+            <button
+              onClick={onOpenQuote}
+              className="btn-primary text-xs xl:text-sm !py-2.5 !px-5 xl:!px-6 shadow-[0_4px_18px_rgba(255,122,0,0.35)] hover:shadow-[0_6px_28px_rgba(255,122,0,0.55)] hover:scale-105 active:scale-95 transition-all group font-heading font-bold"
+            >
+              <span>Get Free Quote</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
+
+          {/* Mobile Menu Action Area */}
+          <div className="flex lg:hidden items-center gap-2">
+            <button
+              onClick={onOpenQuote}
+              className="btn-primary text-xs !py-1.5 !px-3.5 min-h-[40px]"
+            >
+              Quote
+            </button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-slate-100 border border-slate-200 text-slate-800 hover:bg-slate-200 transition-colors cursor-pointer"
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5 text-[var(--brand-orange)]" /> : <Menu className="w-5 h-5 text-slate-800" />}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Mobile Drawer Navigation with Frosted Blur Theater */}
+      {isMobileMenuOpen && (
+        <div 
+          className="lg:hidden border-b border-slate-200 px-4 pt-3 pb-6 space-y-3 backdrop-blur-2xl animate-in slide-in-from-top-4 duration-200 max-h-[85vh] overflow-y-auto shadow-2xl bg-white/98"
+        >
+          {navLinks.map((link) => (
+            <div key={link.name} className="space-y-1">
+              <a
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-3 py-2.5 rounded-xl text-sm font-bold text-slate-800 hover:text-[var(--primary-blue)] hover:bg-slate-50 min-h-[44px] flex items-center justify-between"
+              >
+                <span>{link.name}</span>
+                {link.hasDropdown && <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-[var(--primary-blue)] font-bold border border-slate-200">6 Services</span>}
+              </a>
+              {link.hasDropdown && (
+                <div className="pl-3 space-y-1 border-l-2 border-[var(--brand-orange)]/40 ml-2">
+                  {link.subItems.map((sub) => (
+                    <button
+                      key={sub.id}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        if (onSelectService) onSelectService(sub.id);
+                        const el = document.getElementById('services');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="block w-full text-left px-3 py-2 text-xs text-slate-700 hover:text-[var(--brand-orange)] min-h-[40px] flex items-center rounded-lg hover:bg-slate-50 font-medium"
+                    >
+                      {sub.title}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+
+          <div className="pt-4 border-t border-slate-100 space-y-3">
+            <a 
+              href="tel:+919876543210" 
+              className="flex items-center gap-2.5 text-sm font-bold text-slate-800 px-3 py-2.5 min-h-[44px] rounded-xl bg-slate-50 border border-slate-200"
+            >
+              <div className="w-7 h-7 rounded-lg bg-[var(--brand-orange)]/15 text-[var(--brand-orange)] flex items-center justify-center">
+                <Phone className="w-4 h-4" />
+              </div>
+              <span className="font-mono text-slate-900">+91 98765 43210</span>
+              <span className="ml-auto text-[10px] text-emerald-600 font-mono font-bold">Available Now</span>
+            </a>
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                onOpenQuote();
+              }}
+              className="btn-primary w-full text-center py-3"
+            >
+              Get Free Quote
+            </button>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
