@@ -112,17 +112,19 @@ export default function Hero({ onOpenQuote, onOpenVideo, onSelectService }) {
         className="absolute inset-0 w-full h-[120%] -top-[10%] overflow-hidden pointer-events-none z-0"
         style={{ willChange: 'transform' }}
       >
-        {/* Background Video: Enhanced Visibility (75%-85% Opacity with Crisp Colors) */}
+        {/* Background Video: Replaced with official logo.mp4 */}
         <video
           ref={bgVideoRef}
-          src="./hero-video.mp4"
           autoPlay
           loop
           muted={isBgMuted}
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover scale-105 opacity-75 sm:opacity-85 brightness-100 contrast-105 filter transition-opacity duration-500"
-        />
+          className="w-full h-full object-cover scale-105 opacity-80 sm:opacity-90 brightness-105 contrast-105 filter transition-opacity duration-500"
+        >
+          <source src="./logo.mp4" type="video/mp4" />
+          <source src="./hero-video.mp4" type="video/mp4" />
+        </video>
 
         {/* Targeted Left-Side Text Scrim: Protects typography without darkening the whole video */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#06123D]/95 via-[#06123D]/70 via-40% to-[#06123D]/25 pointer-events-none" />

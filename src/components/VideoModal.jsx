@@ -38,12 +38,14 @@ export default function VideoModal({ isOpen, onClose, onOpenQuote }) {
         <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
           <video
             ref={videoRef}
-            src="./hero-video.mp4"
             autoPlay
             controls
             playsInline
             className="w-full h-full object-contain"
-          />
+          >
+            <source src="./logo.mp4" type="video/mp4" />
+            <source src="./hero-video.mp4" type="video/mp4" />
+          </video>
         </div>
 
         {/* Footer info & CTA */}
