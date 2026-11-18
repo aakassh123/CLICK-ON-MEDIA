@@ -6,7 +6,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
     name: '',
     email: '',
     phone: '',
-    date: '2026-11-16',
+    date: new Date().toISOString().split('T')[0],
     time: '11:00 AM',
     topic: 'Growth Strategy & Web Overhaul'
   });

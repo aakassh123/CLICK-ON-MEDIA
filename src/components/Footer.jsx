@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, ArrowRight, Instagram, Linkedin, Twitter, Youtube, CheckCircle2 } from 'lucide-react';
 import Logo from './Logo';
+import LegalModal from './LegalModal';
 
 export default function Footer({ onOpenQuote, onSelectService }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [legalModalOpen, setLegalModalOpen] = useState(false);
+  const [legalModalTab, setLegalModalTab] = useState('privacy');
+
+  const openLegal = (tab) => {
+    setLegalModalTab(tab);
+    setLegalModalOpen(true);
+  };
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -178,10 +186,10 @@ export default function Footer({ onOpenQuote, onSelectService }) {
               <span className="text-xs font-semibold text-slate-700 block mb-2 font-heading">Connect With Us:</span>
               <div className="flex items-center gap-2">
                 {[
-                  { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-                  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-                  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-                  { icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
+                  { icon: Instagram, href: 'https://www.instagram.com/clickonmedia', label: 'Instagram' },
+                  { icon: Linkedin, href: 'https://www.linkedin.com/company/clickonmedia', label: 'LinkedIn' },
+                  { icon: Twitter, href: 'https://twitter.com/clickonmedia', label: 'Twitter' },
+                  { icon: Youtube, href: 'https://youtube.com/@clickonmedia', label: 'YouTube' },
                 ].map((social, i) => {
                   const SIcon = social.icon;
                   return (
@@ -232,13 +240,37 @@ export default function Footer({ onOpenQuote, onSelectService }) {
             &copy; {new Date().getFullYear()} Click On Media. All rights reserved.
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <a href="#privacy" className="hover:text-[var(--primary-blue)] transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-[var(--primary-blue)] transition-colors">Terms of Service</a>
-            <a href="#sitemap" className="hover:text-[var(--primary-blue)] transition-colors">Sitemap</a>
+            <button
+              onClick={() => openLegal('privacy')}
+              className="hover:text-[var(--primary-blue)] transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </button>
+            <button
+              onClick={() => openLegal('terms')}
+              className="hover:text-[var(--primary-blue)] transition-colors cursor-pointer"
+            >
+              Terms of Service
+            </button>
+            <a
+              href="./sitemap.xml"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[var(--primary-blue)] transition-colors cursor-pointer"
+            >
+              Sitemap
+            </a>
           </div>
         </div>
 
       </div>
+
+      {/* Legal & Governance Modal */}
+      <LegalModal
+        isOpen={legalModalOpen}
+        onClose={() => setLegalModalOpen(false)}
+        activeTab={legalModalTab}
+      />
     </footer>
   );
 }
