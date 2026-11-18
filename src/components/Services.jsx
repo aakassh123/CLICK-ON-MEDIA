@@ -585,7 +585,7 @@ export default function Services({ onSelectService, onOpenQuote }) {
             Our Services
           </span>
           <span className="text-slate-300">•</span>
-          <span className="text-slate-600 font-medium text-[11px] sm:text-xs flex items-center gap-1.5">
+          <span className="text-[#071133] font-bold text-[11px] sm:text-xs flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-[var(--cyan-accent)]" />
             <span>Click On Media Flagship Solutions</span>
           </span>
@@ -599,8 +599,8 @@ export default function Services({ onSelectService, onOpenQuote }) {
           </span>
         </RevealHeading>
 
-        {/* Attractive Subtitle with High Legibility */}
-        <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base md:text-lg text-slate-600 font-normal max-w-2xl mx-auto mt-3 sm:mt-4 leading-relaxed">
+        {/* Attractive Subtitle with High Legibility & Rich Dark Text */}
+        <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base md:text-lg text-[#071133] font-bold max-w-2xl mx-auto mt-3 sm:mt-4 leading-relaxed drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
           Crafting custom digital ecosystems engineered to dominate search results, capture consumer attention, and accelerate real business revenue.
         </RevealHeading>
 

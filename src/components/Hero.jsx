@@ -61,8 +61,8 @@ export default function Hero({ onOpenQuote, onOpenVideo, onSelectService }) {
               </span>
             </RevealHeading>
 
-            {/* Subtitle with High-Contrast Legibility & Gorakhpur Geo Relevance */}
-            <RevealHeading tag="p" delay={250} direction="up" className="text-sm sm:text-base md:text-lg text-slate-600 font-normal leading-relaxed max-w-2xl">
+            {/* Subtitle with High-Contrast Legibility & Rich Dark Text */}
+            <RevealHeading tag="p" delay={250} direction="up" className="text-sm sm:text-base md:text-lg text-[#071133] font-bold leading-relaxed max-w-2xl drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
               Gorakhpur&apos;s premier digital agency for high-converting websites, custom software, Google Ads, localized SEO, viral reels &amp; data-driven marketing. We scale ambitious businesses across Gorakhpur and Uttar Pradesh with guaranteed ROI.
             </RevealHeading>
 

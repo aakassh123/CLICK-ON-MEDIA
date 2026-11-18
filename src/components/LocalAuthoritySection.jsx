@@ -100,7 +100,7 @@ export default function LocalAuthoritySection({ onOpenQuote }) {
             </span>
           </RevealHeading>
 
-          <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+          <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base text-[#071133] font-bold leading-relaxed drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
             Headquartered in Mohaddipur, Gorakhpur, Click On Media engineers high-speed web solutions, ROI-focused ad campaigns, and dominant SEO architectures for premier businesses across Eastern and Central Uttar Pradesh.
           </RevealHeading>
         </div>

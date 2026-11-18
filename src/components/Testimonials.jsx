@@ -93,7 +93,7 @@ export default function Testimonials({ onOpenQuote }) {
               </span>
             </RevealHeading>
 
-            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+            <p className="text-sm sm:text-base text-[#071133] font-bold leading-relaxed drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
               Read how ambitious founders and marketing leaders scaled revenue, dominated search rankings, and crushed their CAC targets with Click On Media.
             </p>
           </div>
