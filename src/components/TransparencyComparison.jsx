@@ -51,9 +51,9 @@ export default function TransparencyComparison({ onOpenQuote }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header Encased in Frosted Glass Island for 100% High-Contrast Legibility */}
-        <div className="text-center max-w-4xl mx-auto space-y-3 bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-md mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
+        {/* Section Header with Yes Madam-inspired Trust Badge (Open & Grand Style) */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
             <ShieldCheck className="w-4 h-4 text-[var(--brand-orange)]" />
             <span className="text-[var(--brand-orange)] uppercase tracking-wider text-[11px] font-bold">The Transparency Standard</span>
             <span className="text-slate-500">• Why Brands Choose Us</span>
@@ -66,7 +66,7 @@ export default function TransparencyComparison({ onOpenQuote }) {
             </span>
           </RevealHeading>
 
-          <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed max-w-2xl mx-auto">
+          <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base text-[#071133] font-bold leading-relaxed max-w-2xl mx-auto drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
             Inspired by consumer-first platforms like Yes Madam, we eliminate hidden agency fees, proprietary lock-ins, and vanity excuses. Here is how we compare:
           </RevealHeading>
         </div>
