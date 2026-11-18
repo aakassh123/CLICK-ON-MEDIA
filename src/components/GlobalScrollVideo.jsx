@@ -110,7 +110,7 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
 
         {/* 2. AMBIENT BRAND WALL WATERMARK IN OFFICE BACKGROUND */}
         <div 
-          className="absolute top-1/3 right-1/4 -translate-y-1/2 pointer-events-none filter drop-shadow-[0_10px_25px_rgba(11,92,255,0.35)] transition-opacity duration-500"
+          className="absolute top-1/3 right-4 sm:right-10 lg:right-16 -translate-y-1/2 pointer-events-none filter drop-shadow-[0_10px_25px_rgba(11,92,255,0.35)] transition-opacity duration-500"
           style={{ opacity: Math.max(0.22, 0.45 - scrollProgress * 0.25) }}
         >
           <img 
