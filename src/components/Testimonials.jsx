@@ -77,23 +77,23 @@ export default function Testimonials({ onOpenQuote }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header Encased in Frosted Glass Island */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10 p-6 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-md">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
               <Star className="w-3.5 h-3.5 fill-[var(--amber)] text-[var(--amber)]" />
               <span className="text-[var(--brand-orange)] uppercase tracking-wider text-[11px] font-bold">Verified Client Reviews</span>
-              <span className="text-slate-500">• 4.9/5 Overall Rating</span>
+              <span className="text-slate-400">• 4.9/5 Overall Rating</span>
             </div>
 
-            <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#0A1F6B] tracking-tight leading-tight font-heading">
+            <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0A1F6B] tracking-tight leading-tight font-heading">
               Real Businesses.{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00]">
                 Measurable Growth.
               </span>
             </RevealHeading>
 
-            <p className="text-xs sm:text-sm md:text-base text-slate-700 font-medium leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
               Read how ambitious founders and marketing leaders scaled revenue, dominated search rankings, and crushed their CAC targets with Click On Media.
             </p>
           </div>

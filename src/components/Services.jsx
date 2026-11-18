@@ -571,40 +571,42 @@ export default function Services({ onSelectService, onOpenQuote }) {
       <div className="absolute bottom-1/3 right-10 w-[450px] h-[350px] bg-[var(--brand-orange)]/5 rounded-full blur-[130px] pointer-events-none z-0" />
 
       {/* ===================================================================== */}
-      {/* 1. HIGH-IMPACT SECTION HEADER (Encased in Frosted Glass Island)       */}
+      {/* 1. HIGH-IMPACT SECTION HEADER (Big, Bold & Attractive)                */}
       {/* ===================================================================== */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-20 mb-6 sm:mb-8 text-center">
-        <div className="bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-md">
-          
-          {/* Premium Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-slate-50 border border-[var(--primary-blue)]/25 text-xs sm:text-sm font-semibold text-[#0A1F6B] shadow-xs mb-3 sm:mb-4 transition-transform hover:scale-105">
-            <span className="w-2.5 h-2.5 rounded-full bg-[var(--brand-orange)] shadow-[0_0_10px_#FF7A00] animate-pulse" />
-            <span className="text-[var(--brand-orange)] uppercase tracking-widest text-[11px] sm:text-xs font-heading font-extrabold">
-              Our Services
-            </span>
-            <span className="text-slate-300">•</span>
-            <span className="text-slate-600 font-medium text-[11px] sm:text-xs flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[var(--cyan-accent)]" />
-              <span>Click On Media Flagship Solutions</span>
-            </span>
-          </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 mb-6 sm:mb-8 text-center">
+        
+        {/* Ambient Subtle Glow directly behind headline */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 max-w-2xl h-24 bg-gradient-to-r from-[var(--primary-blue)]/15 via-[var(--cyan-accent)]/15 to-[var(--brand-orange)]/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
-          {/* Grand Headline: Big, Punchy, Authoritative & Radiant */}
-          <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-2xl sm:text-4xl md:text-5xl font-black text-[#0A1F6B] tracking-tight leading-[1.15] font-heading max-w-3xl mx-auto">
-            End-to-End Digital Solutions for{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] via-50% to-[#FF7A00]">
-              Modern Businesses
-            </span>
-          </RevealHeading>
-
-          {/* Attractive Subtitle with High Legibility */}
-          <RevealHeading tag="p" delay={220} direction="up" className="text-xs sm:text-sm md:text-base text-slate-700 font-medium max-w-2xl mx-auto mt-3 leading-relaxed">
-            Crafting custom digital ecosystems engineered to dominate search results, capture consumer attention, and accelerate real business revenue.
-          </RevealHeading>
-
-          {/* Radiant Gradient Accent Line */}
-          <div className="w-20 sm:w-28 h-1 bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00] rounded-full mx-auto mt-4 shadow-xs" />
+        {/* Premium Pill Badge */}
+        <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[var(--primary-blue)]/25 text-xs sm:text-sm font-semibold text-[#0A1F6B] shadow-[0_4px_20px_rgba(10,31,107,0.08)] mb-3 sm:mb-4 transition-transform hover:scale-105">
+          <span className="w-2.5 h-2.5 rounded-full bg-[var(--brand-orange)] shadow-[0_0_10px_#FF7A00] animate-pulse" />
+          <span className="text-[var(--brand-orange)] uppercase tracking-widest text-[11px] sm:text-xs font-heading font-extrabold">
+            Our Services
+          </span>
+          <span className="text-slate-300">•</span>
+          <span className="text-slate-600 font-medium text-[11px] sm:text-xs flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-[var(--cyan-accent)]" />
+            <span>Click On Media Flagship Solutions</span>
+          </span>
         </div>
+
+        {/* Grand Headline: Big, Punchy, Authoritative & Radiant */}
+        <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-3xl sm:text-5xl md:text-6xl font-black text-[#0A1F6B] tracking-tight leading-[1.12] font-heading max-w-4xl mx-auto drop-shadow-xs">
+          End-to-End Digital Solutions for{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] via-50% to-[#FF7A00] drop-shadow-sm">
+            Modern Businesses
+          </span>
+        </RevealHeading>
+
+        {/* Attractive Subtitle with High Legibility */}
+        <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base md:text-lg text-slate-600 font-normal max-w-2xl mx-auto mt-3 sm:mt-4 leading-relaxed">
+          Crafting custom digital ecosystems engineered to dominate search results, capture consumer attention, and accelerate real business revenue.
+        </RevealHeading>
+
+        {/* Radiant Gradient Accent Line */}
+        <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00] rounded-full mx-auto mt-4 sm:mt-5 shadow-sm" />
+
       </div>
 
       {/* ===================================================================== */}

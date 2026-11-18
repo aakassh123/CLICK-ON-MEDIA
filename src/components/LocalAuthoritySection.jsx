@@ -84,23 +84,23 @@ export default function LocalAuthoritySection({ onOpenQuote }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ===================================================================== */}
-        {/* 1. SECTION HEADER Encased in Frosted Glass Island                    */}
+        {/* 1. SECTION HEADER (Clear Gorakhpur & UP Positioning)                  */}
         {/* ===================================================================== */}
-        <div className="text-center max-w-4xl mx-auto space-y-3 mb-8 sm:mb-12 bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-md">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
             <MapPin className="w-4 h-4 text-[var(--brand-orange)]" />
             <span className="text-[var(--brand-orange)] uppercase tracking-wider text-[11px] font-bold">Gorakhpur Headquarters</span>
-            <span className="text-slate-500">• Serving All of Uttar Pradesh</span>
+            <span className="text-slate-400">• Serving All of Uttar Pradesh</span>
           </div>
 
-          <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#0A1F6B] tracking-tight leading-tight font-heading">
+          <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0A1F6B] tracking-tight leading-tight font-heading">
             Gorakhpur&apos;s #1 Digital Agency &amp;{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00]">
               Technology Partner
             </span>
           </RevealHeading>
 
-          <RevealHeading tag="p" delay={220} direction="up" className="text-xs sm:text-sm md:text-base text-slate-700 font-medium leading-relaxed max-w-2xl mx-auto">
+          <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
             Headquartered in Mohaddipur, Gorakhpur, Click On Media engineers high-speed web solutions, ROI-focused ad campaigns, and dominant SEO architectures for premier businesses across Eastern and Central Uttar Pradesh.
           </RevealHeading>
         </div>
