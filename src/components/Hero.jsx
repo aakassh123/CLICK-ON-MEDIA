@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import RevealHeading from './RevealHeading';
 import {
   ArrowRight,
-  Play,
   Zap,
   FolderCheck,
   Users,
@@ -66,7 +65,7 @@ export default function Hero({ onOpenQuote, onOpenVideo, onSelectService }) {
               Gorakhpur&apos;s premier digital agency for high-converting websites, custom software, Google Ads, localized SEO, viral reels &amp; data-driven marketing. We scale ambitious businesses across Gorakhpur and Uttar Pradesh with guaranteed ROI.
             </RevealHeading>
 
-            {/* Action Buttons: Primary Orange Gradient + Secondary Glass */}
+            {/* Action Button: Primary Orange Gradient */}
             <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4 pt-1">
               <button
                 onClick={onOpenQuote}
@@ -74,16 +73,6 @@ export default function Hero({ onOpenQuote, onOpenVideo, onSelectService }) {
               >
                 <span>Start Your Project</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
-
-              <button
-                onClick={onOpenVideo}
-                className="btn-secondary !text-[var(--deep-navy)] !border-[var(--primary-blue)]/40 hover:!border-[var(--primary-blue)] hover:!bg-slate-50 text-xs sm:text-base !py-3 sm:!py-3.5 !px-5 sm:!px-7 group justify-center backdrop-blur-md bg-white/90 shadow-md"
-              >
-                <span className="w-6 h-6 rounded-full bg-[var(--brand-orange)]/15 flex items-center justify-center text-[var(--brand-orange)] group-hover:scale-110 transition-transform flex-shrink-0">
-                  <Play className="w-3 h-3 fill-[var(--brand-orange)] translate-x-0.5" />
-                </span>
-                <span>Watch Our Story</span>
               </button>
             </div>
 
