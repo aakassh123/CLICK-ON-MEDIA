@@ -326,11 +326,11 @@ export default function OurWork({ onSelectProject }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         
-        {/* Header with Title (Protected with Frosted Glass Island) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 p-5 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-md mb-6">
+        {/* Header with Title and Narrative (Open & Grand Style without Box) */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-slate-200/80 mb-6">
           <div className="space-y-2">
             {/* Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--primary-blue)]/10 border border-[var(--primary-blue)]/20 text-xs font-bold text-[var(--primary-blue)] shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-bold text-[var(--primary-blue)] shadow-xs">
               <Zap className="w-3.5 h-3.5 fill-[var(--primary-blue)]" />
               <span>Proven Agency Portfolio</span>
             </div>
@@ -342,7 +342,7 @@ export default function OurWork({ onSelectProject }) {
                 Real Impact
               </span>
             </RevealHeading>
-            <p className="text-xs sm:text-sm text-[var(--text-muted)] font-normal max-w-xl">
+            <p className="text-xs sm:text-sm text-[#071133] font-bold max-w-xl drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
               Watch our client case studies shatter benchmarks. Click any project to open its dedicated full-page case study.
             </p>
           </div>

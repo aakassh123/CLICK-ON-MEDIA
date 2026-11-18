@@ -67,12 +67,12 @@ export default function Process({ onOpenQuote }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header (Encased in Frosted Glass Island to 100% Protect Text Readability) */}
-        <div className="text-center max-w-4xl mx-auto space-y-3 bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-md">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
+        {/* Header (Open & Grand Style without Box) */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
             <Zap className="w-3.5 h-3.5 fill-[var(--brand-orange)] text-[var(--brand-orange)]" />
             <span className="text-[var(--brand-orange)] uppercase tracking-wider text-[11px] font-bold">How We Work</span>
-            <span className="text-[var(--text-muted)]">• The 5-Step Formula</span>
+            <span className="text-slate-500">• The 5-Step Formula</span>
           </div>
 
           <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A1F6B] tracking-tight leading-tight font-heading">
@@ -82,7 +82,7 @@ export default function Process({ onOpenQuote }) {
             </span>
           </RevealHeading>
 
-          <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+          <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base text-[#071133] font-bold leading-relaxed max-w-2xl mx-auto drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
             From initial discovery to launch and compounding marketing scale, our structured five-stage methodology guarantees on-time delivery, crystal-clear communication, and measurable ROI.
           </RevealHeading>
         </div>
