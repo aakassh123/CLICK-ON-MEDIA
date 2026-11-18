@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import RevealHeading from './RevealHeading';
 import { 
   ArrowRight, 
   ArrowLeft, 
@@ -230,14 +231,14 @@ export default function OurWork({ onSelectProject }) {
   };
 
   const handleNext = () => {
-    if (isBreaking) return;
-    const nextIdx = (activeProjectIndex + 1) % projects.length;
+    if (isBreakingRef.current) return;
+    const nextIdx = (activeIndexRef.current + 1) % projects.length;
     triggerBreakTo(nextIdx);
   };
 
   const handlePrev = () => {
-    if (isBreaking) return;
-    const prevIdx = (activeProjectIndex - 1 + projects.length) % projects.length;
+    if (isBreakingRef.current) return;
+    const prevIdx = (activeIndexRef.current - 1 + projects.length) % projects.length;
     triggerBreakTo(prevIdx);
   };
 
@@ -259,6 +260,37 @@ export default function OurWork({ onSelectProject }) {
       if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
     };
   }, [viewMode, isInView, isHovered, projects.length]);
+
+  // Scroll-driven automatic card advancement: as the user scrolls through the Work section,
+  // the cards automatically shatter & reveal the next project smoothly!
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let accumulatedDelta = 0;
+    const threshold = 140;
+
+    const handleScroll = () => {
+      if (!sectionRef.current || isBreakingRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
+
+      if (inView) {
+        const delta = window.scrollY - lastScrollY;
+        accumulatedDelta += delta;
+
+        if (accumulatedDelta > threshold) {
+          handleNext();
+          accumulatedDelta = 0;
+        } else if (accumulatedDelta < -threshold) {
+          handlePrev();
+          accumulatedDelta = 0;
+        }
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [projects.length]);
 
   // Touch swipe support for mobile
   const handleTouchStart = (e) => {
@@ -284,7 +316,7 @@ export default function OurWork({ onSelectProject }) {
     <section 
       id="work" 
       ref={sectionRef}
-      className="bg-white relative overflow-hidden py-14 sm:py-16 lg:py-20 text-[var(--text-dark)]"
+      className="bg-transparent relative overflow-hidden py-14 sm:py-16 lg:py-20 text-[var(--text-dark)]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -294,8 +326,8 @@ export default function OurWork({ onSelectProject }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         
-        {/* Header with Title and Mode Switcher */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-slate-200 mb-6">
+        {/* Header with Title (Protected with Frosted Glass Island) */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 p-5 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-md mb-6">
           <div className="space-y-2">
             {/* Pill Tag */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--primary-blue)]/10 border border-[var(--primary-blue)]/20 text-xs font-bold text-[var(--primary-blue)] shadow-xs">
@@ -303,42 +335,16 @@ export default function OurWork({ onSelectProject }) {
               <span>Proven Agency Portfolio</span>
             </div>
 
-            {/* Headline */}
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--deep-navy)] tracking-tight leading-tight font-heading">
+            {/* Headline with Official Logo Colors */}
+            <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A1F6B] tracking-tight leading-tight font-heading">
               Projects That Create{' '}
-              <span className="text-gradient-brand">Real Impact</span>
-            </h2>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00]">
+                Real Impact
+              </span>
+            </RevealHeading>
             <p className="text-xs sm:text-sm text-[var(--text-muted)] font-normal max-w-xl">
               Watch our client case studies shatter benchmarks. Click any project to open its dedicated full-page case study.
             </p>
-          </div>
-
-          {/* View Mode Controls */}
-          <div className="flex items-center gap-3">
-            <div className="inline-flex p-1 bg-slate-100 rounded-2xl border border-slate-200 shadow-sm">
-              <button
-                onClick={() => setViewMode('showcase')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  viewMode === 'showcase'
-                    ? 'bg-gradient-to-r from-[var(--brand-orange)] to-[var(--amber)] text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Layers className="w-3.5 h-3.5" />
-                <span>Break & Reveal Showcase</span>
-              </button>
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  viewMode === 'grid'
-                    ? 'bg-[var(--deep-navy)] text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <LayoutGrid className="w-3.5 h-3.5" />
-                <span>All Projects Grid</span>
-              </button>
-            </div>
           </div>
         </div>
 
@@ -348,62 +354,6 @@ export default function OurWork({ onSelectProject }) {
         {viewMode === 'showcase' ? (
           <div>
             
-            {/* Top Project Selector Tabs & Controls Bar */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-5">
-              
-              {/* Project Buttons Tabs */}
-              <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 max-w-full no-scrollbar">
-                {projects.map((proj, idx) => {
-                  const isActive = activeProjectIndex === idx;
-                  return (
-                    <button
-                      key={proj.id}
-                      onClick={() => triggerBreakTo(idx)}
-                      disabled={isBreaking}
-                      className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-300 cursor-pointer flex-shrink-0 ${
-                        isActive
-                          ? 'bg-[var(--deep-navy)] text-white shadow-md ring-2 ring-[var(--cyan-accent)]/50 scale-[1.02]'
-                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200/80 border border-slate-200/80'
-                      }`}
-                    >
-                      <span className={`w-4.5 h-4.5 rounded-full flex items-center justify-center font-mono text-[10px] font-bold ${
-                        isActive ? 'bg-[var(--brand-orange)] text-white' : 'bg-slate-200 text-slate-600'
-                      }`}>
-                        {proj.number}
-                      </span>
-                      <span className="font-heading tracking-wide">{proj.title}</span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Navigation Arrows & Counter */}
-              <div className="flex items-center gap-2.5 flex-shrink-0 self-end sm:self-auto">
-                <span className="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
-                  0{activeProjectIndex + 1} / 0{projects.length}
-                </span>
-
-                <button
-                  onClick={handlePrev}
-                  disabled={isBreaking}
-                  className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 hover:bg-[var(--deep-navy)] hover:text-white hover:border-[var(--deep-navy)] text-slate-700 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 disabled:opacity-50"
-                  aria-label="Previous project break"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                </button>
-
-                <button
-                  onClick={handleNext}
-                  disabled={isBreaking}
-                  className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 hover:bg-[var(--brand-orange)] hover:text-white hover:border-[var(--brand-orange)] text-slate-700 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 disabled:opacity-50"
-                  aria-label="Next project break"
-                >
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-            </div>
-
             {/* ========================================================================= */}
             {/* MAIN BREAK & REVEAL CARD STAGE (100% PRESERVED ANIMATION)                 */}
             {/* ========================================================================= */}

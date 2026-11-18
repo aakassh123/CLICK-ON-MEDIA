@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RevealHeading from './RevealHeading';
 import { ArrowLeft, ArrowRight, Zap, CheckCircle2, ChevronRight, Award, Users } from 'lucide-react';
 import Logo from './Logo';
 
@@ -59,20 +60,20 @@ export default function AboutUs({ onOpenConsultation }) {
   };
 
   return (
-    <section id="about" className="py-20 sm:py-24 lg:py-32 bg-[#1C2028] text-white relative overflow-hidden">
+    <section id="about" className="py-20 sm:py-24 lg:py-32 bg-transparent text-slate-800 relative overflow-hidden">
       
       {/* ========================================================================= */}
-      {/* 1. BACKGROUND GEOMETRIC AMBIENCE MATCHING REFERENCE SCREENSHOT            */}
+      {/* 1. BACKGROUND GEOMETRIC AMBIENCE MATCHING LOGO PALETTE                    */}
       {/* ========================================================================= */}
-      {/* Large Curved Orange Semi-Circle Graphic on Right */}
+      {/* Large Ambient Orange Aura on Right */}
       <div 
-        className="absolute -right-24 sm:-right-36 top-1/2 -translate-y-1/2 w-80 sm:w-96 md:w-[480px] h-80 sm:h-96 md:h-[480px] rounded-full bg-[var(--brand-orange)] pointer-events-none opacity-90 z-0"
+        className="absolute -right-24 sm:-right-36 top-1/2 -translate-y-1/2 w-80 sm:w-96 md:w-[480px] h-80 sm:h-96 md:h-[480px] rounded-full bg-[var(--brand-orange)]/15 pointer-events-none opacity-90 z-0 blur-3xl"
         style={{ transform: 'translateZ(0)' }}
       />
 
       {/* Floating Brand Orange Dot on Bottom Left */}
       <div 
-        className="absolute left-6 sm:left-12 bottom-8 sm:bottom-12 w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-[var(--brand-orange)] pointer-events-none z-0 shadow-lg"
+        className="absolute left-6 sm:left-12 bottom-8 sm:bottom-12 w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-[var(--brand-orange)]/40 pointer-events-none z-0 shadow-lg"
         style={{ transform: 'translateZ(0)' }}
       />
 
@@ -84,7 +85,7 @@ export default function AboutUs({ onOpenConsultation }) {
       {/* ========================================================================= */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="rounded-3xl sm:rounded-[36px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] border border-white/15 bg-white grid grid-cols-1 lg:grid-cols-12 min-h-[520px]">
+        <div className="rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/90 bg-white grid grid-cols-1 lg:grid-cols-12 min-h-[520px]">
           
           {/* --------------------------------------------------------------------- */}
           {/* LEFT HALF: FULL-BLEED PHOTOGRAPHIC VISUAL ANCHOR (5 Cols)             */}
@@ -94,7 +95,7 @@ export default function AboutUs({ onOpenConsultation }) {
             {/* Background Photographic Scene: Team outdoor terrace collaboration (like reference) */}
             <img 
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
-              alt="Click On Media Team Collaboration"
+              alt="Click On Media Team Collaboration in Gorakhpur, UP"
               className="absolute inset-0 w-full h-full object-cover object-center filter brightness-90 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
               loading="lazy"
             />
@@ -112,9 +113,9 @@ export default function AboutUs({ onOpenConsultation }) {
 
             {/* Bottom Content: "OUR STORY" & Narrative Tag */}
             <div className="relative z-10 space-y-3">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight uppercase leading-none drop-shadow-md">
+              <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight uppercase leading-none drop-shadow-md">
                 OUR STORY
-              </h2>
+              </RevealHeading>
 
               <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed max-w-sm drop-shadow">
                 HOW A 2-PERSON HUSTLE IN GORAKHPUR GREW INTO A FULL-SERVICE DIGITAL DOMINANCE MACHINE.
@@ -196,8 +197,9 @@ export default function AboutUs({ onOpenConsultation }) {
                           <div className="w-12 h-12 rounded-xl overflow-hidden border border-white/30 shadow-sm mb-2">
                             <img 
                               src={card.imageUrl} 
-                              alt="Founder" 
+                              alt="Click On Media Founder" 
                               className="w-full h-full object-cover filter contrast-105"
+                              loading="lazy"
                             />
                           </div>
                         )}

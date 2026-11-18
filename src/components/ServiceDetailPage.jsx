@@ -17,7 +17,12 @@ import {
   Palette, 
   Film,
   Layers,
-  ChevronRight
+  ChevronRight,
+  Users,
+  Layout,
+  PlaySquare,
+  Target,
+  MessageCircle
 } from 'lucide-react';
 import Logo from './Logo';
 
@@ -42,6 +47,8 @@ export default function ServiceDetailPage({
       icon: Globe,
       color: 'text-[var(--primary-blue)]',
       accentBg: 'bg-[var(--primary-blue)]/10',
+      image: './services/service-web-dev.jpg',
+      imageBadge: 'Verified Web Architecture: Next.js + React + Headless CMS',
       tagline: 'Modern, responsive and sub-second performance digital flagships.',
       overview: 'Your website is the single most critical asset of your digital brand. At Click On Media, we do not build generic template sites — we engineer lightning-fast, high-converting digital flagships. Built on modern web architecture with sub-second load times, mobile-first precision, and flawless UX design, our websites rank higher on Google, capture attention instantly, and systematically convert visitors into qualified, paying customers.',
       metrics: '0.6s Avg Load Time',
@@ -96,6 +103,8 @@ export default function ServiceDetailPage({
       icon: Code2,
       color: 'text-[var(--brand-orange)]',
       accentBg: 'bg-[var(--brand-orange)]/10',
+      image: './services/service-software-dev.jpg',
+      imageBadge: 'Full-Stack Enterprise Cloud & Mobile App Architecture',
       tagline: 'Custom software, SaaS platforms, and high-performance mobile apps.',
       overview: 'From internal automation systems and multi-tenant SaaS platforms to native and cross-platform mobile apps, Click On Media designs and engineers robust software solutions built to scale effortlessly. We prioritize clean modular architecture, fault-tolerant cloud infrastructure, bank-grade data security, and intuitive user experiences that turn complex workflows into seamless productivity.',
       metrics: '99.98% High Uptime',
@@ -150,6 +159,8 @@ export default function ServiceDetailPage({
       icon: Megaphone,
       color: 'text-[var(--primary-blue)]',
       accentBg: 'bg-[var(--primary-blue)]/10',
+      image: './services/service-digital-marketing.jpg',
+      imageBadge: 'Data-Driven Omnichannel Growth & Attribution Engine',
       tagline: 'High-ROAS Meta & Google ad funnels that maximize your customer acquisition.',
       overview: 'Clicks without conversions are a waste of marketing budget. At Click On Media, we build data-driven performance marketing engines designed to maximize your Return on Ad Spend (ROAS). We combine deep audience segmentation, compelling creative testing, and multi-touch attribution modeling across Google Ads, Meta Ads (Facebook & Instagram), and LinkedIn to systematically scale your revenue.',
       metrics: '3.8x+ Average ROAS',
@@ -204,6 +215,8 @@ export default function ServiceDetailPage({
       icon: Search,
       color: 'text-[var(--brand-orange)]',
       accentBg: 'bg-[var(--brand-orange)]/10',
+      image: './services/service-google-ads.jpg',
+      imageBadge: 'Search Engine Optimization & Google Local Pack Domination',
       tagline: 'Claim page-one Google rankings that deliver high-intent organic customers.',
       overview: 'Organic search delivers the highest lifetime value customers in business. Our technical and semantic SEO strategies ensure your brand captures page-one rankings for the highest-intent commercial keywords in your industry. By fixing technical debt, building authoritative backlink profiles, and structuring topical clusters, Click On Media creates a compounding organic lead pipeline that continues to grow month after month.',
       metrics: '#1 Rankings in Key Sectors',
@@ -258,6 +271,8 @@ export default function ServiceDetailPage({
       icon: Palette,
       color: 'text-[var(--primary-blue)]',
       accentBg: 'bg-[var(--primary-blue)]/10',
+      image: './services/service-graphics-logo.jpg',
+      imageBadge: 'Iconic 3D & Vector Brand Identity Design Suite',
       tagline: 'Distinctive brand identities, 3D design tokens, and corporate collateral.',
       overview: 'In a crowded digital world, perception is reality. A premium, distinct brand identity instantly builds trust, commands higher pricing, and makes your company unforgettable. Click On Media crafts complete visual identities — from iconic 3D logo systems and expressive typography palettes to corporate pitch decks and comprehensive brand guidelines that unite your digital presence across every customer touchpoint.',
       metrics: '100% Vector & Trademark Ready',
@@ -312,6 +327,8 @@ export default function ServiceDetailPage({
       icon: Film,
       color: 'text-[var(--brand-orange)]',
       accentBg: 'bg-[var(--brand-orange)]/10',
+      image: './services/service-short-reels.jpg',
+      imageBadge: 'High-Retention 9:16 Viral Video & Studio Production',
       tagline: 'Thumb-stopping 9:16 reels, shorts, and cinematic brand video production.',
       overview: 'Attention is the ultimate currency of the modern internet. At Click On Media, we script, shoot, edit, and optimize viral short-form video content designed to halt scrolling, trigger emotional engagement, and build massive brand communities. From viral Instagram Reels and YouTube Shorts to high-end commercial explainer videos, our content studio creates high-retention stories that turn passive viewers into passionate brand advocates.',
       metrics: '2.4M+ Video Views Generated',
@@ -356,7 +373,263 @@ export default function ServiceDetailPage({
         'End-to-end management: from ideation and scripting to final delivery',
         'High-converting video assets proven to lower customer acquisition costs in paid advertising'
       ]
-    }
+    },
+    'digital-marketing': {
+      id: 'digital-marketing',
+      number: '03',
+      title: 'Digital Marketing',
+      badge: 'Online Growth & Strategy',
+      category: 'Omnichannel Digital Strategy',
+      icon: TrendingUp,
+      color: 'text-[var(--primary-blue)]',
+      accentBg: 'bg-[var(--primary-blue)]/10',
+      image: './services/service-digital-marketing.jpg',
+      imageBadge: 'Data-Driven Omnichannel Growth & Attribution Engine',
+      tagline: 'Boost your online presence and reach your target audience with expert growth strategies.',
+      overview: 'We build 360° digital marketing engines that expand brand reach and systematically convert prospects into high-paying clients. Through competitor benchmarking, targeted audience segmentation, and multi-channel attribution funnels, we help businesses establish regional and pan-India dominance with measurable ROI.',
+      metrics: '4.2x Growth',
+      metricDetail: 'Pan-India Reach',
+      timeline: 'Monthly Growth',
+      startingPrice: 'Growth Roadmap',
+      deliverables: [
+        { title: 'Omnichannel Growth Strategy', desc: 'Comprehensive digital audit, target customer persona mapping, and revenue roadmap.' },
+        { title: 'Inbound Lead Funnel Architecture', desc: 'High-converting lead magnets, landing pages, and automated WhatsApp lead flows.' },
+        { title: 'Competitor & Market Benchmarking', desc: 'In-depth analysis of competitor strategies to capture untapped market share.' },
+        { title: 'Full-Funnel Attribution Analytics', desc: 'Transparent real-time dashboard tracking impressions, leads, CAC, and revenue.' }
+      ],
+      process: [
+        { step: '01', title: 'Market Audit', desc: 'Deep dive into audience behavior and competitor gaps.' },
+        { step: '02', title: 'Funnel Blueprint', desc: 'Structuring lead acquisition pathways across channels.' },
+        { step: '03', title: 'Execution & Scale', desc: 'Deploying campaigns with high-impact creatives and copy.' },
+        { step: '04', title: 'ROI Optimization', desc: 'Daily tracking and conversion rate optimization.' }
+      ],
+      technologies: ['Google Analytics 4', 'Meta Business Suite', 'Google Tag Manager', 'HubSpot', 'Zapier', 'WhatsApp Business API'],
+      whyChoose: ['Zero wasted marketing spend', 'Real paying buyer focus instead of vanity metrics', 'Transparent live reporting dashboards']
+    },
+    'social-media': {
+      id: 'social-media',
+      number: '04',
+      title: 'Social Media Growth & Engagement',
+      badge: 'Community & Brand Authority',
+      category: 'Social Media Marketing',
+      icon: Users,
+      color: 'text-[var(--brand-orange)]',
+      accentBg: 'bg-[var(--brand-orange)]/10',
+      image: './services/service-social-media.jpg',
+      imageBadge: 'High-Retention Brand Community & Social Engagement Hub',
+      tagline: 'Enhance your brand’s online engagement and growth with expert social media strategies.',
+      overview: 'Transform your social channels into magnetic community hubs. At Click On Media, we manage your Instagram, Facebook, and LinkedIn profiles with aesthetic visual grids, viral hook copy, high-retention stories, and active follower engagement that builds fierce brand loyalty and daily inbound inquiries.',
+      metrics: '+340% Reach',
+      metricDetail: 'Active Community',
+      timeline: 'Monthly Management',
+      startingPrice: 'Monthly Packages',
+      deliverables: [
+        { title: 'Aesthetic Feed & Story Architecture', desc: 'Curated visual themes and daily branded post designs tailored to your niche.' },
+        { title: 'Community Management & DM Workflows', desc: 'Active comment replies, DM lead triage, and direct customer query handling.' },
+        { title: 'Organic Growth & Trend Capitalization', desc: 'Capitalizing on trending audio, viral formats, and hashtag strategies for maximum organic reach.' },
+        { title: 'Monthly Performance Growth Audits', desc: 'Detailed monthly reports covering reach, engagement rate, profile visits, and follower conversions.' }
+      ],
+      process: [
+        { step: '01', title: 'Brand Voice Discovery', desc: 'Defining your unique tone of voice and visual identity.' },
+        { step: '02', title: 'Monthly Content Calendar', desc: 'Pre-scheduling 30 days of high-converting posts and reels.' },
+        { step: '03', title: 'Daily Community Engagement', desc: 'Actively interacting with your followers and industry peers.' },
+        { step: '04', title: 'Growth Review', desc: 'Reviewing metrics and doubling down on top-performing content.' }
+      ],
+      technologies: ['Instagram', 'Facebook', 'LinkedIn', 'Canva Pro', 'Figma', 'Buffer / Hootsuite'],
+      whyChoose: ['Consistent daily posting with zero effort from your team', 'High aesthetic standards that elevate brand perception', 'Real organic follower growth without fake bots']
+    },
+    'posters': {
+      id: 'posters',
+      number: '05',
+      title: 'Posters & Marketing Collateral',
+      badge: 'High-Impact Visual Creatives',
+      category: 'Graphic Design & Print Media',
+      icon: Layout,
+      color: 'text-[var(--primary-blue)]',
+      accentBg: 'bg-[var(--primary-blue)]/10',
+      image: './services/service-posters.jpg',
+      imageBadge: '300DPI Print-Ready & High-Impact Digital Marketing Collateral',
+      tagline: 'Create impactful and visually appealing posters to effectively promote your brand.',
+      overview: 'Stop the scroll and make heads turn. We design bold, visually stunning promotional posters, festival social banners, outdoor hoardings, and marketing flyers that convey your core message instantly and compel customers to take immediate action.',
+      metrics: '100% Custom',
+      metricDetail: '300DPI Print & Web',
+      timeline: '2 to 4 Days',
+      startingPrice: 'Per Creative / Bundle',
+      deliverables: [
+        { title: 'Promotional & Product Posters', desc: 'High-impact product launch and discount promotional creatives for digital ads and print.' },
+        { title: 'Festival & Occasion Banners', desc: 'Custom holiday and festival creatives tailored with your branding and logo.' },
+        { title: 'Large Format Hoardings & Standees', desc: '300DPI print-ready vector designs for billboards, trade show booths, and standees.' },
+        { title: 'Multi-Format Social Media Sizes', desc: 'Perfect aspect ratios for 1:1 Instagram feeds, 9:16 Stories, and Facebook banners.' }
+      ],
+      process: [
+        { step: '01', title: 'Creative Brief', desc: 'Understanding your promotion, offer, and target audience.' },
+        { step: '02', title: 'Concept Exploration', desc: 'Drafting 2-3 visual concept layouts with bold typography.' },
+        { step: '03', title: 'High-Res Refinement', desc: 'Fine-tuning lighting, shadows, product placement, and color grading.' },
+        { step: '04', title: 'Multi-Format Delivery', desc: 'Supplying web JPG/PNG files and print-ready vector PDFs.' }
+      ],
+      technologies: ['Adobe Photoshop', 'Illustrator', 'Figma', 'Vector Pro'],
+      whyChoose: ['Zero template work — 100% custom bespoke graphic design', 'Express 48-hour delivery on priority campaigns', 'Print-ready color profiles that look vibrant in real life']
+    },
+    'short-reels': {
+      id: 'short-reels',
+      number: '06',
+      title: 'Short Videos & Reels',
+      badge: 'Viral 9:16 Video Production',
+      category: 'Video Production & Social Video',
+      icon: Film,
+      color: 'text-[var(--brand-orange)]',
+      accentBg: 'bg-[var(--brand-orange)]/10',
+      image: './services/service-short-reels.jpg',
+      imageBadge: 'High-Retention 9:16 Viral Video & Studio Production',
+      tagline: 'Captivate your audience and boost engagement with creative short videos and reels.',
+      overview: 'Short-form vertical video is the #1 organic growth engine today. We produce dynamic 9:16 Instagram Reels and YouTube Shorts with psychological scroll-stopping hooks, dynamic auto-captions, cinematic sound effects, and trending sound design that explodes brand awareness and drives massive engagement.',
+      metrics: '10M+ Views',
+      metricDetail: 'Viral Retention',
+      timeline: '3 to 7 Days',
+      startingPrice: 'Monthly Bundles',
+      deliverables: [
+        { title: 'Psychological Hook Scripting', desc: '3-second curiosity-inducing hooks that retain viewers through the algorithm.' },
+        { title: 'Studio-Grade 4K Post-Production', desc: 'Dynamic text tracking, cinematic color grading, and speed-ramp transitions.' },
+        { title: 'Trending Audio & Sound FX', desc: 'Curating viral music and Foley sound effects to maximize watch-time percentage.' },
+        { title: 'Repurposing Across Platforms', desc: 'Single production adapted for Instagram Reels, YouTube Shorts, and Facebook Reels.' }
+      ],
+      process: [
+        { step: '01', title: 'Script & Trend Research', desc: 'Identifying viral topics and writing punchy scripts.' },
+        { step: '02', title: 'Production & Filming Direction', desc: 'Studio shooting or high-end stock/B-roll composition.' },
+        { step: '03', title: 'Dynamic Editing & VFX', desc: 'Adding animated captions, zooms, sound design, and pacing.' },
+        { step: '04', title: 'Publishing Optimization', desc: 'Optimizing titles, covers, and timing for algorithmic push.' }
+      ],
+      technologies: ['Adobe Premiere Pro', 'After Effects', 'DaVinci Resolve', 'CapCut Studio Pro'],
+      whyChoose: ['Over 10M+ organic video views delivered for clients', 'High retention editing that algorithms prioritize', 'End-to-end service from concept script to finished render']
+    },
+    'graphics-logo': {
+      id: 'graphics-logo',
+      number: '07',
+      title: 'Graphics & Logo Design',
+      badge: 'Brand Identity & Visual Design',
+      category: 'Branding & Corporate Identity',
+      icon: Palette,
+      color: 'text-[var(--primary-blue)]',
+      accentBg: 'bg-[var(--primary-blue)]/10',
+      image: './services/service-graphics-logo.jpg',
+      imageBadge: 'Iconic 3D & Vector Brand Identity Design Suite',
+      tagline: 'Elevate your brand identity with stunning graphics and logo design.',
+      overview: 'Your logo and visual design are the first impression customers have of your business. We engineer iconic 3D and 2D logo suites, comprehensive brand guidelines, color palettes, typography tokens, and business stationery that position your business as a premium market leader.',
+      metrics: 'Trademark Ready',
+      metricDetail: '100% Original',
+      timeline: '1 to 2 Weeks',
+      startingPrice: 'Full Identity Suite',
+      deliverables: [
+        { title: 'Iconic 3D & 2D Logo Suite', desc: 'Primary, secondary, and sub-mark logos with 3D embossed and flat vector variants.' },
+        { title: 'Brand Style Guidelines', desc: 'Official brand book with color hex codes, font pairings, spacing rules, and usage guides.' },
+        { title: 'Corporate Stationery Suite', desc: 'Business cards, letterheads, email signatures, envelopes, and invoice templates.' },
+        { title: 'Full Vector Source Files', desc: 'AI, EPS, SVG, PDF, and high-resolution transparent PNG files for any printing scale.' }
+      ],
+      process: [
+        { step: '01', title: 'Brand Core Discovery', desc: 'Uncovering brand values, industry positioning, and target appeal.' },
+        { step: '02', title: 'Concept Sketches', desc: 'Presenting multiple distinct logo concepts with rationales.' },
+        { step: '03', title: 'Refinement & 3D Rendering', desc: 'Polishing geometry and adding realistic 3D textures.' },
+        { step: '04', title: 'Brand Asset Kit Delivery', desc: 'Compiling all vector formats and documentation.' }
+      ],
+      technologies: ['Adobe Illustrator', 'Photoshop', 'Blender 3D', 'Figma'],
+      whyChoose: ['100% Original, copyright-protected designs', 'Versatile vector files that never lose quality', 'Created by award-winning visual designers']
+    },
+    'youtube-videos': {
+      id: 'youtube-videos',
+      number: '08',
+      title: 'YouTube Videos & Production',
+      badge: 'Video Authority & Long-Form Content',
+      category: 'Video Production & YouTube SEO',
+      icon: PlaySquare,
+      color: 'text-[var(--brand-orange)]',
+      accentBg: 'bg-[var(--brand-orange)]/10',
+      image: './services/service-youtube-videos.jpg',
+      imageBadge: '4K Story-Driven Video Editing & High-CTR 3D Thumbnails',
+      tagline: 'Enhance your online presence and reach a wider audience with professional YouTube videos.',
+      overview: 'YouTube is the second largest search engine in the world. We provide complete YouTube production services for creators and businesses — from script structure and pacing to multi-cam 4K editing, high-CTR 3D thumbnails, and YouTube SEO that ranks your videos for compounding search views.',
+      metrics: '+280% Watch Time',
+      metricDetail: 'High CTR Thumbs',
+      timeline: 'Weekly Episodes',
+      startingPrice: 'Per Video / Channel Retainer',
+      deliverables: [
+        { title: 'Story-Driven 4K Video Editing', desc: 'Dynamic pacing, custom B-roll, animations, and cinematic background scoring.' },
+        { title: 'High-CTR 3D Thumbnail Design', desc: 'Click-through optimized thumbnails with custom face cutout editing and bold typography.' },
+        { title: 'YouTube SEO & Description Optimization', desc: 'Keyword-rich titles, timestamps, tags, and chapter links for YouTube Search ranking.' },
+        { title: 'Intro & Outro Animation Packages', desc: 'Branded 3D channel bumpers, subscribe animations, and end-screen layouts.' }
+      ],
+      process: [
+        { step: '01', title: 'Content Outline & SEO', desc: 'Topic keyword research and video script pacing.' },
+        { step: '02', title: 'Rough Cut & Pacing', desc: 'Assembling footage and removing pauses for maximum engagement.' },
+        { step: '03', title: 'VFX, Graphics & Sound', desc: 'Adding lower thirds, sound effects, B-roll, and color correction.' },
+        { step: '04', title: 'Thumbnail & Upload Optimization', desc: 'Designing A/B testable thumbnails and optimizing SEO metadata.' }
+      ],
+      technologies: ['Adobe Premiere Pro', 'After Effects', 'Photoshop', 'TubeBuddy / VidIQ'],
+      whyChoose: ['Dramatic boost in average percentage viewed (APV)', 'High click-through rates on suggested and browse features', 'Turnkey solution allowing you to focus purely on recording']
+    },
+    'google-ads': {
+      id: 'google-ads',
+      number: '09',
+      title: 'Google Ads (Search & PPC)',
+      badge: 'High-Intent Inbound Leads',
+      category: 'Performance PPC Advertising',
+      icon: Target,
+      color: 'text-[var(--primary-blue)]',
+      accentBg: 'bg-[var(--primary-blue)]/10',
+      image: './services/service-google-ads.jpg',
+      imageBadge: 'High-Intent Google Search, Maps & Performance Max Campaigns',
+      tagline: 'Maximize your online visibility and drive targeted traffic to your website with effective Google Ads campaigns.',
+      overview: 'Capture customers at the exact second they are searching for your service on Google. We architect high-converting Google Search, Performance Max, and Google Maps ad campaigns with negative keyword filtering, high Quality Scores, and optimized landing pages to guarantee the lowest cost per qualified lead.',
+      metrics: '4.5x Avg ROAS',
+      metricDetail: 'Instant Lead Flow',
+      timeline: 'Campaign Launch in 48h',
+      startingPrice: 'Performance Based',
+      deliverables: [
+        { title: 'High-Intent Keyword Architecture', desc: 'Targeting commercial-intent buyer search terms with high purchase probability.' },
+        { title: 'Negative Keyword Filtering', desc: 'Aggressive negative keyword lists to prevent wasted clicks from irrelevant traffic.' },
+        { title: 'Google Maps Local Pack Ad Extension', desc: 'Promoting your location at the top of Google Maps to generate immediate phone calls.' },
+        { title: 'Conversion Tracking & ROAS Attribution', desc: 'End-to-end tracking of phone calls, form fills, and actual closed revenue.' }
+      ],
+      process: [
+        { step: '01', title: 'Competitor PPC Audit', desc: 'Analyzing competitor bids, keywords, and copy angles.' },
+        { step: '02', title: 'Campaign Setup', desc: 'Configuring ad groups, responsive search ads, and call extensions.' },
+        { step: '03', title: 'Negative Bidding & Quality Score', desc: 'Optimizing ad copy and landing page relevance to lower CPC.' },
+        { step: '04', title: 'Scaling Profitable Keywords', desc: 'Allocating budget strictly to top-converting terms.' }
+      ],
+      technologies: ['Google Ads', 'Google Keyword Planner', 'Google Tag Manager', 'SpyFu', 'CallRail'],
+      whyChoose: ['Immediate #1 search placement on Day 1', 'Zero budget wasted on accidental or bot clicks', 'Transparent live conversion tracking dashboard']
+    },
+    'social-ads': {
+      id: 'social-ads',
+      number: '10',
+      title: 'Social Media Ads (Meta & WhatsApp)',
+      badge: 'Direct Response Advertising',
+      category: 'Meta & WhatsApp Ads',
+      icon: MessageCircle,
+      color: 'text-[var(--brand-orange)]',
+      accentBg: 'bg-[var(--brand-orange)]/10',
+      image: './services/service-social-ads.jpg',
+      imageBadge: 'High-Converting Meta Ads & Direct WhatsApp Click-to-Chat Funnels',
+      tagline: 'Amplify your brand’s reach and engagement with strategic advertising on Facebook, Instagram, and WhatsApp.',
+      overview: 'Transform cold scrollers into hot inbound leads and customers. We run precision Facebook and Instagram ad campaigns paired with instant WhatsApp click-to-chat funnels. With high-converting video creatives, psychological offer hooks, and dynamic retargeting, we scale your revenue profitably with industry-leading ROAS.',
+      metrics: '3.8x+ ROAS',
+      metricDetail: 'Direct WhatsApp Leads',
+      timeline: 'Campaign Launch in 72h',
+      startingPrice: 'Performance Based',
+      deliverables: [
+        { title: 'Direct-Response Ad Creatives', desc: 'High-converting video and carousel ad creatives tested for lowest cost per lead.' },
+        { title: 'WhatsApp Click-to-Chat Funnels', desc: 'Sending high-intent buyers straight into your WhatsApp with pre-filled inquiries.' },
+        { title: 'Lookalike & Custom Audience Targeting', desc: 'Targeting verified buyer profiles based on location, age, income, and behaviors.' },
+        { title: 'Dynamic Retargeting Sequences', desc: 'Re-engaging visitors who visited your website or Instagram profile without buying.' }
+      ],
+      process: [
+        { step: '01', title: 'Audience & Offer Strategy', desc: 'Formulating an irresistible offer and audience avatar.' },
+        { step: '02', title: 'Creative Production & Copywriting', desc: 'Designing thumb-stopping video and image creatives.' },
+        { step: '03', title: 'Campaign Launch & Split-Testing', desc: 'Testing multiple hooks, headlines, and audience angles.' },
+        { step: '04', title: 'Aggressive Scaling', desc: 'Ramping ad spend on winning combinations with high ROAS.' }
+      ],
+      technologies: ['Meta Ads Manager', 'Facebook Pixel', 'Conversions API', 'WhatsApp Business API'],
+      whyChoose: ['Lowest cost per lead in the industry', 'Instant WhatsApp leads ready to talk and buy', '100% transparent live attribution reporting']
+    },
   };
 
   const current = serviceData[serviceId] || serviceData['web-dev'];
@@ -365,14 +638,18 @@ export default function ServiceDetailPage({
   const allServicesList = [
     { id: 'web-dev', title: 'Website Dev', number: '01', icon: Globe },
     { id: 'software-dev', title: 'Software & App', number: '02', icon: Code2 },
-    { id: 'marketing', title: 'Digital Marketing', number: '03', icon: Megaphone },
-    { id: 'seo', title: 'SEO & Performance', number: '04', icon: Search },
-    { id: 'branding', title: 'Branding & Design', number: '05', icon: Palette },
-    { id: 'content', title: 'Viral Reels & Video', number: '06', icon: Film },
+    { id: 'digital-marketing', title: 'Digital Marketing', number: '03', icon: TrendingUp },
+    { id: 'social-media', title: 'Social Media', number: '04', icon: Users },
+    { id: 'posters', title: 'Posters & Media', number: '05', icon: Layout },
+    { id: 'short-reels', title: 'Shorts & Reels', number: '06', icon: Film },
+    { id: 'graphics-logo', title: 'Graphics & Logo', number: '07', icon: Palette },
+    { id: 'youtube-videos', title: 'YouTube Videos', number: '08', icon: PlaySquare },
+    { id: 'google-ads', title: 'Google Ads', number: '09', icon: Target },
+    { id: 'social-ads', title: 'Meta & WhatsApp Ads', number: '10', icon: MessageCircle },
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--deep-navy)] text-white font-sans selection:bg-[var(--brand-orange)] selection:text-white relative">
+    <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-[var(--brand-orange)] selection:text-white relative">
       
       {/* ========================================================================= */}
       {/* 1. TOP STICKY HEADER & BREADCRUMB BAR                                     */}
@@ -412,17 +689,17 @@ export default function ServiceDetailPage({
             <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
             <button onClick={onBack} className="hover:text-[var(--primary-blue)] transition-colors">Services</button>
             <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-[var(--deep-navy)] font-bold">{current.title}</span>
+            <span className="text-[#0A1F6B] font-bold">{current.title}</span>
           </div>
 
           {/* Right Action CTA */}
           <div className="flex items-center gap-2.5 sm:gap-3">
             <a 
-              href="tel:+919876543210" 
+              href="tel:+918303534063" 
               className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold hover:bg-slate-200 transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-[var(--brand-orange)]" />
-              <span className="font-mono">+91 98765 43210</span>
+              <span className="font-mono">+91 83035 34063</span>
             </a>
 
             <button
@@ -437,35 +714,33 @@ export default function ServiceDetailPage({
         </div>
       </header>
 
+      <main className="flex-grow">
       {/* ========================================================================= */}
-      {/* 2. DEDICATED HERO BANNER FOR THE SERVICE                                  */}
+      {/* 2. DEDICATED HERO BANNER FOR THE SERVICE (PREMIUM WHITE PALETTE)          */}
       {/* ========================================================================= */}
-      <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 overflow-hidden bg-[var(--deep-navy)] border-b border-white/10">
+      <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 overflow-hidden bg-gradient-to-b from-[#FAFBFF] via-white to-[#F4F7FF] border-b border-slate-200/90 text-slate-800">
         
         {/* Ambient Brand Glow Orbs */}
-        <div className="absolute top-10 left-1/4 w-96 h-96 bg-[var(--cyan-accent)]/20 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse-glow" />
-        <div className="absolute top-20 right-10 w-96 h-96 bg-[var(--brand-orange)]/18 rounded-full blur-[140px] pointer-events-none z-0" />
-        
-        {/* Tech Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,200,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,200,255,0.06)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+        <div className="absolute top-10 left-1/4 w-96 h-96 bg-[var(--cyan-accent)]/5 rounded-full blur-[140px] pointer-events-none z-0" />
+        <div className="absolute top-20 right-10 w-96 h-96 bg-[var(--brand-orange)]/5 rounded-full blur-[140px] pointer-events-none z-0" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Category Pill with Glowing Beacon */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-heading font-bold tracking-wider uppercase mb-5 backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-[var(--cyan-accent)] animate-ping" />
-            <span className="text-[var(--cyan-accent)]">{current.category}</span>
-            <span className="text-white/40">•</span>
-            <span className="text-slate-300">Service {current.number} of 06</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--primary-blue)]/10 border border-[var(--primary-blue)]/20 text-xs font-heading font-bold tracking-wider uppercase mb-5 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-[var(--brand-orange)] animate-ping" />
+            <span className="text-[#0A1F6B]">{current.category}</span>
+            <span className="text-slate-400">•</span>
+            <span className="text-slate-600">Service {current.number} of 10</span>
           </div>
 
           {/* Big H1 Title with Brand Accent */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-white/15">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-slate-200/90">
             <div className="max-w-3xl space-y-3">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-white leading-[1.1]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-[#0A1F6B] leading-[1.1]">
                 {current.title}
               </h1>
-              <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 font-normal leading-relaxed">
                 {current.tagline}
               </p>
             </div>
@@ -482,7 +757,7 @@ export default function ServiceDetailPage({
               
               <button
                 onClick={onBack}
-                className="btn-secondary w-full text-center py-3 px-6 font-bold flex items-center justify-center gap-2"
+                className="btn-secondary w-full text-center py-3 px-6 font-bold flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Explore All Services</span>
@@ -492,42 +767,63 @@ export default function ServiceDetailPage({
 
           {/* Quick Metrics & Specs Grid (4 Cards) */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-8">
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md space-y-1">
-              <div className="flex items-center gap-2 text-xs font-mono text-[var(--cyan-accent)] font-semibold">
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+              <div className="flex items-center gap-2 text-xs font-mono text-[var(--primary-blue)] font-semibold">
                 <Clock className="w-3.5 h-3.5" />
                 <span>TIMELINE</span>
               </div>
-              <div className="text-lg sm:text-xl font-heading font-bold text-white">{current.timeline}</div>
-              <div className="text-[11px] text-slate-400">Rapid deployment sprints</div>
+              <div className="text-lg sm:text-xl font-heading font-bold text-[#0A1F6B]">{current.timeline}</div>
+              <div className="text-[11px] text-slate-500">Rapid deployment sprints</div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md space-y-1">
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
               <div className="flex items-center gap-2 text-xs font-mono text-[var(--brand-orange)] font-semibold">
                 <CreditCard className="w-3.5 h-3.5" />
                 <span>PRICING MODEL</span>
               </div>
-              <div className="text-lg sm:text-xl font-heading font-bold text-white">{current.startingPrice}</div>
-              <div className="text-[11px] text-slate-400">Milestone & ROI-based</div>
+              <div className="text-lg sm:text-xl font-heading font-bold text-[#0A1F6B]">{current.startingPrice}</div>
+              <div className="text-[11px] text-slate-500">Milestone & ROI-based</div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md space-y-1">
-              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 font-semibold">
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+              <div className="flex items-center gap-2 text-xs font-mono text-emerald-600 font-semibold">
                 <TrendingUp className="w-3.5 h-3.5" />
                 <span>BENCHMARK</span>
               </div>
-              <div className="text-lg sm:text-xl font-heading font-bold text-white">{current.metrics}</div>
-              <div className="text-[11px] text-slate-400">{current.metricDetail}</div>
+              <div className="text-lg sm:text-xl font-heading font-bold text-[#0A1F6B]">{current.metrics}</div>
+              <div className="text-[11px] text-slate-500">{current.metricDetail}</div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md space-y-1">
-              <div className="flex items-center gap-2 text-xs font-mono text-indigo-400 font-semibold">
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+              <div className="flex items-center gap-2 text-xs font-mono text-indigo-600 font-semibold">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>GUARANTEE</span>
               </div>
-              <div className="text-lg sm:text-xl font-heading font-bold text-white">100% IP Ownership</div>
-              <div className="text-[11px] text-slate-400">Zero vendor lock-in</div>
+              <div className="text-lg sm:text-xl font-heading font-bold text-[#0A1F6B]">100% IP Ownership</div>
+              <div className="text-[11px] text-slate-500">Zero vendor lock-in</div>
             </div>
           </div>
+
+          {/* Visual Service Showcase Banner (High-Resolution Visual Context) */}
+          {current.image && (
+            <div className="pt-8">
+              <div className="relative rounded-3xl overflow-hidden border border-[var(--cyan-accent)]/40 shadow-2xl bg-slate-900 aspect-[16/9] sm:aspect-[21/9] max-h-[480px] group">
+                <img 
+                  src={current.image} 
+                  alt={`${current.title} Service Showcase - Click On Media Gorakhpur`} 
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.01] transition-transform duration-700" 
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#06123D]/85 via-[#06123D]/20 to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 flex items-center gap-2">
+                  <span className="px-3.5 py-1.5 rounded-full bg-[#06123D]/90 backdrop-blur-md border border-[var(--cyan-accent)]/50 text-xs font-bold text-white shadow-lg flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[var(--brand-orange)] animate-pulse" />
+                    <span>{current.imageBadge || `Verified Showcase: ${current.title} • Click On Media`}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
 
         </div>
       </section>
@@ -813,16 +1109,17 @@ export default function ServiceDetailPage({
             </button>
 
             <a
-              href="tel:+919876543210"
+              href="tel:+918303534063"
               className="btn-secondary text-sm sm:text-base !py-4 !px-8 font-bold flex items-center gap-2 w-full sm:w-auto justify-center"
             >
               <Phone className="w-4 h-4 text-[var(--brand-orange)]" />
-              <span>Direct Call: +91 98765 43210</span>
+              <span>Direct Call: +91 83035 34063</span>
             </a>
           </div>
 
         </div>
       </section>
+      </main>
 
       {/* ========================================================================= */}
       {/* 8. FOOTER WITH LOGO & QUICK RETURN TO TOP                                 */}

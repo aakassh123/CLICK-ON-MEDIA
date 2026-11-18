@@ -222,24 +222,25 @@ export default function ProjectDetailPage({ projectId, onBack, onOpenQuote, onSe
         </div>
       </header>
 
+      <main className="flex-grow">
       {/* --------------------------------------------------------------------- */}
-      {/* HERO SECTION: CASE STUDY SPOTLIGHT                                    */}
+      {/* HERO SECTION: CASE STUDY SPOTLIGHT (PREMIUM WHITE PALETTE)            */}
       {/* --------------------------------------------------------------------- */}
-      <section className="relative overflow-hidden bg-[var(--deep-navy)] text-white pt-12 pb-20 sm:pt-16 sm:pb-28">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#FAFBFF] via-white to-[#F4F7FF] text-slate-800 pt-12 pb-20 sm:pt-16 sm:pb-28 border-b border-slate-200/90">
         
         {/* Subtle Brand Ambient Glows */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[var(--primary-blue)]/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-[var(--brand-orange)]/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[var(--primary-blue)]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-[var(--brand-orange)]/5 rounded-full blur-3xl pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Breadcrumb & Project Number */}
           <div className="flex items-center gap-3 mb-6">
-            <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/10 text-[var(--cyan-accent)] border border-white/15">
+            <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border border-[var(--primary-blue)]/20 shadow-xs">
               CASE STUDY #{project.number}
             </span>
-            <div className="h-4 w-px bg-white/20" />
-            <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider font-heading">
+            <div className="h-4 w-px bg-slate-300" />
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider font-heading">
               {project.category}
             </span>
           </div>
@@ -247,51 +248,51 @@ export default function ProjectDetailPage({ projectId, onBack, onOpenQuote, onSe
           {/* Main Title & Client */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
             <div className="lg:col-span-8 space-y-4">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-white tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-[#0A1F6B] tracking-tight leading-tight">
                 {project.title}
               </h1>
-              <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-xl text-slate-600 font-normal leading-relaxed max-w-2xl">
                 {project.challenge}
               </p>
             </div>
 
             {/* Quick Meta Card */}
-            <div className="lg:col-span-4 bg-white/5 backdrop-blur-md rounded-2xl p-5 border border-white/10 space-y-3">
-              <div className="flex items-center justify-between text-xs text-slate-300 pb-2 border-b border-white/10">
-                <span className="font-medium text-slate-400">Client Organization</span>
-                <span className="font-bold text-white">{project.client}</span>
+            <div className="lg:col-span-4 bg-white rounded-2xl p-5 border border-slate-200/90 shadow-lg space-y-3">
+              <div className="flex items-center justify-between text-xs text-slate-600 pb-2 border-b border-slate-100">
+                <span className="font-medium text-slate-500">Client Organization</span>
+                <span className="font-bold text-[#0A1F6B]">{project.client}</span>
               </div>
-              <div className="flex items-center justify-between text-xs text-slate-300 pb-2 border-b border-white/10">
-                <span className="font-medium text-slate-400">Timeline / Scope</span>
-                <span className="font-bold text-white">{project.duration}</span>
+              <div className="flex items-center justify-between text-xs text-slate-600 pb-2 border-b border-slate-100">
+                <span className="font-medium text-slate-500">Timeline / Scope</span>
+                <span className="font-bold text-[#0A1F6B]">{project.duration}</span>
               </div>
-              <div className="flex items-center justify-between text-xs text-slate-300">
-                <span className="font-medium text-slate-400">Delivered In</span>
+              <div className="flex items-center justify-between text-xs text-slate-600">
+                <span className="font-medium text-slate-500">Delivered In</span>
                 <span className="font-bold text-[var(--brand-orange)]">{project.year}</span>
               </div>
             </div>
           </div>
 
           {/* Visual Showcase Banner */}
-          <div className="relative aspect-video sm:aspect-[21/9] w-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-slate-900 group">
+          <div className="relative aspect-video sm:aspect-[21/9] w-full rounded-3xl overflow-hidden shadow-2xl border border-slate-200/90 bg-slate-900 group">
             <img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--deep-navy)] via-transparent to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80" />
             
             {/* Overlay Result Badge */}
             <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="bg-black/80 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/20 shadow-xl inline-flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-[var(--brand-orange)] to-[var(--amber)] text-white flex items-center justify-center flex-shrink-0">
+              <div className="bg-white/95 backdrop-blur-md px-5 py-3 rounded-2xl border border-slate-200/90 shadow-xl inline-flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-[var(--brand-orange)] to-[var(--amber)] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
                   <TrendingUp className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300 block font-heading">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block font-heading">
                     Key Benchmark Achieved
                   </span>
-                  <span className="text-sm sm:text-base font-extrabold text-white font-heading">
+                  <span className="text-sm sm:text-base font-extrabold text-[#0A1F6B] font-heading">
                     {project.results}
                   </span>
                 </div>
@@ -521,6 +522,7 @@ export default function ProjectDetailPage({ projectId, onBack, onOpenQuote, onSe
 
         </div>
       </section>
+      </main>
 
       {/* --------------------------------------------------------------------- */}
       {/* BOTTOM FOOTER BAR                                                     */}

@@ -44,10 +44,14 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
   const serviceOptions = [
     'Website Development',
     'Software & App Development',
-    'Digital Marketing & Ads',
-    'SEO & Performance',
-    'Branding & Creative Design',
-    'Content & Viral Reels'
+    'Digital Marketing',
+    'Social Media Growth & Engagement',
+    'Posters & Marketing Collateral',
+    'Short Videos & Reels',
+    'Graphics & Logo Design',
+    'YouTube Videos & Production',
+    'Google Ads',
+    'Social Media Ads (FB, Instagram & WhatsApp)'
   ];
 
   const budgetOptions = [
@@ -91,7 +95,7 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--deep-navy)] text-white font-sans selection:bg-[var(--brand-orange)] selection:text-white relative">
+    <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-[var(--brand-orange)] selection:text-white relative">
       
       {/* ========================================================================= */}
       {/* 1. TOP STICKY HEADER & BREADCRUMB BAR                                     */}
@@ -129,12 +133,12 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
           <div className="hidden md:flex items-center gap-2 text-xs font-semibold text-slate-500">
             <button onClick={onBack} className="hover:text-[var(--primary-blue)] transition-colors">Home</button>
             <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-[var(--deep-navy)] font-bold">Start Your Project</span>
+            <span className="text-[#0A1F6B] font-bold">Start Your Project</span>
           </div>
 
           {/* Right Action: Direct Phone Support */}
           <a 
-            href="tel:+919876543210" 
+            href="tel:+918303534063" 
             className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold hover:bg-slate-200 transition-colors"
           >
             <div className="relative flex h-2 w-2">
@@ -142,23 +146,20 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </div>
             <Phone className="w-3.5 h-3.5 text-[var(--brand-orange)]" />
-            <span className="hidden sm:inline font-mono">+91 98765 43210</span>
+            <span className="hidden sm:inline font-mono">+91 83035 34063</span>
           </a>
 
         </div>
       </header>
 
       {/* ========================================================================= */}
-      {/* 2. DEDICATED FULL-PAGE PROPOSAL & QUOTE CONTAINER                          */}
+      {/* 2. DEDICATED FULL-PAGE PROPOSAL & QUOTE CONTAINER (PREMIUM WHITE PALETTE) */}
       {/* ========================================================================= */}
-      <main className="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-[var(--deep-navy)]">
+      <main className="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FAFBFF] via-white to-[#F4F7FF] text-slate-800">
         
         {/* Ambient Brand Glow Orbs */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-[var(--cyan-accent)]/15 rounded-full blur-[140px] pointer-events-none z-0" />
-        <div className="absolute top-1/3 right-10 w-96 h-96 bg-[var(--brand-orange)]/15 rounded-full blur-[140px] pointer-events-none z-0" />
-        
-        {/* Subtle Tech Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,200,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,200,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_20%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+        <div className="absolute top-10 left-10 w-96 h-96 bg-[var(--primary-blue)]/5 rounded-full blur-[140px] pointer-events-none z-0" />
+        <div className="absolute top-1/3 right-10 w-96 h-96 bg-[var(--brand-orange)]/5 rounded-full blur-[140px] pointer-events-none z-0" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
@@ -170,83 +171,86 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
             <div className="lg:col-span-5 space-y-8">
               
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-heading font-bold tracking-wider uppercase backdrop-blur-md">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--primary-blue)]/10 border border-[var(--primary-blue)]/20 text-xs font-heading font-bold tracking-wider uppercase shadow-xs">
                   <Sparkles className="w-3.5 h-3.5 text-[var(--brand-orange)]" />
-                  <span className="text-[var(--cyan-accent)]">FAST 24-HOUR PROPOSAL & ESTIMATE</span>
+                  <span className="text-[#0A1F6B]">FAST 24-HOUR PROPOSAL & ESTIMATE</span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-white tracking-tight leading-[1.15]">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-[#0A1F6B] tracking-tight leading-[1.15]">
                   Start Your Project with{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C8FF] via-[#0B5CFF] to-[#FF7A00]">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00]">
                     Click On Media
                   </span>
                 </h1>
 
-                <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+                <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
                   Tell us about your brand, growth goals, and timeline. Our senior strategists will review your specifications and engineer a tailored milestone roadmap, technical scope, and transparent quote within 24 hours.
                 </p>
               </div>
 
               {/* 4 Trust Guarantee Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-500/20">
+                <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-500/20">
                     <Lock className="w-4 h-4" />
                   </div>
                   <div>
-                    <h2 className="text-sm font-heading font-bold text-white">100% Confidential & NDA Protected</h2>
-                    <p className="text-xs text-slate-300 mt-0.5">Your project data and intellectual property are legally protected from day zero.</p>
+                    <h2 className="text-sm font-heading font-bold text-[#0A1F6B]">100% Confidential & NDA Protected</h2>
+                    <p className="text-xs text-slate-600 mt-0.5">Your project data and intellectual property are legally protected from day zero.</p>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-[var(--cyan-accent)]/15 text-[var(--cyan-accent)] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[var(--cyan-accent)]/20">
+                <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-xl bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[var(--primary-blue)]/20">
                     <Zap className="w-4 h-4" />
                   </div>
                   <div>
-                    <h2 className="text-sm font-heading font-bold text-white">Free Technical & Growth Audit</h2>
-                    <p className="text-xs text-slate-300 mt-0.5">We analyze your current website, ads, or keyword rankings before proposing the strategy.</p>
+                    <h2 className="text-sm font-heading font-bold text-[#0A1F6B]">Free Technical & Growth Audit</h2>
+                    <p className="text-xs text-slate-600 mt-0.5">We analyze your current website, ads, or keyword rankings before proposing the strategy.</p>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-[var(--brand-orange)]/15 text-[var(--brand-orange)] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[var(--brand-orange)]/20">
+                <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-xl bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[var(--brand-orange)]/20">
                     <CheckCircle className="w-4 h-4" />
                   </div>
                   <div>
-                    <h2 className="text-sm font-heading font-bold text-white">Milestone & Fixed Scope Pricing</h2>
-                    <p className="text-xs text-slate-300 mt-0.5">Transparent budgets with defined deliverable milestones. No hidden fees or surprises.</p>
+                    <h2 className="text-sm font-heading font-bold text-[#0A1F6B]">Milestone & Fixed Scope Pricing</h2>
+                    <p className="text-xs text-slate-600 mt-0.5">Transparent budgets with defined deliverable milestones. No hidden fees or surprises.</p>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-[var(--primary-blue)]/20 text-[var(--cyan-accent)] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[var(--primary-blue)]/30">
+                <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-xl bg-[var(--primary-blue)]/15 text-[var(--primary-blue)] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[var(--primary-blue)]/30">
                     <Users className="w-4 h-4" />
                   </div>
                   <div>
-                    <h2 className="text-sm font-heading font-bold text-white">Direct Senior Strategist Access</h2>
-                    <p className="text-xs text-slate-300 mt-0.5">Zero junior handoffs. You collaborate directly with experienced engineering and marketing directors.</p>
+                    <h2 className="text-sm font-heading font-bold text-[#0A1F6B]">Direct Senior Strategist Access</h2>
+                    <p className="text-xs text-slate-600 mt-0.5">Zero junior handoffs. You collaborate directly with experienced engineering and marketing directors.</p>
                   </div>
                 </div>
               </div>
 
               {/* Direct Reach Card */}
-              <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md space-y-3">
-                <div className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--brand-orange)]">
+              <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
+                <div className="text-xs font-heading font-bold uppercase tracking-wider text-[#0A1F6B]">
                   Prefer Direct Discussion?
                 </div>
-                <div className="space-y-2 text-xs sm:text-sm text-slate-200">
-                  <a href="tel:+919876543210" className="flex items-center gap-2.5 hover:text-[var(--cyan-accent)] transition-colors">
+                <div className="space-y-2 text-xs sm:text-sm text-slate-700 font-semibold">
+                  <a href="tel:+918303534063" className="flex items-center gap-2.5 hover:text-[var(--brand-orange)] transition-colors">
                     <Phone className="w-4 h-4 text-[var(--brand-orange)]" />
-                    <span>+91 98765 43210 (Direct Call & WhatsApp)</span>
+                    <span>+91 83035 34063 (Direct Call & WhatsApp)</span>
                   </a>
-                  <div className="flex items-center gap-2.5 text-slate-300">
-                    <Mail className="w-4 h-4 text-[var(--cyan-accent)]" />
-                    <span>hello@clickonmedia.com</span>
+                  <div className="flex items-center gap-2.5 text-slate-700">
+                    <Mail className="w-4 h-4 text-[var(--primary-blue)]" />
+                    <div className="space-y-1">
+                        <div>info@clickonmedia.in</div>
+                        <div className="text-xs text-slate-500">clickonmedia3@gmail.com</div>
+                      </div>
                   </div>
-                  <div className="flex items-center gap-2.5 text-slate-300">
-                    <MapPin className="w-4 h-4 text-emerald-400" />
-                    <span>India • Serving High-Growth Global Brands</span>
+                  <div className="flex items-center gap-2.5 text-slate-700">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                    <span className="text-xs text-slate-600 leading-snug">Near Adalat Restaurant, Pipal Dada, Shri Ganga Tiraha, Mohaddipur, Gorakhpur, Uttar Pradesh 273008</span>
                   </div>
                 </div>
               </div>
@@ -451,7 +455,7 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                             type="tel"
                             required
                             maxLength={20}
-                            placeholder="+91 98765 43210"
+                            placeholder="+91 83035 34063"
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[var(--primary-blue)] focus:ring-2 focus:ring-[var(--primary-blue)]/20 transition-all"

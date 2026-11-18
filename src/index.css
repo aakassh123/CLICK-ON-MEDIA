@@ -20,29 +20,52 @@
   --grad-blue: linear-gradient(135deg, #00C8FF 0%, #0B5CFF 45%, #0A1F6B 100%);
   --grad-orange: linear-gradient(135deg, #FFB400 0%, #FF7A00 100%);
   --grad-brand: linear-gradient(90deg, #0B5CFF 0%, #7A3CFF 50%, #FF7A00 100%); /* headline gradient like "Click On" text */
+
+  /* Award-Winning Sticky Reveal Footer Design Tokens */
+  --color-ink: #000000;
+  --color-ink-soft: #0a0b10;
+  --color-body: #333333;
+  --color-muted: #838383;
+  --color-faint: #d4d8dd;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-paper: #ffffff;
+  --color-brand: #ff6428;
+  --color-rainbow-cyan: #01d5f2;
+  --color-rainbow-yellow: #fde325;
+  --color-rainbow-pink: #efb9e2;
+  --color-rainbow-green: #43ef18;
+  --color-rainbow-orange: #fe6427;
+  --font-sora: "Sora", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --radius-section: 3.125rem;
+  --radius-section-sm: 2rem;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: var(--deep-navy);
+    background-color: #FFFFFF;
+    color: var(--text-dark);
     margin: 0;
     padding: 0;
     height: auto;
     min-height: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    touch-action: pan-y;
   }
 
   body {
-    background-color: var(--deep-navy);
+    background-color: #FFFFFF;
     color: var(--text-dark);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    overflow-x: hidden;
+    overflow-x: clip;
     margin: 0;
     padding: 0;
     height: auto;
     min-height: 100%;
+    -webkit-overflow-scrolling: touch;
   }
 
   #root {
@@ -51,11 +74,13 @@
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #FFFFFF;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-    color: var(--deep-navy);
+    color: #0A1F6B; /* Deep Logo Blue matching official emblem */
     letter-spacing: -0.02em;
   }
 
@@ -263,6 +288,24 @@
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
+@keyframes spinSlow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spinReverseSlow {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 38s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spinReverseSlow 48s linear infinite;
+}
+
 /* ========================================================================= */
 /* BUTTER-SMOOTH CARD BREAK & SHATTER ANIMATIONS (Click On Media #work)      */
 /* ========================================================================= */
@@ -412,6 +455,91 @@
 .animate-card-shockwave {
   animation: cardShockwave 750ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform, opacity;
+}
+
+/* ========================================================================= */
+/* AWARD-WINNING FOOTER ANIMATIONS (Marquee, Rainbow Ticker & Shimmer)        */
+/* ========================================================================= */
+@keyframes footerMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes footerMarqueeReverse {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes footerShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes footerRainbowGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 25px rgba(254, 100, 39, 0.45));
+  }
+  33% {
+    filter: drop-shadow(0 0 25px rgba(1, 213, 242, 0.55));
+  }
+  66% {
+    filter: drop-shadow(0 0 25px rgba(253, 227, 37, 0.45));
+  }
+}
+
+.animate-footer-marquee {
+  display: flex;
+  width: max-content;
+  animation: footerMarquee 35s linear infinite;
+  will-change: transform;
+}
+
+.animate-footer-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-footer-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: footerMarqueeReverse 35s linear infinite;
+  will-change: transform;
+}
+
+.animate-footer-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+.animate-footer-shimmer {
+  background: linear-gradient(
+    90deg,
+    #ff6428 0%,
+    #fe6427 25%,
+    #fde325 50%,
+    #01d5f2 75%,
+    #ff6428 100%
+  );
+  background-size: 200% auto;
+  animation: footerShimmer 4s linear infinite;
+}
+
+.font-sora {
+  font-family: var(--font-sora), 'Poppins', sans-serif;
+}
+
+.font-montserrat {
+  font-family: var(--font-montserrat), 'Poppins', sans-serif;
 }
 
 /* Reduced Motion Support */

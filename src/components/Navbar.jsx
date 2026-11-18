@@ -1,5 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown, Phone, ArrowRight, Sparkles, Globe, Code2, Megaphone, Search, Palette, Film } from 'lucide-react';
+import { 
+  Menu, 
+  X, 
+  ChevronDown, 
+  Phone, 
+  ArrowRight, 
+  Sparkles, 
+  Globe, 
+  Code2, 
+  Megaphone, 
+  Search, 
+  Palette, 
+  Film,
+  Star,
+  ShieldCheck,
+  MessageCircle,
+  TrendingUp,
+  Users,
+  Layout,
+  PlaySquare,
+  Target
+} from 'lucide-react';
 import Logo from './Logo';
 
 export default function Navbar({ onOpenQuote, onSelectService }) {
@@ -42,12 +63,16 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
   }, []);
 
   const serviceSubItems = [
-    { title: 'Website Development', desc: 'Modern, responsive & sub-second performance flagships.', id: 'web-dev', icon: Globe, color: 'text-[var(--primary-blue)]' },
-    { title: 'Software & App Development', desc: 'Custom cloud software, SaaS & mobile applications.', id: 'software-dev', icon: Code2, color: 'text-[var(--brand-orange)]' },
-    { title: 'Digital Marketing & Ads', desc: 'High-ROAS Meta & Google Performance Max funnels.', id: 'marketing', icon: Megaphone, color: 'text-[var(--primary-blue)]' },
-    { title: 'SEO & Performance', desc: '100+ point technical audits & regional search domination.', id: 'seo', icon: Search, color: 'text-[var(--brand-orange)]' },
-    { title: 'Branding & Creative Design', desc: 'Iconic 3D brand personality, guidelines & collateral.', id: 'branding', icon: Palette, color: 'text-[var(--primary-blue)]' },
-    { title: 'Content & Viral Reels', desc: 'High-retention 9:16 reels, shorts & ad video production.', id: 'content', icon: Film, color: 'text-[var(--brand-orange)]' },
+    { title: 'Website Development', desc: 'Custom, engaging & sub-0.6s speed websites.', id: 'web-dev', icon: Globe, color: 'text-[var(--primary-blue)]' },
+    { title: 'Software & App Development', desc: 'Tailor-made cloud software & mobile apps.', id: 'software-dev', icon: Code2, color: 'text-[var(--brand-orange)]' },
+    { title: 'Digital Marketing', desc: 'Boost online presence & target audience reach.', id: 'digital-marketing', icon: TrendingUp, color: 'text-[var(--primary-blue)]' },
+    { title: 'Social Media Growth', desc: 'Enhance brand engagement & organic reach.', id: 'social-media', icon: Users, color: 'text-[var(--brand-orange)]' },
+    { title: 'Posters & Collateral', desc: 'Impactful promotional posters & banners.', id: 'posters', icon: Layout, color: 'text-[var(--cyan-accent)]' },
+    { title: 'Short Videos & Reels', desc: 'Captivate audience with creative 9:16 reels.', id: 'short-reels', icon: Film, color: 'text-[var(--brand-orange)]' },
+    { title: 'Graphics & Logo Design', desc: 'Elevate brand identity with stunning graphics.', id: 'graphics-logo', icon: Palette, color: 'text-[var(--primary-blue)]' },
+    { title: 'YouTube Videos', desc: 'Professional 4K YouTube videos & production.', id: 'youtube-videos', icon: PlaySquare, color: 'text-[var(--brand-orange)]' },
+    { title: 'Google Ads (PPC)', desc: 'Maximize visibility & high-intent search ads.', id: 'google-ads', icon: Target, color: 'text-[var(--primary-blue)]' },
+    { title: 'Social Media Ads', desc: 'Strategic ads on Facebook, Instagram & WhatsApp.', id: 'social-ads', icon: MessageCircle, color: 'text-[var(--brand-orange)]' },
   ];
 
   const navLinks = [
@@ -61,6 +86,7 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
     { name: 'About', href: '#about' },
     { name: 'Work', href: '#work' },
     { name: 'Process', href: '#process' },
+    { name: 'Gorakhpur Hub', href: '#local-seo-hub' },
   ];
 
   const handleServicesNavClick = (e) => {
@@ -73,19 +99,49 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
   };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-slate-200/90 shadow-sm backdrop-blur-xl ${
-        isScrolled ? 'py-2 sm:py-2.5 shadow-md' : 'py-2.5 sm:py-3 shadow-xs'
-      }`}
-      style={{
-        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)'
-      }}
-    >
-      {/* Top Luminous Brand Accent Line */}
-      <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-[var(--cyan-accent)] via-[var(--primary-blue)] to-[var(--brand-orange)] pointer-events-none opacity-90" />
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      
+      {/* 1. Yes Madam Inspired Top Utility & Trust Ribbon */}
+      <div className={`bg-[#061448] text-white px-3 text-[10px] sm:text-[11px] font-medium border-b border-white/10 transition-all duration-300 hidden sm:block ${
+        isScrolled ? 'max-h-0 py-0 opacity-0 overflow-hidden' : 'max-h-10 py-1.5 opacity-100'
+      }`}>
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1 text-[var(--amber)] font-bold">
+              <Star className="w-3 h-3 fill-[var(--amber)]" /> 4.9/5 Rating
+            </span>
+            <span className="text-white/30">•</span>
+            <span className="text-slate-200">#1 Agency in Gorakhpur &amp; UP</span>
+            <span className="text-white/30">•</span>
+            <span className="text-emerald-400 font-semibold flex items-center gap-1">
+              <ShieldCheck className="w-3 h-3" /> 100% Code &amp; Asset Ownership
+            </span>
+          </div>
+          <div className="flex items-center gap-4 text-slate-300">
+            <span className="text-[var(--brand-orange)] font-bold">Free 30-Min Strategy Audit</span>
+            <a 
+              href="https://wa.me/918303534063" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-emerald-400 transition-colors flex items-center gap-1 text-emerald-400 font-semibold"
+            >
+              <MessageCircle className="w-3 h-3" /> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex items-center justify-between">
+      {/* 2. Main Sticky Navigation Bar */}
+      <div 
+        className={`w-full border-b border-slate-200/90 shadow-sm backdrop-blur-xl transition-all duration-300 relative ${
+          isScrolled ? 'py-2 sm:py-2.5 shadow-md bg-white/98' : 'py-2.5 sm:py-3 shadow-xs bg-white/95'
+        }`}
+      >
+        {/* Top Luminous Brand Accent Line */}
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-[var(--cyan-accent)] via-[var(--primary-blue)] to-[var(--brand-orange)] pointer-events-none opacity-90" />
+
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex items-center justify-between">
           
           {/* Logo on Left - Integrates 100% seamlessly with navbar background */}
           <a 
@@ -146,7 +202,7 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
                               <span>Core Capabilities</span>
                             </span>
                             <span className="text-[11px] text-slate-600 font-mono font-bold bg-slate-100 px-2 py-0.5 rounded-full whitespace-nowrap">
-                              06 Solutions
+                              10 Solutions
                             </span>
                           </div>
 
@@ -226,16 +282,16 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
             
             {/* Direct Phone Support Pill */}
             <a 
-              href="tel:+919876543210" 
+              href="tel:+918303534063" 
               className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-100/90 hover:bg-slate-200/70 border border-slate-200/90 transition-all text-xs font-bold text-slate-800 shadow-xs group min-h-[40px]"
-              aria-label="Call Click On Media at +91 98765 43210"
+              aria-label="Call Click On Media at +91 83035 34063"
             >
               <div className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </div>
               <Phone className="w-3.5 h-3.5 text-[var(--brand-orange)] group-hover:scale-110 transition-transform" />
-              <span className="hidden xl:inline font-mono font-bold tracking-tight text-slate-800">+91 98765 43210</span>
+              <span className="hidden xl:inline font-mono font-bold tracking-tight text-slate-800">+91 83035 34063</span>
             </a>
 
             {/* Primary High-Conversion CTA */}
@@ -267,6 +323,7 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
 
         </div>
       </div>
+    </div>
 
       {/* Mobile Drawer Navigation with Frosted Blur Theater */}
       {isMobileMenuOpen && (
@@ -281,7 +338,7 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
                 className="block px-3 py-2.5 rounded-xl text-sm font-bold text-slate-800 hover:text-[var(--primary-blue)] hover:bg-slate-50 min-h-[44px] flex items-center justify-between"
               >
                 <span>{link.name}</span>
-                {link.hasDropdown && <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-[var(--primary-blue)] font-bold border border-slate-200">6 Services</span>}
+                {link.hasDropdown && <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-[var(--primary-blue)] font-bold border border-slate-200">10 Services</span>}
               </a>
               {link.hasDropdown && (
                 <div className="pl-3 space-y-1 border-l-2 border-[var(--brand-orange)]/40 ml-2">
@@ -306,13 +363,13 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
 
           <div className="pt-4 border-t border-slate-100 space-y-3">
             <a 
-              href="tel:+919876543210" 
+              href="tel:+918303534063" 
               className="flex items-center gap-2.5 text-sm font-bold text-slate-800 px-3 py-2.5 min-h-[44px] rounded-xl bg-slate-50 border border-slate-200"
             >
               <div className="w-7 h-7 rounded-lg bg-[var(--brand-orange)]/15 text-[var(--brand-orange)] flex items-center justify-center">
                 <Phone className="w-4 h-4" />
               </div>
-              <span className="font-mono text-slate-900">+91 98765 43210</span>
+              <span className="font-mono text-slate-900">+91 83035 34063</span>
               <span className="ml-auto text-[10px] text-emerald-600 font-mono font-bold">Available Now</span>
             </a>
             <button

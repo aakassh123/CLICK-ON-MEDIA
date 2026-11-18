@@ -43,7 +43,7 @@ export default function VideoModal({ isOpen, onClose, onOpenQuote }) {
             playsInline
             className="w-full h-full object-contain"
           >
-            <source src="./logo.mp4" type="video/mp4" />
+            <source src="./hero-office-team.mp4" type="video/mp4" />
             <source src="./hero-video.mp4" type="video/mp4" />
           </video>
         </div>

@@ -167,7 +167,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
                   type="tel"
                   required
                   maxLength={20}
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 83035 34063"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[var(--primary-blue)]"

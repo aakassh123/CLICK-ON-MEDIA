@@ -61,13 +61,14 @@ export default function ClientLogos() {
   ];
 
   return (
-    <section className="relative z-20 -mt-10 sm:-mt-14 pb-8 sm:pb-12 bg-transparent">
-      {/* Curved White Island Container with gentle wave */}
+    <section className="relative z-20 pt-4 pb-8 sm:pb-12 bg-transparent">
+      {/* Curved White Island Container with gentle shadow */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[var(--bg-light)] rounded-3xl shadow-soft-blue border border-[var(--primary-blue)]/10 p-6 sm:p-8 lg:p-10">
+        <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-lg border border-slate-200/90 p-6 sm:p-8 lg:p-10">
           
-          <div className="text-center sm:text-left mb-6">
-            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--text-muted)] font-heading">
+          <div className="text-center sm:text-left mb-6 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[var(--brand-orange)] animate-pulse" />
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0A1F6B] font-heading">
               Trusted by growing brands
             </span>
           </div>

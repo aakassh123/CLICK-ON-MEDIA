@@ -1,10 +1,13 @@
-# Robots.txt for Click On Media
+# Robots.txt for Click On Media - Leading Digital Agency in Gorakhpur & India
 User-agent: *
 Allow: /
 
-# Host
-Host: https://clickonmedia.com
+# Disallow internal build artifacts
+Disallow: /scratch/
+Disallow: /node_modules/
+
+# Official Host
+Host: https://clickonmedia.in
 
 # Sitemaps
-Sitemap: https://clickonmedia.com/sitemap.xml
-
+Sitemap: https://clickonmedia.in/sitemap.xml

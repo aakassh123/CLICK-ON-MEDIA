@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { 
+import RevealHeading from './RevealHeading';
+import {
   ArrowRight, 
   ArrowLeft,
   CheckCircle2, 
-  LayoutGrid,
   Globe,
   Code2,
   Megaphone,
@@ -11,28 +11,380 @@ import {
   Palette,
   Film,
   ExternalLink,
-  ChevronRight,
   RotateCw,
   Sparkles,
   Zap,
   TrendingUp,
   ShieldCheck,
-  Play,
-  Pause
+  Users,
+  Layout,
+  PlaySquare,
+  Target,
+  MessageCircle
+
 } from 'lucide-react';
 
+// 6 Core Click On Media Services styled after the Futuristic Holographic Glass Card
+const SERVICES_DATA = [
+  {
+    id: 'web-dev',
+    number: '01',
+    title: 'Website Development',
+    badge: 'Web Architecture',
+    microTag: ['CREATIVE', 'TECHNOLOGY', 'GROWTH'],
+    headlineStack: {
+      line1: 'WEBSITES',
+      line2: 'ENGAGING.',
+      line3: 'FAST',
+      line4: 'CONVERSIONS.',
+      subline: 'WE CRAFT CUSTOM ENGAGING WEBSITES THAT SHOWCASE YOUR BRAND AND DRIVE MASSIVE BUSINESS GROWTH.'
+    },
+    tagline: 'Crafting custom, engaging websites that showcase your brand and drive business growth with Click On Media in Gorakhpur.',
+    description: 'We engineer custom React & Next.js websites built for lightning speed, sub-0.6s page loads, and seamless customer conversions.',
+    accent: 'from-[var(--primary-blue)] to-[var(--deep-navy)]',
+    tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
+    glowColor: 'rgba(11, 92, 255, 0.25)',
+    icon: Globe,
+    image: './services/service-web-dev.jpg',
+    bottomTags: ['REACT & NEXT.JS', '0.6s SPEED', 'MOBILE FIRST', 'SEO READY'],
+    benefits: [
+      'Sub-0.6s Page Load Times (Zero bounce on mobile 4G/5G)',
+      'Custom Interactive UX/UI That Showcases Your Brand',
+      '100/100 Core Web Vitals & Mobile-First Precision',
+      'Direct WhatsApp & Inbound Lead Funnel Integrations'
+    ],
+    metrics: '0.6s Avg Load Time',
+    metricDetail: '100/100 Vitals',
+    ctaText: 'Explore Web Solutions'
+  },
+  {
+    id: 'software-dev',
+    number: '02',
+    title: 'Software & App Development',
+    badge: 'Custom IT Solutions',
+    microTag: ['CLOUD SAAS', 'MOBILE APPS', 'ENTERPRISE'],
+    headlineStack: {
+      line1: 'SOFTWARE',
+      line2: 'SMARTER.',
+      line3: 'SCALE',
+      line4: 'EFFORTLESS.',
+      subline: 'TAILOR-MADE CLOUD SOFTWARE AND CROSS-PLATFORM MOBILE APPS BUILT FOR SEAMLESS PERFORMANCE.'
+    },
+    tagline: 'Tailor-made cloud software, web applications, and iOS/Android mobile apps engineered for seamless speed and scale.',
+    description: 'Custom enterprise software, business automation portals, and cross-platform mobile apps designed to handle millions of transactions securely.',
+    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
+    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
+    glowColor: 'rgba(255, 122, 0, 0.25)',
+    icon: Code2,
+    image: './services/service-software-dev.jpg',
+    bottomTags: ['IOS & ANDROID', 'CLOUD SAAS', '99.98% UPTIME', 'AUTOMATION'],
+    benefits: [
+      'Cross-Platform iOS & Android Apps (Single codebase savings)',
+      'Automated CRM, Billing & Payment Gateway Workflows',
+      '99.98% High Uptime Cloud Architecture & Data Security',
+      'Dedicated Technical Architecture & Live Support'
+    ],
+    metrics: '99.98% Uptime',
+    metricDetail: 'Bank-Grade Sec',
+    ctaText: 'Explore App Solutions'
+  },
+  {
+    id: 'digital-marketing',
+    number: '03',
+    title: 'Digital Marketing',
+    badge: 'Online Growth',
+    microTag: ['STRATEGY', 'OMNICHANNEL', 'ROI DRIVEN'],
+    headlineStack: {
+      line1: 'ONLINE',
+      line2: 'PRESENCE.',
+      line3: 'TARGET',
+      line4: 'AUDIENCE.',
+      subline: 'BOOST YOUR ONLINE PRESENCE AND REACH YOUR TARGET AUDIENCE WITH EXPERT GROWTH STRATEGIES.'
+    },
+    tagline: 'Boost your online presence and reach your target audience with high-ROI growth strategies from Click On Media in Gorakhpur.',
+    description: 'We build 360° digital growth funnels that establish market authority, attract high-intent customers, and deliver measurable revenue.',
+    accent: 'from-[var(--primary-blue)] to-[var(--cyan-accent)]',
+    tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
+    glowColor: 'rgba(11, 92, 255, 0.25)',
+    icon: TrendingUp,
+    image: './services/service-digital-marketing.jpg',
+    bottomTags: ['360° STRATEGY', 'LEAD GEN', 'BRAND AWARENESS', 'MAX ROI'],
+    benefits: [
+      'Hyper-Targeted Market & Competitor Benchmarking',
+      'Multi-Channel Online Visibility Across Search & Social',
+      'Compounding Daily Inbound Buyer Calls & Inquiries',
+      'Transparent Live Analytics & ROI Reporting Dashboard'
+    ],
+    metrics: '4.2x Growth',
+    metricDetail: 'Pan-India Reach',
+    ctaText: 'Explore Marketing'
+  },
+  {
+    id: 'social-media',
+    number: '04',
+    title: 'Social Media Growth & Engagement',
+    badge: 'Audience Building',
+    microTag: ['INSTAGRAM', 'FACEBOOK', 'VIRAL REACH'],
+    headlineStack: {
+      line1: 'ENGAGE',
+      line2: 'AUDIENCE.',
+      line3: 'ORGANIC',
+      line4: 'DOMINANCE.',
+      subline: 'ENHANCE YOUR BRANDS ONLINE ENGAGEMENT AND ORGANIC REACH WITH EXPERT SOCIAL STRATEGIES.'
+    },
+    tagline: 'Enhance your brand’s online engagement and organic follower growth with expert social media strategies in Gorakhpur.',
+    description: 'We manage, grow, and monetize your social profiles with daily aesthetic content, engaging community interactions, and organic follower growth.',
+    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
+    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
+    glowColor: 'rgba(255, 122, 0, 0.25)',
+    icon: Users,
+    image: './services/service-social-media.jpg',
+    bottomTags: ['ORGANIC GROWTH', 'COMMUNITY', 'VIRAL REACH', 'DAILY CONTENT'],
+    benefits: [
+      'Consistent Aesthetic Grid & High-Engagement Posts',
+      'Active Direct Message & Comment Response Workflows',
+      'Targeted Local & Regional Follower Acquisition',
+      'Influencer Outreach & Strategic Trend Capitalization'
+    ],
+    metrics: '+340% Reach',
+    metricDetail: 'Active Community',
+    ctaText: 'Explore Social Growth'
+  },
+  {
+    id: 'posters',
+    number: '05',
+    title: 'Posters & Marketing Collateral',
+    badge: 'Visual Marketing',
+    microTag: ['POSTERS', 'CREATIVE BANNERS', 'PRINT & WEB'],
+    headlineStack: {
+      line1: 'POSTERS',
+      line2: 'IMPACTFUL.',
+      line3: 'VISUAL',
+      line4: 'PROMOTION.',
+      subline: 'CREATE IMPACTFUL AND VISUALLY APPEALING POSTERS TO EFFECTIVELY PROMOTE YOUR BRAND.'
+    },
+    tagline: 'Create impactful and visually appealing posters, festival creatives, and marketing collateral to effectively promote your brand.',
+    description: 'Eye-catching promotional posters, festival creative banners, hoardings, and marketing collaterals engineered to stop the scroll and capture attention.',
+    accent: 'from-[var(--cyan-accent)] to-[var(--primary-blue)]',
+    tagBg: 'bg-[var(--cyan-accent)]/15 text-[var(--primary-blue)] border-[var(--cyan-accent)]/30',
+    glowColor: 'rgba(0, 200, 255, 0.25)',
+    icon: Layout,
+    image: './services/service-posters.jpg',
+    bottomTags: ['PROMO POSTERS', 'FESTIVAL BANNERS', 'PRINT READY', 'SCROLL STOPPERS'],
+    benefits: [
+      'Impactful Promotional & Event Posters (Digital & Print)',
+      'Festival & Occasion-Themed Social Media Creatives',
+      'High-Resolution 300DPI Print-Ready Vector Collateral',
+      'Brand-Consistent Typography, Colors & Product Callouts'
+    ],
+    metrics: '100% Custom',
+    metricDetail: 'HD Vector Quality',
+    ctaText: 'Explore Poster Design'
+  },
+  {
+    id: 'short-reels',
+    number: '06',
+    title: 'Short Videos & Reels',
+    badge: 'Viral 9:16 Video',
+    microTag: ['VIRAL REELS', 'SHORTS', 'HIGH RETENTION'],
+    headlineStack: {
+      line1: 'REELS',
+      line2: 'CAPTIVATING.',
+      line3: 'BOOST',
+      line4: 'ENGAGEMENT.',
+      subline: 'CAPTIVATE YOUR AUDIENCE AND BOOST ENGAGEMENT WITH CREATIVE SHORT VIDEOS AND REELS.'
+    },
+    tagline: 'Captivate your audience and boost viral reach with creative 9:16 vertical short videos and high-retention Instagram reels.',
+    description: 'High-retention 9:16 vertical reels for Instagram and YouTube Shorts with psychological hooks, trending sounds, and cinematic motion graphics.',
+    accent: 'from-[var(--brand-orange)] to-[var(--primary-blue)]',
+    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
+    glowColor: 'rgba(255, 122, 0, 0.25)',
+    icon: Film,
+    image: './services/service-short-reels.jpg',
+    bottomTags: ['INSTAGRAM REELS', 'YT SHORTS', 'HOOK SCRIPTS', 'TRENDING AUDIO'],
+    benefits: [
+      'Psychological 3-Second Scroll-Stopping Hooks',
+      'Studio-Grade Dynamic Captions, Sound FX & Motion VFX',
+      'Trending Audio Synchronization for Algorithmic Reach',
+      'Massive Follower Conversions from Casual Viewers'
+    ],
+    metrics: '10M+ Views',
+    metricDetail: 'Viral Algorithm',
+    ctaText: 'Explore Short Reels'
+  },
+  {
+    id: 'graphics-logo',
+    number: '07',
+    title: 'Graphics & Logo Design',
+    badge: 'Visual Identity',
+    microTag: ['3D & 2D LOGOS', 'GRAPHICS', 'TRADEMARK READY'],
+    headlineStack: {
+      line1: 'IDENTITY',
+      line2: 'STUNNING.',
+      line3: 'BRAND',
+      line4: 'AUTHORITY.',
+      subline: 'ELEVATE YOUR BRAND IDENTITY WITH STUNNING GRAPHICS AND MEMORABLE LOGO DESIGN.'
+    },
+    tagline: 'Elevate your brand identity with memorable 3D/2D logo design, vector graphics, and complete brand style guides.',
+    description: 'Iconic 3D/2D logo design, complete brand style guides, marketing graphics, and stationery that command instant customer trust and premium authority.',
+    accent: 'from-[var(--primary-blue)] to-[var(--deep-navy)]',
+    tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
+    glowColor: 'rgba(11, 92, 255, 0.25)',
+    icon: Palette,
+    image: './services/service-graphics-logo.jpg',
+    bottomTags: ['3D/2D LOGOS', 'BRAND GUIDELINES', 'VECTOR SUITE', 'TRADEMARK READY'],
+    benefits: [
+      '100% Unique, Original & Trademark-Ready Logo Suites',
+      'Complete Brand Style Guidelines, Fonts & Color Palettes',
+      'Stationery, Business Cards, Letterheads & Brand Collateral',
+      'Scalable Vector Deliverables for Web, Mobile & Billboards'
+    ],
+    metrics: 'Trademark Ready',
+    metricDetail: '100% Original',
+    ctaText: 'Explore Graphic Design'
+  },
+  {
+    id: 'youtube-videos',
+    number: '08',
+    title: 'YouTube Videos & Production',
+    badge: 'Video Authority',
+    microTag: ['4K PRODUCTION', 'YOUTUBE SEO', 'HIGH CTR'],
+    headlineStack: {
+      line1: 'YOUTUBE',
+      line2: 'AUTHORITY.',
+      line3: 'WIDER',
+      line4: 'AUDIENCE.',
+      subline: 'ENHANCE YOUR ONLINE PRESENCE AND REACH A WIDER AUDIENCE WITH PROFESSIONAL YOUTUBE VIDEOS.'
+    },
+    tagline: 'Enhance your online presence and reach a wider audience with professional 4K YouTube videos and podcast editing.',
+    description: 'End-to-end YouTube production: script structuring, 4K multi-cam editing, high-CTR thumbnail design, and video SEO to grow your subscriber base.',
+    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
+    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
+    glowColor: 'rgba(255, 122, 0, 0.25)',
+    icon: PlaySquare,
+    image: './services/service-youtube-videos.jpg',
+    bottomTags: ['4K EDITING', 'HIGH CTR THUMBNAIL', 'YOUTUBE SEO', 'WATCH TIME'],
+    benefits: [
+      'Story-Driven 4K Video Editing with Pacing & B-Roll',
+      'High Click-Through Rate (CTR) 3D Thumbnail Design',
+      'YouTube Search Engine Optimization (Tags, Description, Title)',
+      'Watch Time & Retention Optimization for Channel Growth'
+    ],
+    metrics: '+280% Watch Time',
+    metricDetail: 'High CTR Thumbs',
+    ctaText: 'Explore YouTube Production'
+  },
+  {
+    id: 'google-ads',
+    number: '09',
+    title: 'Google Ads',
+    badge: 'Search & PPC',
+    microTag: ['GOOGLE SEARCH', 'HIGH INTENT', 'LOW CPC'],
+    headlineStack: {
+      line1: 'GOOGLE ADS',
+      line2: 'PRECISION.',
+      line3: 'MAXIMUM',
+      line4: 'VISIBILITY.',
+      subline: 'MAXIMIZE YOUR ONLINE VISIBILITY AND DRIVE TARGETED TRAFFIC WITH EFFECTIVE GOOGLE ADS.'
+    },
+    tagline: 'Maximize your online visibility and drive high-intent buying traffic to your website with precision Google Ads campaigns.',
+    description: 'High-intent Google Search, Performance Max, Display, and Google Maps campaigns that place your business in front of customers actively searching to buy.',
+    accent: 'from-[var(--primary-blue)] to-[var(--cyan-accent)]',
+    tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
+    glowColor: 'rgba(11, 92, 255, 0.25)',
+    icon: Target,
+    image: './services/service-google-ads.jpg',
+    bottomTags: ['GOOGLE SEARCH', 'PMAX FUNNELS', 'MAP PACK ADS', 'ZERO BOT FRAUD'],
+    benefits: [
+      'Immediate #1 Google Search Placement for High-Intent Keywords',
+      'Negative Keyword Lists to Eliminate 100% Wasted Ad Spend',
+      'Google Maps Local Pack Ad Funnels for Daily Phone Calls',
+      'Conversion Tracking Setup with Live ROI Attribution'
+    ],
+    metrics: '4.5x Avg ROAS',
+    metricDetail: 'Immediate Leads',
+    ctaText: 'Explore Google Ads'
+  },
+  {
+    id: 'social-ads',
+    number: '10',
+    title: 'Social Media Ads',
+    badge: 'Meta & WhatsApp',
+    microTag: ['FACEBOOK ADS', 'INSTAGRAM', 'WHATSAPP DIRECT'],
+    headlineStack: {
+      line1: 'SOCIAL ADS',
+      line2: 'TARGETED.',
+      line3: 'SCALE',
+      line4: 'REVENUE.',
+      subline: 'AMPLIFY YOUR BRANDS REACH AND ENGAGEMENT WITH STRATEGIC SOCIAL MEDIA ADS ON FB, IG & WHATSAPP.'
+    },
+    tagline: 'Amplify your brand’s reach and customer acquisition with strategic direct-response ads on Facebook, Instagram, and WhatsApp.',
+    description: 'Direct-response Meta ad funnels and WhatsApp click-to-chat campaigns with creative A/B testing and retargeting that scale customer acquisition profitably.',
+    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
+    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
+    glowColor: 'rgba(255, 122, 0, 0.25)',
+    icon: MessageCircle,
+    image: './services/service-social-ads.jpg',
+    bottomTags: ['META ADS', 'WHATSAPP FUNNEL', 'RETARGETING', 'HIGH ROAS'],
+    benefits: [
+      'Facebook & Instagram Direct-Response Ad Creatives',
+      'WhatsApp Click-to-Chat Funnels for Instant Lead Closing',
+      'Dynamic Retargeting Funnels for Lost Website Visitors',
+      'Granular Audience Targeting by Location, Age & Interests'
+    ],
+    metrics: '3.8x+ ROAS',
+    metricDetail: 'Instant WhatsApp Leads',
+    ctaText: 'Explore Social Ads'
+  }
+];
+
 export default function Services({ onSelectService, onOpenQuote }) {
+  const services = SERVICES_DATA;
+  const totalCards = services.length;
+
   const [activeCardIndex, setActiveCardIndex] = useState(0);
-  const [viewMode, setViewMode] = useState('orbit'); // 'orbit' | 'grid'
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
 
   const autoPlayTimerRef = useRef(null);
+  const sectionRef = useRef(null);
   const touchStartXRef = useRef(0);
   const touchEndXRef = useRef(0);
+
+  // Scroll-driven automatic card rotation: as the user scrolls the website,
+  // the cards rotate and progress smoothly in 3D!
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let accumulatedDelta = 0;
+    const scrollThreshold = 40; // Responsive threshold: smooth natural rotation as user scrolls
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight * 1.15 && rect.bottom > -window.innerHeight * 0.15;
+
+      if (inView && Math.abs(delta) > 1) {
+        accumulatedDelta += delta;
+
+        if (accumulatedDelta > scrollThreshold) {
+          setActiveCardIndex((prev) => (prev + 1) % totalCards);
+          accumulatedDelta = 0;
+        } else if (accumulatedDelta < -scrollThreshold) {
+          setActiveCardIndex((prev) => (prev - 1 + totalCards) % totalCards);
+          accumulatedDelta = 0;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [totalCards]);
 
   // Responsive resize listener
   useEffect(() => {
@@ -43,177 +395,41 @@ export default function Services({ onSelectService, onOpenQuote }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // 6 Core Click On Media Services with Prominent "Kya Kya Benefits Milega" Details
-  const services = useMemo(() => [
-    {
-      id: 'web-dev',
-      number: '01',
-      title: 'Website Development',
-      badge: 'Web Architecture',
-      tagline: 'High-converting, lightning-fast digital flagships.',
-      description: 'We engineer custom React & Next.js websites built for speed, sub-second page loads, and seamless customer conversions.',
-      accent: 'from-[var(--primary-blue)] to-[var(--deep-navy)]',
-      tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
-      glowColor: 'rgba(11, 92, 255, 0.25)',
-      icon: Globe,
-      // "Kya Kya Benefits Milega" (Direct Business Benefits)
-      benefits: [
-        'Sub-0.6s Page Load Times (Zero bounce on mobile 4G/5G)',
-        '0% OTA / Middleman Commission Leakage (Direct sales)',
-        '100/100 Core Web Vitals & Mobile-First UX Precision',
-        'Headless Cloud CMS for effortless content updates'
-      ],
-      metrics: '0.6s Avg Load Time',
-      metricDetail: '100/100 Core Vitals',
-      ctaText: 'Explore Web Solutions'
-    },
-    {
-      id: 'software-dev',
-      number: '02',
-      title: 'Software & App Development',
-      badge: 'Cloud & Mobile',
-      tagline: 'Custom cloud software and mobile apps built to scale.',
-      description: 'Tailor-made cloud software, cross-platform iOS & Android mobile applications, and automated enterprise systems built for effortless scale.',
-      accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
-      tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
-      glowColor: 'rgba(255, 122, 0, 0.25)',
-      icon: Code2,
-      // "Kya Kya Benefits Milega"
-      benefits: [
-        'Single Codebase iOS & Android (Save 50% dev cost & time)',
-        'Automated Business Workflows (Save 20+ team hrs/week)',
-        '99.98% High Uptime Cloud (Zero crashes during traffic peaks)',
-        'Bank-Grade Security with end-to-end encrypted APIs'
-      ],
-      metrics: '99.98% High Uptime',
-      metricDetail: '18ms Latency',
-      ctaText: 'Explore App Solutions'
-    },
-    {
-      id: 'marketing',
-      number: '03',
-      title: 'Digital Marketing & Ads',
-      badge: 'Growth Engine',
-      tagline: 'Data-driven ad campaigns that bring real buyers.',
-      description: 'Precision Meta & Google ad funnels engineered to drive high-intent leads and profitable direct revenue with measurable ROAS.',
-      accent: 'from-[var(--primary-blue)] to-[var(--brand-orange)]',
-      tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
-      glowColor: 'rgba(11, 92, 255, 0.25)',
-      icon: Megaphone,
-      // "Kya Kya Benefits Milega"
-      benefits: [
-        '3.8x+ Average ROAS (Profitable return on every ad rupee)',
-        'Lowest Customer Acquisition Cost (Zero wasted bot clicks)',
-        'Hyper-Local & Pan-India Precision Target Funnels',
-        '100% Transparent Attribution Dashboard with live leads'
-      ],
-      metrics: '3.8x+ Avg ROAS',
-      metricDetail: '+284% Scaling',
-      ctaText: 'Explore Marketing Funnels'
-    },
-    {
-      id: 'seo',
-      number: '04',
-      title: 'SEO & Performance',
-      badge: 'Organic Search',
-      tagline: 'Rank #1 on Google and capture continuous inbound calls.',
-      description: 'Comprehensive 100+ point technical SEO, semantic keyword dominance, and map rankings that drive compounding organic buyers daily.',
-      accent: 'from-[var(--cyan-accent)] to-[var(--deep-navy)]',
-      tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
-      glowColor: 'rgba(0, 200, 255, 0.25)',
-      icon: Search,
-      // "Kya Kya Benefits Milega"
-      benefits: [
-        '#1 Google Map Pack Domination (High-intent buyer calls)',
-        '100+ Point Technical SEO Optimization (Beat competitors)',
-        'Compounding Free Organic Traffic without monthly ad spend',
-        'High Domain Authority Building with authoritative backlinks'
-      ],
-      metrics: '#1 Rankings in UP',
-      metricDetail: '85+ Top Keywords',
-      ctaText: 'Explore SEO Dominance'
-    },
-    {
-      id: 'branding',
-      number: '05',
-      title: 'Branding & Creative',
-      badge: 'Visual Identity',
-      tagline: 'An iconic brand personality that commands premium pricing.',
-      description: 'We define compelling brand personalities, iconic 3D/2D logo suites, design tokens, and corporate collateral that make your business unforgettable.',
-      accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
-      tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
-      glowColor: 'rgba(255, 122, 0, 0.25)',
-      icon: Palette,
-      // "Kya Kya Benefits Milega"
-      benefits: [
-        'Iconic 3D & 2D Logo Suite (Instant customer authority & trust)',
-        'Complete Brand Style Guidelines & Color Design Tokens',
-        'High-Converting Pitch Decks & Corporate Sales Collateral',
-        '100% Original, Trademark-Ready & Copyright-Protected'
-      ],
-      metrics: 'Trademark Ready',
-      metricDetail: '100% Unique Design',
-      ctaText: 'Explore Brand Identity'
-    },
-    {
-      id: 'content',
-      number: '06',
-      title: 'Content Creation & Reels',
-      badge: 'Storytelling',
-      tagline: 'High-retention 9:16 vertical reels that captivate feeds.',
-      description: 'Engaging vertical viral reels, YouTube shorts, commercials, motion graphics, and conversion copywriting that turn casual viewers into buyers.',
-      accent: 'from-[var(--primary-blue)] to-[var(--cyan-accent)]',
-      tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
-      glowColor: 'rgba(11, 92, 255, 0.25)',
-      icon: Film,
-      // "Kya Kya Benefits Milega"
-      benefits: [
-        'Viral 9:16 Reels & Shorts (Massive reach & follower growth)',
-        '10M+ Video Views Delivered with high-retention hooks',
-        'Psychology-Driven Story Scripts that convert viewers to buyers',
-        'Studio-Grade 4K Post-Production, Motion VFX & Sound Design'
-      ],
-      metrics: '10M+ Video Views',
-      metricDetail: 'High Retention',
-      ctaText: 'Explore Video Production'
-    }
-  ], []);
-
-  const totalCards = services.length; // 6
-
-  // Radius calculation adapting cleanly to screen size with generous air gaps
+  // Radius calculation adapting cleanly to screen size (compact proportions)
   const orbitRadius = useMemo(() => {
-    if (windowWidth < 640) return 210; // Mobile
-    if (windowWidth < 1024) return 300; // Tablet
-    if (windowWidth < 1440) return 400; // Standard Laptop
-    return 460; // Large Desktop
+    if (windowWidth < 420) return 135; // Compact Mobile (<420px)
+    if (windowWidth < 640) return 165; // Standard Mobile (<640px)
+    if (windowWidth < 1024) return 235; // Tablet
+    if (windowWidth < 1440) return 315; // Standard Laptop
+    return 365; // Large Desktop
   }, [windowWidth]);
 
-  // Card width adapting to screen size
+  // Holographic Glass Card width adapting to screen size (compact sleek size)
   const cardWidth = useMemo(() => {
-    if (windowWidth < 640) return '280px'; // Mobile
-    if (windowWidth < 1024) return '315px'; // Tablet
-    return '350px'; // Desktop
+    if (windowWidth < 380) return '245px'; // Narrow Mobile (<380px)
+    if (windowWidth < 640) return '265px'; // Standard Mobile
+    if (windowWidth < 1024) return '295px'; // Tablet
+    return '325px'; // Desktop
   }, [windowWidth]);
 
   // Direct smooth rotation angle driven by activeCardIndex
   const masterOrbitAngle = -activeCardIndex * ((2 * Math.PI) / totalCards);
 
-  // Smooth Auto-Play Loop (rotates every 5s, pauses on mouse hover or touch)
+  // Smooth Auto-Play Loop (rotates every 3.5s automatically, pauses on mouse hover)
   useEffect(() => {
-    if (viewMode !== 'orbit' || !isAutoPlaying || isHovered) {
+    if (isHovered) {
       if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
       return;
     }
 
     autoPlayTimerRef.current = setInterval(() => {
       setActiveCardIndex((prev) => (prev + 1) % totalCards);
-    }, 5000);
+    }, 3500);
 
     return () => {
       if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
     };
-  }, [viewMode, isAutoPlaying, isHovered, totalCards]);
+  }, [isHovered, totalCards]);
 
   const handleNext = () => {
     setActiveCardIndex((prev) => (prev + 1) % totalCards);
@@ -223,6 +439,17 @@ export default function Services({ onSelectService, onOpenQuote }) {
     setActiveCardIndex((prev) => (prev - 1 + totalCards) % totalCards);
   };
 
+  // Direct mouse wheel on cards to rotate instantly
+  const handleWheel = (e) => {
+    if (Math.abs(e.deltaY) > 15) {
+      if (e.deltaY > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+  };
+
   const jumpToService = (index) => {
     setActiveCardIndex(index);
   };
@@ -230,13 +457,12 @@ export default function Services({ onSelectService, onOpenQuote }) {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (viewMode !== 'orbit') return;
       if (e.key === 'ArrowRight') handleNext();
       if (e.key === 'ArrowLeft') handlePrev();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [viewMode]);
+  }, []);
 
   // Touch swipe support for mobile
   const handleTouchStart = (e) => {
@@ -258,10 +484,85 @@ export default function Services({ onSelectService, onOpenQuote }) {
     }
   };
 
+    // Clean Reference Card (Title + Arrow, Short Description & Big Rounded Image)
+  const renderGlassCard = (service, isFrontActive = true) => (
+    <div 
+      onClick={() => onSelectService && onSelectService(service.id)}
+      className={`relative rounded-[26px] sm:rounded-[30px] bg-white p-5 sm:p-6 border transition-all duration-500 overflow-hidden flex flex-col justify-between shadow-[0_15px_40px_-12px_rgba(10,31,107,0.10)] group cursor-pointer ${
+        isFrontActive 
+          ? 'border-white ring-2 ring-[var(--brand-orange)]/60 shadow-[0_22px_55px_-10px_rgba(255,122,0,0.24)]' 
+          : 'border-slate-200/80 hover:border-[var(--brand-orange)]/40 hover:shadow-xl'
+      }`}
+    >
+      {/* Top subtle highlight */}
+      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[var(--brand-orange)]/70 to-transparent" />
+      <div className="pointer-events-none absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-white/90 via-white/20 to-transparent rounded-tr-[26px]" />
+
+      {/* 1. TOP SECTION: Title & Category Badge */}
+      <div className="mb-2.5 relative z-10">
+        <div className="space-y-0.5">
+          <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--brand-orange)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-orange)] animate-pulse" />
+            <span>{service.number} • {service.badge}</span>
+          </div>
+          <h3 className="text-lg sm:text-[21px] font-heading font-extrabold text-[#0A1F6B] tracking-tight leading-snug group-hover:text-[var(--primary-blue)] transition-colors">
+            {service.title}
+          </h3>
+        </div>
+      </div>
+
+      {/* 2. MIDDLE SECTION: Clean Short Description (From Reference) */}
+      <div className="relative z-10 mb-3 sm:mb-4">
+        <p className="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed line-clamp-3">
+          {service.tagline}
+        </p>
+      </div>
+
+      {/* 3. BOTTOM SECTION: Large High-Resolution Rounded Image (Exact Reference Match) */}
+      <div className="relative w-full aspect-[16/10] sm:aspect-[16/10.5] rounded-2xl sm:rounded-[22px] overflow-hidden bg-slate-100 border border-slate-200/80 shadow-sm mt-auto flex-shrink-0">
+        <img
+          src={service.image}
+          alt={`${service.title} - Click On Media Digital Services in Gorakhpur`}
+          className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-106"
+          loading="lazy"
+        />
+        {/* Soft Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+
+        {/* Subtle Category Pill Tag on Image Bottom */}
+        <div className="absolute bottom-2 left-2.5 px-2.5 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-[9px] font-heading font-bold text-[#0A1F6B] shadow-sm flex items-center gap-1.5">
+          <service.icon className="w-3 h-3 text-[var(--brand-orange)]" />
+          <span>{service.badge}</span>
+        </div>
+      </div>
+
+      {/* 4. BOTTOM ACTION STRIP (Get Quote / Explore Link) */}
+      <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-xs relative z-10">
+        <span className="text-[11px] font-bold text-[var(--primary-blue)] group-hover:text-[var(--brand-orange)] flex items-center gap-1 transition-colors">
+          <span>View Details</span>
+          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+        </span>
+
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpenQuote && onOpenQuote(service.title);
+          }}
+          className="px-3.5 py-1 rounded-full text-[11px] font-heading font-bold text-white bg-[var(--brand-orange)] hover:bg-[#e06900] shadow-xs hover:shadow-md transition-all cursor-pointer"
+        >
+          Get Quote
+        </button>
+      </div>
+
+    </div>
+  );
+
   return (
     <section 
       id="services" 
-      className="relative bg-[var(--bg-soft)] text-[var(--text-dark)] overflow-hidden pt-14 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 border-y border-[var(--primary-blue)]/8"
+      ref={sectionRef}
+      className="relative bg-transparent text-[var(--text-dark)] overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 border-y border-slate-200/60"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -270,121 +571,54 @@ export default function Services({ onSelectService, onOpenQuote }) {
       <div className="absolute bottom-1/3 right-10 w-[450px] h-[350px] bg-[var(--brand-orange)]/5 rounded-full blur-[130px] pointer-events-none z-0" />
 
       {/* ===================================================================== */}
-      {/* 1. IMPORTANT SECTION HEADINGS (CLEAN, BOLD, CLEAR)                     */}
+      {/* 1. HIGH-IMPACT SECTION HEADER (Encased in Frosted Glass Island)       */}
       {/* ===================================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 mb-8 sm:mb-10">
-        <div className="text-center max-w-3xl mx-auto space-y-3">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-20 mb-6 sm:mb-8 text-center">
+        <div className="bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-md">
           
-          {/* Top Pill Tag */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-semibold text-[var(--deep-navy)] shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-[var(--brand-orange)] animate-pulse" />
-            <span className="text-[var(--brand-orange)] uppercase tracking-widest text-[11px] font-bold">Our Services</span>
-            <span className="text-[var(--text-muted)] text-[11px]">• Click On Media Suite</span>
+          {/* Premium Pill Badge */}
+          <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-slate-50 border border-[var(--primary-blue)]/25 text-xs sm:text-sm font-semibold text-[#0A1F6B] shadow-xs mb-3 sm:mb-4 transition-transform hover:scale-105">
+            <span className="w-2.5 h-2.5 rounded-full bg-[var(--brand-orange)] shadow-[0_0_10px_#FF7A00] animate-pulse" />
+            <span className="text-[var(--brand-orange)] uppercase tracking-widest text-[11px] sm:text-xs font-heading font-extrabold">
+              Our Services
+            </span>
+            <span className="text-slate-300">•</span>
+            <span className="text-slate-600 font-medium text-[11px] sm:text-xs flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[var(--cyan-accent)]" />
+              <span>Click On Media Flagship Solutions</span>
+            </span>
           </div>
 
-          {/* Main Powerful Headline */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[var(--deep-navy)] tracking-tight leading-tight font-heading">
+          {/* Grand Headline: Big, Punchy, Authoritative & Radiant */}
+          <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-2xl sm:text-4xl md:text-5xl font-black text-[#0A1F6B] tracking-tight leading-[1.15] font-heading max-w-3xl mx-auto">
             End-to-End Digital Solutions for{' '}
-            <span className="text-gradient-brand">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] via-50% to-[#FF7A00]">
               Modern Businesses
             </span>
-          </h2>
+          </RevealHeading>
 
-          {/* Concise Subtitle */}
-          <p className="text-sm sm:text-base text-[var(--text-muted)] font-normal leading-relaxed max-w-2xl mx-auto">
-            A complete suite of digital services designed to build your brand, expand your reach, and drive measurable revenue growth.
-          </p>
+          {/* Attractive Subtitle with High Legibility */}
+          <RevealHeading tag="p" delay={220} direction="up" className="text-xs sm:text-sm md:text-base text-slate-700 font-medium max-w-2xl mx-auto mt-3 leading-relaxed">
+            Crafting custom digital ecosystems engineered to dominate search results, capture consumer attention, and accelerate real business revenue.
+          </RevealHeading>
 
-          {/* Quick Value Highlights */}
-          <div className="pt-1 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-600">
-            <div className="flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-[var(--brand-orange)]" />
-              <span>High-Conversion Engineering</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-[var(--primary-blue)]" />
-              <span>Measurable ROI Guarantee</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              <span>Dedicated Growth Partner</span>
-            </div>
-          </div>
-
+          {/* Radiant Gradient Accent Line */}
+          <div className="w-20 sm:w-28 h-1 bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00] rounded-full mx-auto mt-4 shadow-xs" />
         </div>
       </div>
 
       {/* ===================================================================== */}
-      {/* 2. 3D ORBIT ANIMATED CAROUSEL THEATER (ANIMATION PRESERVED & SMOOTH)  */}
+      {/* 2. HOLOGRAPHIC GLASS CAROUSEL THEATER                                  */}
       {/* ===================================================================== */}
-      {viewMode === 'orbit' ? (
-        <div className="w-full relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Controls & Stepper Pills */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-[var(--primary-blue)]/10 pb-4 mb-4 bg-white/70 backdrop-blur-md rounded-2xl p-2.5 shadow-xs">
-            
-            {/* Stepper Navigation Pills (01 to 06) */}
-            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
-              {services.map((svc, idx) => {
-                const isActive = activeCardIndex === idx;
-                return (
-                  <button
-                    key={svc.id}
-                    onClick={() => jumpToService(idx)}
-                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 flex items-center gap-1.5 flex-shrink-0 cursor-pointer min-h-[36px] ${
-                      isActive
-                        ? 'bg-gradient-to-r from-[var(--amber)] to-[var(--brand-orange)] text-white shadow-md shadow-[var(--brand-orange)]/25 scale-105 border border-[var(--amber)]'
-                        : 'bg-white text-[var(--deep-navy)] hover:text-[var(--primary-blue)] hover:bg-slate-50 border border-slate-200/80 shadow-xs'
-                    }`}
-                  >
-                    <span className="font-mono text-[11px]">{svc.number}</span>
-                    <span className="text-[11px] font-heading">{svc.title}</span>
-                  </button>
-                );
-              })}
-            </div>
+      <div className="w-full relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            {/* Right Controls: AutoPlay Toggle + Counter + Grid Toggle */}
-            <div className="flex items-center gap-2.5 flex-shrink-0 self-end sm:self-auto">
-              
-              {/* AutoPlay Toggle */}
-              <button
-                onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                className={`p-2 rounded-full text-xs font-bold transition-all border cursor-pointer ${
-                  isAutoPlaying 
-                    ? 'bg-orange-50 border-orange-200 text-[var(--brand-orange)]' 
-                    : 'bg-white border-slate-200 text-slate-500'
-                }`}
-                title={isAutoPlaying ? 'Pause 3D rotation' : 'Resume 3D rotation'}
-              >
-                {isAutoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
-              </button>
-
-              {/* Live Progress Counter */}
-              <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[var(--deep-navy)] bg-white px-3 py-1.5 rounded-full border border-[var(--primary-blue)]/15 shadow-xs">
-                <span className="text-[var(--brand-orange)]">{services[activeCardIndex].number}</span>
-                <span className="text-slate-400">/</span>
-                <span>06</span>
-              </div>
-
-              {/* Toggle to All 6 Grid View */}
-              <button
-                onClick={() => setViewMode('grid')}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-slate-50 border border-[var(--primary-blue)]/30 text-[var(--primary-blue)] text-xs font-semibold transition-all shadow-xs cursor-pointer min-h-[36px]"
-              >
-                <LayoutGrid className="w-3.5 h-3.5" />
-                <span className="text-[11px] font-heading">All 6 Grid</span>
-              </button>
-            </div>
-
-          </div>
-
-          {/* 3D Perspective Scene Container */}
+          {/* Holographic 3D Perspective Scene Container (Compact Height) */}
           <div 
+            onWheel={handleWheel}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            className="relative w-full h-[520px] sm:h-[540px] lg:h-[560px] flex items-center justify-center overflow-hidden"
+            className="relative w-full h-[530px] sm:h-[560px] lg:h-[590px] flex items-center justify-center overflow-hidden"
           >
             
             <div 
@@ -409,7 +643,7 @@ export default function Services({ onSelectService, onOpenQuote }) {
                 <div className="absolute inset-0 m-auto w-24 h-24 rounded-full bg-[var(--primary-blue)]/10 blur-xl" />
               </div>
 
-              {/* 3D Rotating Service Cards */}
+              {/* 3D Holographic Glass Service Cards */}
               {services.map((service, index) => {
                 const baseAngle = (index / totalCards) * (2 * Math.PI);
                 const totalAngle = baseAngle + masterOrbitAngle;
@@ -419,9 +653,9 @@ export default function Services({ onSelectService, onOpenQuote }) {
                 const zPos = orbitRadius * Math.cos(diffAngle) * 0.75 - (orbitRadius * 0.15);
 
                 const depthFactor = (Math.cos(diffAngle) + 1) / 2; // 0 to 1
-                const scale = 0.78 + 0.22 * depthFactor;
-                const opacity = 0.35 + 0.65 * depthFactor;
-                const rotateY = -diffAngle * (180 / Math.PI) * 0.32;
+                const scale = 0.8 + 0.2 * depthFactor;
+                const opacity = 0.4 + 0.6 * depthFactor;
+                const rotateY = -diffAngle * (180 / Math.PI) * 0.3;
                 const zIndex = Math.round(depthFactor * 50) + 1;
 
                 const isFrontActive = Math.abs(diffAngle) < 0.42;
@@ -441,105 +675,11 @@ export default function Services({ onSelectService, onOpenQuote }) {
                       transformOrigin: 'center center',
                       opacity: opacity,
                       zIndex: zIndex,
-                      filter: `brightness(${0.8 + 0.2 * depthFactor}) blur(${(1 - depthFactor) * 1.5}px)`,
+                      filter: `brightness(${0.85 + 0.15 * depthFactor}) blur(${(1 - depthFactor) * 1.2}px)`,
                       willChange: 'transform, opacity'
                     }}
                   >
-                    
-                    {/* Animated Card Chassis */}
-                    <div 
-                      className={`relative rounded-3xl bg-white p-5 sm:p-6 border transition-all duration-300 overflow-hidden flex flex-col justify-between ${
-                        isFrontActive 
-                          ? 'border-[var(--brand-orange)] shadow-2xl ring-2 ring-[var(--brand-orange)]/40' 
-                          : 'border-[var(--primary-blue)]/15 shadow-md hover:border-[var(--primary-blue)]/40'
-                      }`}
-                    >
-                      {/* Top Accent Gradient Bar */}
-                      <div className={`absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r ${service.accent}`} />
-
-                      {/* Active Ambient Glow */}
-                      {isFrontActive && (
-                        <div 
-                          className="absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl pointer-events-none"
-                          style={{ background: service.glowColor }}
-                        />
-                      )}
-
-                      <div className="space-y-3.5">
-                        
-                        {/* Card Top: Number + Badge + Icon */}
-                        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100">
-                          <div className="flex items-center gap-2">
-                            <span className="w-6 h-6 rounded-md bg-[var(--brand-orange)]/15 border border-[var(--brand-orange)]/30 text-[var(--brand-orange)] font-mono font-bold text-xs flex items-center justify-center shadow-inner">
-                              {service.number}
-                            </span>
-                            <span className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider font-heading">
-                              {service.badge}
-                            </span>
-                          </div>
-
-                          <div className={`p-2 rounded-xl bg-gradient-to-tr ${service.accent} text-white shadow-sm`}>
-                            {React.createElement(service.icon, { className: "w-4 h-4" })}
-                          </div>
-                        </div>
-
-                        {/* Title & Tagline */}
-                        <div className="space-y-1">
-                          <h3 className="text-lg sm:text-xl font-extrabold text-[var(--deep-navy)] tracking-tight leading-snug font-heading">
-                            {service.title}
-                          </h3>
-                          <p className="text-[11px] sm:text-xs text-[var(--text-muted)] leading-relaxed font-normal line-clamp-2">
-                            {service.description}
-                          </p>
-                        </div>
-
-                        {/* "Kya Kya Benefits Milega" Section */}
-                        <div className="space-y-1.5 pt-1 border-t border-slate-100/80">
-                          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--brand-orange)] font-heading">
-                            <Sparkles className="w-3 h-3" />
-                            <span>What You Get (Key Benefits):</span>
-                          </div>
-
-                          <ul className="space-y-1.5">
-                            {service.benefits.map((benefit, bIdx) => (
-                              <li key={bIdx} className="flex items-start gap-2 text-[11px] text-slate-700 leading-snug">
-                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                                <span className="font-medium line-clamp-1">{benefit}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {/* Metrics Callout Pill */}
-                        <div className="pt-1">
-                          <div className="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200/80 text-[10px] font-bold text-[var(--deep-navy)] font-heading flex items-center justify-between">
-                            <span className="text-[var(--primary-blue)]">{service.metrics}</span>
-                            <span className="text-[var(--brand-orange)]">{service.metricDetail}</span>
-                          </div>
-                        </div>
-
-                      </div>
-
-                      {/* Card Footer Action: Opens Dedicated Service Detail Page */}
-                      <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between">
-                        <button
-                          onClick={() => onSelectService && onSelectService(service.id)}
-                          className="text-xs font-bold text-[var(--primary-blue)] hover:text-[var(--brand-orange)] flex items-center gap-1 transition-colors cursor-pointer min-h-[36px]"
-                        >
-                          <span>Explore Service</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </button>
-
-                        <button
-                          onClick={() => onOpenQuote && onOpenQuote(service.title)}
-                          className="btn-primary text-xs !py-1.5 !px-3.5 min-h-[36px] shadow-sm cursor-pointer"
-                        >
-                          Get Quote
-                        </button>
-                      </div>
-
-                    </div>
-
+                    {renderGlassCard(service, isFrontActive)}
                   </div>
                 );
               })}
@@ -550,111 +690,33 @@ export default function Services({ onSelectService, onOpenQuote }) {
             <div className="absolute inset-x-2 sm:inset-x-8 top-1/2 -translate-y-1/2 z-30 flex justify-between pointer-events-none">
               <button
                 onClick={handlePrev}
-                title="Previous Service in 3D Orbit"
-                aria-label="Previous Service in 3D Orbit"
-                className="w-10 h-10 rounded-full bg-white/90 hover:bg-[var(--brand-orange)] hover:text-white border border-[var(--primary-blue)]/20 text-[var(--deep-navy)] flex items-center justify-center shadow-lg transition-all hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto min-w-[44px] min-h-[44px]"
+                title="Previous Service"
+                aria-label="Previous Service"
+                className="w-10 h-10 rounded-full bg-white/95 hover:bg-[var(--brand-orange)] hover:text-white border border-[var(--primary-blue)]/20 text-[#0A1F6B] flex items-center justify-center shadow-lg transition-all hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto min-w-[44px] min-h-[44px]"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
 
               <button
                 onClick={handleNext}
-                title="Next Service in 3D Orbit"
-                aria-label="Next Service in 3D Orbit"
-                className="w-10 h-10 rounded-full bg-white/90 hover:bg-[var(--brand-orange)] hover:text-white border border-[var(--primary-blue)]/20 text-[var(--deep-navy)] flex items-center justify-center shadow-lg transition-all hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto min-w-[44px] min-h-[44px]"
+                title="Next Service"
+                aria-label="Next Service"
+                className="w-10 h-10 rounded-full bg-white/95 hover:bg-[var(--brand-orange)] hover:text-white border border-[var(--primary-blue)]/20 text-[#0A1F6B] flex items-center justify-center shadow-lg transition-all hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto min-w-[44px] min-h-[44px]"
               >
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Bottom Visual Rotation Cue */}
-            <div className="absolute bottom-1 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 text-[11px] font-semibold text-[var(--text-muted)] bg-white/90 backdrop-blur-xs px-3.5 py-1 rounded-full border border-slate-200 shadow-xs pointer-events-none">
-              <RotateCw className="w-3 h-3 text-[var(--brand-orange)] animate-spin" />
-              <span>Use arrows or pills to rotate 3D cards</span>
+            {/* Bottom Visual Rotation Cue (Responsive on Small Mobile Screens) */}
+            <div className="absolute bottom-1 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-slate-600 bg-white/95 backdrop-blur-md px-3 sm:px-3.5 py-1 rounded-full border border-slate-200/90 shadow-sm pointer-events-none max-w-[94vw] whitespace-nowrap">
+              <RotateCw className="w-3 h-3 text-[var(--brand-orange)] animate-spin flex-shrink-0" />
+              <span className="hidden sm:inline">Scroll website to rotate cards automatically • Drag or click to explore</span>
+              <span className="sm:hidden">Scroll or drag to rotate 3D cards</span>
             </div>
 
           </div>
 
         </div>
-      ) : (
-        /* ===================================================================== */
-        /* ALL 6 GRID VIEW ALTERNATIVE                                           */
-        /* ===================================================================== */
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 relative z-20">
-          <div className="flex justify-end pb-4">
-            <button
-              onClick={() => setViewMode('orbit')}
-              className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white hover:bg-slate-50 border border-[var(--primary-blue)]/30 text-[var(--primary-blue)] text-xs font-semibold transition-all shadow-xs cursor-pointer min-h-[36px]"
-            >
-              <RotateCw className="w-3.5 h-3.5 text-[var(--brand-orange)]" />
-              <span className="text-[11px] font-heading">Back to 3D Orbit View</span>
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                className="bg-white border border-slate-200/90 hover:border-[var(--brand-orange)]/50 rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-xl flex flex-col justify-between"
-              >
-                <div className="space-y-3.5">
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                    <span className="w-7 h-7 rounded-lg bg-slate-100 text-[var(--deep-navy)] font-mono font-bold text-xs flex items-center justify-center">
-                      {service.number}
-                    </span>
-                    <span className="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider font-heading">
-                      {service.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-extrabold text-[var(--deep-navy)] font-heading">{service.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{service.description}</p>
-                  
-                  {/* "Kya Kya Benefits Milega" */}
-                  <div className="space-y-2 pt-1 border-t border-slate-100">
-                    <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--brand-orange)] font-heading">
-                      <Sparkles className="w-3 h-3" />
-                      <span>What You Get (Key Benefits):</span>
-                    </div>
-
-                    <ul className="space-y-1.5">
-                      {service.benefits.map((b, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-slate-700">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                          <span className="line-clamp-1">{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="pt-2">
-                    <div className="px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-[var(--deep-navy)] font-heading flex justify-between">
-                      <span className="text-[var(--primary-blue)]">{service.metrics}</span>
-                      <span className="text-[var(--brand-orange)]">{service.metricDetail}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                  <button
-                    onClick={() => onSelectService && onSelectService(service.id)}
-                    className="text-xs font-bold text-[var(--primary-blue)] hover:text-[var(--brand-orange)] flex items-center gap-1 cursor-pointer min-h-[36px]"
-                  >
-                    <span>Explore Breakdown</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </button>
-                  <button
-                    onClick={() => onOpenQuote && onOpenQuote(service.title)}
-                    className="btn-primary text-xs !py-2 !px-4 min-h-[36px]"
-                  >
-                    Get Quote
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
     </section>
   );

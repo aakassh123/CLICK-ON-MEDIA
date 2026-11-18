@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RevealHeading from './RevealHeading';
 import { Search, Layers, PenTool, Code2, TrendingUp, Zap, CheckCircle, ArrowRight } from 'lucide-react';
 
 export default function Process({ onOpenQuote }) {
@@ -58,7 +59,7 @@ export default function Process({ onOpenQuote }) {
   ];
 
   return (
-    <section id="process" className="py-16 sm:py-20 lg:py-24 bg-[var(--bg-soft)] text-[var(--text-dark)] relative overflow-hidden border-y border-[var(--primary-blue)]/8">
+    <section id="process" className="py-16 sm:py-20 lg:py-24 bg-transparent text-[var(--text-dark)] relative overflow-hidden border-y border-slate-200/60">
       
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--primary-blue)]/5 rounded-full blur-[140px] pointer-events-none" />
@@ -66,24 +67,24 @@ export default function Process({ onOpenQuote }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-semibold text-[var(--deep-navy)] shadow-soft-blue">
+        {/* Header (Encased in Frosted Glass Island to 100% Protect Text Readability) */}
+        <div className="text-center max-w-4xl mx-auto space-y-3 bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-md">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
             <Zap className="w-3.5 h-3.5 fill-[var(--brand-orange)] text-[var(--brand-orange)]" />
             <span className="text-[var(--brand-orange)] uppercase tracking-wider text-[11px] font-bold">How We Work</span>
             <span className="text-[var(--text-muted)]">• The 5-Step Formula</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--deep-navy)] tracking-tight leading-tight font-heading">
+          <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A1F6B] tracking-tight leading-tight font-heading">
             A Clear, Results-Driven Path to{' '}
-            <span className="text-gradient-brand">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00]">
               Growth
             </span>
-          </h2>
+          </RevealHeading>
 
-          <p className="text-sm sm:text-base text-[var(--text-muted)] font-normal leading-relaxed">
+          <RevealHeading tag="p" delay={220} direction="up" className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
             From initial discovery to launch and compounding marketing scale, our structured five-stage methodology guarantees on-time delivery, crystal-clear communication, and measurable ROI.
-          </p>
+          </RevealHeading>
         </div>
 
         {/* 5-Step Interactive Timeline Bar */}
@@ -129,57 +130,16 @@ export default function Process({ onOpenQuote }) {
                   </div>
 
                   <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                    <span className={isActive ? 'text-[var(--brand-orange)] font-bold' : 'text-[var(--text-muted)]'}>
-                      {isActive ? 'Active Stage' : 'View Deliverables'}
+                    <span className="text-[var(--brand-orange)] font-bold font-mono">
+                      Phase {step.number}
                     </span>
-                    <ArrowRight className={`w-3.5 h-3.5 transition-transform ${isActive ? 'translate-x-1 text-[var(--brand-orange)]' : 'text-[var(--text-muted)]'}`} />
+                    <span className="text-slate-400 font-medium font-heading">Click On Media</span>
                   </div>
                 </div>
               );
             })}
           </div>
 
-        </div>
-
-        {/* Detailed Deliverables Panel for Active Step */}
-        <div className="mt-8 rounded-3xl bg-white border border-[var(--primary-blue)]/20 p-6 sm:p-8 shadow-soft-blue">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            
-            <div className="lg:col-span-5 space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--brand-orange)]/15 border border-[var(--brand-orange)]/30 text-xs font-bold text-[var(--brand-orange)]">
-                <span>Stage {steps[activeStep].number} In Detail</span>
-              </div>
-              <h4 className="text-2xl font-extrabold text-[var(--deep-navy)] font-heading">
-                {steps[activeStep].title}: {steps[activeStep].tagline}
-              </h4>
-              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                Every phase is anchored by explicit milestones, testable deliverables, and weekly sign-offs to guarantee total alignment.
-              </p>
-            </div>
-
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {steps[activeStep].deliverables.map((item, dIdx) => (
-                  <div key={dIdx} className="flex items-start gap-2.5 p-3 rounded-xl bg-[var(--bg-soft)] border border-[var(--primary-blue)]/10 text-xs sm:text-sm text-[var(--text-dark)]">
-                    <CheckCircle className="w-4 h-4 text-[var(--primary-blue)] flex-shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-12 text-center">
-          <button
-            onClick={onOpenQuote}
-            className="btn-primary text-sm sm:text-base !py-3.5 !px-8 group"
-          >
-            <span>Start Stage 01 (Free Discovery Session)</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
         </div>
 
       </div>
