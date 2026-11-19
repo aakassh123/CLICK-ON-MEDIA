@@ -22,6 +22,7 @@ import ServiceTypeDetailPage from './components/ServiceTypeDetailPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import QuotePage from './components/QuotePage';
 import { SERVICES_CATALOG } from './data/servicesCatalog';
+import { PROJECTS_DATA } from './data/projectsData';
 
 // Interactive Overlays
 import ConsultationModal from './components/ConsultationModal';
@@ -60,106 +61,75 @@ const SEO_METADATA = {
     description: 'Ready to scale your business? Request a transparent quote and receive a custom roadmap and proposal from our strategists within 24 hours.',
     canonical: 'https://clickonmedia.in/#quote'
   },
+  'service/social-media': {
+    title: 'Social Media Marketing in Gorakhpur | Click On Media',
+    description: 'Grow your brand reach on Instagram, Facebook & LinkedIn. Daily aesthetic feeds, reels, viral trends, and verified local follower growth in UP.',
+    canonical: 'https://clickonmedia.in/#service/social-media'
+  },
   'service/web-dev': {
     title: 'Website Development in Gorakhpur | Click On Media',
     description: 'Fast, modern React & Next.js websites built for businesses in Gorakhpur. 0.6s page loads, mobile-first UX, and high conversion funnels.',
     canonical: 'https://clickonmedia.in/#service/web-dev'
   },
-  'service/software-dev': {
-    title: 'Software & App Development Gorakhpur | Click On Media',
-    description: 'Custom cloud SaaS platforms, business automation portals, and cross-platform mobile apps engineered for speed, scale, and high uptime.',
-    canonical: 'https://clickonmedia.in/#service/software-dev'
+  'service/whatsapp-bulk': {
+    title: 'WhatsApp Bulk Messaging in Gorakhpur | Click On Media',
+    description: 'Official WhatsApp Business API bulk broadcasting, 98% open rates, automated customer inquiry funnels, and high-conversion retargeting.',
+    canonical: 'https://clickonmedia.in/#service/whatsapp-bulk'
   },
-  'service/digital-marketing': {
-    title: 'Digital Marketing Agency Gorakhpur | Click On Media',
-    description: 'Boost your online presence and scale revenue with 360° digital marketing, competitor benchmarking, and ROI-driven customer acquisition.',
-    canonical: 'https://clickonmedia.in/#service/digital-marketing'
+  'service/graphics': {
+    title: 'Graphics Designing & Branding Gorakhpur | Click On Media',
+    description: 'Iconic 3D and 2D logo suites, promotional festival posters, digital hoardings, menus, and corporate brand stationery packages.',
+    canonical: 'https://clickonmedia.in/#service/graphics'
   },
-  'service/social-media': {
-    title: 'Social Media Marketing Gorakhpur | Click On Media',
-    description: 'Build an engaged community on Instagram, Facebook & LinkedIn. Aesthetic visual feeds, viral trend capture, and daily inbound customer leads.',
-    canonical: 'https://clickonmedia.in/#service/social-media'
-  },
-  'service/posters': {
-    title: 'Poster & Graphic Design Gorakhpur | Click On Media',
-    description: 'High-impact promotional posters, festival social banners, hoardings, and marketing flyers designed to capture attention and drive sales.',
-    canonical: 'https://clickonmedia.in/#service/posters'
-  },
-  'service/short-reels': {
-    title: 'Viral Reels & Video Shoot Gorakhpur | Click On Media',
-    description: 'High-retention 9:16 Instagram Reels, YouTube Shorts & brand commercials shot and edited with trending audio, hooks, and cinematic polish.',
-    canonical: 'https://clickonmedia.in/#service/short-reels'
-  },
-  'service/graphics-logo': {
-    title: 'Logo Design & Branding Agency Gorakhpur | Click On Media',
-    description: 'Elevate your brand with bespoke 3D & 2D logo systems, brand guidelines, typography palettes, and corporate stationery packages in Gorakhpur.',
-    canonical: 'https://clickonmedia.in/#service/graphics-logo'
-  },
-  'service/youtube-videos': {
-    title: 'YouTube Video Production Gorakhpur | Click On Media',
-    description: 'End-to-end YouTube channel production: 4K multi-cam editing, high-CTR 3D thumbnails, SEO titles, and retention pacing for creators and brands.',
-    canonical: 'https://clickonmedia.in/#service/youtube-videos'
-  },
-  'service/google-ads': {
-    title: 'Google Ads PPC Agency Gorakhpur | Click On Media',
-    description: 'Generate immediate high-intent customer leads with Google Search, Maps & Performance Max campaigns. Zero wasted ad spend with high ROAS.',
-    canonical: 'https://clickonmedia.in/#service/google-ads'
-  },
-  'service/social-ads': {
-    title: 'Meta & Facebook Ads Agency Gorakhpur | Click On Media',
-    description: 'High-ROAS Facebook & Instagram direct-response ads paired with WhatsApp click-to-chat funnels. Convert scrollers into paying buyers.',
-    canonical: 'https://clickonmedia.in/#service/social-ads'
-  },
-  'service/marketing': {
-    title: 'Digital Marketing & Paid Ads | Click On Media',
-    description: 'High-ROAS Google and Meta ad funnels engineered to maximize your return on ad spend and drive verified customer acquisitions.',
-    canonical: 'https://clickonmedia.in/#service/marketing'
+  'service/video-editing': {
+    title: 'Video Editing & Reels Production Gorakhpur | Click On Media',
+    description: 'Thumb-stopping 9:16 Instagram Reels, YouTube 4K multi-cam editing, cinematic brand commercials, sound design, and retention pacing.',
+    canonical: 'https://clickonmedia.in/#service/video-editing'
   },
   'service/seo': {
-    title: 'Top SEO Company in Gorakhpur | Click On Media',
-    description: 'Dominate Google search results with technical SEO audits, high-intent keyword ranking, local map pack optimization, and high-authority backlinks.',
+    title: 'Top SEO & Google My Business Company Gorakhpur | Click On Media',
+    description: 'Dominate Google search results and #1 Map Pack rankings with technical SEO audits, high-intent local keywords, and citation building.',
     canonical: 'https://clickonmedia.in/#service/seo'
   },
-  'service/branding': {
-    title: 'Branding & Creative Design | Click On Media',
-    description: 'Distinctive brand identities, 3D design tokens, and corporate collateral that build customer trust and command premium market pricing.',
-    canonical: 'https://clickonmedia.in/#service/branding'
+  'service/ads': {
+    title: 'Google Ads & Meta Paid Advertising Gorakhpur | Click On Media',
+    description: 'High-ROAS Google Search, YouTube, Instagram & Facebook ads paired with direct WhatsApp click-to-chat buyer conversion funnels.',
+    canonical: 'https://clickonmedia.in/#service/ads'
   },
-  'service/content': {
-    title: 'Content & Viral Reels Shoot | Click On Media',
-    description: 'Thumb-stopping 9:16 Instagram Reels, YouTube Shorts, and cinematic brand video production engineered for viral retention and growth.',
-    canonical: 'https://clickonmedia.in/#service/content'
+  'service/software-dev': {
+    title: 'Custom Software & Mobile App Development | Click On Media',
+    description: 'Custom cloud SaaS platforms, business automation systems, inventory management, and cross-platform iOS & Android mobile apps.',
+    canonical: 'https://clickonmedia.in/#service/software-dev'
   },
-  'project/mapaz-hotel': {
-    title: 'MAPAZ Hotel Case Study | Click On Media Gorakhpur',
-    description: 'How Click On Media drove +240% direct bookings and #1 Google Map Pack rankings for MAPAZ Hotel with custom web tech and local SEO.',
-    canonical: 'https://clickonmedia.in/#project/mapaz-hotel'
+  'service/crm': {
+    title: 'CRM Software & Sales Automation Gorakhpur | Click On Media',
+    description: 'End-to-end customer relationship management setup, automated sales pipelines, WhatsApp lead routing, and customer lifecycle tracking.',
+    canonical: 'https://clickonmedia.in/#service/crm'
   },
-  'project/krishna-inn': {
-    title: 'Krishna Inn Case Study | Click On Media Gorakhpur',
-    description: 'How Click On Media generated 3.8x ROAS and 45,000+ monthly visitors for Krishna Inn with high-converting ads and social video.',
-    canonical: 'https://clickonmedia.in/#project/krishna-inn'
-  },
-  'project/era-of-education': {
-    title: 'Era of Education Case Study | Click On Media',
-    description: 'Scaling student admissions by +310% with a custom multi-tier cloud learning portal engineered by Click On Media.',
-    canonical: 'https://clickonmedia.in/#project/era-of-education'
-  },
-  'project/shivoy-distributors': {
-    title: 'Shivoy Distributors Case Study | Click On Media',
-    description: 'B2B wholesale portal with 3,000+ SKUs driving +180% wholesale dealer orders and same-day automated ERP dispatch.',
-    canonical: 'https://clickonmedia.in/#project/shivoy-distributors'
-  },
-  'project/barkat-welfare': {
-    title: 'Barkat Welfare Society Case Study | Click On Media',
-    description: 'Transparent donor platform with instant 80G tax receipt generation delivering 4.5x online donation growth.',
-    canonical: 'https://clickonmedia.in/#project/barkat-welfare'
+  'service/monetization': {
+    title: 'Digital Asset Monetization & Growth | Click On Media',
+    description: 'Strategic YouTube AdSense revenue maximization, Meta creator bonuses, sponsor funnels, and passive cashflow optimization for creators.',
+    canonical: 'https://clickonmedia.in/#service/monetization'
   }
 };
 
 const applyRouteSEO = (routeKey) => {
   let meta = SEO_METADATA[routeKey];
 
+  // Dynamic Service Resolution
+  if (!meta && routeKey && routeKey.startsWith('service/')) {
+    const sId = routeKey.replace('service/', '');
+    const s = SERVICES_CATALOG[sId];
+    if (s) {
+      meta = {
+        title: `${s.title} in Gorakhpur | Click On Media`,
+        description: `${(s.tagline || s.description || '').slice(0, 140)}... Top digital agency in Gorakhpur, UP.`,
+        canonical: `https://clickonmedia.in/#service/${sId}`
+      };
+    }
+  }
+
+  // Dynamic Service Type Resolution
   if (!meta && routeKey && routeKey.startsWith('type/')) {
     const raw = routeKey.replace('type/', '');
     const [sId, tId] = raw.split('/');
@@ -168,8 +138,21 @@ const applyRouteSEO = (routeKey) => {
     if (t && s) {
       meta = {
         title: `${t.title} | ${s.title} Gorakhpur | Click On Media`,
-        description: `${t.explanation.slice(0, 140)}... Delivered by Click On Media Gorakhpur.`,
+        description: `${(t.explanation || '').slice(0, 140)}... Delivered by Click On Media Gorakhpur.`,
         canonical: `https://clickonmedia.in/#type/${sId}/${tId}`
+      };
+    }
+  }
+
+  // Dynamic Project / Case Study Resolution (all 20 projects)
+  if (!meta && routeKey && routeKey.startsWith('project/')) {
+    const pId = routeKey.replace('project/', '');
+    const p = PROJECTS_DATA[pId];
+    if (p) {
+      meta = {
+        title: `${p.title} Case Study | Click On Media Gorakhpur`,
+        description: `${(p.summary || p.description || '').slice(0, 140)}... Verified ROI results by Click On Media.`,
+        canonical: `https://clickonmedia.in/#project/${pId}`
       };
     }
   }
