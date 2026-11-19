@@ -24,11 +24,42 @@ import {
 
 } from 'lucide-react';
 
-// 6 Core Click On Media Services styled after the Futuristic Holographic Glass Card
+// 10 Official Click On Media Services from Visiting Card & Brochure
 const SERVICES_DATA = [
   {
-    id: 'web-dev',
+    id: 'social-media',
     number: '01',
+    title: 'Social Media Marketing',
+    badge: 'Audience Building',
+    microTag: ['INSTAGRAM', 'FACEBOOK', 'VIRAL REACH'],
+    headlineStack: {
+      line1: 'SOCIAL',
+      line2: 'MARKETING.',
+      line3: 'VIRAL',
+      line4: 'GROWTH.',
+      subline: 'BUILD AN ENGAGED AUDIENCE AND SCALE YOUR BRAND REACH ON INSTAGRAM, FACEBOOK AND LINKEDIN.'
+    },
+    tagline: 'Build an engaged audience, grow brand authority, and turn casual followers into loyal paying customers across Instagram, Facebook & LinkedIn.',
+    description: 'We manage, grow, and monetize your social profiles with daily aesthetic content, engaging community interactions, viral trend capture, and organic follower growth.',
+    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
+    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
+    glowColor: 'rgba(255, 122, 0, 0.25)',
+    icon: Users,
+    image: './services/service-social-media.jpg',
+    bottomTags: ['ORGANIC GROWTH', 'COMMUNITY', 'VIRAL REACH', 'DAILY CONTENT'],
+    benefits: [
+      'Consistent Aesthetic Feed & High-Engagement Visual Creatives',
+      'Active Direct Message & Comment Response Funnels',
+      'Targeted Local & Regional Follower Acquisition in UP',
+      'Influencer Collaborations & Algorithmic Trend Capitalization'
+    ],
+    metrics: '+340% Reach',
+    metricDetail: 'Active Community',
+    ctaText: 'Explore Social Marketing'
+  },
+  {
+    id: 'web-dev',
+    number: '02',
     title: 'Website Development',
     badge: 'Web Architecture',
     microTag: ['CREATIVE', 'TECHNOLOGY', 'GROWTH'],
@@ -40,7 +71,7 @@ const SERVICES_DATA = [
       subline: 'WE CRAFT CUSTOM ENGAGING WEBSITES THAT SHOWCASE YOUR BRAND AND DRIVE MASSIVE BUSINESS GROWTH.'
     },
     tagline: 'Crafting custom, engaging websites that showcase your brand and drive business growth with Click On Media in Gorakhpur.',
-    description: 'We engineer custom React & Next.js websites built for lightning speed, sub-0.6s page loads, and seamless customer conversions.',
+    description: 'We engineer custom React & Next.js websites built for lightning speed, sub-0.6s page loads, mobile-first UX, and seamless customer conversions.',
     accent: 'from-[var(--primary-blue)] to-[var(--deep-navy)]',
     tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
     glowColor: 'rgba(11, 92, 255, 0.25)',
@@ -58,11 +89,166 @@ const SERVICES_DATA = [
     ctaText: 'Explore Web Solutions'
   },
   {
+    id: 'whatsapp-bulk',
+    number: '03',
+    title: 'WhatsApp Bulk Messaging',
+    badge: 'Direct Outreach',
+    microTag: ['WHATSAPP API', 'BULK BROADCAST', 'HIGH OPEN RATE'],
+    headlineStack: {
+      line1: 'WHATSAPP',
+      line2: 'BROADCAST.',
+      line3: 'INSTANT',
+      line4: 'REACH.',
+      subline: 'DELIVER PERSONALIZED PROMOTIONS, OFFERS AND ALERTS DIRECTLY TO CUSTOMERS WITH 98% OPEN RATES.'
+    },
+    tagline: 'Deliver verified bulk broadcasts, promotional alerts, and interactive bot messages with 98% open rates using official WhatsApp APIs.',
+    description: 'Reach thousands of verified targeted customers across Gorakhpur and India with official WhatsApp Business API broadcasts, rich media catalogs, and automated chat flows.',
+    accent: 'from-emerald-500 to-teal-600',
+    tagBg: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
+    glowColor: 'rgba(16, 185, 129, 0.25)',
+    icon: MessageCircle,
+    image: './services/service-whatsapp-bulk.jpg',
+    bottomTags: ['OFFICIAL API', '98% OPEN RATE', 'RICH MEDIA', 'AUTO CHATBOT'],
+    benefits: [
+      'Green Tick Official WhatsApp Business API Integration',
+      '98% Open Rate Broadcasts with Zero Spam Penalties',
+      'Rich Media: Catalogs, PDFs, Videos & Clickable Buttons',
+      'Automated Lead Qualification & Instant CRM Routing'
+    ],
+    metrics: '98% Open Rate',
+    metricDetail: 'Instant Delivery',
+    ctaText: 'Explore WhatsApp Bulk'
+  },
+  {
+    id: 'graphics-designing',
+    number: '04',
+    title: 'Graphics Designing',
+    badge: 'Visual Identity',
+    microTag: ['POSTERS', 'BRAND LOGOS', 'MARKETING COLLATERAL'],
+    headlineStack: {
+      line1: 'GRAPHICS',
+      line2: 'STUNNING.',
+      line3: 'BRAND',
+      line4: 'AUTHORITY.',
+      subline: 'ELEVATE YOUR BRAND IDENTITY WITH MEMORABLE GRAPHICS, PROMOTIONAL POSTERS AND LOGO DESIGNS.'
+    },
+    tagline: 'Elevate your brand presence with stunning promotional posters, festival banners, 3D & 2D logos, and complete marketing collateral.',
+    description: 'High-impact promotional posters, festival creative banners, hoardings, brochure designs, and trademark-ready 3D/2D logo suites designed to captivate your customers.',
+    accent: 'from-[var(--primary-blue)] to-[var(--cyan-accent)]',
+    tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
+    glowColor: 'rgba(11, 92, 255, 0.25)',
+    icon: Palette,
+    image: './services/service-graphics-logo.jpg',
+    bottomTags: ['3D/2D LOGOS', 'PROMO POSTERS', 'FESTIVAL BANNERS', 'HD VECTORS'],
+    benefits: [
+      'Eye-Catching Social Media Posters & Festival Creatives',
+      '100% Unique & Trademark-Ready Logo & Typography Systems',
+      'Print-Ready 300DPI Billboards, Standees & Corporate Collateral',
+      'Brand Style Guides with Cohesive Color Palettes & Fonts'
+    ],
+    metrics: '100% Original',
+    metricDetail: 'HD Vector Suite',
+    ctaText: 'Explore Graphic Design'
+  },
+  {
+    id: 'video-editing',
+    number: '05',
+    title: 'Video Editing',
+    badge: 'Viral Video Suite',
+    microTag: ['4K EDITING', 'VIRAL REELS', 'YOUTUBE PACING'],
+    headlineStack: {
+      line1: 'VIDEO',
+      line2: 'CINEMATIC.',
+      line3: 'HIGH',
+      line4: 'RETENTION.',
+      subline: 'CAPTIVATE VIEWERS WITH HIGH-RETENTION 9:16 INSTAGRAM REELS AND 4K YOUTUBE VIDEO PRODUCTION.'
+    },
+    tagline: 'End-to-end video editing for viral 9:16 Instagram Reels, YouTube 4K videos, podcasts, and high-impact corporate commercials.',
+    description: 'We edit raw footage into thumb-stopping 9:16 Reels and 4K YouTube videos with seamless pacing, sound design, b-roll, trending music, and dynamic motion graphics.',
+    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
+    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
+    glowColor: 'rgba(255, 122, 0, 0.25)',
+    icon: Film,
+    image: './services/service-youtube-videos.jpg',
+    bottomTags: ['INSTAGRAM REELS', '4K YOUTUBE', 'SOUND FX', 'MOTION GRAPHICS'],
+    benefits: [
+      'Psychological 3-Second Scroll-Stopping Video Hooks',
+      'Multi-Camera 4K Color Grading, Sound FX & B-Roll Pacing',
+      'Dynamic Auto-Captions with Animated Highlights',
+      'High-CTR 3D Thumbnails & Video Retention Engineering'
+    ],
+    metrics: '10M+ Views',
+    metricDetail: 'High Retention',
+    ctaText: 'Explore Video Editing'
+  },
+  {
+    id: 'seo',
+    number: '06',
+    title: 'SEO - Website + Google My Business',
+    badge: '#1 Google Rankings',
+    microTag: ['LOCAL MAP PACK', 'SEARCH SEO', 'ORGANIC TRAFFIC'],
+    headlineStack: {
+      line1: 'SEARCH',
+      line2: 'DOMINATION.',
+      line3: 'MAP PACK',
+      line4: 'TOP RANK.',
+      subline: 'DOMINATE GOOGLE SEARCH AND GOOGLE MAPS PACK IN GORAKHPUR AND ACROSS UTTAR PRADESH.'
+    },
+    tagline: 'Dominate Google Search and Google Maps pack in Gorakhpur and UP. Drive consistent organic calls, high-intent traffic, and local footfall.',
+    description: 'Complete search engine optimization combining on-page technical speed hardening, high-intent keyword ranking, and Google Business Profile (GMB) map pack domination.',
+    accent: 'from-[var(--primary-blue)] to-[var(--deep-navy)]',
+    tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
+    glowColor: 'rgba(11, 92, 255, 0.25)',
+    icon: Search,
+    image: './services/service-seo.jpg',
+    bottomTags: ['MAP PACK #1', 'ON-PAGE SEO', 'LOCAL CITATIONS', 'ZERO AD SPEND'],
+    benefits: [
+      '#1 Google Maps Pack (GMB) Rankings for Daily Direct Calls',
+      'High-Intent Commercial Keyword Ranking with Zero Ad Spend',
+      'Core Web Vitals & Technical SEO Hardening for 100/100 Scores',
+      'Verified Local Business Citations Across Gorakhpur & Eastern UP'
+    ],
+    metrics: '#1 Local Rank',
+    metricDetail: '300% Organic Calls',
+    ctaText: 'Explore SEO & GMB'
+  },
+  {
+    id: 'ads',
+    number: '07',
+    title: 'Ads - Website + Insta, FB, WhatsApp',
+    badge: 'High-ROAS Funnels',
+    microTag: ['GOOGLE ADS', 'META ADS', 'WHATSAPP FUNNEL'],
+    headlineStack: {
+      line1: 'PAID ADS',
+      line2: 'PRECISION.',
+      line3: 'SCALE',
+      line4: 'REVENUE.',
+      subline: 'TARGET HIGH-INTENT BUYERS WITH HIGH-ROAS ADS ON GOOGLE SEARCH, INSTAGRAM, FACEBOOK AND WHATSAPP.'
+    },
+    tagline: 'Target high-intent buyers with high-ROAS paid advertising on Google Search, Instagram, Facebook, and direct WhatsApp click-to-chat funnels.',
+    description: 'Precision performance marketing combining Google Search & Maps PPC with Meta Facebook & Instagram direct-response ads and automated WhatsApp lead qualification.',
+    accent: 'from-[var(--brand-orange)] to-rose-500',
+    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
+    glowColor: 'rgba(255, 122, 0, 0.25)',
+    icon: Target,
+    image: './services/service-ads.jpg',
+    bottomTags: ['GOOGLE SEARCH', 'META FUNNELS', 'WHATSAPP LEADS', 'HIGH ROAS'],
+    benefits: [
+      'Immediate Top Google Search Placement for Buyer Keywords',
+      'Direct-Response Instagram & Facebook Video Ad Funnels',
+      'WhatsApp Click-to-Chat Ads for Instant Lead Conversions',
+      'Negative Keyword Filtering & Fraud Click Protection'
+    ],
+    metrics: '4.2x Avg ROAS',
+    metricDetail: 'Zero Bot Waste',
+    ctaText: 'Explore Paid Ads'
+  },
+  {
     id: 'software-dev',
-    number: '02',
-    title: 'Software & App Development',
+    number: '08',
+    title: 'Software Development',
     badge: 'Custom IT Solutions',
-    microTag: ['CLOUD SAAS', 'MOBILE APPS', 'ENTERPRISE'],
+    microTag: ['CLOUD SAAS', 'MOBILE APPS', 'AUTOMATION'],
     headlineStack: {
       line1: 'SOFTWARE',
       line2: 'SMARTER.',
@@ -70,271 +256,85 @@ const SERVICES_DATA = [
       line4: 'EFFORTLESS.',
       subline: 'TAILOR-MADE CLOUD SOFTWARE AND CROSS-PLATFORM MOBILE APPS BUILT FOR SEAMLESS PERFORMANCE.'
     },
-    tagline: 'Tailor-made cloud software, web applications, and iOS/Android mobile apps engineered for seamless speed and scale.',
-    description: 'Custom enterprise software, business automation portals, and cross-platform mobile apps designed to handle millions of transactions securely.',
-    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
-    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
-    glowColor: 'rgba(255, 122, 0, 0.25)',
+    tagline: 'Tailor-made cloud software, web applications, and iOS/Android mobile apps engineered for speed, high security, and 99.98% uptime.',
+    description: 'Custom enterprise software, business automation portals, and cross-platform mobile apps designed to streamline business operations and scale transactions securely.',
+    accent: 'from-indigo-600 to-[var(--primary-blue)]',
+    tagBg: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20',
+    glowColor: 'rgba(99, 102, 241, 0.25)',
     icon: Code2,
     image: './services/service-software-dev.jpg',
     bottomTags: ['IOS & ANDROID', 'CLOUD SAAS', '99.98% UPTIME', 'AUTOMATION'],
     benefits: [
       'Cross-Platform iOS & Android Apps (Single codebase savings)',
-      'Automated CRM, Billing & Payment Gateway Workflows',
+      'Automated Billing, Inventory & Payment Gateway Systems',
       '99.98% High Uptime Cloud Architecture & Data Security',
-      'Dedicated Technical Architecture & Live Support'
+      'Dedicated Technical Architecture & Live Maintenance SLA'
     ],
     metrics: '99.98% Uptime',
     metricDetail: 'Bank-Grade Sec',
-    ctaText: 'Explore App Solutions'
+    ctaText: 'Explore Software Solutions'
   },
   {
-    id: 'digital-marketing',
-    number: '03',
-    title: 'Digital Marketing',
-    badge: 'Online Growth',
-    microTag: ['STRATEGY', 'OMNICHANNEL', 'ROI DRIVEN'],
-    headlineStack: {
-      line1: 'ONLINE',
-      line2: 'PRESENCE.',
-      line3: 'TARGET',
-      line4: 'AUDIENCE.',
-      subline: 'BOOST YOUR ONLINE PRESENCE AND REACH YOUR TARGET AUDIENCE WITH EXPERT GROWTH STRATEGIES.'
-    },
-    tagline: 'Boost your online presence and reach your target audience with high-ROI growth strategies from Click On Media in Gorakhpur.',
-    description: 'We build 360° digital growth funnels that establish market authority, attract high-intent customers, and deliver measurable revenue.',
-    accent: 'from-[var(--primary-blue)] to-[var(--cyan-accent)]',
-    tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
-    glowColor: 'rgba(11, 92, 255, 0.25)',
-    icon: TrendingUp,
-    image: './services/service-digital-marketing.jpg',
-    bottomTags: ['360° STRATEGY', 'LEAD GEN', 'BRAND AWARENESS', 'MAX ROI'],
-    benefits: [
-      'Hyper-Targeted Market & Competitor Benchmarking',
-      'Multi-Channel Online Visibility Across Search & Social',
-      'Compounding Daily Inbound Buyer Calls & Inquiries',
-      'Transparent Live Analytics & ROI Reporting Dashboard'
-    ],
-    metrics: '4.2x Growth',
-    metricDetail: 'Pan-India Reach',
-    ctaText: 'Explore Marketing'
-  },
-  {
-    id: 'social-media',
-    number: '04',
-    title: 'Social Media Growth & Engagement',
-    badge: 'Audience Building',
-    microTag: ['INSTAGRAM', 'FACEBOOK', 'VIRAL REACH'],
-    headlineStack: {
-      line1: 'ENGAGE',
-      line2: 'AUDIENCE.',
-      line3: 'ORGANIC',
-      line4: 'DOMINANCE.',
-      subline: 'ENHANCE YOUR BRANDS ONLINE ENGAGEMENT AND ORGANIC REACH WITH EXPERT SOCIAL STRATEGIES.'
-    },
-    tagline: 'Enhance your brand’s online engagement and organic follower growth with expert social media strategies in Gorakhpur.',
-    description: 'We manage, grow, and monetize your social profiles with daily aesthetic content, engaging community interactions, and organic follower growth.',
-    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
-    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
-    glowColor: 'rgba(255, 122, 0, 0.25)',
-    icon: Users,
-    image: './services/service-social-media.jpg',
-    bottomTags: ['ORGANIC GROWTH', 'COMMUNITY', 'VIRAL REACH', 'DAILY CONTENT'],
-    benefits: [
-      'Consistent Aesthetic Grid & High-Engagement Posts',
-      'Active Direct Message & Comment Response Workflows',
-      'Targeted Local & Regional Follower Acquisition',
-      'Influencer Outreach & Strategic Trend Capitalization'
-    ],
-    metrics: '+340% Reach',
-    metricDetail: 'Active Community',
-    ctaText: 'Explore Social Growth'
-  },
-  {
-    id: 'posters',
-    number: '05',
-    title: 'Posters & Marketing Collateral',
-    badge: 'Visual Marketing',
-    microTag: ['POSTERS', 'CREATIVE BANNERS', 'PRINT & WEB'],
-    headlineStack: {
-      line1: 'POSTERS',
-      line2: 'IMPACTFUL.',
-      line3: 'VISUAL',
-      line4: 'PROMOTION.',
-      subline: 'CREATE IMPACTFUL AND VISUALLY APPEALING POSTERS TO EFFECTIVELY PROMOTE YOUR BRAND.'
-    },
-    tagline: 'Create impactful and visually appealing posters, festival creatives, and marketing collateral to effectively promote your brand.',
-    description: 'Eye-catching promotional posters, festival creative banners, hoardings, and marketing collaterals engineered to stop the scroll and capture attention.',
-    accent: 'from-[var(--cyan-accent)] to-[var(--primary-blue)]',
-    tagBg: 'bg-[var(--cyan-accent)]/15 text-[var(--primary-blue)] border-[var(--cyan-accent)]/30',
-    glowColor: 'rgba(0, 200, 255, 0.25)',
-    icon: Layout,
-    image: './services/service-posters.jpg',
-    bottomTags: ['PROMO POSTERS', 'FESTIVAL BANNERS', 'PRINT READY', 'SCROLL STOPPERS'],
-    benefits: [
-      'Impactful Promotional & Event Posters (Digital & Print)',
-      'Festival & Occasion-Themed Social Media Creatives',
-      'High-Resolution 300DPI Print-Ready Vector Collateral',
-      'Brand-Consistent Typography, Colors & Product Callouts'
-    ],
-    metrics: '100% Custom',
-    metricDetail: 'HD Vector Quality',
-    ctaText: 'Explore Poster Design'
-  },
-  {
-    id: 'short-reels',
-    number: '06',
-    title: 'Short Videos & Reels',
-    badge: 'Viral 9:16 Video',
-    microTag: ['VIRAL REELS', 'SHORTS', 'HIGH RETENTION'],
-    headlineStack: {
-      line1: 'REELS',
-      line2: 'CAPTIVATING.',
-      line3: 'BOOST',
-      line4: 'ENGAGEMENT.',
-      subline: 'CAPTIVATE YOUR AUDIENCE AND BOOST ENGAGEMENT WITH CREATIVE SHORT VIDEOS AND REELS.'
-    },
-    tagline: 'Captivate your audience and boost viral reach with creative 9:16 vertical short videos and high-retention Instagram reels.',
-    description: 'High-retention 9:16 vertical reels for Instagram and YouTube Shorts with psychological hooks, trending sounds, and cinematic motion graphics.',
-    accent: 'from-[var(--brand-orange)] to-[var(--primary-blue)]',
-    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
-    glowColor: 'rgba(255, 122, 0, 0.25)',
-    icon: Film,
-    image: './services/service-short-reels.jpg',
-    bottomTags: ['INSTAGRAM REELS', 'YT SHORTS', 'HOOK SCRIPTS', 'TRENDING AUDIO'],
-    benefits: [
-      'Psychological 3-Second Scroll-Stopping Hooks',
-      'Studio-Grade Dynamic Captions, Sound FX & Motion VFX',
-      'Trending Audio Synchronization for Algorithmic Reach',
-      'Massive Follower Conversions from Casual Viewers'
-    ],
-    metrics: '10M+ Views',
-    metricDetail: 'Viral Algorithm',
-    ctaText: 'Explore Short Reels'
-  },
-  {
-    id: 'graphics-logo',
-    number: '07',
-    title: 'Graphics & Logo Design',
-    badge: 'Visual Identity',
-    microTag: ['3D & 2D LOGOS', 'GRAPHICS', 'TRADEMARK READY'],
-    headlineStack: {
-      line1: 'IDENTITY',
-      line2: 'STUNNING.',
-      line3: 'BRAND',
-      line4: 'AUTHORITY.',
-      subline: 'ELEVATE YOUR BRAND IDENTITY WITH STUNNING GRAPHICS AND MEMORABLE LOGO DESIGN.'
-    },
-    tagline: 'Elevate your brand identity with memorable 3D/2D logo design, vector graphics, and complete brand style guides.',
-    description: 'Iconic 3D/2D logo design, complete brand style guides, marketing graphics, and stationery that command instant customer trust and premium authority.',
-    accent: 'from-[var(--primary-blue)] to-[var(--deep-navy)]',
-    tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
-    glowColor: 'rgba(11, 92, 255, 0.25)',
-    icon: Palette,
-    image: './services/service-graphics-logo.jpg',
-    bottomTags: ['3D/2D LOGOS', 'BRAND GUIDELINES', 'VECTOR SUITE', 'TRADEMARK READY'],
-    benefits: [
-      '100% Unique, Original & Trademark-Ready Logo Suites',
-      'Complete Brand Style Guidelines, Fonts & Color Palettes',
-      'Stationery, Business Cards, Letterheads & Brand Collateral',
-      'Scalable Vector Deliverables for Web, Mobile & Billboards'
-    ],
-    metrics: 'Trademark Ready',
-    metricDetail: '100% Original',
-    ctaText: 'Explore Graphic Design'
-  },
-  {
-    id: 'youtube-videos',
-    number: '08',
-    title: 'YouTube Videos & Production',
-    badge: 'Video Authority',
-    microTag: ['4K PRODUCTION', 'YOUTUBE SEO', 'HIGH CTR'],
-    headlineStack: {
-      line1: 'YOUTUBE',
-      line2: 'AUTHORITY.',
-      line3: 'WIDER',
-      line4: 'AUDIENCE.',
-      subline: 'ENHANCE YOUR ONLINE PRESENCE AND REACH A WIDER AUDIENCE WITH PROFESSIONAL YOUTUBE VIDEOS.'
-    },
-    tagline: 'Enhance your online presence and reach a wider audience with professional 4K YouTube videos and podcast editing.',
-    description: 'End-to-end YouTube production: script structuring, 4K multi-cam editing, high-CTR thumbnail design, and video SEO to grow your subscriber base.',
-    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
-    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
-    glowColor: 'rgba(255, 122, 0, 0.25)',
-    icon: PlaySquare,
-    image: './services/service-youtube-videos.jpg',
-    bottomTags: ['4K EDITING', 'HIGH CTR THUMBNAIL', 'YOUTUBE SEO', 'WATCH TIME'],
-    benefits: [
-      'Story-Driven 4K Video Editing with Pacing & B-Roll',
-      'High Click-Through Rate (CTR) 3D Thumbnail Design',
-      'YouTube Search Engine Optimization (Tags, Description, Title)',
-      'Watch Time & Retention Optimization for Channel Growth'
-    ],
-    metrics: '+280% Watch Time',
-    metricDetail: 'High CTR Thumbs',
-    ctaText: 'Explore YouTube Production'
-  },
-  {
-    id: 'google-ads',
+    id: 'crm',
     number: '09',
-    title: 'Google Ads',
-    badge: 'Search & PPC',
-    microTag: ['GOOGLE SEARCH', 'HIGH INTENT', 'LOW CPC'],
+    title: 'CRM',
+    badge: 'Sales & Lead Pipeline',
+    microTag: ['LEAD TRACKING', 'SALES FUNNELS', 'AUTOMATION'],
     headlineStack: {
-      line1: 'GOOGLE ADS',
-      line2: 'PRECISION.',
-      line3: 'MAXIMUM',
-      line4: 'VISIBILITY.',
-      subline: 'MAXIMIZE YOUR ONLINE VISIBILITY AND DRIVE TARGETED TRAFFIC WITH EFFECTIVE GOOGLE ADS.'
+      line1: 'LEADS',
+      line2: 'ORGANIZED.',
+      line3: 'CLOSE',
+      line4: 'FASTER.',
+      subline: 'TRACK EVERY INQUIRY, AUTOMATE FOLLOW-UPS AND CLOSE DEALS WITH CUSTOMIZED CRM PLATFORMS.'
     },
-    tagline: 'Maximize your online visibility and drive high-intent buying traffic to your website with precision Google Ads campaigns.',
-    description: 'High-intent Google Search, Performance Max, Display, and Google Maps campaigns that place your business in front of customers actively searching to buy.',
-    accent: 'from-[var(--primary-blue)] to-[var(--cyan-accent)]',
+    tagline: 'Track every inquiry, automate client follow-ups, streamline sales teams, and close deals faster with modern CRM systems tailored to your business.',
+    description: 'We deploy and customize intuitive CRM platforms that centralize leads from WhatsApp, website forms, Google Ads, and calls into a single pipeline with automated alerts.',
+    accent: 'from-[var(--primary-blue)] to-violet-600',
     tagBg: 'bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] border-[var(--primary-blue)]/20',
     glowColor: 'rgba(11, 92, 255, 0.25)',
-    icon: Target,
-    image: './services/service-google-ads.jpg',
-    bottomTags: ['GOOGLE SEARCH', 'PMAX FUNNELS', 'MAP PACK ADS', 'ZERO BOT FRAUD'],
+    icon: Layout,
+    image: './services/service-crm.jpg',
+    bottomTags: ['LEAD PIPELINE', 'AUTO FOLLOW-UPS', 'WHATSAPP SYNC', 'TEAM METRICS'],
     benefits: [
-      'Immediate #1 Google Search Placement for High-Intent Keywords',
-      'Negative Keyword Lists to Eliminate 100% Wasted Ad Spend',
-      'Google Maps Local Pack Ad Funnels for Daily Phone Calls',
-      'Conversion Tracking Setup with Live ROI Attribution'
+      'Instant Lead Capture from Website, WhatsApp & Social Ads',
+      'Automated SMS, WhatsApp & Email Follow-Up Sequences',
+      'Sales Rep Call Tracking & Performance Leaderboards',
+      'Custom Deal Stages, Invoicing & Conversion Analytics'
     ],
-    metrics: '4.5x Avg ROAS',
-    metricDetail: 'Immediate Leads',
-    ctaText: 'Explore Google Ads'
+    metrics: '+45% Closures',
+    metricDetail: 'Zero Lost Leads',
+    ctaText: 'Explore CRM Solutions'
   },
   {
-    id: 'social-ads',
+    id: 'monetization',
     number: '10',
-    title: 'Social Media Ads',
-    badge: 'Meta & WhatsApp',
-    microTag: ['FACEBOOK ADS', 'INSTAGRAM', 'WHATSAPP DIRECT'],
+    title: 'Monetization',
+    badge: 'Revenue Optimization',
+    microTag: ['YOUTUBE REVENUE', 'META CREATOR', 'ASSET MONETIZATION'],
     headlineStack: {
-      line1: 'SOCIAL ADS',
-      line2: 'TARGETED.',
+      line1: 'DIGITAL',
+      line2: 'REVENUE.',
       line3: 'SCALE',
-      line4: 'REVENUE.',
-      subline: 'AMPLIFY YOUR BRANDS REACH AND ENGAGEMENT WITH STRATEGIC SOCIAL MEDIA ADS ON FB, IG & WHATSAPP.'
+      line4: 'PROFITS.',
+      subline: 'MAXIMIZE DIGITAL ASSET EARNINGS ACROSS YOUTUBE AD SENSE, META CREATOR REWARDS AND SPONSORSHIPS.'
     },
-    tagline: 'Amplify your brand’s reach and customer acquisition with strategic direct-response ads on Facebook, Instagram, and WhatsApp.',
-    description: 'Direct-response Meta ad funnels and WhatsApp click-to-chat campaigns with creative A/B testing and retargeting that scale customer acquisition profitably.',
-    accent: 'from-[var(--brand-orange)] to-[var(--amber)]',
-    tagBg: 'bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] border-[var(--brand-orange)]/20',
-    glowColor: 'rgba(255, 122, 0, 0.25)',
-    icon: MessageCircle,
-    image: './services/service-social-ads.jpg',
-    bottomTags: ['META ADS', 'WHATSAPP FUNNEL', 'RETARGETING', 'HIGH ROAS'],
+    tagline: 'Maximize digital asset earnings through YouTube AdSense, Meta creator bonuses, sponsor funnels, and optimized monetization models.',
+    description: 'Strategic monetization architectures for content creators, publishers, and brands to unlock high-RPM YouTube revenue, Facebook reels monetization, and sponsored deal flow.',
+    accent: 'from-amber-500 to-[var(--brand-orange)]',
+    tagBg: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
+    glowColor: 'rgba(245, 158, 11, 0.25)',
+    icon: TrendingUp,
+    image: './services/service-monetization.jpg',
+    bottomTags: ['YOUTUBE ADSENSE', 'META BONUSES', 'SPONSOR FUNNELS', 'HIGH RPM'],
     benefits: [
-      'Facebook & Instagram Direct-Response Ad Creatives',
-      'WhatsApp Click-to-Chat Funnels for Instant Lead Closing',
-      'Dynamic Retargeting Funnels for Lost Website Visitors',
-      'Granular Audience Targeting by Location, Age & Interests'
+      'YouTube Partner Program (YPP) Fast-Track Compliance',
+      'High-RPM Video Structuring & Ad Placement Optimization',
+      'Facebook & Instagram Reels Creator Monetization Setup',
+      'Direct Brand Sponsorship Media Kits & Negotiation Assets'
     ],
-    metrics: '3.8x+ ROAS',
-    metricDetail: 'Instant WhatsApp Leads',
-    ctaText: 'Explore Social Ads'
+    metrics: 'Max RPM Revenue',
+    metricDetail: 'Passive Cashflow',
+    ctaText: 'Explore Monetization'
   }
 ];
 

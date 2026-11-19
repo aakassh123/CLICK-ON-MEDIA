@@ -115,16 +115,16 @@ export default function Footer({ onOpenQuote, onSelectService }) {
             </h4>
             <ul className="space-y-2.5 text-sm">
               {[
+                { name: 'Social Media Marketing', id: 'social-media' },
                 { name: 'Website Development', id: 'web-dev' },
-                { name: 'Software & App Development', id: 'software-dev' },
-                { name: 'Digital Marketing', id: 'digital-marketing' },
-                { name: 'Social Media Growth', id: 'social-media' },
-                { name: 'Posters & Collateral', id: 'posters' },
-                { name: 'Short Videos & Reels', id: 'short-reels' },
-                { name: 'Graphics & Logo Design', id: 'graphics-logo' },
-                { name: 'YouTube Videos', id: 'youtube-videos' },
-                { name: 'Google Ads (PPC)', id: 'google-ads' },
-                { name: 'Social Media Ads', id: 'social-ads' }
+                { name: 'WhatsApp Bulk Messaging', id: 'whatsapp-bulk' },
+                { name: 'Graphics Designing', id: 'graphics-designing' },
+                { name: 'Video Editing', id: 'video-editing' },
+                { name: 'SEO - Website + Google My Business', id: 'seo' },
+                { name: 'Ads - Website + Insta, FB, WhatsApp', id: 'ads' },
+                { name: 'Software Development', id: 'software-dev' },
+                { name: 'CRM', id: 'crm' },
+                { name: 'Monetization', id: 'monetization' }
               ].map((service, idx) => (
                 <li key={idx}>
                   <button

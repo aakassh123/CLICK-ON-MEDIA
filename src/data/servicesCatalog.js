@@ -6,7 +6,7 @@
 export const SERVICES_CATALOG = {
   'web-dev': {
     id: 'web-dev',
-    number: '01',
+    number: '02',
     title: 'Website Development',
     categoryName: 'Web & Digital Flagships',
     badge: 'Fast & High-Converting',
@@ -235,7 +235,7 @@ export const SERVICES_CATALOG = {
 
   'software-dev': {
     id: 'software-dev',
-    number: '02',
+    number: '08',
     title: 'Software & App Development',
     categoryName: 'Custom Software & Mobile Apps',
     badge: 'Scalable & Secure',
@@ -513,7 +513,7 @@ export const SERVICES_CATALOG = {
 
   'social-media': {
     id: 'social-media',
-    number: '04',
+    number: '01',
     title: 'Social Media Marketing',
     categoryName: 'Community & Brand Awareness',
     badge: 'Organic & Viral',
@@ -1356,11 +1356,955 @@ export const SERVICES_CATALOG = {
         ]
       }
     ]
-  }
+  },
+
+  'whatsapp-bulk': {
+    id: 'whatsapp-bulk',
+    number: '03',
+    title: 'WhatsApp Bulk Messaging',
+    categoryName: 'Direct Conversational Outreach',
+    badge: '98% Open Rate',
+    tagline: 'Deliver official bulk broadcasts, promotions, and automated bot workflows directly to customer phones.',
+    summary: 'Reach tens of thousands of verified customers across Gorakhpur and India with official WhatsApp Business API broadcasts, rich media catalogs, interactive quick-reply buttons, and automated sales chatbots.',
+    fallbackImage: './services/service-whatsapp-bulk.jpg',
+    categories: [
+      {
+        id: 'official-api-broadcast',
+        title: 'Official WhatsApp Business API Broadcast',
+        badge: 'Verified Delivery',
+        tagline: 'Send 10,000+ promotions without spam blocking',
+        image: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Official Meta-approved green tick WhatsApp Business API broadcasting. Deliver customized festival offers, announcements, and promotional discounts to thousands of opt-in customers with zero risk of number blocking.',
+        idealFor: 'Showrooms, Retail stores, Coaching institutes, Hotels, Hospitals, Wholesalers.',
+        timeline: '24 to 48 Hours',
+        deliverables: [
+          { title: 'Meta Verified WhatsApp API Account Setup', desc: 'Direct onboarding with official Meta Business Manager and verified sender profile.' },
+          { title: 'High-Speed Bulk Message Broadcasting', desc: 'Send customized messages to 10k, 50k, or 100k+ customer phone numbers within minutes.' },
+          { title: 'Interactive Click-to-Reply Quick Buttons', desc: 'Add instant action buttons like "Book Now", "View Catalog", and "Call Sales Team".' },
+          { title: 'Live Delivery & Read Rate Analytics Dashboard', desc: 'Track exactly how many messages were delivered, opened, and clicked in real time.' },
+          { title: 'Customer Database Segmentation & Tagging', desc: 'Organize phone numbers by customer type, location, and previous purchase history.' },
+          { title: 'Zero Number Banning Protection SLA', desc: 'Compliant with Meta anti-spam policies to protect your business phone number reputation.' }
+        ],
+        benefits: [
+          { title: '98% Message Open Rate Within 10 Minutes', desc: 'Emails get ignored and SMS gets blocked by DND. WhatsApp reaches customers instantly where they look all day.' },
+          { title: 'Generate Instant Inbound Customer Responses', desc: 'Clickable buttons prompt recipients to reply immediately, starting sales conversations while intent is high.' },
+          { title: 'Much Lower Cost than Traditional Print Flyers', desc: 'Save tens of thousands of rupees spent on printing paper pamphlets that end up in the trash.' },
+          { title: 'Builds High-Trust Verified Brand Identity', desc: 'Official WhatsApp sender profiles with your verified business logo and address inspire maximum buyer trust.' }
+        ],
+        process: [
+          { step: '01', title: 'Sender Profile & API Verification', desc: 'Setting up your business profile, green tick verification, and Meta compliance approval.' },
+          { step: '02', title: 'Audience Cleaning & Formatting', desc: 'Filtering active mobile numbers, removing duplicates, and structuring personalized name tags.' },
+          { step: '03', title: 'Creative Template Design', desc: 'Writing high-converting copy with catchy hooks, emojis, and interactive CTA buttons.' },
+          { step: '04', title: 'Live Broadcast & Real-Time Tracking', desc: 'Executing the broadcast with live delivery monitoring and lead response routing.' }
+        ],
+        highlights: [
+          'Official Meta WhatsApp Business API integration',
+          'Interactive call & quick-reply buttons',
+          'Rich media video, PDF & image support',
+          'Real-time delivery & click analytics'
+        ]
+      },
+      {
+        id: 'rich-media-catalog',
+        title: 'Rich Media & Product Catalog Campaigns',
+        badge: 'High Conversion',
+        tagline: 'Showcase menus, product photos & brochures directly on chat',
+        image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Send visual product cards, restaurant menus, property brochures, and festival rate cards directly inside WhatsApp chat with clickable "Buy Now" or "Order via WhatsApp" links.',
+        idealFor: 'Restaurants, Real estate developers, Boutiques, Jewellery brands, Furniture showrooms.',
+        timeline: '1 to 2 Days',
+        deliverables: [
+          { title: 'Interactive Multi-Product Catalog Setup', desc: 'Digital item showcase with photos, prices, descriptions, and direct cart checkout.' },
+          { title: 'High-Resolution PDF Brochure Compression', desc: 'Lightweight, fast-loading digital flyers and rate cards formatted for mobile screens.' },
+          { title: 'Promotional Teaser Video Formatting', desc: 'Short 15-second compressed video messages that play smoothly even on 3G/4G connections.' },
+          { title: 'Limited-Time Festival Discount Coupons', desc: 'Personalized discount code vouchers delivered to loyal customer contact lists.' },
+          { title: 'Direct Checkout & UPI Payment Links', desc: 'Integration with Razorpay and UPI QR codes for instant payment inside the chat.' },
+          { title: 'Automated Post-Purchase Receipt Flow', desc: 'Deliver instant booking confirmations and tax invoices immediately after sale.' }
+        ],
+        benefits: [
+          { title: 'Frictionless Visual Buying Experience', desc: 'Customers can browse and buy your products without ever having to download a separate mobile app.' },
+          { title: 'Increases Average Order Value by 35%', desc: 'Rich media photos showcase product quality and allow easy upselling of complementary packages.' },
+          { title: 'Instant Sharing Between Family & Friends', desc: 'Customers easily forward attractive WhatsApp offers to their family and community groups.' },
+          { title: 'Re-Engage Past Customers Effortlessly', desc: 'Announce new arrivals and seasonal sales directly to customers who already know and love your brand.' }
+        ],
+        process: [
+          { step: '01', title: 'Catalog Curation & Photography', desc: 'Selecting top-selling products and designing clean mobile-first image cards.' },
+          { step: '02', title: 'WhatsApp Catalog Sync', desc: 'Uploading products with pricing, SKUs, and instant inquiry tags into WhatsApp Commerce Manager.' },
+          { step: '03', title: 'Broadcast Funnel Assembly', desc: 'Linking catalog items to promotional broadcast messages and quick-order buttons.' },
+          { step: '04', title: 'Campaign Launch & Orders Handling', desc: 'Deploying the campaign and training your team to process incoming orders.' }
+        ],
+        highlights: [
+          'Full digital product catalog with prices & photos',
+          'Instant 1-click WhatsApp order placement',
+          'Lightweight PDF brochure attachments',
+          'Direct UPI & Razorpay payment integration'
+        ]
+      },
+      {
+        id: 'whatsapp-chatbot-automation',
+        title: 'Automated WhatsApp Chatbot & Lead Routing',
+        badge: '24/7 Sales Bot',
+        tagline: 'Never miss an inquiry — instant answers even at 2 AM',
+        image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'An intelligent automated assistant for your WhatsApp. It instantly greets callers, answers questions about pricing and timings, qualifies prospects, books appointments, and alerts your human sales team when a hot buyer appears.',
+        idealFor: 'Hospitals, Clinics, Law firms, Real estate consultants, Service agencies, Colleges.',
+        timeline: '3 to 5 Days',
+        deliverables: [
+          { title: 'Smart Conversational Menu & Decision Tree', desc: 'Guided button-based menus allowing users to select "Prices", "Services", "Location", or "Call Agent".' },
+          { title: 'Instant 24/7 Automated Response Engine', desc: 'Zero wait times — answers inquiries in 0.5 seconds, even during holidays and midnight.' },
+          { title: 'Automated Lead Qualification Questions', desc: 'Collects name, requirement, budget, and preferred time before routing to your team.' },
+          { title: 'Google Sheets & CRM Live Sync', desc: 'Every captured lead is automatically logged into your CRM and Google Sheets in real time.' },
+          { title: 'Instant Human Agent Handoff Notification', desc: 'Sends an urgent SMS/WhatsApp alert to your sales manager when a high-value lead asks to talk.' },
+          { title: 'Google Maps Location & Timing Auto-Sender', desc: 'Automatically dispatches map directions and clinic/office timings when asked.' }
+        ],
+        benefits: [
+          { title: 'Capture 100% of After-Hours Inquiries', desc: 'Over 40% of digital inquiries happen after 7 PM. The bot ensures no prospect is lost to competitors.' },
+          { title: 'Save 4+ Hours Daily in Repetitive Answering', desc: 'Free your staff from repeatedly answering "Where is your office?" and "What are your rates?".' },
+          { title: 'Faster Response Times Close 3x More Deals', desc: 'Customers buy from whoever answers first. Instant replies give you an unbeatable competitive advantage.' },
+          { title: 'Structured Lead Data for Easy Sales Calls', desc: 'Your sales reps receive qualified details before calling, making closing conversations much easier.' }
+        ],
+        process: [
+          { step: '01', title: 'Conversation Flow Mapping', desc: 'Designing the decision tree, common FAQs, and required qualifying questions.' },
+          { step: '02', title: 'Bot Logic & Response Scripting', desc: 'Writing professional, friendly replies and integrating multi-language support.' },
+          { step: '03', title: 'CRM & Alert Webhook Integration', desc: 'Connecting the bot to your sales team’s notification channels and database.' },
+          { step: '04', title: 'Testing & Live Activation', desc: 'Simulating user conversations, optimizing response paths, and launching live.' }
+        ],
+        highlights: [
+          'Sub-second 24/7 automated instant responses',
+          'Button-based conversational inquiry menu',
+          'Automatic Google Sheets & CRM lead sync',
+          'Instant human agent takeover alerts'
+        ]
+      },
+      {
+        id: 'transactional-notifications',
+        title: 'Transactional Alerts & Order Notifications',
+        badge: 'Automated Updates',
+        tagline: 'Deliver OTPs, receipts, appointment reminders & updates',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Automated notification pipelines that connect your billing software, website, or ERP to WhatsApp. Sends automated invoice PDFs, payment receipts, appointment reminders, and status updates.',
+        idealFor: 'Pathology labs, Clinics, Schools, Logistics firms, E-commerce, Salons.',
+        timeline: '2 to 3 Days',
+        deliverables: [
+          { title: 'Website & Billing Software API Webhook', desc: 'Triggers instant WhatsApp messages upon checkout, booking, or invoice creation.' },
+          { title: 'Automated PDF Invoice & Receipt Delivery', desc: 'Generates and delivers official tax receipts directly to the client’s phone.' },
+          { title: 'Appointment & Consultation Reminders', desc: 'Automated 24h and 2h reminders with "Confirm" or "Reschedule" response buttons.' },
+          { title: 'Order Tracking & Dispatch Status Updates', desc: 'Real-time courier tracking numbers and package delivery status alerts.' },
+          { title: 'Payment Due & Renewal Reminders', desc: 'Gentle automated payment reminder notifications with integrated UPI payment links.' },
+          { title: 'Customer Feedback & Rating Collector', desc: 'Post-service satisfaction survey collecting 5-star Google Reviews automatically.' }
+        ],
+        benefits: [
+          { title: 'Reduce Missed Appointments by 70%', desc: 'WhatsApp reminders ensure clients show up on time, drastically cutting no-shows for doctors and salons.' },
+          { title: 'Zero Printing & Paper Receipt Costs', desc: 'Eco-friendly and 100% digital invoices stored permanently in customer chat history.' },
+          { title: 'Builds Premium Customer Experience', desc: 'Immediate professional updates reassure customers that their orders are handled with care.' },
+          { title: 'Collect Authentic 5-Star Google Reviews', desc: 'Happy customers get a direct link to rate your business on Google Maps within seconds.' }
+        ],
+        process: [
+          { step: '01', title: 'API & Software Integration Review', desc: 'Connecting to your existing POS, CRM, or custom database via webhooks.' },
+          { step: '02', title: 'Template Creation & Meta Approval', desc: 'Registering utility and transactional message templates with Meta.' },
+          { step: '03', title: 'Dynamic Variable Setup', desc: 'Configuring dynamic tokens for client names, invoice numbers, amounts, and dates.' },
+          { step: '04', title: 'Live End-to-End Testing', desc: 'Validating real-time delivery triggers and launching the automated system.' }
+        ],
+        highlights: [
+          'Instant automated appointment & booking reminders',
+          'Automated invoice & receipt PDF generation',
+          'Google Maps review collection funnel',
+          'Seamless integration with custom web apps & POS'
+        ]
+      }
+    ]
+  },
+
+  'crm': {
+    id: 'crm',
+    number: '09',
+    title: 'CRM (Customer Relationship Management)',
+    categoryName: 'Sales Pipeline & Lead Management',
+    badge: 'Zero Lost Leads',
+    tagline: 'Track every inquiry, automate follow-ups, and accelerate deal closures.',
+    summary: 'We deploy and customize modern, intuitive CRM platforms that pull leads from WhatsApp, website forms, Google Ads, and calls into a single pipeline with automated alerts and salesperson tracking.',
+    fallbackImage: './services/service-crm.jpg',
+    categories: [
+      {
+        id: 'lead-pipeline-management',
+        title: 'Lead Ingestion & Visual Pipeline Board',
+        badge: 'High Efficiency',
+        tagline: 'Stop losing leads in messy WhatsApp chats & diary notes',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'A visual Kanban board where every incoming lead from Google Ads, Meta Ads, WhatsApp, website forms, and phone calls automatically appears as a card that moves from "New Lead" to "Contacted", "Quotation Sent", and "Deal Won".',
+        idealFor: 'Real estate brokers, Solar distributors, Manufacturing, B2B wholesale, Service agencies.',
+        timeline: '3 to 5 Days',
+        deliverables: [
+          { title: 'Omnichannel Lead Capture Automation', desc: 'Centralize leads from Facebook, Google, website forms, and WhatsApp automatically.' },
+          { title: 'Custom Visual Kanban Deal Board', desc: 'Drag-and-drop stages matching your exact sales lifecycle from inquiry to closure.' },
+          { title: 'Duplicate Lead Detection & Filtering', desc: 'Automatically merges repeated inquiries to prevent sales reps from calling the same client twice.' },
+          { title: 'Automated Lead Assignment Rules', desc: 'Evenly distributes incoming inquiries across sales executives via round-robin routing.' },
+          { title: 'Custom Lead Fields & Tagging', desc: 'Store deal budget, preferred location, requirement type, and customer priority flags.' },
+          { title: 'Mobile App Access for Sales Reps on the Go', desc: 'Native Android & iOS apps so field executives update notes and call logs from anywhere.' }
+        ],
+        benefits: [
+          { title: 'Zero Leads Lost Through the Cracks', desc: 'Every prospect who expressed interest is tracked until resolved — zero forgotten inquiries.' },
+          { title: 'Complete Clarity on Your Sales Revenue', desc: 'Know at a glance how many active deals are in progress and forecasted monthly revenue.' },
+          { title: 'End Reliance on Messy Paper Diaries', desc: 'All client conversation notes and files stay safely stored in a cloud database forever.' },
+          { title: 'Instant Response Times When Leads are Hot', desc: 'Reps get notified within 15 seconds of a form submission, before the buyer looks elsewhere.' }
+        ],
+        process: [
+          { step: '01', title: 'Sales Workflow Analysis', desc: 'Mapping your current customer journey from first call to final payment.' },
+          { step: '02', title: 'Pipeline & Stage Configuration', desc: 'Building custom deal stages, priority tags, and required field inputs.' },
+          { step: '03', title: 'Ad Channels & WhatsApp Integration', desc: 'Connecting Meta ads, Google ads, and website webhooks directly to the CRM.' },
+          { step: '04', title: 'Team Onboarding & Training', desc: 'Conducting live staff walkthroughs on desktop and mobile apps.' }
+        ],
+        highlights: [
+          'Automatic lead capture from all ad channels & WhatsApp',
+          'Visual drag-and-drop deal progression board',
+          'Round-robin automatic lead distribution to team',
+          'Full mobile app for field executives'
+        ]
+      },
+      {
+        id: 'automated-drip-followups',
+        title: 'Automated Follow-Up Drip Sequences',
+        badge: 'Boosts Conversion',
+        tagline: '80% of sales happen on the 5th follow-up — automate it',
+        image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Automated nurturing campaigns that send personalized WhatsApp messages, emails, and SMS reminders to undecided prospects at Day 1, Day 3, Day 7, and Day 14 without your staff having to lift a finger.',
+        idealFor: 'Education counseling, Insurance, High-ticket real estate, B2B software, Consulting.',
+        timeline: '3 to 4 Days',
+        deliverables: [
+          { title: 'Multi-Channel Drip Workflow Builder', desc: 'Automated sequence of WhatsApp, SMS, and email touchpoints tailored to prospect behavior.' },
+          { title: 'Personalized Dynamic Token Insertion', desc: 'Automatically inserts prospect’s first name, required service, and quote amount.' },
+          { title: 'Case Study & Social Proof Nurturing', desc: 'Shares video testimonials and client success benchmarks to build buying confidence.' },
+          { title: 'Quote Expiry & Urgency Triggers', desc: 'Automated reminders warning prospects when special discounts or slots are about to close.' },
+          { title: 'Stop-on-Reply Intelligence', desc: 'Sequence instantly pauses the moment the prospect replies or books a call.' },
+          { title: 'Weekly Re-Engagement Reports', desc: 'Measures which follow-up messages generate the highest replies and won deals.' }
+        ],
+        benefits: [
+          { title: 'Double Your Sales Closures from Cold Leads', desc: 'Most deals are lost because reps forget to follow up. Automation keeps your brand top-of-mind.' },
+          { title: 'Zero Manual Work for Your Sales Team', desc: 'Reps only spend time talking to hot buyers who replied, not chasing unresponsive leads.' },
+          { title: 'Consistent Professional Communication', desc: 'Every lead receives perfectly written, polite, and persuasive communication every time.' },
+          { title: 'Revive Old Inactive Leads from Last Year', desc: 'Run automated reactivation campaigns to previous leads to unlock immediate fresh revenue.' }
+        ],
+        process: [
+          { step: '01', title: 'Follow-Up Journey Strategy', desc: 'Determining the ideal timing intervals and psychological triggers for your niche.' },
+          { step: '02', title: 'Copywriting Persuasive Messages', desc: 'Writing compelling WhatsApp scripts, objection handlers, and limited-time hooks.' },
+          { step: '03', title: 'Automation Trigger Setup', desc: 'Configuring rules like "If deal is at Quote Sent for 48 hours, send WhatsApp Message 2".' },
+          { step: '04', title: 'Testing & Launch', desc: 'Testing real scenario triggers and monitoring early prospect replies.' }
+        ],
+        highlights: [
+          'Timed WhatsApp, SMS & Email drip sequences',
+          'Automatic pause when prospect responds',
+          'Personalized dynamic name & quote tokens',
+          'Recovers up to 40% of abandoned quotations'
+        ]
+      },
+      {
+        id: 'sales-call-tracking',
+        title: 'Sales Team Performance & Call Tracking',
+        badge: 'Accountability',
+        tagline: 'Track response time, call recordings & rep productivity',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Cloud telephony and CRM integration that logs every incoming and outgoing customer call, measures rep response speeds, records conversations for training, and ranks salespeople on a live leaderboard.',
+        idealFor: 'Telecalling agencies, Call centers, Direct sales teams, Franchises, Retail dealerships.',
+        timeline: '3 to 5 Days',
+        deliverables: [
+          { title: 'Cloud Telephony Virtual Number Integration', desc: 'Central business phone number that routes incoming calls to available sales reps.' },
+          { title: 'Automatic Call Recording & Playback', desc: 'Listen to recorded sales calls directly from the customer’s CRM profile for quality audits.' },
+          { title: 'Speed-to-Lead Response Time Metrics', desc: 'Measure how many minutes it took for a salesperson to dial a new incoming lead.' },
+          { title: 'Daily Call Volume & Talk-Time Leaderboard', desc: 'Real-time dashboard showing dials made, connected calls, and total talk time per rep.' },
+          { title: 'Missed Call Alert & Instant Callback Engine', desc: 'Sends an urgent alert when a customer call is missed, automatically assigning a callback task.' },
+          { title: 'Sales Conversion Rate by Team Member', desc: 'Identify your top closers and coach struggling reps with real data and recordings.' }
+        ],
+        benefits: [
+          { title: 'Complete Transparency Across Sales Staff', desc: 'Know exactly who is working hard, who is dialing, and who is delaying customer calls.' },
+          { title: 'Improve Team Closing Rates with Call Coaching', desc: 'Listen to lost deal calls to identify weak objections and train your staff to close better.' },
+          { title: 'Eliminate Customer Disputes & Confusion', desc: 'Call recordings provide 100% indisputable proof of what was promised to the client.' },
+          { title: 'Never Lose a Customer to a Busy Tone', desc: 'Cloud routing forwards to multiple lines simultaneously, ensuring every caller is answered.' }
+        ],
+        process: [
+          { step: '01', title: 'Virtual Number & SIM Configuration', desc: 'Procuring and setting up the central business virtual number and IVR menu.' },
+          { step: '02', title: 'Telephony Webhook Connection', desc: 'Linking call events, recordings, and duration metrics directly into the CRM.' },
+          { step: '03', title: 'Dashboard & KPI Calibration', desc: 'Configuring daily targets for call counts, connection rates, and won deals.' },
+          { step: '04', title: 'Manager Training & Live Pilot', desc: 'Training management to audit recordings and review daily productivity metrics.' }
+        ],
+        highlights: [
+          'Automatic call recording & duration logging',
+          'Live sales rep productivity & talk-time leaderboard',
+          'Missed call instant recovery notifications',
+          'Speed-to-lead response time tracking'
+        ]
+      },
+      {
+        id: 'helpdesk-ticketing',
+        title: 'Post-Sales Support & Service Ticketing',
+        badge: 'Customer Retention',
+        tagline: 'Deliver world-class post-sales service and retain clients for years',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Customer support ticketing system inside your CRM. When clients face an issue, a ticket is created with guaranteed resolution SLAs, assigning service technicians and notifying clients via WhatsApp upon completion.',
+        idealFor: 'IT services, AMC providers, HVAC/Appliance repairs, Automobile service centers, SaaS.',
+        timeline: '2 to 4 Days',
+        deliverables: [
+          { title: 'WhatsApp & Email Ticket Creation', desc: 'Customers submit service issues by texting WhatsApp; a ticket is instantly generated.' },
+          { title: 'Service Level Agreement (SLA) Timers', desc: 'Automated countdown timers (e.g. 4-hour response, 24-hour resolution) with manager escalation.' },
+          { title: 'Field Technician Task Assignment', desc: 'Assigns on-site visits to field service engineers with customer location coordinates.' },
+          { title: 'Automated Status Updates to Customers', desc: 'Customer receives real-time WhatsApp updates: "Technician Assigned", "In Progress", "Resolved".' },
+          { title: 'AMC & Warranty Renewal Tracking', desc: 'Automated reminders 30 days before annual maintenance contracts or warranties expire.' },
+          { title: 'Customer Satisfaction (CSAT) Rating Surveys', desc: 'Collects feedback after ticket closure to ensure high service standards.' }
+        ],
+        benefits: [
+          { title: 'Turn One-Time Buyers into Lifetime Clients', desc: 'Exceptional post-sales service creates fiercely loyal customers who refer your business.' },
+          { title: 'Predictable Recurring AMC Revenue', desc: 'Automated contract renewal reminders ensure clients renew service plans on time.' },
+          { title: 'Prevent Customer Complaints from Escalating', desc: 'Managers are immediately alerted if a support ticket exceeds the resolution SLA.' },
+          { title: 'Organized Repair & Service History', desc: 'Review every past service log and replacement part history for every client asset.' }
+        ],
+        process: [
+          { step: '01', title: 'Support SLA & Category Definition', desc: 'Categorizing service issues (High/Medium/Low priority) and target resolution times.' },
+          { step: '02', title: 'WhatsApp Ticket Ingestion Setup', desc: 'Building the intake form and automated ticket confirmation message.' },
+          { step: '03', title: 'Technician Assignment Workflows', desc: 'Configuring dispatch rules based on geography and technician availability.' },
+          { step: '04', title: 'Testing & Launch', desc: 'Running test tickets and training customer support representatives.' }
+        ],
+        highlights: [
+          'WhatsApp-driven automated ticket creation',
+          'SLA resolution timers with manager escalation',
+          'Automated AMC & contract renewal alerts',
+          'Post-service CSAT satisfaction feedback survey'
+        ]
+      }
+    ]
+  },
+
+  'monetization': {
+    id: 'monetization',
+    number: '10',
+    title: 'Monetization',
+    categoryName: 'Digital Revenue & Creator Optimization',
+    badge: 'Revenue Scaling',
+    tagline: 'Maximize digital asset earnings through YouTube AdSense, Meta bonuses, and sponsorship funnels.',
+    summary: 'Strategic monetization architectures for content creators, publishers, and brands to unlock high-RPM YouTube revenue, Facebook reels creator bonuses, direct brand sponsorships, and paid digital community funnels.',
+    fallbackImage: './services/service-monetization.jpg',
+    categories: [
+      {
+        id: 'youtube-adsense-monetization',
+        title: 'YouTube Channel Monetization & High-RPM Strategy',
+        badge: 'High Ad Revenue',
+        tagline: 'Fast-track 4,000 watch hours & maximize ad dollars per 1,000 views',
+        image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Complete YouTube Partner Program (YPP) compliance roadmap, strategic mid-roll ad placement for 8+ minute videos, high-RPM commercial topic research, and copyright cleanup to maximize monthly AdSense payouts.',
+        idealFor: 'Aspiring creators, News channels, Educational institutions, Podcast hosts, Niche bloggers.',
+        timeline: '7 to 14 Days',
+        deliverables: [
+          { title: 'YouTube Partner Program (YPP) Fast-Track Audit', desc: 'Audit content for 1,000 subscribers & 4,000 watch hours compliance without strikes.' },
+          { title: 'High-RPM Keyword & Niche Research', desc: 'Targeting commercial search topics (Finance, Tech, Education, Real Estate) paying 5x higher RPM.' },
+          { title: 'Strategic Mid-Roll Ad Placement Optimization', desc: 'Placing mid-roll ads at natural narrative pauses to maximize impressions without alienating viewers.' },
+          { title: 'Copyright Claim & Reused Content Cleanup', desc: 'Resolving yellow dollar signs, copyright disputes, and policy violations preventing monetization.' },
+          { title: 'Channel Audience Retention Engineering', desc: 'Structuring video hooks and chapter pacing to drive watch-time to the algorithm’s sweet spot.' },
+          { title: 'Monthly Revenue Analytics & RPM Coaching', desc: 'Detailed breakdown of playback-based CPM vs RPM to forecast compounding channel earnings.' }
+        ],
+        benefits: [
+          { title: 'Turn YouTube into a High-Income Passive Asset', desc: 'Every uploaded video continues earning monthly advertising royalties for years to come.' },
+          { title: '5x Higher Earnings per View with High-RPM Strategy', desc: 'A video in the right commercial niche earns ₹500 - ₹1,500 per 1k views instead of ₹30.' },
+          { title: 'Safe from Demonetization & Strike Hazards', desc: 'Our strict adherence to YouTube Community Guidelines protects your account from sudden bans.' },
+          { title: 'Qualify for AdSense Payouts Faster', desc: 'Structured watch-time funnels help you clear the 4,000 hours barrier in months instead of years.' }
+        ],
+        process: [
+          { step: '01', title: 'Channel Copyright & Health Audit', desc: 'Reviewing existing videos for copyright claims, reused content flags, and community guidelines.' },
+          { step: '02', title: 'High-RPM Topic Blueprint', desc: 'Identifying high-paying advertiser keywords relevant to your niche and audience demographics.' },
+          { step: '03', title: 'Ad Placement & Retention Optimization', desc: 'Configuring non-skippable, skippable, and mid-roll ad placements for maximum payout.' },
+          { step: '04', title: 'AdSense Linking & Verification', desc: 'Connecting your Google AdSense account, tax forms, and bank details for automated deposits.' }
+        ],
+        highlights: [
+          'High-RPM commercial niche keyword blueprint',
+          'Strategic mid-roll ad placement calibration',
+          'Copyright strike & reused content resolution',
+          '4,000 watch-time acceleration funnels'
+        ]
+      },
+      {
+        id: 'meta-creator-monetization',
+        title: 'Meta & Instagram Creator Rewards Setup',
+        badge: 'Social Cashflow',
+        tagline: 'Earn directly from Facebook video views & Instagram bonuses',
+        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Unlock Facebook In-Stream Ads for live and on-demand videos, Instagram Reels performance bonuses, Stars tipping, and subscriber badges for verified creator profiles.',
+        idealFor: 'Viral meme pages, Regional news portals, Comedians, Fitness coaches, Influencers.',
+        timeline: '3 to 5 Days',
+        deliverables: [
+          { title: 'Meta In-Stream Ads Eligibility Audit', desc: 'Verify and fulfill 5,000 followers and 60,000 eligible minutes viewed within 60 days.' },
+          { title: 'Facebook Page Compliance & Policy Green Check', desc: 'Resolve "Limited Originality of Content" and unoriginal content policy violations.' },
+          { title: 'Instagram Reels Performance Bonus Enrollment', desc: 'Configure eligibility settings for monthly cash bonuses based on short-form reel views.' },
+          { title: 'Stars & Viewer Tipping Integration', desc: 'Enable viewers to tip direct monetary Stars during live streams and video premieres.' },
+          { title: 'Paid Subscription Tier Architecture', desc: 'Offer exclusive subscriber-only badges, private WhatsApp groups, and premium video access.' },
+          { title: 'Official Meta Payout Account Setup', desc: 'Linking bank account, PAN, and tax certificates for smooth monthly direct deposits.' }
+        ],
+        benefits: [
+          { title: 'Monetize Viral Video Reach on Facebook', desc: 'Facebook has massive organic reach in India — turn viral million-view videos into thousands in cash.' },
+          { title: 'Multiple Concurrent Revenue Streams', desc: 'Earn from in-stream ads, reel bonuses, subscriber fees, and fan tips simultaneously.' },
+          { title: 'Official Meta Partner Compliance', desc: 'Protect your page authority and avoid algorithm shadowbans through verified compliance.' },
+          { title: 'Direct Bank Deposits Every 21st of the Month', desc: 'Reliable monthly foreign remittance straight from Meta Ireland into your Indian bank account.' }
+        ],
+        process: [
+          { step: '01', title: 'Page Policy & Originality Review', desc: 'Screening videos for music copyrights, third-party clips, and partner monetization standards.' },
+          { step: '02', title: 'Watch-Minutes Acceleration', desc: 'Curating engaging long-form video formats to clear the 60,000 minutes viewed requirement.' },
+          { step: '03', title: 'Monetization Tool Application', desc: 'Submitting In-Stream Ads and Reels bonus applications inside Meta Business Suite.' },
+          { step: '04', title: 'Payout Setup & First Payout Test', desc: 'Configuring bank credentials, PAN details, and verifying live ad impressions.' }
+        ],
+        highlights: [
+          'Facebook In-Stream ads configuration',
+          'Instagram Reels performance bonus enrollment',
+          'Resolution of Limited Originality policy flags',
+          'Direct bank payout account verification'
+        ]
+      },
+      {
+        id: 'brand-sponsorship-mediakit',
+        title: 'Brand Sponsorship Media Kit & Rate Cards',
+        badge: 'High-Ticket Deals',
+        tagline: 'Stop accepting free t-shirts — land ₹25,000+ brand sponsorships',
+        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Professional agency packaging for content creators: bespoke media kits with verified demographic statistics, rate cards for sponsored reels/integrations, and pitch templates to land corporate brand deals.',
+        idealFor: 'YouTubers with 10k+ subs, Instagram creators with 20k+ followers, Regional influencers.',
+        timeline: '3 to 4 Days',
+        deliverables: [
+          { title: 'Bespoke Visual Media Kit Presentation (PDF & Web)', desc: 'Striking agency-level portfolio showcasing your audience age, geography, and reach.' },
+          { title: 'Standardized Commercial Rate Card', desc: 'Tiered pricing packages for Dedicated Videos, 60s Integrations, Reels & Story Mentions.' },
+          { title: 'Direct Brand Pitch Email & DM Templates', desc: 'Persuasive outreach scripts proven to get replies from marketing managers and PR agencies.' },
+          { title: 'Legal Sponsorship Contract & Deliverables Agreement', desc: 'Standard contract protecting your usage rights, revision limits, and payment terms.' },
+          { title: 'Case Study Deck of Past Successful Collabs', desc: 'Showcasing ROI, views, and coupon code redemptions delivered for previous sponsors.' },
+          { title: 'Brand Outreach Strategy & Agency Connections', desc: 'List of 50+ relevant brands actively sponsoring creators in your specific niche.' }
+        ],
+        benefits: [
+          { title: 'Charge 3x Higher Sponsorship Fees with Confidence', desc: 'A slick media kit immediately positions you as a professional influencer, commanding premium rates.' },
+          { title: 'Never Get Exploited by Free Barter Deals', desc: 'Clear commercial rate cards eliminate cheap product-exchange requests and establish paid terms.' },
+          { title: 'Legal Protection Against Non-Payment', desc: 'Legally vetted contracts ensure brands pay 50% advance before you start filming.' },
+          { title: 'Predictable Monthly Sponsorship Pipeline', desc: 'Proactive pitching brings in regular sponsorship checks independent of fluctuating ad rates.' }
+        ],
+        process: [
+          { step: '01', title: 'Channel Analytics Extraction', desc: 'Auditing your YouTube Studio and Instagram Insights for top demographics and metrics.' },
+          { step: '02', title: 'Custom Brand Identity & Kit Design', desc: 'Designing a 5-page editorial media kit with your photos, brand colors, and statistics.' },
+          { step: '03', title: 'Rate Card & Commercial Packaging', desc: 'Pricing your deliverables based on engagement rate, niche value, and market benchmarks.' },
+          { step: '04', title: 'Pitch Scripts & Rollout Handover', desc: 'Delivering the complete toolkit with outreach email templates and brand contact lists.' }
+        ],
+        highlights: [
+          'Editorial 5-page agency media kit (PDF & Web)',
+          'Tiered sponsorship rate card (Reels, Videos, Stories)',
+          'Legally vetted influencer sponsorship contract',
+          'Target brand outreach email & PR pitch scripts'
+        ]
+      },
+      {
+        id: 'paid-community-funnels',
+        title: 'Paid Community & Digital Product Funnels',
+        badge: 'Direct Cashflow',
+        tagline: 'Monetize loyal followers directly through courses & VIP clubs',
+        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Frictionless digital payment funnels allowing creators to sell premium courses, private Telegram/WhatsApp VIP communities, mentorship calls, and downloadable digital assets to their audience.',
+        idealFor: 'Traders, Educators, Fitness trainers, Career coaches, Astrologers, Business consultants.',
+        timeline: '3 to 5 Days',
+        deliverables: [
+          { title: 'High-Converting Digital Landing Page', desc: 'Sub-second sales page with video embed, trust badges, customer reviews, and FAQ.' },
+          { title: 'Instant UPI & Card Payment Gateway Integration', desc: 'Zero-friction payment flow supporting Google Pay, PhonePe, Paytm, and Credit Cards.' },
+          { title: 'Automated VIP Telegram/WhatsApp Group Invite', desc: 'Bot automatically admits buyers to private groups and revokes access when subscription ends.' },
+          { title: 'Self-Service Course & Content Portal', desc: 'Gated video member area preventing unauthorized downloads and sharing.' },
+          { title: 'Automated Abandoned Checkout Recovery', desc: 'Sends an automatic WhatsApp nudge with a discount coupon to users who didn’t finish payment.' },
+          { title: 'Recurring Monthly Subscription Engine', desc: 'Automated recurring billing for membership communities delivering compounding cashflow.' }
+        ],
+        benefits: [
+          { title: '100% Direct Profit with No Middleman Cut', desc: 'Keep 97%+ of all revenue instead of giving 30% to Apple/Google app store fees.' },
+          { title: 'Turn 1,000 True Fans into Full-Time Income', desc: 'Just 200 members paying ₹999/month generates ₹2 Lakhs in recurring monthly cashflow.' },
+          { title: 'Immune to Social Media Algorithm Changes', desc: 'You own your member email and phone list forever; platforms can never take them away.' },
+          { title: 'Automated Fulfillment Hands-Free', desc: 'Payments, group invitations, and course access happen instantly 24/7 without manual effort.' }
+        ],
+        process: [
+          { step: '01', title: 'Offer Structuring & Pricing Model', desc: 'Defining the core product value, membership tiers, and pricing strategy.' },
+          { step: '02', title: 'Sales Funnel Page Engineering', desc: 'Building the mobile-optimized conversion page and social proof elements.' },
+          { step: '03', title: 'Payment & Membership Webhook Linkage', desc: 'Connecting Razorpay/Cashfree to Telegram bots and member databases.' },
+          { step: '04', title: 'Live Testing & Launch Campaign', desc: 'Simulating live transactions and orchestrating the announcement story sequence.' }
+        ],
+        highlights: [
+          'High-converting mobile landing page & UPI gateway',
+          'Automated private Telegram/WhatsApp group invite bot',
+          'Recurring monthly subscription billing support',
+          'Instant digital product delivery with 0% middleman cut'
+        ]
+      }
+    ]
+  },
+
+  'seo': {
+    id: 'seo',
+    number: '06',
+    title: 'SEO - Website + Google My Business',
+    categoryName: 'Search Domination & Map Pack',
+    badge: '#1 Local Rankings',
+    tagline: 'Dominate Google Search and Google Maps pack across Gorakhpur and Uttar Pradesh.',
+    summary: 'Comprehensive search engine optimization engineered for local market domination. We combine technical speed hardening, commercial keyword ranking, and Google Business Profile (GMB) map pack optimization to drive daily inbound phone calls and footfall.',
+    fallbackImage: './services/service-seo.jpg',
+    categories: [
+      {
+        id: 'google-my-business-map-pack',
+        title: 'Google My Business (GMB) #1 Map Pack Domination',
+        badge: 'Top 3 Map Pack',
+        tagline: 'Rank in the top 3 on Google Maps when locals search your services',
+        image: 'https://images.unsplash.com/photo-1562577309-4932fdd64cd1?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'We optimize and rank your Google Business Profile (GMB) into the coveted Top 3 "Local 3-Pack" map results for commercial searches across Gorakhpur (Golghar, Mohaddipur, Medical Road, Civil Lines) and surrounding UP districts.',
+        idealFor: 'Doctors, Clinics, Hotels, Restaurants, Showrooms, Real estate offices, Local shops.',
+        timeline: '14 to 30 Days',
+        deliverables: [
+          { title: 'Complete Google Business Profile (GBP) Audit & Optimization', desc: '100% complete profile with accurate primary categories, service menus, hours, and attributes.' },
+          { title: 'Geo-Tagged High-Resolution Photography Upload', desc: 'EXIF-tagged photos embedding your exact GPS coordinates to signal local authority to Google.' },
+          { title: '5-Star Google Review Acceleration Funnel', desc: 'Automated QR codes and WhatsApp triggers helping happy customers leave 5-star reviews.' },
+          { title: 'Local Citation Consistency & NAP Hardening', desc: '100% uniform Name, Address, and Phone number across JustDial, Sulekha, IndiaMART, and maps.' },
+          { title: 'Weekly Keyword-Rich GMB Promotional Posts', desc: 'Regular promotional updates and festival offers signalling active business operations to Google.' },
+          { title: 'Local Competitor Keyword Spying & Overtaking', desc: 'Analyzing competitors currently ranking #1 and systematically out-optimizing their weak points.' }
+        ],
+        benefits: [
+          { title: 'Capture 70% of High-Intent Local Phone Calls', desc: 'When customers need a clinic, hotel, or showroom right now, they call the top 3 Google Maps listings.' },
+          { title: 'Zero Ongoing Advertising Spend Required', desc: 'Unlike Google Ads where you pay per click, organic Google Maps rankings deliver free calls every day.' },
+          { title: 'Massive Footfall Driven Directly to Your Doorstep', desc: 'Customers get 1-click Google Maps driving directions directly to your showroom or clinic.' },
+          { title: 'Crush Local Competitors in Gorakhpur & UP', desc: 'Appear prominently ahead of other businesses in Golghar, Mohaddipur, and across Eastern UP.' }
+        ],
+        process: [
+          { step: '01', title: 'Local Keyword & Competitor Audit', desc: 'Identifying top search terms like "best hospital in Gorakhpur" or "hotel near railway station".' },
+          { step: '02', title: 'Profile Overhaul & Geo-Tagging', desc: 'Hardening categories, adding geo-tagged photos, service lists, and business descriptions.' },
+          { step: '03', title: 'NAP Citation Building & Cleanup', desc: 'Submitting verified listings to prominent Indian business directories and resolving discrepancies.' },
+          { step: '04', title: 'Review Funnel & Ranking Acceleration', desc: 'Deploying review acquisition funnels and weekly keyword posts to maintain #1 ranking.' }
+        ],
+        highlights: [
+          '#1 Google Maps 3-Pack ranking strategy',
+          'Geo-tagged GPS coordinate photo optimization',
+          '5-Star customer review generation funnel',
+          '100% consistent local NAP citations across directories'
+        ]
+      },
+      {
+        id: 'website-organic-seo',
+        title: 'Website Search Engine Optimization (Organic SEO)',
+        badge: 'High Organic Traffic',
+        tagline: 'Rank your website on the 1st page of Google search',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Strategic on-page and off-page website SEO that positions your business website at the top of Google search results for commercial keywords, driving qualified leads without paying for clicks.',
+        idealFor: 'Enterprises, B2B Manufacturers, Educational institutes, E-commerce, Corporate brands.',
+        timeline: '30 to 60 Days',
+        deliverables: [
+          { title: 'High-Intent Commercial Keyword Mapping', desc: 'Targeting buyer keywords that have high search volume and proven conversion intent.' },
+          { title: 'Comprehensive On-Page SEO Architecture', desc: 'Optimizing H1/H2 tags, meta titles under 60 chars, meta descriptions, image alt tags, and internal links.' },
+          { title: 'Schema.org Structured Data Markup', desc: 'Rich snippet schema for LocalBusiness, FAQ, Organization, and Service ratings on Google.' },
+          { title: 'Technical Crawl & Indexing Audit', desc: 'XML sitemap optimization, robots.txt hardening, canonical tags, and 404 error resolution.' },
+          { title: 'Core Web Vitals & Sub-0.6s Speed Hardening', desc: 'Lighthouse speed optimization ensuring smooth mobile browsing and high Google ranking signals.' },
+          { title: 'Monthly Ranking & Google Search Console Reports', desc: 'Transparent reporting showing exact keyword rank improvements and organic click growth.' }
+        ],
+        benefits: [
+          { title: 'Consistent Stream of Free Organic Inbound Leads', desc: 'Generate daily leads 24/7/365 without spending a single rupee on Google or Facebook ad clicks.' },
+          { title: 'Builds Unshakable Market Authority & Trust', desc: 'Customers instinctively trust websites that rank at the very top of Google organic search.' },
+          { title: 'Long-Term Compounding Return on Investment', desc: 'While paid ads stop the moment your budget ends, SEO rankings continue delivering leads for years.' },
+          { title: 'Dominate Regional Market Share Across UP', desc: 'Rank for commercial queries across Gorakhpur, Lucknow, Varanasi, Ayodhya, and Prayagraj.' }
+        ],
+        process: [
+          { step: '01', title: 'Technical Website Audit', desc: 'Running in-depth crawls to diagnose indexing issues, broken links, and speed bottlenecks.' },
+          { step: '02', title: 'Keyword Strategy & Content Architecture', desc: 'Selecting high-ROI commercial search terms and planning dedicated landing page structures.' },
+          { step: '03', title: 'On-Page Optimization & Schema Injection', desc: 'Rewriting meta tags, structuring headers, adding schema microdata, and internal linking.' },
+          { step: '04', title: 'Monitoring & Continuous Optimization', desc: 'Tracking Google Search Console rankings and optimizing pages for sustained top placement.' }
+        ],
+        highlights: [
+          'Targeting high-intent commercial buyer keywords',
+          'Core Web Vitals & sub-0.6s speed score hardening',
+          'Rich snippet JSON-LD Schema.org integration',
+          'Transparent monthly ranking & impression reports'
+        ]
+      },
+      {
+        id: 'authority-backlinks-citations',
+        title: 'High-Authority Backlinks & UP Citations',
+        badge: 'Domain Authority',
+        tagline: 'Build powerful domain authority that Google respects',
+        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'We earn high-quality, white-hat editorial backlinks and verified Indian business directory citations that boost your website’s domain authority and permanently elevate search rankings.',
+        idealFor: 'Businesses aiming to outrank entrenched competitors and maintain long-term #1 rankings.',
+        timeline: '30 to 45 Days',
+        deliverables: [
+          { title: 'High Domain Authority (DA 40+) Editorial Backlinks', desc: 'Contextual do-follow links from authoritative technology, business, and news portals.' },
+          { title: 'Verified Indian Local Citations (50+ Portals)', desc: 'Consistent listings on JustDial, IndiaMART, TradeIndia, Sulekha, and regional portals.' },
+          { title: 'Anchor Text Diversity & Risk-Free Link Profile', desc: 'Natural brand and keyword anchor distribution compliant with Google Penguin algorithms.' },
+          { title: 'Competitor Backlink Intersect & Replication', desc: 'Reverse-engineering where top-ranking competitors get their authority and securing matching links.' },
+          { title: 'Toxic Backlink Audit & Disavow Clean-Up', desc: 'Identifying and disavowing spammy or toxic links dragging your Google ranking down.' },
+          { title: 'Live Backlink Monitoring & Indexation Verification', desc: 'Ensuring every earned link is properly crawled and indexed by Google search spiders.' }
+        ],
+        benefits: [
+          { title: 'Massive Increase in Domain Authority & Ranking Power', desc: 'Backlinks are Google’s #1 ranking vote. High-authority links make all your pages rank faster.' },
+          { title: '100% White-Hat & Safe from Google Penalties', desc: 'Zero black-hat PBNs or spam link farms. Pure, safe, manual outreach that lasts.' },
+          { title: 'Overtake Established Competitors in Months', desc: 'Surpass legacy competitors who have neglected their link profiles with authoritative new links.' },
+          { title: 'Referral Traffic from High-Authority Business Sites', desc: 'Earn direct prospective client visits from reputable business directory listings.' }
+        ],
+        process: [
+          { step: '01', title: 'Competitor Link Profiling', desc: 'Analyzing the backlink profiles of top 5 competitors in your industry and region.' },
+          { step: '02', title: 'Target Outreach & Citation Verification', desc: 'Submitting verified directory citations and conducting manual publisher outreach.' },
+          { step: '03', title: 'Content & Contextual Placement', desc: 'Publishing quality articles with natural editorial anchors linking to your website.' },
+          { step: '04', title: 'Link Indexing & Authority Tracking', desc: 'Confirming Google indexation and measuring increases in Domain Rating (DR/DA).' }
+        ],
+        highlights: [
+          'High Domain Authority (DA 40+) contextual links',
+          '50+ verified Indian business directory citations',
+          'Zero spam — 100% manual white-hat link building',
+          'Toxic link audit & Google Disavow file cleanup'
+        ]
+      }
+    ]
+  },
+
+  'graphics-designing': {
+    id: 'graphics-designing',
+    number: '04',
+    title: 'Graphics Designing',
+    categoryName: 'Creative Design & Brand Identity',
+    badge: 'Stunning Visuals',
+    tagline: 'High-impact promotional posters, festival banners, and trademark-ready 3D/2D logo suites.',
+    summary: 'Elevate your visual presence with creative graphic design engineered to turn heads. From eye-catching marketing posters and festival social creatives to complete brand identity systems, corporate brochures, and hoardings.',
+    fallbackImage: './services/service-graphics-logo.jpg',
+    categories: [
+      {
+        id: 'promotional-posters-standees',
+        title: 'Promotional Posters, Standees & Hoardings',
+        badge: 'High Impact',
+        tagline: 'Command attention in print and digital marketing',
+        image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Large-format promotional designs including outdoor hoardings, retail standees, promotional event flyers, and digital launch posters designed with crisp typography and striking contrast.',
+        idealFor: 'Showroom openings, Product launches, Event organizers, Educational admissions, Retail sales.',
+        timeline: '1 to 2 Days',
+        deliverables: [
+          { title: 'Print-Ready 300DPI Large Format Exports', desc: 'CMYK vector files ready for flex, vinyl, billboard, and paper printing.' },
+          { title: 'Digital Social Media Aspect Ratios', desc: 'Exports in 1:1 square, 4:5 vertical, and 9:16 full-screen for WhatsApp status.' },
+          { title: 'Brand Typography & Color Adherence', desc: 'Consistent use of your official brand palette, logos, and product callouts.' },
+          { title: 'Compelling Headline & Offer Framing', desc: 'Clear visual hierarchy ensuring customers read the core value proposition instantly.' }
+        ],
+        benefits: [
+          { title: 'Drives Immediate Footfall & Walk-Ins', desc: 'Striking outdoor and digital posters grab attention in busy city environments like Gorakhpur.' },
+          { title: 'High-Resolution Zero Pixelation Guarantee', desc: 'Scales flawlessly to massive billboard sizes without losing sharpness.' },
+          { title: 'Fast Turnaround for Urgent Campaigns', desc: 'Delivered within 24-48 hours to capitalize on seasonal sales and time-sensitive offers.' }
+        ],
+        process: [
+          { step: '01', title: 'Design Brief & Content Review', desc: 'Collecting text, product photos, offers, and print dimensions.' },
+          { step: '02', title: 'Layout Concept & Typography', desc: 'Structuring visual balance, bold focal points, and readability.' },
+          { step: '03', title: 'Revision & Print Proofing', desc: 'Fine-tuning colors, contrast, and alignment based on your feedback.' },
+          { step: '04', title: 'Final Master Delivery', desc: 'Delivering print-ready PDF, TIFF, and digital JPEG/PNG files.' }
+        ],
+        highlights: [
+          '300DPI print-ready CMYK & digital RGB exports',
+          'Outdoor hoardings, standees & flyer templates',
+          'High-contrast headline & product hierarchy',
+          'Fast 24-hour turnaround option'
+        ]
+      },
+      {
+        id: 'festival-social-creatives',
+        title: 'Festival & Daily Social Media Creatives',
+        badge: 'Engagement Booster',
+        tagline: 'Celebrate every festival and connect with your audience daily',
+        image: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Aesthetic festival greetings, promotional sale banners, and informative social media posts tailored to your brand identity, keeping your social profiles vibrant and engaging all year round.',
+        idealFor: 'Local businesses, Retail stores, Clinics, Restaurants, Service providers.',
+        timeline: '24 Hours',
+        deliverables: [
+          { title: 'Bespoke Festival Greeting Creatives', desc: 'Diwali, Holi, Eid, New Year, Independence Day, and regional festival banners.' },
+          { title: 'Weekly Promotional Offer Graphics', desc: 'Weekend sale announcements, discount vouchers, and new stock arrivals.' },
+          { title: 'Consistent Brand Watermarking & Contact Bar', desc: 'Includes your logo, phone number, and address banner on every design.' },
+          { title: 'Formatted for Instagram, Facebook & WhatsApp Status', desc: 'Perfect dimensions for feeds, stories, and WhatsApp broadcasting.' }
+        ],
+        benefits: [
+          { title: 'Stay Top-of-Mind with Customers Daily', desc: 'Active social feeds ensure customers remember your business when they need services.' },
+          { title: 'Eliminate Amateur Mobile Canva Templates', desc: 'Professional, original graphic design elevates your brand far above local competitors.' },
+          { title: 'Easy 1-Click WhatsApp Status Sharing', desc: 'Staff and clients can effortlessly share attractive festival greetings with their contacts.' }
+        ],
+        process: [
+          { step: '01', title: 'Monthly Festival Calendar Planning', desc: 'Scheduling key festive dates and promotional milestones in advance.' },
+          { step: '02', title: 'Visual Composition & Cultural Touch', desc: 'Blending authentic cultural aesthetics with modern design language.' },
+          { step: '03', title: 'Brand Element Integration', desc: 'Embedding your logo, brand colors, and contact info seamlessly.' },
+          { step: '04', title: 'Batch Delivery', desc: 'Delivering ready-to-post batches ahead of festive dates.' }
+        ],
+        highlights: [
+          'Full annual festival creative calendar coverage',
+          'Custom brand watermarking & phone number bar',
+          'Optimized for Instagram feed, stories & WhatsApp status',
+          'High engagement visual aesthetic'
+        ]
+      },
+      {
+        id: 'brand-identity-logo-suite',
+        title: '3D & 2D Trademark-Ready Logo Suites',
+        badge: 'Brand Asset',
+        tagline: 'Memorable brand emblem that commands respect and trust',
+        image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Iconic, 100% original logo design delivered with scalable vector masters, complete color codes, typography pairings, and 3D visual mockups ready for trademark registration.',
+        idealFor: 'New startups, Rebranding established businesses, Corporate firms, Retail chains.',
+        timeline: '3 to 5 Days',
+        deliverables: [
+          { title: '3 Unique Creative Logo Concepts', desc: 'Distinct design directions exploring geometric, typographic, and illustrative emblems.' },
+          { title: 'Full Vector Deliverables (AI, EPS, SVG, PDF, PNG)', desc: 'Infinite scalability from a tiny website favicon to a 50-foot rooftop billboard.' },
+          { title: 'Complete Brand Style Guide Document', desc: 'Primary & secondary HEX/RGB/CMYK color palettes and approved typography fonts.' },
+          { title: '3D Embossed & Glass Window Mockups', desc: 'Realistic visual previews of how your logo looks on office walls, stationery, and apparel.' },
+          { title: '100% Original Trademark Clearance', desc: 'Custom engineered geometry safe for national trademark registry submission.' }
+        ],
+        benefits: [
+          { title: 'Commands Premium Pricing for Your Services', desc: 'A world-class visual identity allows you to charge premium rates with customer trust.' },
+          { title: 'Permanent 100% Intellectual Property Ownership', desc: 'You own full rights to all source files, vectors, and artwork forever.' },
+          { title: 'Instantly Recognizable in Crowded Markets', desc: 'Distinctive visual geometry that sticks in the memory of prospective clients.' }
+        ],
+        process: [
+          { step: '01', title: 'Brand Discovery & Symbolism', desc: 'Understanding your company values, target demographics, and competitors.' },
+          { step: '02', title: 'Vector Sketching & Geometry', desc: 'Iterating concepts with optical balance, golden ratios, and clean lines.' },
+          { step: '03', title: 'Color Palette & Typography Pairing', desc: 'Selecting color psychology tones and modern font families.' },
+          { step: '04', title: 'Brand Kit Handover', desc: 'Exporting the full vector package and brand style guidebook.' }
+        ],
+        highlights: [
+          '3 original creative logo concept directions',
+          'Full vector files (AI, EPS, SVG, PDF, transparent PNG)',
+          'Complete brand style guidebook with color HEX codes',
+          '100% trademark-ready commercial ownership'
+        ]
+      }
+    ]
+  },
+
+  'video-editing': {
+    id: 'video-editing',
+    number: '05',
+    title: 'Video Editing',
+    categoryName: 'Viral Video & 4K Production',
+    badge: 'High Retention',
+    tagline: 'End-to-end video editing for viral 9:16 Instagram Reels, 4K YouTube videos, and commercials.',
+    summary: 'We transform raw mobile and camera footage into high-retention, cinematic video content. Engineered with psychological scroll-stopping hooks, seamless jump cuts, dynamic captions, sound FX, b-roll pacing, and color grading that trigger platform algorithms.',
+    fallbackImage: './services/service-youtube-videos.jpg',
+    categories: [
+      {
+        id: 'viral-instagram-reels',
+        title: 'Viral 9:16 Instagram Reels & YouTube Shorts',
+        badge: 'Viral Growth',
+        tagline: 'Stop the scroll and gain thousands of organic followers',
+        image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'High-energy 9:16 vertical video editing with animated auto-captions, dynamic zooms, sound effects, trending audio synchronization, and 3-second hook pacing engineered for viral algorithmic reach.',
+        idealFor: 'Doctors, Business coaches, Real estate brokers, Influencers, Fitness trainers, Restaurants.',
+        timeline: '24 to 48 Hours',
+        deliverables: [
+          { title: 'Psychological 3-Second Scroll-Stopping Hook', desc: 'Visual zooms, text popups, and sound cues that prevent users from swiping away.' },
+          { title: 'Dynamic Kinetic Auto-Captions with Highlight Colors', desc: 'Word-by-word highlighted subtitles styled in trendy Hormozi / Ali Abdaal aesthetic.' },
+          { title: 'Sound Design & Trending Audio Sync', desc: 'Whooshes, pops, cinematic risers, and trending audio matched to edit cuts.' },
+          { title: 'Contextual B-Roll & Visual Memes', desc: 'Inserting relevant video clips, stickers, and animations to keep viewer eyes glued.' },
+          { title: 'Color Grading & Lighting Enhancement', desc: 'Enhancing skin tones, saturation, and contrast for studio-grade polish.' },
+          { title: 'Full HD 1080x1920 60FPS Master Export', desc: 'Optimized compression specifically configured for Instagram and YouTube algorithms.' }
+        ],
+        benefits: [
+          { title: 'Generate Hundreds of Inbound Buyer Inquiries', desc: 'Reels are Instagram’s #1 organic reach tool — turn viral views into direct WhatsApp leads.' },
+          { title: 'Save 6+ Hours of Frustrating Editing Per Video', desc: 'Record on your phone and send us raw clips; we deliver polished, viral-ready master edits.' },
+          { title: 'Multiply Your Follower Count Rapidly', desc: 'High retention completion rates trigger Instagram to recommend your reels to non-followers.' }
+        ],
+        process: [
+          { step: '01', title: 'Raw Footage & Hook Ingestion', desc: 'Receiving raw recordings and structuring the strongest opening hook.' },
+          { step: '02', title: 'Dead Space Trimming & Pacing Cut', desc: 'Removing all pauses, stumbles, and dead air for rapid, engaging pacing.' },
+          { step: '03', title: 'Captions, B-Roll & Sound FX Layering', desc: 'Adding animated subtitles, sound effects, memes, and color grading.' },
+          { step: '04', title: 'Master Export & Review', desc: 'Exporting 60fps MP4 master ready for immediate posting.' }
+        ],
+        highlights: [
+          'Kinetic dynamic auto-captions with color highlights',
+          '3-second psychological scroll-stopping hooks',
+          'Sound design with whooshes, pops & trending audio',
+          '60fps crisp vertical 9:16 export'
+        ]
+      },
+      {
+        id: 'full-length-youtube-editing',
+        title: 'Full-Length 4K YouTube Video Editing',
+        badge: 'High Watch Time',
+        tagline: 'Turn raw footage into binge-worthy YouTube content',
+        image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Complete editing for 8-20+ minute YouTube videos: multi-cam switching, studio audio noise clean-up, chapter markers, b-roll footage, sound design, and retention pacing that maximizes watch hours.',
+        idealFor: 'YouTubers, Educational channels, Corporate podcasts, Business interviews.',
+        timeline: '3 to 5 Days',
+        deliverables: [
+          { title: 'Seamless Jump Cut & Pauses Trimming', desc: 'Eliminating filler words, awkward silences, and dead pauses for fast pacing.' },
+          { title: 'Multi-Camera Angle Switching & Color Matching', desc: 'Smooth transitions between wide, close-up, and host/guest camera angles.' },
+          { title: 'Background Audio Noise Clean-Up & Voice Polish', desc: 'Removing room echo, hiss, and hum for studio broadcast clarity.' },
+          { title: 'Contextual B-Roll & Visual Stock Footage', desc: 'Inserting relevant video clips, charts, and diagrams to keep viewers engaged.' },
+          { title: 'Sound Design & Royalty-Free Music', desc: 'Background music and subtle sound effects that match the video mood.' },
+          { title: 'Animated Chapter Markers & Lower-Thirds', desc: 'Name badges, social media handle popups, and YouTube chapter timeline cues.' }
+        ],
+        benefits: [
+          { title: 'Massive Increase in Audience Retention Rate', desc: 'Dynamic pacing keeps viewers watching until the end, triggering the YouTube algorithm.' },
+          { title: 'Hit the 4,000 Watch Hours Milestone Faster', desc: 'Higher average view duration accelerates qualification for YouTube AdSense monetization.' },
+          { title: 'Broadcast-Level Channel Quality', desc: 'Stand out from amateur creators with silky transitions, perfect audio, and cinematic polish.' }
+        ],
+        process: [
+          { step: '01', title: 'Footage Ingestion & Audio Sync', desc: 'Receiving camera files via cloud and syncing multi-track audio.' },
+          { step: '02', title: 'Story Cut & Dead Space Trimming', desc: 'Building narrative flow and cutting all awkward silences.' },
+          { step: '03', title: 'B-Roll, Sound FX & Lower Thirds', desc: 'Layering graphics, sound design, animations, and color grading.' },
+          { step: '04', title: '4K Master Export', desc: 'Exporting YouTube-optimized MP4 master file ready for upload.' }
+        ],
+        highlights: [
+          'Multi-camera angle switching & color grading',
+          'Background noise removal & speech clarity enhancement',
+          'Dynamic zoom, sound effects & retention b-roll',
+          'Optimized chapter markers & end screens'
+        ]
+      },
+      {
+        id: 'corporate-commercial-videos',
+        title: 'Corporate Brand Commercials & Ad Video Editing',
+        badge: 'High ROAS',
+        tagline: 'High-converting video ads engineered to sell products & services',
+        image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Direct-response video commercials tailored for paid ad campaigns on Meta, Google, and YouTube. Engineered to hook attention in 3 seconds, explain value, build trust, and drive immediate customer action.',
+        idealFor: 'E-commerce brands, Real estate developers, Hospitals, Hotels, B2B companies.',
+        timeline: '2 to 4 Days',
+        deliverables: [
+          { title: 'Direct-Response Storyboard & Hook Framing', desc: 'Structuring problem-agitation-solution narrative that converts cold scrollers into buyers.' },
+          { title: 'Professional Voiceover & Music Synchronization', desc: 'Studio voiceover integration with emotive cinematic background scores.' },
+          { title: 'Prominent Call-to-Action & Offer Overlays', desc: 'Animated countdowns, discount coupon badges, and WhatsApp click prompts.' },
+          { title: 'A/B Testing Hook Variations (3 Unique Hooks)', desc: 'Test 3 different opening hooks with the same core video to find the highest ROAS winner.' }
+        ],
+        benefits: [
+          { title: 'Slash Customer Acquisition Costs on Paid Ads', desc: 'High video retention drastically lowers Cost-Per-Click (CPC) and Cost-Per-Lead (CPL).' },
+          { title: 'Builds Premium Corporate Image', desc: 'Cinematic commercials position your company as the premier market leader in Eastern UP.' },
+          { title: 'Versatile Across All Digital Channels', desc: 'Run on Facebook ads, Instagram reels, website hero banners, and WhatsApp pitches.' }
+        ],
+        process: [
+          { step: '01', title: 'Ad Strategy & Hook Definition', desc: 'Identifying the target pain points, product USP, and compelling offer.' },
+          { step: '02', title: 'Visual Assembly & Pacing', desc: 'Selecting highest-impact product shots and building rapid commercial pacing.' },
+          { step: '03', title: 'VFX, Sound Design & CTA Graphics', desc: 'Adding 3D text overlays, kinetic captions, sound design, and branding.' },
+          { step: '04', title: 'Multi-Aspect Ratio Delivery', desc: 'Delivering 9:16 vertical, 1:1 square, and 16:9 horizontal versions.' }
+        ],
+        highlights: [
+          '3 unique opening hook variations for A/B testing',
+          'Direct-response conversion framework (Problem-Solution-Offer)',
+          'Multi-ratio exports (9:16 vertical, 1:1 square, 16:9 wide)',
+          'Voiceover clean-up & cinematic sound design'
+        ]
+      }
+    ]
+  },
+
+  'ads': {
+    id: 'ads',
+    number: '07',
+    title: 'Ads - Website + Insta, FB, WhatsApp',
+    badge: 'High-ROAS Campaigns',
+    tagline: 'Target high-intent buyers with high-ROAS ads on Google, Instagram, Facebook, and WhatsApp.',
+    summary: 'Precision performance marketing engineered to generate qualified customer leads and measurable revenue. We deploy and scale multi-channel paid ad funnels across Google Search, Instagram, Facebook, and direct WhatsApp click-to-chat.',
+    fallbackImage: './services/service-ads.jpg',
+    categories: [
+      {
+        id: 'google-search-ppc',
+        title: 'Google Search & Maps High-Intent PPC Ads',
+        badge: 'High Intent Leads',
+        tagline: 'Place your business at the very top of Google when buyers search to buy',
+        image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'We place your business at the #1 position on Google Search and Google Maps for high-intent keywords right when customers are actively searching to buy your services in Gorakhpur and across India.',
+        idealFor: 'Doctors, Clinics, Hotels, Lawyers, Real estate, B2B manufacturers, Emergency services.',
+        timeline: '2 to 3 Days',
+        deliverables: [
+          { title: 'High-Intent Commercial Keyword Research', desc: 'Targeting exact-match and phrase-match keywords with proven customer buying intent.' },
+          { title: 'Negative Keyword Filtering & Fraud Click Shield', desc: 'Eliminating irrelevant searches and competitor bot clicks to save up to 40% of ad budget.' },
+          { title: 'Compelling Ad Copy & Call Extension Assets', desc: 'Writing persuasive ad headlines with 1-click call buttons, location tags, and sitelinks.' },
+          { title: 'Conversion Tracking Setup with Live ROI Attribution', desc: 'Setting up Google Tag Manager and tracking exact phone calls, WhatsApp clicks, and form leads.' },
+          { title: 'Google Performance Max (PMax) Funnels', desc: 'Omnichannel automation reaching customers across Search, YouTube, Gmail, and Discover.' },
+          { title: 'Weekly Bid Optimization & Quality Score Hardening', desc: 'Continuously reducing Cost-Per-Click (CPC) while increasing qualified inquiry volume.' }
+        ],
+        benefits: [
+          { title: 'Immediate #1 Ranking Without Waiting Months', desc: 'Skip the SEO waiting time — your ad appears at the very top of Google within 2 hours of launch.' },
+          { title: 'Reach Customers Ready to Pay Right Now', desc: 'People searching Google have urgent commercial needs. They convert at 4x higher rates than social scrollers.' },
+          { title: 'Zero Wasted Budget on Irrelevant Clicks', desc: 'Rigorous negative keyword filtering ensures you only pay when genuine buyers click.' },
+          { title: 'Predictable Cost-per-Lead Scaling', desc: 'Know exactly how many rupees it takes to generate a customer inquiry, allowing confident scaling.' }
+        ],
+        process: [
+          { step: '01', title: 'Competitor & Keyword Intelligence', desc: 'Analyzing top keywords and competitor ad budgets in your target geography.' },
+          { step: '02', title: 'Ad Account & Conversion Tag Setup', desc: 'Configuring Google Tag Manager, conversion goals, and phone call tracking.' },
+          { step: '03', title: 'Campaign Assembly & Ad Copywriting', desc: 'Writing high-CTR headlines, descriptions, call extensions, and bidding rules.' },
+          { step: '04', title: 'Daily Bid Management & Scaling', desc: 'Monitoring search terms, filtering negative keywords, and optimizing for lowest CPL.' }
+        ],
+        highlights: [
+          'Immediate #1 Google Search & Maps ad placement',
+          'Negative keyword filtering saving 40% ad spend',
+          'Call extension & WhatsApp direct lead tracking',
+          '4.5x average documented return on ad spend'
+        ]
+      },
+      {
+        id: 'instagram-facebook-video-ads',
+        title: 'Instagram & Facebook Direct-Response Ads',
+        badge: 'Viral Customer Acquisition',
+        tagline: 'Turn scrolling social media users into paying customers',
+        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'High-converting video and image ad campaigns on Instagram and Facebook with laser-targeted demographic, interest, and geographical filtering across Gorakhpur, UP, and India.',
+        idealFor: 'E-commerce, Clothing, Restaurants, Educational admissions, Event ticket sales, Interior designers.',
+        timeline: '2 to 3 Days',
+        deliverables: [
+          { title: 'Direct-Response Ad Creative Production', desc: 'Scroll-stopping video reels, carousel cards, and single-image ads that drive action.' },
+          { title: 'Granular Audience & Geo-Fencing Targeting', desc: 'Targeting by specific pin-codes, age, income bracket, behaviors, and competitor interests.' },
+          { title: 'Instant Lead Generation Forms (Zero Drop-Off)', desc: 'In-app pre-filled forms that capture customer name, phone, and inquiry in 2 clicks.' },
+          { title: 'Meta Pixel & Conversions API (CAPI) Integration', desc: 'First-party data tracking that bypasses iOS ad-tracking blocks for 100% conversion tracking.' },
+          { title: 'A/B Creative & Headline Split Testing', desc: 'Testing 3-5 visual variations to find the lowest Cost-Per-Acquisition (CPA).' },
+          { title: 'Weekly Performance & Lead Quality Audits', desc: 'Reviewing lead quality with your sales team and refining audience parameters.' }
+        ],
+        benefits: [
+          { title: 'Generate 20 to 50+ Inbound Leads Daily', desc: 'Scale customer inquiries predictably by simply adjusting your daily advertising budget.' },
+          { title: 'Laser-Target Exact Ideal Buyers in Gorakhpur', desc: 'Pinpoint buyers interested in luxury dining, home decor, or medical treatments with precision.' },
+          { title: 'Build Brand Fame While Making Sales', desc: 'Thousands of local people see your high-production ads daily, cementing your market leadership.' }
+        ],
+        process: [
+          { step: '01', title: 'Audience Persona & Demographic Mapping', desc: 'Defining the exact age, location, and lifestyle traits of your ideal buyer.' },
+          { step: '02', title: 'Creative Ad Design & Copywriting', desc: 'Designing high-converting video and image assets with irresistible offers.' },
+          { step: '03', title: 'Meta Ads Manager Campaign Setup', desc: 'Configuring bidding strategies, pixel events, and instant lead forms.' },
+          { step: '04', title: 'A/B Testing & Scaling', desc: 'Killing underperforming ads and allocating budget into top-converting winners.' }
+        ],
+        highlights: [
+          'Pre-filled instant lead forms with zero drop-off',
+          'Meta Pixel & Conversions API (CAPI) setup',
+          'Laser geo-fencing across Gorakhpur & UP districts',
+          '3.8x average documented return on ad spend'
+        ]
+      },
+      {
+        id: 'whatsapp-click-to-chat-ads',
+        title: 'WhatsApp Click-to-Chat Funnels',
+        badge: 'Instant Conversations',
+        tagline: 'Users click your ad and instantly message your sales team on WhatsApp',
+        image: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=1200&q=80',
+        explanation: 'Ads on Facebook and Instagram featuring a prominent "Send WhatsApp Message" button. When clicked, it opens a direct WhatsApp chat with your team with a pre-written message, eliminating website friction.',
+        idealFor: 'Jewellers, Boutiques, Real estate, High-value retail, Solar, Local services.',
+        timeline: '1 to 2 Days',
+        deliverables: [
+          { title: 'WhatsApp Direct-Action Ad Creative Setup', desc: 'Visually striking ad graphics highlighting limited-time discounts or direct consultations.' },
+          { title: 'Pre-Filled Custom Inquiry Greeting Message', desc: 'Pre-populates "Hi Click On Media, I would like more info on..." so users just tap send.' },
+          { title: 'Instant Automated Chatbot Welcome Flow', desc: 'Welcomes the prospect instantly and collects their requirements before a human replies.' },
+          { title: 'CRM Lead Synchronization', desc: 'Every incoming WhatsApp conversation is automatically logged with customer phone number.' },
+          { title: 'Cost-Per-Conversation Optimization', desc: 'Optimizing ad delivery to reach active WhatsApp shoppers at the lowest cost per chat.' }
+        ],
+        benefits: [
+          { title: 'Highest Conversion Rate of Any Digital Ad Format', desc: 'Bypasses slow websites entirely — puts you in a personal chat conversation within 2 seconds.' },
+          { title: 'Collect Verified Real Phone Numbers Automatically', desc: 'Customers message from their primary personal WhatsApp; zero fake phone numbers or typos.' },
+          { title: 'Close Deals in Real Time via Chat or Call', desc: 'Sales reps can immediately reply, send photos, share voice notes, or call the prospect.' }
+        ],
+        process: [
+          { step: '01', title: 'Offer & Pre-Filled Prompt Design', desc: 'Crafting the incentive (free audit, catalog, discount) that compels users to click.' },
+          { step: '02', title: 'WhatsApp Business Number Linkage', desc: 'Connecting your official business WhatsApp account to Meta Ads Manager.' },
+          { step: '03', title: 'Targeted Ad Campaign Deployment', desc: 'Launching ad creatives focused on high-intent WhatsApp users in your city.' },
+          { step: '04', title: 'Conversation Tracking & Optimization', desc: 'Monitoring cost-per-chat and training your team on rapid chat closing tactics.' }
+        ],
+        highlights: [
+          'Direct 1-click WhatsApp chat initiation',
+          '100% verified real phone numbers captured',
+          'Zero website drop-off — highest conversion rate',
+          'Instant pre-filled inquiry greeting message'
+        ]
+      }
+    ]
+  },
 };
 
-// Aliases
-SERVICES_CATALOG['marketing'] = SERVICES_CATALOG['digital-marketing'];
-SERVICES_CATALOG['seo'] = SERVICES_CATALOG['digital-marketing'];
-SERVICES_CATALOG['branding'] = SERVICES_CATALOG['graphics-logo'];
-SERVICES_CATALOG['content'] = SERVICES_CATALOG['short-reels'];
+// Official Aliases matching the 10 Visiting Card Services
+SERVICES_CATALOG['digital-marketing'] = SERVICES_CATALOG['social-media'];
+SERVICES_CATALOG['graphics-logo'] = SERVICES_CATALOG['graphics-designing'];
+SERVICES_CATALOG['posters'] = SERVICES_CATALOG['graphics-designing'];
+SERVICES_CATALOG['short-reels'] = SERVICES_CATALOG['video-editing'];
+SERVICES_CATALOG['youtube-videos'] = SERVICES_CATALOG['video-editing'];
+SERVICES_CATALOG['google-ads'] = SERVICES_CATALOG['ads'];
+SERVICES_CATALOG['social-ads'] = SERVICES_CATALOG['ads'];
+SERVICES_CATALOG['marketing'] = SERVICES_CATALOG['ads'];
+SERVICES_CATALOG['branding'] = SERVICES_CATALOG['graphics-designing'];
+SERVICES_CATALOG['content'] = SERVICES_CATALOG['video-editing'];

@@ -1,456 +1,320 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useMemo } from 'react';
 import RevealHeading from './RevealHeading';
 import { 
   ArrowRight, 
-  ArrowLeft, 
-  Zap, 
-  TrendingUp, 
   ExternalLink,
-  CheckCircle2
+  Sparkles,
+  TrendingUp,
+  Globe,
+  Film,
+  Code2,
+  Palette,
+  Share2,
+  CheckCircle2,
+  MessageCircle,
+  Phone,
+  Layers,
+  ChevronRight
 } from 'lucide-react';
+import { PORTFOLIO_CATEGORIES, PROJECTS_DATA } from '../data/projectsData';
+
+const CATEGORY_ICONS = {
+  'all': Sparkles,
+  'websites': Globe,
+  'video-editing': Film,
+  'software': Code2,
+  'graphic-design': Palette,
+  'social-media': Share2
+};
 
 export default function OurWork({ onSelectProject }) {
-  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isInView, setIsInView] = useState(false);
-  
-  const sectionRef = useRef(null);
-  const lastWheelTimeRef = useRef(0);
-  const touchStartXRef = useRef(0);
-  const touchEndXRef = useRef(0);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [visibleCount, setVisibleCount] = useState(9);
 
-  const projects = [
-    {
-      id: 'mapaz-hotel',
-      number: '01',
-      title: 'MAPAZ Hotel',
-      category: 'Luxury Hospitality',
-      tags: ['Website', 'Branding', 'SEO'],
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85',
-      client: 'MAPAZ Luxury Stays',
-      summary: 'Complete brand overhaul, direct booking web platform, and local SEO domination for a premium hotel chain in Uttar Pradesh.',
-      description: 'Complete brand overhaul, direct booking web platform, and local SEO domination for a premium luxury hotel in Uttar Pradesh. We eliminated high OTA commission dependencies by engineering a blazing-fast direct reservation platform.',
-      highlights: [
-        'Custom direct reservation engine with 0% commission leakage',
-        'Google Map Pack #1 rankings across Gorakhpur & Eastern UP',
-        'Sub-second page load times on mobile 4G/5G networks',
-        'Automated WhatsApp booking confirmations and instant receipts'
-      ],
-      results: '+240% Direct Bookings, #1 Local Ranking in 90 Days',
-      accent: 'from-amber-500 to-orange-600',
-      badgeColor: 'bg-amber-500/20 text-amber-500 border-amber-500/30'
-    },
-    {
-      id: 'krishna-inn',
-      number: '02',
-      title: 'Krishna Inn',
-      category: 'Resort & Suites',
-      tags: ['Website', 'Marketing'],
-      image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=85',
-      client: 'Krishna Hospitality Group',
-      summary: 'High-conversion booking engine, responsive mobile experience, and automated meta ads campaign with targeted geo-funnels.',
-      description: 'Engineered a high-converting luxury resort booking platform with targeted hyper-local Meta & Google ad funnels for Krishna Inn, driving profitable banquet inquiries and direct room bookings.',
-      highlights: [
-        '3.8x Return on Ad Spend (ROAS) on continuous ad sprints',
-        'Seamless event and banquet hall quote calculator',
-        'Interactive virtual room and amenity tour experience',
-        'High-converting mobile-first booking workflow'
-      ],
-      results: '3.8x Return on Ad Spend, 45,000+ Monthly Visitors',
-      accent: 'from-orange-500 to-red-500',
-      badgeColor: 'bg-orange-500/20 text-orange-500 border-orange-500/30'
-    },
-    {
-      id: 'era-of-education',
-      number: '03',
-      title: 'Era of Education',
-      category: 'EdTech Portal',
-      tags: ['Website', 'Marketing', 'Software'],
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85',
-      client: 'Era Global EdTech',
-      summary: 'Interactive learning management portal with custom student dashboards and high-volume student admissions funnels.',
-      description: 'Architected an interactive, multi-tier learning management portal and student admission funnels for Era of Education, connecting tens of thousands of learners across North India with high-quality educational programs.',
-      highlights: [
-        'Scalable student and instructor interactive dashboards',
-        'Automated admissions and lead qualification pipeline',
-        'Over 12,000 active enrolled students with 99.98% uptime',
-        'Real-time student progress tracking and automated certifications'
-      ],
-      results: '+310% Enrolment Rate, 12,000+ Active Students',
-      accent: 'from-blue-600 to-cyan-500',
-      badgeColor: 'bg-blue-500/20 text-blue-500 border-blue-500/30'
-    },
-    {
-      id: 'shivoy-distributors',
-      number: '04',
-      title: 'Shivoy Distributors',
-      category: 'B2B Enterprise Distribution',
-      tags: ['Website', 'Branding', 'Software'],
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85',
-      client: 'Shivoy National Distributors',
-      summary: 'B2B wholesale digital catalog, automated order inquiry workflow, and corporate branding identity for multi-state distributor.',
-      description: 'Designed a modern B2B enterprise distribution portal, digital wholesale catalog, and automated bulk-order inquiry system for Shivoy National Distributors, streamlining multi-state supply chain interactions.',
-      highlights: [
-        'Interactive digital product catalog with real-time stock status',
-        '+180% increase in validated wholesale dealer inquiries',
-        'Role-based dealer pricing and volume-discount engine',
-        'Zero downtime enterprise architecture'
-      ],
-      results: '+180% Wholesale Inquiries, Zero Downtime',
-      accent: 'from-blue-700 to-indigo-600',
-      badgeColor: 'bg-indigo-500/20 text-indigo-500 border-indigo-500/30'
-    },
-    {
-      id: 'barkat-welfare',
-      number: '05',
-      title: 'Barkat Welfare Society',
-      category: 'NGO & Social Impact',
-      tags: ['Website', 'Branding'],
-      image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1200&q=85',
-      client: 'Barkat Welfare Trust',
-      summary: 'Transparent donation portal, humanitarian campaign hubs, and community outreach storytelling reaching thousands.',
-      description: 'Built an inspiring humanitarian storytelling platform with instant multi-currency donation gateways and real-time project milestone tracking for Barkat Welfare Society.',
-      highlights: [
-        'Instant UPI, card, and net-banking donation workflows',
-        'Transparent real-time impact and relief campaign dashboards',
-        'Over 50,000 community beneficiaries reached',
-        '4.5x surge in recurring online donor contributions'
-      ],
-      results: '4.5x Online Contributions, 50,000+ Beneficiaries',
-      accent: 'from-emerald-600 to-teal-500',
-      badgeColor: 'bg-emerald-500/20 text-emerald-500 border-emerald-500/30'
+  const allProjects = useMemo(() => Object.values(PROJECTS_DATA), []);
+
+  // Filter projects based on activeCategory
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === 'all') {
+      return allProjects;
     }
-  ];
+    return allProjects.filter((p) => p.categoryKey === activeCategory);
+  }, [activeCategory, allProjects]);
 
-  // Detect when section is in view for smooth auto-play
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // Smooth auto-slide every 5 seconds when in view and not hovered
-  useEffect(() => {
-    if (!isInView || isHovered) return;
-
-    const timer = setInterval(() => {
-      setActiveProjectIndex((prev) => (prev + 1) % projects.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [isInView, isHovered, projects.length]);
-
-  // Navigate to specific project
-  const goToProject = (targetIndex) => {
-    const safeIdx = Math.max(0, Math.min(targetIndex, projects.length - 1));
-    setActiveProjectIndex(safeIdx);
-  };
-
-  const handleNext = () => {
-    setActiveProjectIndex((prev) => (prev + 1) % projects.length);
-  };
-
-  const handlePrev = () => {
-    setActiveProjectIndex((prev) => (prev - 1 + projects.length) % projects.length);
-  };
-
-  // Optional mouse wheel gesture over the card: scrolls through projects smoothly
-  const handleCardWheel = (e) => {
-    const now = Date.now();
-    if (now - lastWheelTimeRef.current < 600) return;
-
-    if (Math.abs(e.deltaY) > 25) {
-      if (e.deltaY > 0 && activeProjectIndex < projects.length - 1) {
-        // Slide to next project
-        lastWheelTimeRef.current = now;
-        setActiveProjectIndex((prev) => prev + 1);
-      } else if (e.deltaY < 0 && activeProjectIndex > 0) {
-        // Slide to previous project
-        lastWheelTimeRef.current = now;
-        setActiveProjectIndex((prev) => prev - 1);
-      }
+  // Projects to display (handles pagination / view more on "All")
+  const displayedProjects = useMemo(() => {
+    if (activeCategory === 'all') {
+      return filteredProjects.slice(0, visibleCount);
     }
+    return filteredProjects;
+  }, [activeCategory, filteredProjects, visibleCount]);
+
+  const handleCategoryChange = (catId) => {
+    setActiveCategory(catId);
+    setVisibleCount(9);
   };
 
-  // Touch swipe support for mobile
-  const handleTouchStart = (e) => {
-    touchStartXRef.current = e.touches[0].clientX;
-    touchEndXRef.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e) => {
-    touchEndXRef.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    const diff = touchStartXRef.current - touchEndXRef.current;
-    if (Math.abs(diff) > 45) {
-      if (diff > 0) {
-        handleNext();
-      } else {
-        handlePrev();
-      }
-    }
+  const handleShowAll = () => {
+    setVisibleCount(allProjects.length);
   };
 
   return (
-    // Clean, natural-height section with ZERO unwanted spacing or blank voids
     <section 
       id="work" 
-      ref={sectionRef}
-      className="relative py-12 sm:py-16 lg:py-20 bg-transparent border-t border-slate-200/60 text-[var(--text-dark)] overflow-hidden"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-white via-slate-50/50 to-white border-t border-slate-200/60 text-[var(--text-dark)] overflow-hidden"
     >
-      {/* Background Soft Glows */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-50/60 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute bottom-1/4 left-10 w-80 h-80 bg-orange-50/60 rounded-full blur-3xl pointer-events-none -z-0" />
+      {/* Background Soft Glow Accents */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[var(--primary-blue)]/5 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute bottom-1/4 left-10 w-96 h-96 bg-[var(--brand-orange)]/5 rounded-full blur-3xl pointer-events-none -z-0" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full relative z-10">
         
-        {/* Header with Title and Narrative */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-4 border-b border-slate-200/80 mb-6">
-          <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-bold text-[var(--primary-blue)] shadow-xs">
-              <Zap className="w-3.5 h-3.5 fill-[var(--primary-blue)]" />
-              <span>Proven Agency Portfolio</span>
-            </div>
+        {/* ===================================================================== */}
+        {/* 1. SECTION HEADER (Attractive, High-Impact & Mobile-Optimized)        */}
+        {/* ===================================================================== */}
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-3 sm:space-y-4 relative">
+          
+          {/* Ambient glow behind heading on mobile & desktop */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl h-28 bg-gradient-to-r from-[var(--primary-blue)]/12 via-[var(--cyan-accent)]/12 to-[var(--brand-orange)]/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
-            <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A1F6B] tracking-tight leading-tight font-heading">
-              Projects That Create{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00]">
-                Real Impact
-              </span>
-            </RevealHeading>
-
-            <p className="text-xs sm:text-sm text-[#071133] font-bold max-w-xl drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
-              Watch our client case studies shatter benchmarks. Slide through our featured work or click any project to view its full case study.
-            </p>
+          {/* Top Pill Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/95 backdrop-blur-md border border-[var(--primary-blue)]/25 text-xs sm:text-sm font-semibold text-[#0A1F6B] shadow-[0_4px_20px_rgba(10,31,107,0.06)] mb-1 sm:mb-2 transition-transform hover:scale-105">
+            <span className="w-2.5 h-2.5 rounded-full bg-[var(--brand-orange)] shadow-[0_0_10px_#FF7A00] animate-pulse flex-shrink-0" />
+            <span className="text-[var(--brand-orange)] uppercase tracking-wider text-[11px] sm:text-xs font-heading font-extrabold whitespace-nowrap">
+              Featured Portfolio
+            </span>
+            <span className="text-slate-300">•</span>
+            <span className="text-[#071133] font-bold text-[11px] sm:text-xs flex items-center gap-1.5 whitespace-nowrap">
+              <Sparkles className="w-3.5 h-3.5 text-[var(--cyan-accent)] flex-shrink-0" />
+              <span>Real Client Results &amp; Growth</span>
+            </span>
           </div>
 
-          {/* Quick Navigation Controls */}
-          <div className="flex items-center gap-2 self-start sm:self-auto">
-            <span className="text-xs font-mono font-bold text-slate-500 mr-2">
-              <span className="text-[#0A1F6B] font-extrabold text-sm">0{activeProjectIndex + 1}</span> / 0{projects.length}
+          {/* Main Attractive Responsive Heading */}
+          <RevealHeading tag="h2" delay={100} direction="up" blur={true} className="text-[28px] xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#0A1F6B] tracking-tight leading-[1.14] font-heading drop-shadow-xs px-1">
+            Projects That Create{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] via-50% to-[#FF7A00] drop-shadow-xs">
+              Real Impact
             </span>
-            <button
-              onClick={handlePrev}
-              className="w-8 h-8 rounded-full bg-white border border-slate-200 hover:border-[var(--brand-orange)] text-slate-700 hover:text-[var(--brand-orange)] flex items-center justify-center transition-all shadow-xs cursor-pointer"
-              title="Previous Project"
-              aria-label="Previous Project"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="w-8 h-8 rounded-full bg-white border border-slate-200 hover:border-[var(--brand-orange)] text-slate-700 hover:text-[var(--brand-orange)] flex items-center justify-center transition-all shadow-xs cursor-pointer"
-              title="Next Project"
-              aria-label="Next Project"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
+          </RevealHeading>
+
+          {/* Subtitle */}
+          <p className="text-xs xs:text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto px-2 sm:px-0">
+            Explore verified client transformations delivered across custom websites, viral video reels, cloud software, brand graphics, and performance marketing in Gorakhpur and India.
+          </p>
+
+          {/* Glowing Accent Line */}
+          <div className="w-24 sm:w-36 h-1 bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00] rounded-full mx-auto mt-3.5 shadow-[0_0_14px_rgba(255,122,0,0.45)]" />
+        </div>
+
+        {/* ===================================================================== */}
+        {/* 2. MODERN CATEGORY FILTER TABS (Responsive Horizontal Scroll)         */}
+        {/* ===================================================================== */}
+        <div className="mb-8 sm:mb-12">
+          <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-2.5 px-2 touch-pan-x overscroll-x-contain">
+            {PORTFOLIO_CATEGORIES.map((cat) => {
+              const Icon = CATEGORY_ICONS[cat.id] || Sparkles;
+              const isActive = activeCategory === cat.id;
+              
+              // Count for this category
+              const count = cat.id === 'all' 
+                ? allProjects.length 
+                : allProjects.filter(p => p.categoryKey === cat.id).length;
+
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategoryChange(cat.id)}
+                  className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-heading font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 flex-shrink-0 min-h-[42px] ${
+                    isActive
+                      ? 'bg-[#0A1F6B] text-white shadow-md ring-2 ring-[var(--brand-orange)]/60 scale-[1.02]'
+                      : 'bg-white hover:bg-slate-100 text-slate-700 hover:text-[#0A1F6B] border border-slate-200/90 shadow-2xs'
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 ${isActive ? 'text-[var(--brand-orange)]' : 'text-slate-400'}`} />
+                  <span className="hidden sm:inline">{cat.label}</span>
+                  <span className="sm:hidden">{cat.shortLabel}</span>
+                  <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${
+                    isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* ===================================================================== */}
-        {/* MAIN SLIDING CARD STAGE (ONE PROJECT AT A TIME, SMOOTH SLIDE)        */}
+        {/* 3. BEAUTIFUL IMAGE-BASED PROJECT CARDS GRID                           */}
         {/* ===================================================================== */}
-        <div 
-          onWheel={handleCardWheel}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          className="relative w-full rounded-3xl bg-white border border-slate-200/90 shadow-[0_20px_60px_-15px_rgba(10,31,107,0.12)] overflow-hidden"
-        >
-          {/* Top Luminous Brand Bar */}
-          <div className="h-1.5 w-full bg-gradient-to-r from-[var(--cyan-accent)] via-[var(--primary-blue)] to-[var(--brand-orange)]" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+          {displayedProjects.map((project) => {
+            const Icon = CATEGORY_ICONS[project.categoryKey] || Globe;
+            return (
+              <div
+                key={project.id}
+                onClick={() => onSelectProject && onSelectProject(project)}
+                className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 hover:border-[var(--brand-orange)]/60 hover:ring-2 hover:ring-[var(--brand-orange)]/30 hover:shadow-2xl bg-white hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+              >
+                {/* 1. TOP SECTION: High-Resolution Image Thumbnail with Badges */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900 rounded-t-2xl sm:rounded-t-3xl">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} - ${project.categoryLabel}`}
+                    className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
+                    loading="lazy"
+                  />
+                  
+                  {/* Subtle Gradient Vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-black/10 pointer-events-none" />
 
-          {/* Sliding Carousel Track (Horizontal slide transition) */}
-          <div 
-            className="flex w-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
-            style={{ transform: `translate3d(-${activeProjectIndex * 100}%, 0, 0)` }}
-          >
-            {projects.map((project, idx) => {
-              const isActive = activeProjectIndex === idx;
-              return (
-                <div 
-                  key={project.id} 
-                  className={`w-full flex-shrink-0 transition-opacity duration-700 ease-out ${
-                    isActive ? 'opacity-100' : 'opacity-30 pointer-events-none'
-                  }`}
-                >
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-7 lg:gap-8 items-center p-5 sm:p-7 lg:p-9 relative">
-                    
-                    {/* Left Column: Visual Showcase (7 Cols) */}
-                    <div className="lg:col-span-7">
-                      <div 
-                        onClick={() => onSelectProject(project)}
-                        className="relative aspect-video sm:aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 shadow-xl cursor-pointer group"
-                      >
-                        <img
-                          src={project.image}
-                          alt={`${project.title} - ${project.category}`}
-                          className={`w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 ${
-                            isActive ? 'scale-100' : 'scale-105'
-                          }`}
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
+                  {/* Top-Left Category Badge */}
+                  <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10">
+                    <span className="px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-heading font-extrabold uppercase tracking-wide bg-white/95 backdrop-blur-md text-[#0A1F6B] shadow-sm flex items-center gap-1.5">
+                      <Icon className="w-3 h-3 text-[var(--brand-orange)] flex-shrink-0" />
+                      <span className="truncate max-w-[120px] xs:max-w-[150px]">{project.category}</span>
+                    </span>
+                  </div>
 
-                        {/* Category Pill Tag */}
-                        <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                          <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-white border border-white/20 shadow-md">
-                            {project.category}
-                          </span>
-                        </div>
+                  {/* Top-Right Metric Pill */}
+                  <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-heading font-extrabold bg-[#0A1F6B]/90 backdrop-blur-md text-white border border-[var(--brand-orange)]/40 shadow-sm flex items-center gap-1">
+                      <TrendingUp className="w-3 h-3 text-[var(--brand-orange)] flex-shrink-0" />
+                      <span className="truncate max-w-[110px] xs:max-w-[130px]">{project.metrics}</span>
+                    </span>
+                  </div>
 
-                        {/* Client Tag */}
-                        <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
-                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-white/90 backdrop-blur-md text-slate-800 border border-white/40 shadow-xs">
-                            #{project.number}
-                          </span>
-                        </div>
+                  {/* Bottom Strip on Image: Client & Number */}
+                  <div className="absolute bottom-2.5 left-3 right-3 z-10 flex items-center justify-between text-[11px] text-white">
+                    <span className="font-mono text-[var(--cyan-accent)] font-bold uppercase tracking-wider text-[10px] sm:text-[11px] truncate max-w-[75%]">
+                      Client: {project.client}
+                    </span>
+                    <span className="font-mono font-bold text-slate-300 text-[10px] flex-shrink-0">
+                      #{project.number}
+                    </span>
+                  </div>
 
-                        {/* Hover Overlay Button: Click opens dedicated page */}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-xs">
-                          <div className="px-5 py-2.5 rounded-full bg-[var(--brand-orange)] text-white font-bold text-sm flex items-center gap-2 shadow-xl">
-                            <span>Open Dedicated Case Study Page</span>
-                            <ExternalLink className="w-4 h-4" />
-                          </div>
-                        </div>
-                      </div>
+                  {/* Hover Overlay Button */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-xs z-20">
+                    <div className="px-4 py-2 rounded-full bg-[var(--brand-orange)] text-white text-xs font-heading font-bold flex items-center gap-2 shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <span>View Dedicated Case Study</span>
+                      <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
                     </div>
-
-                    {/* Right Column: Case Study Narrative & Results (5 Cols) */}
-                    <div className="lg:col-span-5 space-y-3 sm:space-y-4">
-                      
-                      {/* Number & Client */}
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl sm:text-3xl font-black font-mono text-[var(--brand-orange)]">
-                          {project.number}
-                        </span>
-                        <div className="h-4 w-px bg-slate-200" />
-                        <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-heading">
-                          Client: {project.client}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[var(--deep-navy)] tracking-tight leading-snug font-heading">
-                        {project.title}
-                      </h3>
-
-                      {/* Measurable Results Callout Pill */}
-                      <div className="p-3 rounded-2xl bg-gradient-to-r from-[var(--primary-blue)]/10 via-[var(--primary-blue)]/5 to-[var(--brand-orange)]/10 border border-[var(--primary-blue)]/20 flex items-center gap-3">
-                        <div className="w-7 h-7 rounded-xl bg-gradient-to-r from-[var(--brand-orange)] to-[var(--amber)] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
-                          <TrendingUp className="w-3.5 h-3.5" />
-                        </div>
-                        <div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] block font-heading">
-                            Verified Measurable Impact
-                          </span>
-                          <span className="text-xs sm:text-sm font-extrabold text-[var(--deep-navy)] font-heading">
-                            {project.results}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal line-clamp-3">
-                        {project.description}
-                      </p>
-
-                      {/* Key Highlights Checklist */}
-                      <div className="space-y-1 pt-0.5">
-                        {project.highlights.slice(0, 3).map((item, hIdx) => (
-                          <div key={hIdx} className="flex items-start gap-2 text-xs text-slate-700">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{item}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Services Tags */}
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        {project.tags.map((tag, tIdx) => (
-                          <span
-                            key={tIdx}
-                            className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200"
-                          >
-                            ✓ {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Action CTA: Opens dedicated Case Study Page */}
-                      <div className="pt-1">
-                        <button
-                          onClick={() => onSelectProject(project)}
-                          className="btn-primary text-xs sm:text-sm !py-2.5 !px-6 group w-full sm:w-auto justify-center shadow-md font-heading font-bold cursor-pointer flex items-center gap-2"
-                        >
-                          <span>Open Dedicated Case Study Page</span>
-                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </button>
-                      </div>
-
-                    </div>
-
                   </div>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Bottom Interactive Navigation & Progress Bar */}
-          <div className="border-t border-slate-100 bg-slate-50/80 px-4 sm:px-8 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
-            
-            {/* Interactive Slide Tabs */}
-            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar max-w-full">
-              {projects.map((proj, pIdx) => {
-                const isActive = activeProjectIndex === pIdx;
-                return (
-                  <button
-                    key={proj.id}
-                    onClick={() => goToProject(pIdx)}
-                    className={`px-3 py-1 rounded-full text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
-                      isActive
-                        ? 'bg-[#0A1F6B] text-white shadow-sm ring-2 ring-[var(--brand-orange)]/60 scale-[1.02]'
-                        : 'bg-white text-slate-600 hover:text-[#0A1F6B] hover:bg-slate-200/60 border border-slate-200'
-                    }`}
-                  >
-                    <span className={isActive ? 'text-[var(--brand-orange)] font-mono' : 'text-slate-400 font-mono'}>
-                      0{pIdx + 1}
+                {/* 2. MIDDLE SECTION: Content, Title, Description & Tags */}
+                <div className="p-4 sm:p-5 flex-grow flex flex-col justify-between space-y-3">
+                  <div>
+                    {/* Subtitle / Type */}
+                    <span className="text-[10px] sm:text-[11px] font-mono font-bold text-[var(--brand-orange)] uppercase tracking-wider block">
+                      {project.categoryLabel}
                     </span>
-                    <span className="hidden xs:inline">{proj.title}</span>
-                  </button>
-                );
-              })}
-            </div>
 
-            {/* Progress Indicator */}
-            <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-              <span className="hidden md:inline text-[11px] font-sans text-slate-500">Auto-playing • Click or swipe</span>
-              <div className="w-24 sm:w-32 h-1.5 bg-slate-200 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-gradient-to-r from-[var(--primary-blue)] to-[var(--brand-orange)] transition-all duration-500"
-                  style={{ width: `${((activeProjectIndex + 1) / projects.length) * 100}%` }}
-                />
+                    {/* Main Title */}
+                    <h3 className="text-base sm:text-lg font-heading font-extrabold text-[#0A1F6B] group-hover:text-[var(--primary-blue)] transition-colors leading-snug mt-1">
+                      {project.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed line-clamp-2 mt-1.5">
+                      {project.summary || project.description}
+                    </p>
+                  </div>
+
+                  {/* Tags Strip */}
+                  <div className="pt-2 border-t border-slate-100">
+                    <div className="flex flex-wrap gap-1">
+                      {project.tags.slice(0, 3).map((tag, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200/70"
+                        >
+                          ✓ {tag}
+                        </span>
+                      ))}
+                      {project.tags.length > 3 && (
+                        <span className="px-1.5 py-0.5 rounded-full text-[10px] font-mono text-slate-400">
+                          +{project.tags.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. BOTTOM SECTION: Action Bar */}
+                <div className="px-4 sm:px-5 py-3 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-medium text-slate-500 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                    <span>Verified Result</span>
+                  </span>
+
+                  <span className="font-heading font-bold text-xs text-[var(--brand-orange)] group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                    <span>View Project</span>
+                    <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
+                  </span>
+                </div>
+
               </div>
+            );
+          })}
+        </div>
+
+        {/* ===================================================================== */}
+        {/* 4. "SHOW ALL PROJECTS" BUTTON (When Filter is "All" & Count < Total) */}
+        {/* ===================================================================== */}
+        {activeCategory === 'all' && visibleCount < allProjects.length && (
+          <div className="mt-10 sm:mt-12 text-center">
+            <button
+              onClick={handleShowAll}
+              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 rounded-full bg-white hover:bg-[#0A1F6B] hover:text-white border-2 border-[#0A1F6B] text-[#0A1F6B] text-xs sm:text-sm font-heading font-bold shadow-md transition-all hover:scale-105 cursor-pointer group"
+            >
+              <span>Explore All {allProjects.length} Projects</span>
+              <ArrowRight className="w-4 h-4 text-[var(--brand-orange)] group-hover:text-white group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        )}
+
+        {/* ===================================================================== */}
+        {/* 5. BOTTOM HIGH-CONVERSION CTA RIBBON                                  */}
+        {/* ===================================================================== */}
+        <div className="mt-12 sm:mt-16 p-5 xs:p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#0A1F6B] via-[#0B257A] to-[#0A1F6B] text-white border border-blue-900/50 shadow-xl relative overflow-hidden">
+          {/* Subtle Glow */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[var(--brand-orange)]/15 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 text-center md:text-left">
+            <div className="space-y-1.5 max-w-xl">
+              <span className="text-xs font-mono font-bold text-[var(--cyan-accent)] uppercase tracking-wider block">
+                Start Your Project Today
+              </span>
+              <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-heading font-extrabold text-white tracking-tight leading-snug">
+                Have a Project in Mind? Let's Build Something Exceptional Together.
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 font-normal">
+                Partner with Click On Media for high-speed websites, viral video editing, scalable software, and high-ROAS marketing in Gorakhpur and India.
+              </p>
             </div>
 
-          </div>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full md:w-auto flex-shrink-0">
+              <a
+                href="#quote"
+                className="btn-primary text-xs sm:text-sm !py-3 !px-6 font-heading font-bold shadow-md cursor-pointer text-center"
+              >
+                Request Free Proposal
+              </a>
 
+              <a
+                href="https://wa.me/918303534063?text=Hi%20Click%20On%20Media,%20I'm%20interested%20in%20discussing%20a%20project%20after%20viewing%20your%20portfolio."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-heading font-bold shadow-sm transition-all hover:scale-102 text-center"
+              >
+                <MessageCircle className="w-4 h-4 flex-shrink-0" />
+                <span>Chat on WhatsApp</span>
+              </a>
+            </div>
+          </div>
         </div>
 
       </div>

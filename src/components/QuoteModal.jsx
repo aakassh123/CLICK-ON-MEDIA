@@ -18,12 +18,16 @@ export default function QuoteModal({ isOpen, onClose, preselectedService }) {
   if (!isOpen) return null;
 
   const serviceOptions = [
+    'Social Media Marketing',
     'Website Development',
-    'Software & App Development',
-    'Digital Marketing & Ads',
-    'SEO & Performance',
-    'Branding & Creative',
-    'Content Creation & Video'
+    'WhatsApp Bulk Messaging',
+    'Graphics Designing',
+    'Video Editing',
+    'SEO - Website + Google My Business',
+    'Ads - Website + Insta, FB, WhatsApp',
+    'Software Development',
+    'CRM',
+    'Monetization'
   ];
 
   const budgetOptions = [

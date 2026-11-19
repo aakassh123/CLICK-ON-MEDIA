@@ -42,16 +42,16 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
   }, [preselectedService]);
 
   const serviceOptions = [
+    'Social Media Marketing',
     'Website Development',
-    'Software & App Development',
-    'Digital Marketing',
-    'Social Media Growth & Engagement',
-    'Posters & Marketing Collateral',
-    'Short Videos & Reels',
-    'Graphics & Logo Design',
-    'YouTube Videos & Production',
-    'Google Ads',
-    'Social Media Ads (FB, Instagram & WhatsApp)'
+    'WhatsApp Bulk Messaging',
+    'Graphics Designing',
+    'Video Editing',
+    'SEO - Website + Google My Business',
+    'Ads - Website + Insta, FB, WhatsApp',
+    'Software Development',
+    'CRM',
+    'Monetization'
   ];
 
   const budgetOptions = [

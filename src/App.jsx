@@ -222,6 +222,7 @@ export default function App() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const [selectedServiceId, setSelectedServiceId] = useState(null);
+  const [initialTypeId, setInitialTypeId] = useState(null);
   const [selectedTypeRoute, setSelectedTypeRoute] = useState(null); // { serviceId, typeId }
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [preselectedQuoteService, setPreselectedQuoteService] = useState('');
@@ -233,20 +234,23 @@ export default function App() {
       if (hash === '#quote') {
         setIsQuotePage(true);
         setSelectedServiceId(null);
+        setInitialTypeId(null);
         setSelectedTypeRoute(null);
         setSelectedProjectId(null);
         applyRouteSEO('#quote');
       } else if (hash && (hash.startsWith('#type/') || hash.startsWith('#service-type/'))) {
         const raw = hash.replace(/^#(type|service-type)\//, '');
         const [sId, tId] = raw.split('/');
-        setSelectedTypeRoute({ serviceId: sId, typeId: tId });
-        setSelectedServiceId(null);
+        setSelectedServiceId(sId);
+        setInitialTypeId(tId);
+        setSelectedTypeRoute(null);
         setSelectedProjectId(null);
         setIsQuotePage(false);
         applyRouteSEO(`type/${sId}/${tId}`);
       } else if (hash && hash.startsWith('#service/')) {
         const id = hash.replace('#service/', '');
         setSelectedServiceId(id);
+        setInitialTypeId(null);
         setSelectedTypeRoute(null);
         setIsQuotePage(false);
         setSelectedProjectId(null);
@@ -254,6 +258,7 @@ export default function App() {
       } else if (hash && hash.startsWith('#project/')) {
         const id = hash.replace('#project/', '');
         setSelectedProjectId(id);
+        setInitialTypeId(null);
         setSelectedTypeRoute(null);
         setIsQuotePage(false);
         setSelectedServiceId(null);
@@ -261,6 +266,7 @@ export default function App() {
       } else {
         setIsQuotePage(false);
         setSelectedServiceId(null);
+        setInitialTypeId(null);
         setSelectedTypeRoute(null);
         setSelectedProjectId(null);
         applyRouteSEO(hash || 'default');
@@ -279,6 +285,7 @@ export default function App() {
   const handleOpenQuote = (serviceName = '') => {
     setPreselectedQuoteService(serviceName);
     setSelectedServiceId(null);
+    setInitialTypeId(null);
     setSelectedTypeRoute(null);
     setSelectedProjectId(null);
     setIsQuotePage(true);
@@ -292,6 +299,7 @@ export default function App() {
     setIsQuotePage(false);
     setSelectedProjectId(null);
     setSelectedTypeRoute(null);
+    setInitialTypeId(null);
     setSelectedServiceId(id);
     if (window.location.hash !== `#service/${id}`) {
       window.history.pushState(null, '', `#service/${id}`);
@@ -301,13 +309,13 @@ export default function App() {
 
   const handleSelectType = (serviceId, typeId) => {
     setIsQuotePage(false);
-    setSelectedServiceId(null);
     setSelectedProjectId(null);
-    setSelectedTypeRoute({ serviceId, typeId });
-    if (window.location.hash !== `#type/${serviceId}/${typeId}`) {
-      window.history.pushState(null, '', `#type/${serviceId}/${typeId}`);
+    setSelectedTypeRoute(null);
+    setSelectedServiceId(serviceId);
+    setInitialTypeId(typeId);
+    if (window.location.hash !== `#service/${serviceId}`) {
+      window.history.pushState(null, '', `#service/${serviceId}`);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBackToService = (serviceId) => {
@@ -320,6 +328,7 @@ export default function App() {
     if (!id) return;
     setIsQuotePage(false);
     setSelectedServiceId(null);
+    setInitialTypeId(null);
     setSelectedTypeRoute(null);
     setSelectedProjectId(id);
     if (window.location.hash !== `#project/${id}`) {
@@ -331,6 +340,7 @@ export default function App() {
   const handleBackToHome = () => {
     setIsQuotePage(false);
     setSelectedServiceId(null);
+    setInitialTypeId(null);
     setSelectedTypeRoute(null);
     setSelectedProjectId(null);
     window.history.pushState(null, '', '#home');
@@ -342,6 +352,7 @@ export default function App() {
   const handleBackToWork = () => {
     setIsQuotePage(false);
     setSelectedServiceId(null);
+    setInitialTypeId(null);
     setSelectedTypeRoute(null);
     setSelectedProjectId(null);
     window.history.pushState(null, '', '#work');
@@ -383,6 +394,7 @@ export default function App() {
         /* Dedicated Full-Page Service Detail Hub */
         <ServiceDetailPage
           serviceId={selectedServiceId}
+          initialTypeId={initialTypeId}
           onBack={handleBackToHome}
           onSelectService={handleSelectService}
           onSelectType={handleSelectType}

@@ -33,8 +33,8 @@ export default function RevealHeading({
           }
         },
         {
-          threshold,
-          rootMargin: '0px 0px -50px 0px' // Triggers slightly before element enters view
+          threshold: 0.05,
+          rootMargin: '50px 0px 20px 0px' // Triggers smoothly right as element approaches viewport on mobile & desktop
         }
       );
 
