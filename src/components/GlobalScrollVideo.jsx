@@ -69,8 +69,9 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
 
   // Dynamic visual parameters based on scrollProgress
   // In Hero (progress ~0): video is ultra-crisp (opacity 0.96)
-  // Deeper in page: video remains smoothly visible at ~0.48 - 0.52 opacity for 100% text legibility
-  const videoOpacity = Math.max(0.48, 0.96 - scrollProgress * 0.48);
+  // Deeper in page: video remains smoothly visible all the way to the bottom of the website
+  const videoOpacity = Math.max(0.52, 0.96 - scrollProgress * 0.44);
+  const watermarkOpacity = Math.max(0.25, 0.45 - scrollProgress * 0.20);
   // Gentle cinematic parallax translation and subtle zoom
   const translateY = scrollProgress * -70; // subtly tracks scroll up to 70px
   const scale = 1.02 + scrollProgress * 0.05; // subtle slow cinematic breathe
@@ -111,7 +112,7 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
         {/* 2. AMBIENT BRAND WALL WATERMARK IN OFFICE BACKGROUND */}
         <div 
           className="absolute top-1/3 right-4 sm:right-10 lg:right-16 -translate-y-1/2 pointer-events-none filter drop-shadow-[0_10px_25px_rgba(11,92,255,0.35)] transition-opacity duration-500"
-          style={{ opacity: Math.max(0.22, 0.45 - scrollProgress * 0.25) }}
+          style={{ opacity: watermarkOpacity }}
         >
           <img 
             src="./clickonmedia-logo-trans.png" 

@@ -74,9 +74,11 @@ export default function LocalAuthoritySection({ onOpenQuote }) {
 
   return (
     <section 
-      id="local-seo-hub"
+      id="contact"
       className="py-16 sm:py-20 lg:py-24 bg-transparent text-slate-800 relative overflow-hidden border-t border-slate-200/60"
     >
+      {/* Anchor for backward compatibility with local SEO routes */}
+      <div id="local-seo-hub" className="absolute -top-28" />
       {/* Background Soft Ambient Light */}
       <div className="absolute top-1/4 left-10 w-96 h-96 bg-[var(--primary-blue)]/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[var(--brand-orange)]/5 rounded-full blur-[140px] pointer-events-none" />

@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import RevealHeading from './RevealHeading';
 import { ArrowLeft, ArrowRight, Zap, CheckCircle2, ChevronRight, Award, Users } from 'lucide-react';
 import Logo from './Logo';
 
 export default function AboutUs({ onOpenConsultation }) {
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const touchStartXRef = useRef(0);
+  const touchEndXRef = useRef(0);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const storyCards = [
     {
@@ -58,6 +67,29 @@ export default function AboutUs({ onOpenConsultation }) {
   const handlePrev = () => {
     setActiveStoryIndex((prev) => Math.max(0, prev - 1));
   };
+
+  // Touch swipe support for mobile devices
+  const handleTouchStart = (e) => {
+    touchStartXRef.current = e.touches[0].clientX;
+    touchEndXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartXRef.current - touchEndXRef.current;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+  };
+
+  const stepSize = windowWidth < 640 ? 256 : 290;
 
   return (
     <section id="about" className="py-20 sm:py-24 lg:py-32 bg-transparent text-slate-800 relative overflow-hidden">
@@ -161,12 +193,17 @@ export default function AboutUs({ onOpenConsultation }) {
               </div>
             </div>
 
-            {/* Sliding Cards Track */}
-            <div className="py-6 overflow-hidden relative">
+            {/* Sliding Cards Track with Mobile Touch Swipe */}
+            <div 
+              className="py-6 overflow-hidden relative select-none"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               <div 
-                className="flex gap-4 sm:gap-5 transition-transform duration-500 ease-out"
+                className="flex gap-4 sm:gap-5 transition-transform duration-500 ease-out will-change-transform"
                 style={{
-                  transform: `translateX(-${activeStoryIndex * (window.innerWidth < 640 ? 250 : 280)}px)`
+                  transform: `translateX(-${activeStoryIndex * stepSize}px)`
                 }}
               >
                 {storyCards.map((card, idx) => {

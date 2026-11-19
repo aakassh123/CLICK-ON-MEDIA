@@ -47,8 +47,11 @@ export default function Hero({ onOpenQuote, onOpenVideo, onSelectService }) {
               <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[var(--brand-orange)]/15 flex items-center justify-center text-[var(--brand-orange)] flex-shrink-0">
                 <Zap className="w-3 sm:w-3.5 h-3 sm:h-3.5 fill-[var(--brand-orange)]" />
               </span>
-              <span className="font-heading font-semibold tracking-wide">
+              <span className="font-heading font-semibold tracking-wide hidden xs:inline">
                 #1 Digital Marketing &amp; Web Agency in Gorakhpur, UP
+              </span>
+              <span className="font-heading font-semibold tracking-wide xs:hidden">
+                #1 Digital &amp; Web Agency in Gorakhpur
               </span>
             </div>
 

@@ -84,9 +84,8 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
       subItems: serviceSubItems
     },
     { name: 'About', href: '#about' },
-    { name: 'Work', href: '#work' },
-    { name: 'Process', href: '#process' },
-    { name: 'Gorakhpur Hub', href: '#local-seo-hub' },
+    { name: 'Portfolio', href: '#work' },
+    { name: 'Contact Us', href: '#contact' },
   ];
 
   const handleServicesNavClick = (e) => {
@@ -304,17 +303,31 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
             </button>
           </div>
 
-          {/* Mobile Menu Action Area */}
-          <div className="flex lg:hidden items-center gap-2">
-            <button
-              onClick={onOpenQuote}
-              className="btn-primary text-xs !py-1.5 !px-3.5 min-h-[40px]"
+          {/* Mobile Menu Action Area (Quick Call, WhatsApp & Hamburger) */}
+          <div className="flex lg:hidden items-center gap-1.5 xs:gap-2">
+            <a
+              href="tel:+918303534063"
+              className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-[#0A1F6B] flex items-center justify-center transition-colors cursor-pointer"
+              title="Call Click On Media"
+              aria-label="Call +91 83035 34063"
             >
-              Quote
-            </button>
+              <Phone className="w-4 h-4 text-[var(--brand-orange)]" />
+            </a>
+
+            <a
+              href="https://wa.me/918303534063?text=Hi%20Click%20On%20Media,%20I%20would%20like%20to%20discuss%20a%20digital%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-600 flex items-center justify-center transition-colors cursor-pointer"
+              title="Chat on WhatsApp"
+              aria-label="Chat on WhatsApp"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-600 fill-emerald-600" />
+            </a>
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-slate-100 border border-slate-200 text-slate-800 hover:bg-slate-200 transition-colors cursor-pointer"
+              className="min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl bg-slate-100 border border-slate-200 text-slate-800 hover:bg-slate-200 transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5 text-[var(--brand-orange)]" /> : <Menu className="w-5 h-5 text-slate-800" />}
@@ -361,23 +374,44 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
             </div>
           ))}
 
-          <div className="pt-4 border-t border-slate-100 space-y-3">
+          {/* Mobile Drawer Quick Connect Cards (Call + WhatsApp + Quote) */}
+          <div className="pt-4 border-t border-slate-100 space-y-2.5">
             <a 
               href="tel:+918303534063" 
-              className="flex items-center gap-2.5 text-sm font-bold text-slate-800 px-3 py-2.5 min-h-[44px] rounded-xl bg-slate-50 border border-slate-200"
+              className="flex items-center gap-3 text-sm font-bold text-slate-800 px-4 py-3 min-h-[48px] rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-colors"
             >
-              <div className="w-7 h-7 rounded-lg bg-[var(--brand-orange)]/15 text-[var(--brand-orange)] flex items-center justify-center">
-                <Phone className="w-4 h-4" />
+              <div className="w-8 h-8 rounded-xl bg-[#0A1F6B] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+                <Phone className="w-4 h-4 text-[var(--brand-orange)]" />
               </div>
-              <span className="font-mono text-slate-900">+91 83035 34063</span>
-              <span className="ml-auto text-[10px] text-emerald-600 font-mono font-bold">Available Now</span>
+              <div className="flex flex-col text-left">
+                <span className="text-xs text-slate-500 font-normal">Direct Phone Support</span>
+                <span className="font-mono text-slate-900 font-bold">+91 83035 34063</span>
+              </div>
+              <span className="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-mono font-bold">Call Now</span>
             </a>
+
+            <a 
+              href="https://wa.me/918303534063?text=Hi%20Click%20On%20Media,%20I%20would%20like%20to%20discuss%20a%20digital%20project." 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-sm font-bold text-white px-4 py-3 min-h-[48px] rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] transition-colors shadow-md shadow-emerald-500/20"
+            >
+              <div className="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-4 h-4 fill-white" />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-xs text-emerald-100 font-normal">Available 24/7</span>
+                <span className="font-heading text-white font-bold">Chat on WhatsApp</span>
+              </div>
+              <span className="ml-auto text-xs bg-white text-emerald-700 px-2.5 py-0.5 rounded-full font-bold">Instant</span>
+            </a>
+
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 onOpenQuote();
               }}
-              className="btn-primary w-full text-center py-3"
+              className="btn-primary w-full text-center py-3.5 rounded-2xl font-heading font-bold shadow-md cursor-pointer"
             >
               Get Free Quote
             </button>

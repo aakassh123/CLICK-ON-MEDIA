@@ -467,6 +467,7 @@ export default function Services({ onSelectService, onOpenQuote }) {
   // Touch swipe support for mobile
   const handleTouchStart = (e) => {
     touchStartXRef.current = e.touches[0].clientX;
+    touchEndXRef.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e) => {

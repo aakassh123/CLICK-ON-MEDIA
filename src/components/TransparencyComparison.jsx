@@ -74,12 +74,12 @@ export default function TransparencyComparison({ onOpenQuote }) {
         {/* Comparison Matrix Table Card */}
         <div className="rounded-3xl sm:rounded-[36px] bg-white/95 backdrop-blur-2xl border border-slate-200/90 shadow-xl overflow-hidden">
           
-          {/* Table Header */}
-          <div className="grid grid-cols-12 bg-slate-50/90 border-b border-slate-200 p-4 sm:p-6 text-xs sm:text-sm font-bold font-heading">
-            <div className="col-span-5 sm:col-span-4 text-slate-600 uppercase tracking-wider">
+          {/* Table Header (Desktop & Tablet) */}
+          <div className="hidden sm:grid grid-cols-12 bg-slate-50/90 border-b border-slate-200 p-4 sm:p-6 text-xs sm:text-sm font-bold font-heading">
+            <div className="col-span-4 text-slate-600 uppercase tracking-wider">
               Deliverable / Standard
             </div>
-            <div className="col-span-3 sm:col-span-4 text-slate-400 uppercase tracking-wider pl-2">
+            <div className="col-span-4 text-slate-400 uppercase tracking-wider pl-2">
               Traditional Agencies
             </div>
             <div className="col-span-4 text-[var(--brand-orange)] uppercase tracking-wider font-extrabold flex items-center gap-1.5 pl-2 sm:pl-4">
@@ -88,8 +88,8 @@ export default function TransparencyComparison({ onOpenQuote }) {
             </div>
           </div>
 
-          {/* Rows */}
-          <div className="divide-y divide-slate-100">
+          {/* Desktop & Tablet Rows (>=640px) */}
+          <div className="hidden sm:block divide-y divide-slate-100">
             {comparisonItems.map((item, idx) => (
               <div 
                 key={idx}
@@ -98,28 +98,75 @@ export default function TransparencyComparison({ onOpenQuote }) {
                 }`}
               >
                 {/* Feature Title */}
-                <div className="col-span-5 sm:col-span-4 pr-2">
+                <div className="col-span-4 pr-2">
                   <span className="text-xs sm:text-sm font-bold text-[#0A1F6B] font-heading block">
                     {item.feature}
                   </span>
                 </div>
 
                 {/* Traditional Agencies (Red / Cross) */}
-                <div className="col-span-3 sm:col-span-4 flex items-start gap-2 text-slate-500 pl-2 text-[11px] sm:text-xs">
+                <div className="col-span-4 flex items-start gap-2 text-slate-500 pl-2 text-xs">
                   <div className="w-4 h-4 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <X className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
-                  <span className="hidden sm:inline leading-snug">{item.traditional}</span>
+                  <span className="leading-snug">{item.traditional}</span>
                 </div>
 
                 {/* Click On Media Standard (Green / Check + Orange Badge) */}
-                <div className="col-span-4 flex items-start gap-2 pl-2 sm:pl-4 text-[11px] sm:text-xs text-slate-800 font-semibold">
+                <div className="col-span-4 flex items-start gap-2 pl-2 sm:pl-4 text-xs text-slate-800 font-semibold">
                   <div className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
                   <span className="leading-snug text-slate-900 font-medium">
                     {item.clickOnMedia}
                   </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Optimized Cards (<640px) */}
+          <div className="sm:hidden divide-y divide-slate-100">
+            {comparisonItems.map((item, idx) => (
+              <div 
+                key={idx}
+                className={`p-4 space-y-2.5 ${item.highlight ? 'bg-orange-50/25' : ''}`}
+              >
+                {/* Feature Header */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-heading font-extrabold text-[#0A1F6B]">
+                    {item.feature}
+                  </span>
+                  {item.highlight && (
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--brand-orange)] bg-[var(--brand-orange)]/10 px-2 py-0.5 rounded-full">
+                      Key Advantage
+                    </span>
+                  )}
+                </div>
+
+                {/* Traditional Agency vs Click On Media Side-by-Side or Stacked */}
+                <div className="space-y-2 text-[11px]">
+                  {/* Traditional */}
+                  <div className="flex items-start gap-2 p-2 rounded-xl bg-slate-50 text-slate-500 border border-slate-100">
+                    <div className="w-4 h-4 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <X className="w-2.5 h-2.5 stroke-[3]" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase text-slate-400 block font-heading">Traditional:</span>
+                      <span className="leading-tight">{item.traditional}</span>
+                    </div>
+                  </div>
+
+                  {/* Click On Media */}
+                  <div className="flex items-start gap-2 p-2 rounded-xl bg-gradient-to-r from-blue-50/80 to-orange-50/80 text-slate-800 border border-[var(--primary-blue)]/20 shadow-xs">
+                    <div className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-2.5 h-2.5 stroke-[3]" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-extrabold uppercase text-[var(--brand-orange)] block font-heading">Click On Media:</span>
+                      <span className="leading-tight font-semibold text-[#0A1F6B]">{item.clickOnMedia}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}

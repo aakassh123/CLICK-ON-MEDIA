@@ -5,7 +5,6 @@ import Hero from './components/Hero';
 import ClientLogos from './components/ClientLogos';
 import Services from './components/Services';
 import AboutUs from './components/AboutUs';
-import Process from './components/Process';
 import OurWork from './components/OurWork';
 import CtaBanner from './components/CtaBanner';
 import Footer from './components/Footer';
@@ -19,8 +18,10 @@ import LocalAuthoritySection from './components/LocalAuthoritySection';
 
 // Dedicated Full-Page Views (Clean, Professional, Non-Modal)
 import ServiceDetailPage from './components/ServiceDetailPage';
+import ServiceTypeDetailPage from './components/ServiceTypeDetailPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import QuotePage from './components/QuotePage';
+import { SERVICES_CATALOG } from './data/servicesCatalog';
 
 // Interactive Overlays
 import ConsultationModal from './components/ConsultationModal';
@@ -157,7 +158,26 @@ const SEO_METADATA = {
 };
 
 const applyRouteSEO = (routeKey) => {
-  const meta = SEO_METADATA[routeKey] || SEO_METADATA.default;
+  let meta = SEO_METADATA[routeKey];
+
+  if (!meta && routeKey && routeKey.startsWith('type/')) {
+    const raw = routeKey.replace('type/', '');
+    const [sId, tId] = raw.split('/');
+    const s = SERVICES_CATALOG[sId];
+    const t = s?.categories?.find(c => c.id === tId);
+    if (t && s) {
+      meta = {
+        title: `${t.title} | ${s.title} Gorakhpur | Click On Media`,
+        description: `${t.explanation.slice(0, 140)}... Delivered by Click On Media Gorakhpur.`,
+        canonical: `https://clickonmedia.in/#type/${sId}/${tId}`
+      };
+    }
+  }
+
+  if (!meta) {
+    meta = SEO_METADATA.default;
+  }
+
   if (typeof document !== 'undefined') {
     document.title = meta.title;
 
@@ -202,6 +222,7 @@ export default function App() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const [selectedServiceId, setSelectedServiceId] = useState(null);
+  const [selectedTypeRoute, setSelectedTypeRoute] = useState(null); // { serviceId, typeId }
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [preselectedQuoteService, setPreselectedQuoteService] = useState('');
 
@@ -212,23 +233,35 @@ export default function App() {
       if (hash === '#quote') {
         setIsQuotePage(true);
         setSelectedServiceId(null);
+        setSelectedTypeRoute(null);
         setSelectedProjectId(null);
         applyRouteSEO('#quote');
+      } else if (hash && (hash.startsWith('#type/') || hash.startsWith('#service-type/'))) {
+        const raw = hash.replace(/^#(type|service-type)\//, '');
+        const [sId, tId] = raw.split('/');
+        setSelectedTypeRoute({ serviceId: sId, typeId: tId });
+        setSelectedServiceId(null);
+        setSelectedProjectId(null);
+        setIsQuotePage(false);
+        applyRouteSEO(`type/${sId}/${tId}`);
       } else if (hash && hash.startsWith('#service/')) {
         const id = hash.replace('#service/', '');
         setSelectedServiceId(id);
+        setSelectedTypeRoute(null);
         setIsQuotePage(false);
         setSelectedProjectId(null);
         applyRouteSEO(`service/${id}`);
       } else if (hash && hash.startsWith('#project/')) {
         const id = hash.replace('#project/', '');
         setSelectedProjectId(id);
+        setSelectedTypeRoute(null);
         setIsQuotePage(false);
         setSelectedServiceId(null);
         applyRouteSEO(`project/${id}`);
       } else {
         setIsQuotePage(false);
         setSelectedServiceId(null);
+        setSelectedTypeRoute(null);
         setSelectedProjectId(null);
         applyRouteSEO(hash || 'default');
       }
@@ -246,6 +279,7 @@ export default function App() {
   const handleOpenQuote = (serviceName = '') => {
     setPreselectedQuoteService(serviceName);
     setSelectedServiceId(null);
+    setSelectedTypeRoute(null);
     setSelectedProjectId(null);
     setIsQuotePage(true);
     if (window.location.hash !== '#quote') {
@@ -257,6 +291,7 @@ export default function App() {
   const handleSelectService = (id) => {
     setIsQuotePage(false);
     setSelectedProjectId(null);
+    setSelectedTypeRoute(null);
     setSelectedServiceId(id);
     if (window.location.hash !== `#service/${id}`) {
       window.history.pushState(null, '', `#service/${id}`);
@@ -264,11 +299,28 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleSelectType = (serviceId, typeId) => {
+    setIsQuotePage(false);
+    setSelectedServiceId(null);
+    setSelectedProjectId(null);
+    setSelectedTypeRoute({ serviceId, typeId });
+    if (window.location.hash !== `#type/${serviceId}/${typeId}`) {
+      window.history.pushState(null, '', `#type/${serviceId}/${typeId}`);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToService = (serviceId) => {
+    setSelectedTypeRoute(null);
+    handleSelectService(serviceId);
+  };
+
   const handleSelectProject = (project) => {
     const id = typeof project === 'string' ? project : project?.id;
     if (!id) return;
     setIsQuotePage(false);
     setSelectedServiceId(null);
+    setSelectedTypeRoute(null);
     setSelectedProjectId(id);
     if (window.location.hash !== `#project/${id}`) {
       window.history.pushState(null, '', `#project/${id}`);
@@ -279,6 +331,7 @@ export default function App() {
   const handleBackToHome = () => {
     setIsQuotePage(false);
     setSelectedServiceId(null);
+    setSelectedTypeRoute(null);
     setSelectedProjectId(null);
     window.history.pushState(null, '', '#home');
     setTimeout(() => {
@@ -289,6 +342,7 @@ export default function App() {
   const handleBackToWork = () => {
     setIsQuotePage(false);
     setSelectedServiceId(null);
+    setSelectedTypeRoute(null);
     setSelectedProjectId(null);
     window.history.pushState(null, '', '#work');
     setTimeout(() => {
@@ -315,12 +369,23 @@ export default function App() {
           onBack={handleBackToHome}
           preselectedService={preselectedQuoteService}
         />
+      ) : selectedTypeRoute ? (
+        /* Dedicated Full-Page Service Type Detail Page */
+        <ServiceTypeDetailPage
+          serviceId={selectedTypeRoute.serviceId}
+          typeId={selectedTypeRoute.typeId}
+          onBackToService={handleBackToService}
+          onBackToAllServices={handleBackToHome}
+          onSelectType={handleSelectType}
+          onOpenQuote={(serviceTitle) => handleOpenQuote(serviceTitle)}
+        />
       ) : selectedServiceId ? (
         /* Dedicated Full-Page Service Detail Hub */
         <ServiceDetailPage
           serviceId={selectedServiceId}
           onBack={handleBackToHome}
           onSelectService={handleSelectService}
+          onSelectType={handleSelectType}
           onOpenQuoteWithService={(serviceTitle) => handleOpenQuote(serviceTitle)}
         />
       ) : selectedProjectId ? (
@@ -365,12 +430,7 @@ export default function App() {
               onOpenQuote={handleOpenQuote}
             />
 
-            {/* 5. "Our Process" 4-Step Predictable Milestone Flow */}
-            <Process
-              onOpenQuote={() => handleOpenQuote('')}
-            />
-
-            {/* 6. "Our Work" Filterable Break & Reveal Showcase */}
+            {/* 5. "Our Work" Filterable Break & Reveal Showcase */}
             <OurWork
               onSelectProject={handleSelectProject}
             />

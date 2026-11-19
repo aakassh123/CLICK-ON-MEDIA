@@ -4,74 +4,20 @@ import {
   ArrowRight, 
   ArrowLeft, 
   Zap, 
-  Sparkles, 
   TrendingUp, 
   ExternalLink,
-  Layers,
-  LayoutGrid,
-  CheckCircle2,
-  ChevronRight,
-  Play,
-  Pause
+  CheckCircle2
 } from 'lucide-react';
-
-// =========================================================================
-// 6 ASYMMETRICAL GLASS POLYGON SHARDS FOR BUTTERY-SMOOTH SHATTER BREAK
-// =========================================================================
-const SHARD_CONFIGS = [
-  {
-    id: 'shard-0',
-    clipPath: 'polygon(0% 0%, 55% 0%, 45% 50%, 0% 40%)',
-    animClass: 'animate-shard-0'
-  },
-  {
-    id: 'shard-1',
-    clipPath: 'polygon(55% 0%, 100% 0%, 100% 50%, 45% 50%)',
-    animClass: 'animate-shard-1'
-  },
-  {
-    id: 'shard-2',
-    clipPath: 'polygon(45% 50%, 70% 45%, 55% 80%, 30% 70%)',
-    animClass: 'animate-shard-2'
-  },
-  {
-    id: 'shard-3',
-    clipPath: 'polygon(0% 40%, 45% 50%, 30% 70%, 40% 100%, 0% 100%)',
-    animClass: 'animate-shard-3'
-  },
-  {
-    id: 'shard-4',
-    clipPath: 'polygon(70% 45%, 100% 50%, 100% 100%, 40% 100%, 55% 80%)',
-    animClass: 'animate-shard-4'
-  },
-  {
-    id: 'shard-5',
-    clipPath: 'polygon(45% 50%, 100% 50%, 70% 45%)',
-    animClass: 'animate-shard-5'
-  }
-];
 
 export default function OurWork({ onSelectProject }) {
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const [breakingProject, setBreakingProject] = useState(null);
-  const [isBreaking, setIsBreaking] = useState(false);
-  const [breakKey, setBreakKey] = useState(0);
-  
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [viewMode, setViewMode] = useState('showcase'); // 'showcase' | 'grid'
-  const [isInView, setIsInView] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   
   const sectionRef = useRef(null);
-  const isBreakingRef = useRef(false);
-  const activeIndexRef = useRef(0);
   const lastWheelTimeRef = useRef(0);
-  const autoPlayTimerRef = useRef(null);
-  
   const touchStartXRef = useRef(0);
   const touchEndXRef = useRef(0);
-
-  const filters = ['All', 'Website', 'Marketing', 'Branding', 'Software'];
 
   const projects = [
     {
@@ -176,22 +122,7 @@ export default function OurWork({ onSelectProject }) {
     }
   ];
 
-  const filteredProjects = projects.filter((project) => {
-    if (activeFilter === 'All') return true;
-    return project.tags.includes(activeFilter);
-  });
-
-  const currentProject = projects[activeProjectIndex] || projects[0];
-
-  useEffect(() => {
-    activeIndexRef.current = activeProjectIndex;
-  }, [activeProjectIndex]);
-
-  useEffect(() => {
-    isBreakingRef.current = isBreaking;
-  }, [isBreaking]);
-
-  // Detect when user has scrolled to this section
+  // Detect when section is in view for smooth auto-play
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -202,99 +133,60 @@ export default function OurWork({ onSelectProject }) {
           setIsInView(entry.isIntersecting);
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.3 }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  // =========================================================================
-  // TRIGGER BUTTERY-SMOOTH CARD BREAK & REVEAL NEXT (PRESERVED ANIMATION)
-  // =========================================================================
-  const triggerBreakTo = (targetIndex) => {
-    if (targetIndex === activeIndexRef.current || isBreakingRef.current) return;
-    
-    const currentIndex = activeIndexRef.current;
-    setBreakingProject(projects[currentIndex]);
-    setActiveProjectIndex(targetIndex);
-    setIsBreaking(true);
-    isBreakingRef.current = true;
-    setBreakKey((prev) => prev + 1);
+  // Smooth auto-slide every 5 seconds when in view and not hovered
+  useEffect(() => {
+    if (!isInView || isHovered) return;
 
-    // After shatter duration (750ms), cleanup breaking layer
-    setTimeout(() => {
-      setIsBreaking(false);
-      isBreakingRef.current = false;
-      setBreakingProject(null);
-    }, 750);
+    const timer = setInterval(() => {
+      setActiveProjectIndex((prev) => (prev + 1) % projects.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [isInView, isHovered, projects.length]);
+
+  // Navigate to specific project
+  const goToProject = (targetIndex) => {
+    const safeIdx = Math.max(0, Math.min(targetIndex, projects.length - 1));
+    setActiveProjectIndex(safeIdx);
   };
 
   const handleNext = () => {
-    if (isBreakingRef.current) return;
-    const nextIdx = (activeIndexRef.current + 1) % projects.length;
-    triggerBreakTo(nextIdx);
+    setActiveProjectIndex((prev) => (prev + 1) % projects.length);
   };
 
   const handlePrev = () => {
-    if (isBreakingRef.current) return;
-    const prevIdx = (activeIndexRef.current - 1 + projects.length) % projects.length;
-    triggerBreakTo(prevIdx);
+    setActiveProjectIndex((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
-  // Continuous Auto-Break: When user has scrolled to this section, auto-change cards
-  useEffect(() => {
-    if (viewMode !== 'showcase' || !isInView || isHovered) {
-      if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
-      return;
+  // Optional mouse wheel gesture over the card: scrolls through projects smoothly
+  const handleCardWheel = (e) => {
+    const now = Date.now();
+    if (now - lastWheelTimeRef.current < 600) return;
+
+    if (Math.abs(e.deltaY) > 25) {
+      if (e.deltaY > 0 && activeProjectIndex < projects.length - 1) {
+        // Slide to next project
+        lastWheelTimeRef.current = now;
+        setActiveProjectIndex((prev) => prev + 1);
+      } else if (e.deltaY < 0 && activeProjectIndex > 0) {
+        // Slide to previous project
+        lastWheelTimeRef.current = now;
+        setActiveProjectIndex((prev) => prev - 1);
+      }
     }
-
-    autoPlayTimerRef.current = setInterval(() => {
-      if (!isBreakingRef.current) {
-        const nextIdx = (activeIndexRef.current + 1) % projects.length;
-        triggerBreakTo(nextIdx);
-      }
-    }, 4500); // Auto-changes every 4.5 seconds with break animation
-
-    return () => {
-      if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
-    };
-  }, [viewMode, isInView, isHovered, projects.length]);
-
-  // Scroll-driven automatic card advancement: as the user scrolls through the Work section,
-  // the cards automatically shatter & reveal the next project smoothly!
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-    let accumulatedDelta = 0;
-    const threshold = 140;
-
-    const handleScroll = () => {
-      if (!sectionRef.current || isBreakingRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
-
-      if (inView) {
-        const delta = window.scrollY - lastScrollY;
-        accumulatedDelta += delta;
-
-        if (accumulatedDelta > threshold) {
-          handleNext();
-          accumulatedDelta = 0;
-        } else if (accumulatedDelta < -threshold) {
-          handlePrev();
-          accumulatedDelta = 0;
-        }
-      }
-      lastScrollY = window.scrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [projects.length]);
+  };
 
   // Touch swipe support for mobile
   const handleTouchStart = (e) => {
     touchStartXRef.current = e.touches[0].clientX;
+    touchEndXRef.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e) => {
@@ -303,7 +195,7 @@ export default function OurWork({ onSelectProject }) {
 
   const handleTouchEnd = () => {
     const diff = touchStartXRef.current - touchEndXRef.current;
-    if (Math.abs(diff) > 40) {
+    if (Math.abs(diff) > 45) {
       if (diff > 0) {
         handleNext();
       } else {
@@ -313,364 +205,255 @@ export default function OurWork({ onSelectProject }) {
   };
 
   return (
+    // Clean, natural-height section with ZERO unwanted spacing or blank voids
     <section 
       id="work" 
       ref={sectionRef}
-      className="bg-transparent relative overflow-hidden py-14 sm:py-16 lg:py-20 text-[var(--text-dark)]"
+      className="relative py-12 sm:py-16 lg:py-20 bg-transparent border-t border-slate-200/60 text-[var(--text-dark)] overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Subtle Ambience */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-50/70 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute bottom-1/4 left-10 w-80 h-80 bg-orange-50/70 rounded-full blur-3xl pointer-events-none -z-0" />
+      {/* Background Soft Glows */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-50/60 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute bottom-1/4 left-10 w-80 h-80 bg-orange-50/60 rounded-full blur-3xl pointer-events-none -z-0" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         
-        {/* Header with Title and Narrative (Open & Grand Style without Box) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-slate-200/80 mb-6">
-          <div className="space-y-2">
-            {/* Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-bold text-[var(--primary-blue)] shadow-xs">
+        {/* Header with Title and Narrative */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-4 border-b border-slate-200/80 mb-6">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white border border-[var(--primary-blue)]/20 text-xs font-bold text-[var(--primary-blue)] shadow-xs">
               <Zap className="w-3.5 h-3.5 fill-[var(--primary-blue)]" />
               <span>Proven Agency Portfolio</span>
             </div>
 
-            {/* Headline with Official Logo Colors */}
             <RevealHeading tag="h2" delay={120} direction="up" blur={true} className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A1F6B] tracking-tight leading-tight font-heading">
               Projects That Create{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00]">
                 Real Impact
               </span>
             </RevealHeading>
+
             <p className="text-xs sm:text-sm text-[#071133] font-bold max-w-xl drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
-              Watch our client case studies shatter benchmarks. Click any project to open its dedicated full-page case study.
+              Watch our client case studies shatter benchmarks. Slide through our featured work or click any project to view its full case study.
             </p>
+          </div>
+
+          {/* Quick Navigation Controls */}
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <span className="text-xs font-mono font-bold text-slate-500 mr-2">
+              <span className="text-[#0A1F6B] font-extrabold text-sm">0{activeProjectIndex + 1}</span> / 0{projects.length}
+            </span>
+            <button
+              onClick={handlePrev}
+              className="w-8 h-8 rounded-full bg-white border border-slate-200 hover:border-[var(--brand-orange)] text-slate-700 hover:text-[var(--brand-orange)] flex items-center justify-center transition-all shadow-xs cursor-pointer"
+              title="Previous Project"
+              aria-label="Previous Project"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="w-8 h-8 rounded-full bg-white border border-slate-200 hover:border-[var(--brand-orange)] text-slate-700 hover:text-[var(--brand-orange)] flex items-center justify-center transition-all shadow-xs cursor-pointer"
+              title="Next Project"
+              aria-label="Next Project"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
-        {/* ========================================================================= */}
-        {/* 1. CINEMATIC BREAK & REVEAL SHOWCASE THEATER (Zero Blank Space)           */}
-        {/* ========================================================================= */}
-        {viewMode === 'showcase' ? (
-          <div>
-            
-            {/* ========================================================================= */}
-            {/* MAIN BREAK & REVEAL CARD STAGE (100% PRESERVED ANIMATION)                 */}
-            {/* ========================================================================= */}
-            <div 
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              className="relative w-full rounded-3xl bg-white border border-slate-200/90 shadow-[0_20px_60px_-15px_rgba(10,31,107,0.12)] overflow-hidden"
-              style={{ perspective: '1200px' }}
-            >
-              {/* Top Luminous Brand Bar */}
-              <div className="h-1.5 w-full bg-gradient-to-r from-[var(--cyan-accent)] via-[var(--primary-blue)] to-[var(--brand-orange)]" />
+        {/* ===================================================================== */}
+        {/* MAIN SLIDING CARD STAGE (ONE PROJECT AT A TIME, SMOOTH SLIDE)        */}
+        {/* ===================================================================== */}
+        <div 
+          onWheel={handleCardWheel}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="relative w-full rounded-3xl bg-white border border-slate-200/90 shadow-[0_20px_60px_-15px_rgba(10,31,107,0.12)] overflow-hidden"
+        >
+          {/* Top Luminous Brand Bar */}
+          <div className="h-1.5 w-full bg-gradient-to-r from-[var(--cyan-accent)] via-[var(--primary-blue)] to-[var(--brand-orange)]" />
 
-              {/* ----------------------------------------------------------------- */}
-              {/* ACTIVE INCOMING CARD (Appears smoothly underneath)                */}
-              {/* ----------------------------------------------------------------- */}
-              <div className={`w-full ${isBreaking ? 'animate-card-appear' : ''}`}>
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center p-5 sm:p-7 lg:p-10 relative">
-                  
-                  {/* Shockwave border glow during break transition */}
-                  {isBreaking && (
-                    <div className="absolute inset-0 pointer-events-none rounded-3xl border-2 border-[var(--cyan-accent)]/80 animate-card-shockwave" />
-                  )}
-
-                  {/* Left Column: Visual Showcase (7 Cols) */}
-                  <div className="lg:col-span-7">
-                    <div 
-                      onClick={() => onSelectProject(currentProject)}
-                      className="relative aspect-video sm:aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 shadow-xl cursor-pointer group"
-                    >
-                      <img
-                        src={currentProject.image}
-                        alt={`${currentProject.title} - ${currentProject.category}`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        loading="eager"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
-
-                      {/* Category Pill Tag */}
-                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                        <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-white border border-white/20 shadow-md">
-                          {currentProject.category}
-                        </span>
-                      </div>
-
-                      {/* Client Tag */}
-                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-white/90 backdrop-blur-md text-slate-800 border border-white/40 shadow-xs">
-                          #{currentProject.number}
-                        </span>
-                      </div>
-
-                      {/* Hover Overlay Button: Click opens dedicated page */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-xs">
-                        <div className="px-5 py-2.5 rounded-full bg-[var(--brand-orange)] text-white font-bold text-sm flex items-center gap-2 shadow-xl">
-                          <span>Open Dedicated Case Study Page</span>
-                          <ExternalLink className="w-4 h-4" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Column: Case Study Narrative & Results (5 Cols) */}
-                  <div className="lg:col-span-5 space-y-3 sm:space-y-4">
-                    
-                    {/* Number & Client */}
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl sm:text-3xl font-black font-mono text-[var(--brand-orange)]">
-                        {currentProject.number}
-                      </span>
-                      <div className="h-4 w-px bg-slate-200" />
-                      <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-heading">
-                        Client: {currentProject.client}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[var(--deep-navy)] tracking-tight leading-snug font-heading">
-                      {currentProject.title}
-                    </h3>
-
-                    {/* Measurable Results Callout Pill */}
-                    <div className="p-3 rounded-2xl bg-gradient-to-r from-[var(--primary-blue)]/10 via-[var(--primary-blue)]/5 to-[var(--brand-orange)]/10 border border-[var(--primary-blue)]/20 flex items-center gap-3">
-                      <div className="w-7 h-7 rounded-xl bg-gradient-to-r from-[var(--brand-orange)] to-[var(--amber)] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
-                        <TrendingUp className="w-3.5 h-3.5" />
-                      </div>
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] block font-heading">
-                          Verified Measurable Impact
-                        </span>
-                        <span className="text-xs sm:text-sm font-extrabold text-[var(--deep-navy)] font-heading">
-                          {currentProject.results}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal line-clamp-3">
-                      {currentProject.description}
-                    </p>
-
-                    {/* Key Highlights Checklist */}
-                    <div className="space-y-1 pt-0.5">
-                      {currentProject.highlights.slice(0, 3).map((item, hIdx) => (
-                        <div key={hIdx} className="flex items-start gap-2 text-xs text-slate-700">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                          <span className="line-clamp-1">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Services Tags */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {currentProject.tags.map((tag, tIdx) => (
-                        <span
-                          key={tIdx}
-                          className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200"
-                        >
-                          ✓ {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Action CTA: Opens dedicated Case Study Page */}
-                    <div className="pt-1">
-                      <button
-                        onClick={() => onSelectProject(currentProject)}
-                        className="btn-primary text-xs sm:text-sm !py-2.5 !px-6 group w-full sm:w-auto justify-center shadow-md font-heading font-bold cursor-pointer"
-                      >
-                        <span>Open Dedicated Case Study Page</span>
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </button>
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-
-              {/* ----------------------------------------------------------------- */}
-              {/* OVERLAY: SHATTERING GLASS POLYGONS (Card Breaks into 6 Shards)    */}
-              {/* ----------------------------------------------------------------- */}
-              {isBreaking && breakingProject && (
+          {/* Sliding Carousel Track (Horizontal slide transition) */}
+          <div 
+            className="flex w-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
+            style={{ transform: `translate3d(-${activeProjectIndex * 100}%, 0, 0)` }}
+          >
+            {projects.map((project, idx) => {
+              const isActive = activeProjectIndex === idx;
+              return (
                 <div 
-                  key={`break-${breakKey}`}
-                  className="absolute inset-0 z-30 pointer-events-none overflow-hidden"
-                  style={{ perspective: '1200px' }}
+                  key={project.id} 
+                  className={`w-full flex-shrink-0 transition-opacity duration-700 ease-out ${
+                    isActive ? 'opacity-100' : 'opacity-30 pointer-events-none'
+                  }`}
                 >
-                  {SHARD_CONFIGS.map((shard) => (
-                    <div
-                      key={shard.id}
-                      className={`absolute inset-0 ${shard.animClass}`}
-                      style={{
-                        clipPath: shard.clipPath,
-                        WebkitClipPath: shard.clipPath,
-                        transformStyle: 'preserve-3d'
-                      }}
-                    >
-                      {/* Mirror Image of Outgoing Breaking Card */}
-                      <div className="w-full h-full bg-white">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center p-5 sm:p-7 lg:p-10">
-                          
-                          {/* Shard Left Visual */}
-                          <div className="lg:col-span-7">
-                            <div className="relative aspect-video sm:aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-900 shadow-xl">
-                              <img
-                                src={breakingProject.image}
-                                alt={breakingProject.title}
-                                className="w-full h-full object-cover"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
-                              <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/70 text-white">
-                                  {breakingProject.category}
-                                </span>
-                              </div>
-                            </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-7 lg:gap-8 items-center p-5 sm:p-7 lg:p-9 relative">
+                    
+                    {/* Left Column: Visual Showcase (7 Cols) */}
+                    <div className="lg:col-span-7">
+                      <div 
+                        onClick={() => onSelectProject(project)}
+                        className="relative aspect-video sm:aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 shadow-xl cursor-pointer group"
+                      >
+                        <img
+                          src={project.image}
+                          alt={`${project.title} - ${project.category}`}
+                          className={`w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 ${
+                            isActive ? 'scale-100' : 'scale-105'
+                          }`}
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
+
+                        {/* Category Pill Tag */}
+                        <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                          <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-white border border-white/20 shadow-md">
+                            {project.category}
+                          </span>
+                        </div>
+
+                        {/* Client Tag */}
+                        <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-white/90 backdrop-blur-md text-slate-800 border border-white/40 shadow-xs">
+                            #{project.number}
+                          </span>
+                        </div>
+
+                        {/* Hover Overlay Button: Click opens dedicated page */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-xs">
+                          <div className="px-5 py-2.5 rounded-full bg-[var(--brand-orange)] text-white font-bold text-sm flex items-center gap-2 shadow-xl">
+                            <span>Open Dedicated Case Study Page</span>
+                            <ExternalLink className="w-4 h-4" />
                           </div>
+                        </div>
+                      </div>
+                    </div>
 
-                          {/* Shard Right Content */}
-                          <div className="lg:col-span-5 space-y-3 sm:space-y-4">
-                            <div className="flex items-center gap-3">
-                              <span className="text-2xl sm:text-3xl font-black font-mono text-[var(--brand-orange)]">
-                                {breakingProject.number}
-                              </span>
-                              <div className="h-4 w-px bg-slate-200" />
-                              <span className="text-xs font-bold uppercase text-[var(--text-muted)] font-heading">
-                                Client: {breakingProject.client}
-                              </span>
-                            </div>
+                    {/* Right Column: Case Study Narrative & Results (5 Cols) */}
+                    <div className="lg:col-span-5 space-y-3 sm:space-y-4">
+                      
+                      {/* Number & Client */}
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl sm:text-3xl font-black font-mono text-[var(--brand-orange)]">
+                          {project.number}
+                        </span>
+                        <div className="h-4 w-px bg-slate-200" />
+                        <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-heading">
+                          Client: {project.client}
+                        </span>
+                      </div>
 
-                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[var(--deep-navy)] font-heading">
-                              {breakingProject.title}
-                            </h3>
+                      {/* Title */}
+                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[var(--deep-navy)] tracking-tight leading-snug font-heading">
+                        {project.title}
+                      </h3>
 
-                            <div className="p-3 rounded-2xl bg-[var(--primary-blue)]/10 border border-[var(--primary-blue)]/20 flex items-center gap-3">
-                              <div className="w-7 h-7 rounded-xl bg-[var(--brand-orange)] text-white flex items-center justify-center">
-                                <TrendingUp className="w-3.5 h-3.5" />
-                              </div>
-                              <span className="text-xs sm:text-sm font-bold text-[var(--deep-navy)] font-heading">
-                                {breakingProject.results}
-                              </span>
-                            </div>
-                          </div>
-
+                      {/* Measurable Results Callout Pill */}
+                      <div className="p-3 rounded-2xl bg-gradient-to-r from-[var(--primary-blue)]/10 via-[var(--primary-blue)]/5 to-[var(--brand-orange)]/10 border border-[var(--primary-blue)]/20 flex items-center gap-3">
+                        <div className="w-7 h-7 rounded-xl bg-gradient-to-r from-[var(--brand-orange)] to-[var(--amber)] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+                          <TrendingUp className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] block font-heading">
+                            Verified Measurable Impact
+                          </span>
+                          <span className="text-xs sm:text-sm font-extrabold text-[var(--deep-navy)] font-heading">
+                            {project.results}
+                          </span>
                         </div>
                       </div>
 
-                      {/* Glowing Crystal Edge Highlight */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-[var(--cyan-accent)]/20 via-white/10 to-[var(--brand-orange)]/25 pointer-events-none" />
+                      {/* Description */}
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal line-clamp-3">
+                        {project.description}
+                      </p>
+
+                      {/* Key Highlights Checklist */}
+                      <div className="space-y-1 pt-0.5">
+                        {project.highlights.slice(0, 3).map((item, hIdx) => (
+                          <div key={hIdx} className="flex items-start gap-2 text-xs text-slate-700">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                            <span className="line-clamp-1">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Services Tags */}
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {project.tags.map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200"
+                          >
+                            ✓ {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Action CTA: Opens dedicated Case Study Page */}
+                      <div className="pt-1">
+                        <button
+                          onClick={() => onSelectProject(project)}
+                          className="btn-primary text-xs sm:text-sm !py-2.5 !px-6 group w-full sm:w-auto justify-center shadow-md font-heading font-bold cursor-pointer flex items-center gap-2"
+                        >
+                          <span>Open Dedicated Case Study Page</span>
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </button>
+                      </div>
+
                     </div>
-                  ))}
+
+                  </div>
                 </div>
-              )}
-
-              {/* Bottom Progress Bar */}
-              <div className="h-1.5 w-full bg-slate-100 relative">
-                <div 
-                  className="h-full bg-gradient-to-r from-[var(--primary-blue)] via-[var(--cyan-accent)] to-[var(--brand-orange)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                  style={{ width: `${((activeProjectIndex + 1) / projects.length) * 100}%` }}
-                />
-              </div>
-
-            </div>
-
+              );
+            })}
           </div>
-        ) : (
-          /* ========================================================================= */
-          /* 2. ALL PROJECTS GRID VIEW (When Toggled to View All Cards)                 */
-          /* ========================================================================= */
-          <div>
+
+          {/* Bottom Interactive Navigation & Progress Bar */}
+          <div className="border-t border-slate-100 bg-slate-50/80 px-4 sm:px-8 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
             
-            {/* Category Filters in Grid Mode */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 rounded-2xl border border-slate-200 w-fit mb-8">
-              {filters.map((filter) => {
-                const isActive = activeFilter === filter;
+            {/* Interactive Slide Tabs */}
+            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar max-w-full">
+              {projects.map((proj, pIdx) => {
+                const isActive = activeProjectIndex === pIdx;
                 return (
                   <button
-                    key={filter}
-                    onClick={() => setActiveFilter(filter)}
-                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    key={proj.id}
+                    onClick={() => goToProject(pIdx)}
+                    className={`px-3 py-1 rounded-full text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
                       isActive
-                        ? 'bg-[var(--primary-blue)] text-white shadow-sm'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'bg-[#0A1F6B] text-white shadow-sm ring-2 ring-[var(--brand-orange)]/60 scale-[1.02]'
+                        : 'bg-white text-slate-600 hover:text-[#0A1F6B] hover:bg-slate-200/60 border border-slate-200'
                     }`}
                   >
-                    {filter}
+                    <span className={isActive ? 'text-[var(--brand-orange)] font-mono' : 'text-slate-400 font-mono'}>
+                      0{pIdx + 1}
+                    </span>
+                    <span className="hidden xs:inline">{proj.title}</span>
                   </button>
                 );
               })}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {filteredProjects.map((project) => (
-                <div
-                  key={project.id}
-                  onClick={() => onSelectProject(project)}
-                  className="group relative bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                      
-                      <div className="absolute top-3 left-3">
-                        <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-white border border-white/20">
-                          {project.category}
-                        </span>
-                      </div>
-
-                      <div className="absolute top-3 right-3 font-mono font-bold text-xs bg-black/60 backdrop-blur-md text-white px-2.5 py-1 rounded-full border border-white/20">
-                        {project.number}
-                      </div>
-                    </div>
-
-                    <div className="p-6 space-y-2">
-                      <div className="text-xs font-bold text-[var(--brand-orange)] font-mono uppercase">
-                        Client: {project.client}
-                      </div>
-
-                      <h3 className="text-xl font-extrabold text-[var(--deep-navy)] group-hover:text-[var(--primary-blue)] transition-colors font-heading">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
-                        {project.summary}
-                      </p>
-
-                      <div className="pt-2 flex items-center gap-2 text-xs font-bold text-emerald-600">
-                        <TrendingUp className="w-3.5 h-3.5" />
-                        <span>{project.results}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="px-6 pb-6 pt-3 flex items-center justify-between border-t border-slate-100">
-                    <span className="text-xs font-bold text-[var(--primary-blue)] group-hover:text-[var(--brand-orange)] flex items-center gap-1 transition-colors">
-                      Open Dedicated Page
-                    </span>
-                    <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center group-hover:bg-[var(--brand-orange)] group-hover:text-white transition-all shadow-xs">
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              ))}
+            {/* Progress Indicator */}
+            <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+              <span className="hidden md:inline text-[11px] font-sans text-slate-500">Auto-playing • Click or swipe</span>
+              <div className="w-24 sm:w-32 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-[var(--primary-blue)] to-[var(--brand-orange)] transition-all duration-500"
+                  style={{ width: `${((activeProjectIndex + 1) / projects.length) * 100}%` }}
+                />
+              </div>
             </div>
 
           </div>
-        )}
+
+        </div>
 
       </div>
-
     </section>
   );
 }

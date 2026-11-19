@@ -186,8 +186,8 @@ export default function Testimonials({ onOpenQuote }) {
         </div>
 
         {/* Section Bottom Trust Callout */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex flex-wrap items-center justify-center gap-3 px-6 py-3 rounded-full bg-white border border-slate-200/90 shadow-sm text-xs font-semibold text-slate-700">
+        <div className="mt-10 sm:mt-12 text-center">
+          <div className="inline-flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl sm:rounded-full bg-white border border-slate-200/90 shadow-sm text-xs font-semibold text-slate-700">
             <span className="flex items-center gap-1 text-emerald-600 font-bold">
               <CheckCircle2 className="w-4 h-4" /> 150+ Verified Client Engagements
             </span>

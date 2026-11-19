@@ -135,3 +135,4 @@ export default function LegalModal({ isOpen, onClose, activeTab = 'privacy' }) {
     </div>
   );
 }
+

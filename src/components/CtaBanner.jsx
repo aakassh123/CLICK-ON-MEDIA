@@ -8,7 +8,7 @@ export default function CtaBanner({ onOpenConsultation }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Curved Card Container styled with Brand Colors */}
-        <div className="relative rounded-3xl sm:rounded-[36px] overflow-hidden bg-gradient-to-br from-[#061448] via-[#0A1F6B] to-[#040E32] p-8 sm:p-12 lg:p-14 border border-[var(--cyan-accent)]/30 shadow-2xl shadow-[#0A1F6B]/30">
+        <div className="relative rounded-3xl sm:rounded-[36px] overflow-hidden bg-gradient-to-br from-[#061448] via-[#0A1F6B] to-[#040E32] p-6 sm:p-12 lg:p-14 border border-[var(--cyan-accent)]/30 shadow-2xl shadow-[#0A1F6B]/30">
           
           {/* Ambient Lighting & Glows */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--brand-orange)]/20 rounded-full blur-3xl pointer-events-none -z-0" />
