@@ -48,15 +48,16 @@ export default function Footer({ onOpenQuote, onSelectService }) {
             </p>
 
             <div className="space-y-3 pt-2 text-sm text-slate-700">
-              <a 
-                href="tel:+918303534063" 
-                className="flex items-center gap-3 text-slate-700 hover:text-[var(--primary-blue)] transition-colors group"
-              >
-                <div className="w-9 h-9 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-[var(--brand-orange)] group-hover:scale-105 transition-transform flex-shrink-0">
+              <div className="flex items-center gap-3 text-slate-700">
+                <div className="w-9 h-9 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-[var(--brand-orange)] flex-shrink-0">
                   <Phone className="w-4 h-4" />
                 </div>
-                <span className="font-semibold text-slate-900">+91 83035 34063</span>
-              </a>
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-semibold text-slate-900">
+                  <a href="tel:+918303534063" className="hover:text-[var(--primary-blue)] transition-colors">+91 83035 34063</a>
+                  <span className="text-slate-300">|</span>
+                  <a href="tel:+917905382491" className="hover:text-[var(--primary-blue)] transition-colors">+91 79053 82491</a>
+                </div>
+              </div>
 
               <div className="space-y-2">
                 <a 
