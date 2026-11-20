@@ -83,7 +83,18 @@ export default function Footer({ onOpenQuote, onSelectService, onOpenPortfolio }
                 </div>
                 <div>
                   <span className="font-semibold text-slate-900 block">Gorakhpur Headquarters:</span>
-                  <span className="text-xs text-slate-500 leading-relaxed">Near Adalat Restaurant, Pipal Dada, Shri Ganga Tiraha, Mohaddipur, Gorakhpur, Uttar Pradesh 273008</span>
+                  <a
+                    href="https://www.google.com/maps/place/Click+On+Media+-Digital+Marketing+Agency/@26.7483214,83.4117146,17z"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-slate-500 hover:text-[var(--primary-blue)] transition-colors leading-relaxed block group"
+                    title="View Click On Media location on Google Maps"
+                  >
+                    <span>Near Adalat Restaurant, Pipal Dada, Shri Ganga Tiraha, Mohaddipur, Gorakhpur, Uttar Pradesh 273008</span>
+                    <span className="inline-flex items-center gap-1 text-[var(--brand-orange)] text-[11px] font-bold ml-1.5 group-hover:underline">
+                      View on Google Maps ↗
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>

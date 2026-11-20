@@ -248,10 +248,18 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                         <div className="text-xs text-slate-500">clickonmedia3@gmail.com</div>
                       </div>
                   </div>
-                  <div className="flex items-center gap-2.5 text-slate-700">
-                    <MapPin className="w-4 h-4 text-emerald-600" />
-                    <span className="text-xs text-slate-600 leading-snug">Near Adalat Restaurant, Pipal Dada, Shri Ganga Tiraha, Mohaddipur, Gorakhpur, Uttar Pradesh 273008</span>
-                  </div>
+                  <a 
+                    href="https://www.google.com/maps/place/Click+On+Media+-Digital+Marketing+Agency/@26.7483214,83.4117146,17z"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-2.5 text-slate-700 hover:text-[var(--primary-blue)] transition-colors group"
+                  >
+                    <MapPin className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <span className="text-xs text-slate-600 group-hover:text-[var(--primary-blue)] leading-snug">
+                      Near Adalat Restaurant, Pipal Dada, Shri Ganga Tiraha, Mohaddipur, Gorakhpur, Uttar Pradesh 273008
+                      <span className="text-[var(--brand-orange)] text-[10px] font-bold block mt-0.5">View on Google Maps ↗</span>
+                    </span>
+                  </a>
                 </div>
               </div>
 

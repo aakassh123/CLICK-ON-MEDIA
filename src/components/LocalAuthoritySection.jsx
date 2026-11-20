@@ -15,7 +15,9 @@ import {
   Globe2,
   TrendingUp,
   Award,
-  Video
+  Video,
+  ExternalLink,
+  Clock
 } from 'lucide-react';
 
 export default function LocalAuthoritySection({ onOpenQuote }) {
@@ -108,49 +110,150 @@ export default function LocalAuthoritySection({ onOpenQuote }) {
         </div>
 
         {/* ===================================================================== */}
-        {/* 2. THREE-PILLAR LOCAL AUTHORITY CARDS                                  */}
+        {/* 2. OFFICIAL OFFICE LOCATION & LIVE INTERACTIVE GOOGLE MAP             */}
         {/* ===================================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
-          
-          {/* Card 1: Local Office & Contact */}
-          <div className="rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 p-6 sm:p-7 shadow-lg flex flex-col justify-between space-y-4 hover:shadow-xl transition-shadow">
-            <div className="space-y-3">
-              <div className="w-10 h-10 rounded-2xl bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] flex items-center justify-center">
-                <Navigation className="w-5 h-5 text-[var(--primary-blue)]" />
+        <div className="rounded-3xl sm:rounded-[36px] bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-xl overflow-hidden mb-10 sm:mb-14">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+            
+            {/* Left: Office Details, Contact, Hours & Directions (5 cols) */}
+            <div className="lg:col-span-5 p-6 sm:p-8 lg:p-9 flex flex-col justify-between space-y-6 border-b lg:border-b-0 lg:border-r border-slate-200/90 bg-gradient-to-b from-white via-slate-50/40 to-white">
+              
+              <div className="space-y-4">
+                
+                {/* Verified Badge */}
+                <div className="flex items-center justify-between gap-2 flex-wrap">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] text-xs font-mono font-bold">
+                    <MapPin className="w-3.5 h-3.5 text-[var(--brand-orange)]" />
+                    <span>OFFICIAL HEADQUARTERS</span>
+                  </div>
+
+                  <a 
+                    href="https://www.google.com/maps/place/Click+On+Media+-Digital+Marketing+Agency/@26.7483214,83.4117146,17z" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200 hover:bg-amber-100 transition-colors"
+                  >
+                    <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                    <span>4.9 / 5 on Google Maps</span>
+                  </a>
+                </div>
+
+                {/* Office Title */}
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-heading font-black text-[#0A1F6B] tracking-tight">
+                    Visit Our Gorakhpur Office
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1 font-medium">
+                    Click On Media - Digital Marketing &amp; Website Development Agency
+                  </p>
+                </div>
+
+                {/* Physical Address */}
+                <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-2">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-orange-50 text-[var(--brand-orange)] flex items-center justify-center flex-shrink-0 mt-0.5 border border-orange-200/60">
+                      <Navigation className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-heading font-bold text-slate-900">Registered Office Address</div>
+                      <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                        Near Adalat Restaurant, Pipal Dada, Shri Ganga Tiraha, Mohaddipur, Gorakhpur, Uttar Pradesh 273008
+                      </p>
+                      <div className="text-[11px] text-slate-400 mt-1 flex items-center gap-1.5 font-medium">
+                        <span>📍 Landmark: Opposite Adalat Restaurant • Near Shri Ganga Tiraha</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Working Hours with Live Active Status */}
+                <div className="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                    </span>
+                    <span className="font-heading font-bold text-emerald-900">Open for In-Person Consultation</span>
+                  </div>
+                  <span className="text-[11px] font-mono font-bold text-emerald-800">Mon–Sat: 9AM–8PM</span>
+                </div>
+
+                {/* Direct Connect Options */}
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <a
+                    href="tel:+918303534063"
+                    className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 border border-slate-200/80 text-slate-800 flex items-center gap-2 transition-all font-semibold"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[var(--brand-orange)] flex-shrink-0" />
+                    <span className="truncate">+91 83035 34063</span>
+                  </a>
+
+                  <a
+                    href="https://wa.me/918303534063?text=Hi%20Click%20On%20Media,%20I%20would%20like%20to%20visit%20your%20Gorakhpur%20office%20for%20a%20consultation."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200 text-emerald-800 flex items-center gap-2 transition-all font-semibold"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                    <span className="truncate">Chat on WhatsApp</span>
+                  </a>
+                </div>
+
               </div>
-              <h3 className="text-lg sm:text-xl font-heading font-extrabold text-[#0A1F6B]">
-                Visit Our Office
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Near Adalat Restaurant, Pipal Dada, Shri Ganga Tiraha, Mohaddipur, Gorakhpur, Uttar Pradesh 273008
-              </p>
-              <div className="pt-1 flex items-center gap-1.5 text-xs text-emerald-600 font-semibold">
+
+              {/* Primary Direction Action Button */}
+              <div className="pt-2">
+                <a
+                  href="https://www.google.com/maps/place/Click+On+Media+-Digital+Marketing+Agency/@26.7483214,83.4117146,17z"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary !py-3 !px-5 text-xs sm:text-sm font-heading font-extrabold w-full justify-center flex items-center gap-2 shadow-md hover:shadow-lg transition-all group cursor-pointer"
+                >
+                  <MapPin className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
+                  <span>Open in Google Maps / Get Directions</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                </a>
+              </div>
+
+            </div>
+
+            {/* Right: Embedded Live Interactive Google Map (7 cols) */}
+            <div className="lg:col-span-7 relative min-h-[360px] sm:min-h-[420px] lg:min-h-[480px] bg-slate-100">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.8763586223145!2d83.4117146!3d26.748321399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399145efb5fc4fd3%3A0x3f4a91b1afdfcc00!2sClick%20On%20Media%20-Digital%20Marketing%20Agency!5e0!3m2!1sen!2sin!4v1795093822629!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: '360px' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Click On Media - Digital Marketing Agency Office Location Map"
+                className="w-full h-full min-h-[360px] sm:min-h-[420px] lg:min-h-[480px]"
+              />
+
+              {/* Floating Verified Badge on Map */}
+              <div className="absolute top-3 left-3 pointer-events-none hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-slate-200/90 text-xs font-heading font-bold text-slate-800 shadow-md">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Open Mon–Sat: 9:00 AM – 8:00 PM</span>
+                <span>Verified Business Location</span>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-100 flex items-center gap-3">
-              <a
-                href="https://maps.google.com/?q=26.7538,83.3912"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary !py-2.5 !px-4 text-xs font-bold w-full justify-center flex items-center gap-1.5 shadow-md"
-              >
-                <MapPin className="w-3.5 h-3.5" />
-                <span>Get Google Maps Directions</span>
-              </a>
-            </div>
           </div>
+        </div>
 
-          {/* Card 2: Local Micro-Localities Covered */}
+        {/* ===================================================================== */}
+        {/* 3. LOCALITIES & REGIONAL EXPANSION CARDS                              */}
+        {/* ===================================================================== */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
+          
+          {/* Card 1: Local Micro-Localities Covered */}
           <div className="rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 p-6 sm:p-7 shadow-lg flex flex-col justify-between space-y-4 hover:shadow-xl transition-shadow">
             <div className="space-y-3">
               <div className="w-10 h-10 rounded-2xl bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] flex items-center justify-center">
                 <Globe2 className="w-5 h-5 text-[var(--brand-orange)]" />
               </div>
               <h3 className="text-lg sm:text-xl font-heading font-extrabold text-[#0A1F6B]">
-                Gorakhpur Localities
+                Gorakhpur Localities Served
               </h3>
               <p className="text-xs text-slate-500">
                 Active client partnerships &amp; localized Google search rankings in:
@@ -169,11 +272,11 @@ export default function LocalAuthoritySection({ onOpenQuote }) {
 
             <div className="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium flex items-center gap-1">
               <ShieldCheck className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-              <span>Dedicated Local Field Strategists</span>
+              <span>Dedicated Local Field Strategists &amp; On-Site Production</span>
             </div>
           </div>
 
-          {/* Card 3: Regional Uttar Pradesh Footprint */}
+          {/* Card 2: Regional Uttar Pradesh Footprint */}
           <div className="rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 p-6 sm:p-7 shadow-lg flex flex-col justify-between space-y-4 hover:shadow-xl transition-shadow">
             <div className="space-y-3">
               <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0B5CFF] to-[#FF7A00] text-white flex items-center justify-center">
@@ -200,7 +303,7 @@ export default function LocalAuthoritySection({ onOpenQuote }) {
             <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
               <span className="font-bold text-[#0A1F6B]">150+ UP Projects Delivered</span>
               <span className="flex items-center text-[var(--amber)] font-bold">
-                <Star className="w-3.5 h-3.5 fill-[var(--amber)]" /> 4.9/5
+                <Star className="w-3.5 h-3.5 fill-[var(--amber)]" /> 4.9/5 Rating
               </span>
             </div>
           </div>
