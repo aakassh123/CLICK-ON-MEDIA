@@ -308,7 +308,7 @@ const SERVICES_DATA = [
   {
     id: 'monetization',
     number: '10',
-    title: 'Monetization',
+    title: 'Monetization Service',
     badge: 'Revenue Optimization',
     microTag: ['YOUTUBE REVENUE', 'META CREATOR', 'ASSET MONETIZATION'],
     headlineStack: {
@@ -334,7 +334,7 @@ const SERVICES_DATA = [
     ],
     metrics: 'Max RPM Revenue',
     metricDetail: 'Passive Cashflow',
-    ctaText: 'Explore Monetization'
+    ctaText: 'Explore Monetization Service'
   }
 ];
 

@@ -51,7 +51,7 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
     'Ads - Website + Insta, FB, WhatsApp',
     'Software Development',
     'CRM',
-    'Monetization'
+    'Monetization Service'
   ];
 
   const budgetOptions = [

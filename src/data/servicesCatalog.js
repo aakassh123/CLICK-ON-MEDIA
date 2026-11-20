@@ -1675,7 +1675,7 @@ export const SERVICES_CATALOG = {
   'monetization': {
     id: 'monetization',
     number: '10',
-    title: 'Monetization',
+    title: 'Monetization Service',
     categoryName: 'Digital Revenue & Creator Optimization',
     badge: 'Revenue Scaling',
     tagline: 'Maximize digital asset earnings through YouTube AdSense, Meta bonuses, and sponsorship funnels.',
@@ -2308,3 +2308,4 @@ SERVICES_CATALOG['social-ads'] = SERVICES_CATALOG['ads'];
 SERVICES_CATALOG['marketing'] = SERVICES_CATALOG['ads'];
 SERVICES_CATALOG['branding'] = SERVICES_CATALOG['graphics-designing'];
 SERVICES_CATALOG['content'] = SERVICES_CATALOG['video-editing'];
+SERVICES_CATALOG['monetization-service'] = SERVICES_CATALOG['monetization'];

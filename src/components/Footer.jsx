@@ -125,7 +125,7 @@ export default function Footer({ onOpenQuote, onSelectService }) {
                 { name: 'Ads - Website + Insta, FB, WhatsApp', id: 'ads' },
                 { name: 'Software Development', id: 'software-dev' },
                 { name: 'CRM', id: 'crm' },
-                { name: 'Monetization', id: 'monetization' }
+                { name: 'Monetization Service', id: 'monetization' }
               ].map((service, idx) => (
                 <li key={idx}>
                   <button

@@ -72,7 +72,7 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
     { title: 'Ads - Website + Insta, FB, WhatsApp', desc: 'High-ROAS Google, Meta & WhatsApp ad funnels.', id: 'ads', icon: Target, color: 'text-[var(--brand-orange)]' },
     { title: 'Software Development', desc: 'Tailor-made cloud software & mobile apps.', id: 'software-dev', icon: Code2, color: 'text-[var(--primary-blue)]' },
     { title: 'CRM', desc: 'Centralized lead pipeline & automated follow-ups.', id: 'crm', icon: Layout, color: 'text-[var(--primary-blue)]' },
-    { title: 'Monetization', desc: 'Maximize YouTube, creator & asset revenue streams.', id: 'monetization', icon: TrendingUp, color: 'text-[var(--brand-orange)]' },
+    { title: 'Monetization Service', desc: 'Maximize YouTube, creator & asset revenue streams.', id: 'monetization', icon: TrendingUp, color: 'text-[var(--brand-orange)]' },
   ];
 
   const navLinks = [

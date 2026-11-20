@@ -27,7 +27,7 @@ export default function QuoteModal({ isOpen, onClose, preselectedService }) {
     'Ads - Website + Insta, FB, WhatsApp',
     'Software Development',
     'CRM',
-    'Monetization'
+    'Monetization Service'
   ];
 
   const budgetOptions = [

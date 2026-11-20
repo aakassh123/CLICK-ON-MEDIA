@@ -107,7 +107,12 @@ const SEO_METADATA = {
     canonical: 'https://clickonmedia.in/#service/crm'
   },
   'service/monetization': {
-    title: 'Digital Asset Monetization & Growth | Click On Media',
+    title: 'Digital Asset Monetization Service & Growth | Click On Media',
+    description: 'Strategic YouTube AdSense revenue maximization, Meta creator bonuses, sponsor funnels, and passive cashflow optimization for creators.',
+    canonical: 'https://clickonmedia.in/#service/monetization'
+  },
+  'service/monetization-service': {
+    title: 'Digital Asset Monetization Service & Growth | Click On Media',
     description: 'Strategic YouTube AdSense revenue maximization, Meta creator bonuses, sponsor funnels, and passive cashflow optimization for creators.',
     canonical: 'https://clickonmedia.in/#service/monetization'
   }
