@@ -51,12 +51,23 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
     window.addEventListener('resize', handleScroll, { passive: true });
     handleScroll();
 
+    // Auto-pause when tab is hidden or user switches apps to conserve 100% device battery & memory
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        videoRef.current?.pause();
+      } else if (!isVideoModalOpen) {
+        videoRef.current?.play().catch(() => {});
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (velocityTimerRef.current) clearTimeout(velocityTimerRef.current);
     };
-  }, []);
+  }, [isVideoModalOpen]);
 
   // Pause when full-screen video modal is open
   useEffect(() => {
@@ -96,7 +107,7 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
           muted
           playsInline
           webkit-playsinline="true"
-          preload="auto"
+          preload="metadata"
           disablePictureInPicture
           disableRemotePlayback
           className="w-full h-full object-cover filter brightness-100 contrast-112 saturate-115 transition-opacity duration-300 pointer-events-none"

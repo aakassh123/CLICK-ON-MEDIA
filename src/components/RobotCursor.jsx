@@ -18,8 +18,11 @@ export default function RobotCursor() {
   const antennaRef = useRef(null);
 
   useEffect(() => {
-    // Avoid running on SSR
+    // Avoid running on SSR, pure touch devices (phones/tablets) or reduced motion preference
     if (typeof window === 'undefined') return;
+    const isTouchOnly = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouchOnly || prefersReducedMotion) return;
 
     // Movement coordinates & physics states (stored in memory, zero React re-renders)
     const cursor = { x: -200, y: -200 };

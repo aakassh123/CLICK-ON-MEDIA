@@ -319,8 +319,9 @@ export default function PortfolioPage({
                 <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="text"
+                  maxLength={60}
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => setSearchQuery(e.target.value.replace(/[<>]/g, ''))}
                   placeholder="Search by client, title, tag..."
                   className="w-full pl-10 pr-9 py-2 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-[var(--primary-blue)] focus:ring-2 focus:ring-[var(--primary-blue)]/20 text-xs sm:text-sm font-heading font-medium text-slate-900 placeholder:text-slate-400 outline-none transition-all"
                 />

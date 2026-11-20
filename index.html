@@ -24,12 +24,13 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(self)" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; frame-src https://www.google.com https://maps.google.com; media-src 'self' data: blob:; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; connect-src 'self' https: wss:;" />
 
   <!-- Geographic Location Tags for Local SEO (Mohaddipur, Gorakhpur, Uttar Pradesh) -->
   <meta name="geo.region" content="IN-UP" />
   <meta name="geo.placename" content="Mohaddipur, Gorakhpur, Uttar Pradesh, India" />
-  <meta name="geo.position" content="26.7538;83.3912" />
-  <meta name="ICBM" content="26.7538, 83.3912" />
+  <meta name="geo.position" content="26.7483214;83.4117146" />
+  <meta name="ICBM" content="26.7483214, 83.4117146" />
 
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website" />
@@ -51,9 +52,13 @@
     content="Click On Media is Gorakhpur's #1 digital marketing agency &amp; website development company. Top SEO, software, Google Ads, reels &amp; guaranteed ROI in UP." />
   <meta property="twitter:image" content="https://clickonmedia.in/clickonmedia-logo-full.png" />
 
-  <!-- Google Fonts: Poppins (headings) + Inter (body) with font-display: swap -->
+  <!-- Resource Preconnects for Core Web Vitals & Low Latency -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+  <link rel="dns-prefetch" href="https://www.google.com">
+  <link rel="dns-prefetch" href="https://maps.google.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap"
     rel="stylesheet">
@@ -367,8 +372,8 @@
           {
             "@type": "ListItem",
             "position": 3,
-            "name": "Our Work",
-            "item": "https://clickonmedia.in/#work"
+            "name": "Portfolio & Case Studies",
+            "item": "https://clickonmedia.in/#portfolio"
           },
           {
             "@type": "ListItem",
@@ -379,6 +384,12 @@
           {
             "@type": "ListItem",
             "position": 5,
+            "name": "Office Location & Contact",
+            "item": "https://clickonmedia.in/#contact"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
             "name": "Get a Quote",
             "item": "https://clickonmedia.in/#quote"
           }
