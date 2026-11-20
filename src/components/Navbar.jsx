@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import Logo from './Logo';
 
-export default function Navbar({ onOpenQuote, onSelectService }) {
+export default function Navbar({ onOpenQuote, onSelectService, onOpenPortfolio }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
@@ -84,7 +84,7 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
       subItems: serviceSubItems
     },
     { name: 'About', href: '#about' },
-    { name: 'Portfolio', href: '#work' },
+    { name: 'Portfolio', href: '#portfolio' },
     { name: 'Contact Us', href: '#contact' },
   ];
 
@@ -266,6 +266,13 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
                   <a
                     key={link.name}
                     href={link.href}
+                    onClick={(e) => {
+                      if (link.href === '#portfolio') {
+                        e.preventDefault();
+                        if (onOpenPortfolio) onOpenPortfolio();
+                        else window.location.hash = '#portfolio';
+                      }
+                    }}
                     className="px-3.5 xl:px-4 py-1.5 text-xs xl:text-sm font-bold tracking-wide transition-all rounded-full text-slate-800 hover:text-[var(--primary-blue)] hover:bg-white shadow-none hover:shadow-xs"
                   >
                     {link.name}
@@ -345,7 +352,14 @@ export default function Navbar({ onOpenQuote, onSelectService }) {
             <div key={link.name} className="space-y-1">
               <a
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  setIsMobileMenuOpen(false);
+                  if (link.href === '#portfolio') {
+                    e.preventDefault();
+                    if (onOpenPortfolio) onOpenPortfolio();
+                    else window.location.hash = '#portfolio';
+                  }
+                }}
                 className="block px-3 py-2.5 rounded-xl text-sm font-bold text-slate-800 hover:text-[var(--primary-blue)] hover:bg-slate-50 min-h-[44px] flex items-center justify-between"
               >
                 <span>{link.name}</span>

@@ -27,7 +27,7 @@ const CATEGORY_ICONS = {
   'social-media': Share2
 };
 
-export default function OurWork({ onSelectProject }) {
+export default function OurWork({ onSelectProject, onOpenPortfolio }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [visibleCount, setVisibleCount] = useState(9);
 
@@ -262,19 +262,34 @@ export default function OurWork({ onSelectProject }) {
         </div>
 
         {/* ===================================================================== */}
-        {/* 4. "SHOW ALL PROJECTS" BUTTON (When Filter is "All" & Count < Total) */}
+        {/* 4. DEDICATED PORTFOLIO ARCHIVE & SHAREABLE REFERENCE BANNER          */}
         {/* ===================================================================== */}
-        {activeCategory === 'all' && visibleCount < allProjects.length && (
-          <div className="mt-10 sm:mt-12 text-center">
+        <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3.5 text-center">
+          {activeCategory === 'all' && visibleCount < allProjects.length && (
             <button
               onClick={handleShowAll}
-              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 rounded-full bg-white hover:bg-[#0A1F6B] hover:text-white border-2 border-[#0A1F6B] text-[#0A1F6B] text-xs sm:text-sm font-heading font-bold shadow-md transition-all hover:scale-105 cursor-pointer group"
+              className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full bg-white hover:bg-slate-100 border-2 border-[#0A1F6B] text-[#0A1F6B] text-xs sm:text-sm font-heading font-bold shadow-xs transition-all hover:scale-102 cursor-pointer group"
             >
-              <span>Explore All {allProjects.length} Projects</span>
-              <ArrowRight className="w-4 h-4 text-[var(--brand-orange)] group-hover:text-white group-hover:translate-x-1 transition-transform" />
+              <span>Load More ({allProjects.length - visibleCount} more)</span>
+              <ArrowRight className="w-4 h-4 text-[var(--brand-orange)] group-hover:translate-x-1 transition-transform" />
             </button>
-          </div>
-        )}
+          )}
+
+          <a
+            href="#portfolio"
+            onClick={(e) => {
+              if (onOpenPortfolio) {
+                e.preventDefault();
+                onOpenPortfolio(activeCategory);
+              }
+            }}
+            className="inline-flex items-center gap-2 px-7 sm:px-9 py-3.5 rounded-full bg-[#0A1F6B] hover:bg-[var(--primary-blue)] text-white text-xs sm:text-sm font-heading font-extrabold shadow-lg hover:shadow-xl transition-all hover:scale-105 cursor-pointer group"
+          >
+            <Layers className="w-4 h-4 text-[var(--brand-orange)] group-hover:rotate-12 transition-transform" />
+            <span>Open Dedicated Portfolio Page (20+ Case Studies)</span>
+            <ArrowRight className="w-4 h-4 text-[var(--cyan-accent)] group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
 
         {/* ===================================================================== */}
         {/* 5. BOTTOM HIGH-CONVERSION CTA RIBBON                                  */}

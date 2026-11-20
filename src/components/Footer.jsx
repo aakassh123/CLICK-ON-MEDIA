@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, ArrowRight, Instagram, Linkedin, Twitter, Youtube,
 import Logo from './Logo';
 import LegalModal from './LegalModal';
 
-export default function Footer({ onOpenQuote, onSelectService }) {
+export default function Footer({ onOpenQuote, onSelectService, onOpenPortfolio }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [legalModalOpen, setLegalModalOpen] = useState(false);
@@ -95,14 +95,28 @@ export default function Footer({ onOpenQuote, onSelectService }) {
               Quick Links
             </h4>
             <ul className="space-y-2.5 text-sm">
-              {['Home', 'About Us', 'Our Work', 'Our Process', 'Pricing & Quote', 'Client Stories'].map((link, idx) => (
+              {[
+                { name: 'Home', href: '#home' },
+                { name: 'About Us', href: '#about' },
+                { name: 'Portfolio & Case Studies', href: '#portfolio' },
+                { name: 'Our Process', href: '#our-process' },
+                { name: 'Pricing & Quote', href: '#quote' },
+                { name: 'Client Stories', href: '#client-stories' }
+              ].map((item, idx) => (
                 <li key={idx}>
                   <a 
-                    href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
+                    href={item.href}
+                    onClick={(e) => {
+                      if (item.href === '#portfolio') {
+                        e.preventDefault();
+                        if (onOpenPortfolio) onOpenPortfolio();
+                        else window.location.hash = '#portfolio';
+                      }
+                    }}
                     className="hover:text-[var(--primary-blue)] text-slate-600 transition-colors flex items-center gap-2 group py-1"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-[var(--brand-orange)] transition-colors" />
-                    <span className="group-hover:text-[var(--primary-blue)] transition-colors font-medium">{link}</span>
+                    <span className="group-hover:text-[var(--primary-blue)] transition-colors font-medium">{item.name}</span>
                   </a>
                 </li>
               ))}

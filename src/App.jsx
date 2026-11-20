@@ -21,6 +21,7 @@ import ServiceDetailPage from './components/ServiceDetailPage';
 import ServiceTypeDetailPage from './components/ServiceTypeDetailPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import QuotePage from './components/QuotePage';
+import PortfolioPage from './components/PortfolioPage';
 import { SERVICES_CATALOG } from './data/servicesCatalog';
 import { PROJECTS_DATA } from './data/projectsData';
 
@@ -60,6 +61,11 @@ const SEO_METADATA = {
     title: 'Get a Free Quote & Strategy Call | Click On Media',
     description: 'Ready to scale your business? Request a transparent quote and receive a custom roadmap and proposal from our strategists within 24 hours.',
     canonical: 'https://clickonmedia.in/#quote'
+  },
+  '#portfolio': {
+    title: 'Portfolio & Client Case Studies | Click On Media Gorakhpur',
+    description: 'Explore 20+ verified client case studies, live web apps, viral reels, and custom software delivered by Click On Media across UP and India.',
+    canonical: 'https://clickonmedia.in/#portfolio'
   },
   'service/social-media': {
     title: 'Social Media Marketing in Gorakhpur | Click On Media',
@@ -206,6 +212,9 @@ const applyRouteSEO = (routeKey) => {
 
 export default function App() {
   const [isQuotePage, setIsQuotePage] = useState(false);
+  const [isPortfolioPage, setIsPortfolioPage] = useState(false);
+  const [portfolioCategoryFilter, setPortfolioCategoryFilter] = useState('all');
+  const [portfolioReturnView, setPortfolioReturnView] = useState('home');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
@@ -221,11 +230,28 @@ export default function App() {
       const hash = window.location.hash;
       if (hash === '#quote') {
         setIsQuotePage(true);
+        setIsPortfolioPage(false);
         setSelectedServiceId(null);
         setInitialTypeId(null);
         setSelectedTypeRoute(null);
         setSelectedProjectId(null);
         applyRouteSEO('#quote');
+      } else if (hash && (hash === '#portfolio' || hash.startsWith('#portfolio'))) {
+        setIsPortfolioPage(true);
+        setIsQuotePage(false);
+        setSelectedServiceId(null);
+        setInitialTypeId(null);
+        setSelectedTypeRoute(null);
+        setSelectedProjectId(null);
+        
+        // Extract optional category filter from hash: #portfolio?cat=websites
+        const catMatch = hash.match(/[?&]cat=([^&]+)/);
+        if (catMatch && catMatch[1]) {
+          setPortfolioCategoryFilter(decodeURIComponent(catMatch[1]));
+        } else {
+          setPortfolioCategoryFilter('all');
+        }
+        applyRouteSEO('#portfolio');
       } else if (hash && (hash.startsWith('#type/') || hash.startsWith('#service-type/'))) {
         const raw = hash.replace(/^#(type|service-type)\//, '');
         const [sId, tId] = raw.split('/');
@@ -234,6 +260,7 @@ export default function App() {
         setSelectedTypeRoute(null);
         setSelectedProjectId(null);
         setIsQuotePage(false);
+        setIsPortfolioPage(false);
         applyRouteSEO(`type/${sId}/${tId}`);
       } else if (hash && hash.startsWith('#service/')) {
         const id = hash.replace('#service/', '');
@@ -241,6 +268,7 @@ export default function App() {
         setInitialTypeId(null);
         setSelectedTypeRoute(null);
         setIsQuotePage(false);
+        setIsPortfolioPage(false);
         setSelectedProjectId(null);
         applyRouteSEO(`service/${id}`);
       } else if (hash && hash.startsWith('#project/')) {
@@ -249,10 +277,12 @@ export default function App() {
         setInitialTypeId(null);
         setSelectedTypeRoute(null);
         setIsQuotePage(false);
+        setIsPortfolioPage(false);
         setSelectedServiceId(null);
         applyRouteSEO(`project/${id}`);
       } else {
         setIsQuotePage(false);
+        setIsPortfolioPage(false);
         setSelectedServiceId(null);
         setInitialTypeId(null);
         setSelectedTypeRoute(null);
@@ -270,12 +300,29 @@ export default function App() {
     };
   }, []);
 
+  const handleOpenPortfolio = (category = 'all') => {
+    setIsQuotePage(false);
+    setSelectedServiceId(null);
+    setInitialTypeId(null);
+    setSelectedTypeRoute(null);
+    setSelectedProjectId(null);
+    setPortfolioCategoryFilter(category || 'all');
+    setIsPortfolioPage(true);
+    const targetHash = category && category !== 'all' ? `#portfolio?cat=${encodeURIComponent(category)}` : '#portfolio';
+    if (window.location.hash !== targetHash) {
+      window.history.pushState(null, '', targetHash);
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    applyRouteSEO('#portfolio');
+  };
+
   const handleOpenQuote = (serviceName = '') => {
     setPreselectedQuoteService(serviceName);
     setSelectedServiceId(null);
     setInitialTypeId(null);
     setSelectedTypeRoute(null);
     setSelectedProjectId(null);
+    setIsPortfolioPage(false);
     setIsQuotePage(true);
     if (window.location.hash !== '#quote') {
       window.history.pushState(null, '', '#quote');
@@ -285,6 +332,7 @@ export default function App() {
 
   const handleSelectService = (id) => {
     setIsQuotePage(false);
+    setIsPortfolioPage(false);
     setSelectedProjectId(null);
     setSelectedTypeRoute(null);
     setInitialTypeId(null);
@@ -297,6 +345,7 @@ export default function App() {
 
   const handleSelectType = (serviceId, typeId) => {
     setIsQuotePage(false);
+    setIsPortfolioPage(false);
     setSelectedProjectId(null);
     setSelectedTypeRoute(null);
     setSelectedServiceId(serviceId);
@@ -315,6 +364,7 @@ export default function App() {
     const id = typeof project === 'string' ? project : project?.id;
     if (!id) return;
     setIsQuotePage(false);
+    setIsPortfolioPage(false);
     setSelectedServiceId(null);
     setInitialTypeId(null);
     setSelectedTypeRoute(null);
@@ -327,10 +377,12 @@ export default function App() {
 
   const handleBackToHome = () => {
     setIsQuotePage(false);
+    setIsPortfolioPage(false);
     setSelectedServiceId(null);
     setInitialTypeId(null);
     setSelectedTypeRoute(null);
     setSelectedProjectId(null);
+    setPortfolioReturnView('home');
     window.history.pushState(null, '', '#home');
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -339,10 +391,12 @@ export default function App() {
 
   const handleBackToWork = () => {
     setIsQuotePage(false);
+    setIsPortfolioPage(false);
     setSelectedServiceId(null);
     setInitialTypeId(null);
     setSelectedTypeRoute(null);
     setSelectedProjectId(null);
+    setPortfolioReturnView('home');
     window.history.pushState(null, '', '#work');
     setTimeout(() => {
       const el = document.getElementById('work');
@@ -352,6 +406,14 @@ export default function App() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }, 50);
+  };
+
+  const handleBackFromProject = () => {
+    if (portfolioReturnView === 'portfolio') {
+      handleOpenPortfolio(portfolioCategoryFilter || 'all');
+    } else {
+      handleBackToWork();
+    }
   };
 
   return (
@@ -388,11 +450,22 @@ export default function App() {
           onSelectType={handleSelectType}
           onOpenQuoteWithService={(serviceTitle) => handleOpenQuote(serviceTitle)}
         />
+      ) : isPortfolioPage ? (
+        /* Dedicated Full-Page Portfolio & Verified Work Archive */
+        <PortfolioPage
+          initialCategory={portfolioCategoryFilter}
+          onBack={handleBackToHome}
+          onSelectProject={(project) => {
+            setPortfolioReturnView('portfolio');
+            handleSelectProject(project);
+          }}
+          onOpenQuote={(serviceTitle) => handleOpenQuote(serviceTitle)}
+        />
       ) : selectedProjectId ? (
         /* Dedicated Full-Page Case Study Hub (No Modals) */
         <ProjectDetailPage
           projectId={selectedProjectId}
-          onBack={handleBackToWork}
+          onBack={handleBackFromProject}
           onOpenQuote={(serviceTitle) => handleOpenQuote(serviceTitle)}
           onSelectProject={handleSelectProject}
         />
@@ -403,6 +476,7 @@ export default function App() {
           <Navbar
             onOpenQuote={() => handleOpenQuote('')}
             onSelectService={handleSelectService}
+            onOpenPortfolio={handleOpenPortfolio}
           />
 
           <main className="flex-grow m-0 p-0 relative">
@@ -433,6 +507,7 @@ export default function App() {
             {/* 5. "Our Work" Filterable Break & Reveal Showcase */}
             <OurWork
               onSelectProject={handleSelectProject}
+              onOpenPortfolio={handleOpenPortfolio}
             />
 
             {/* 7. Yes Madam Inspired: Verified Client Testimonials & Social Proof */}
@@ -460,6 +535,7 @@ export default function App() {
           <Footer
             onOpenQuote={() => handleOpenQuote('')}
             onSelectService={handleSelectService}
+            onOpenPortfolio={handleOpenPortfolio}
           />
 
           {/* 11. Mobile Sticky Action Bar (Yes Madam Mobile Web Standard) */}
