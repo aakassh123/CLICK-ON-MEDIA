@@ -191,7 +191,7 @@ export default function ServiceDetailPage({
               <button
                 key={key}
                 onClick={() => {
-                  setSelectedType(null);
+                  setExpandedCardId(null);
                   if (onSelectService) onSelectService(key);
                 }}
                 className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap flex-shrink-0 ${
