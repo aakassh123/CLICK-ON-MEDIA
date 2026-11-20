@@ -32,12 +32,11 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
 
   const allProjects = useMemo(() => Object.values(PROJECTS_DATA), []);
 
-  // Diverse 4 flagship projects for the front page overview
+  // 3 diverse premier flagship projects for the front page overview
   const featuredFlagships = useMemo(() => [
-    PROJECTS_DATA['mapaz-hotel'],          // 1. Websites & Booking Engine
-    PROJECTS_DATA['gym-transform-reel'],    // 2. Video Editing & Viral 9:16 Reels
-    PROJECTS_DATA['medicare-hospital-his'], // 3. Custom Software & Hospital HIS
-    PROJECTS_DATA['dental-clinic-growth']   // 4. Social Media & Performance Ads
+    PROJECTS_DATA['mapaz-hotel'],          // 1. Websites: MAPAZ Hotel & Booking Platform
+    PROJECTS_DATA['viral-food-reels'],     // 2. Video Editing: Viral Food & 9:16 Restaurant Reels
+    PROJECTS_DATA['medix-hospital-pms']    // 3. Software: Medix Hospital Patient Management EMR
   ].filter(Boolean), []);
 
   // Filter projects based on activeCategory
@@ -48,12 +47,12 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
     return allProjects.filter((p) => p.categoryKey === activeCategory);
   }, [activeCategory, allProjects]);
 
-  // Front page strictly displays only 3 to 4 featured works
+  // Front page displays 3 featured works
   const displayedProjects = useMemo(() => {
     if (activeCategory === 'all') {
       return featuredFlagships;
     }
-    return filteredProjects.slice(0, 4);
+    return filteredProjects.slice(0, 3);
   }, [activeCategory, featuredFlagships, filteredProjects]);
 
   const handleCategoryChange = (catId) => {
@@ -148,9 +147,9 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
         </div>
 
         {/* ===================================================================== */}
-        {/* 3. BEAUTIFUL IMAGE-BASED PROJECT CARDS GRID (4 Flagship Projects)     */}
+        {/* 3. BEAUTIFUL IMAGE-BASED PROJECT CARDS GRID (3 Flagship Projects)     */}
         {/* ===================================================================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {displayedProjects.map((project) => {
             const Icon = CATEGORY_ICONS[project.categoryKey] || Globe;
             return (
@@ -285,7 +284,7 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
           </div>
 
           <p className="text-xs text-slate-500 font-medium">
-            Showing 4 flagship highlights on front page • Browse all {allProjects.length} client works, live websites &amp; ROI case studies in the dedicated portfolio
+            Showing 3 flagship highlights on front page • Browse all {allProjects.length} client works, live websites &amp; ROI case studies in the dedicated portfolio
           </p>
         </div>
 
