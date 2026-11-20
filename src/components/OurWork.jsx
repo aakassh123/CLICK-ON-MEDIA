@@ -29,9 +29,16 @@ const CATEGORY_ICONS = {
 
 export default function OurWork({ onSelectProject, onOpenPortfolio }) {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [visibleCount, setVisibleCount] = useState(9);
 
   const allProjects = useMemo(() => Object.values(PROJECTS_DATA), []);
+
+  // Diverse 4 flagship projects for the front page overview
+  const featuredFlagships = useMemo(() => [
+    PROJECTS_DATA['mapaz-hotel'],          // 1. Websites & Booking Engine
+    PROJECTS_DATA['gym-transform-reel'],    // 2. Video Editing & Viral 9:16 Reels
+    PROJECTS_DATA['medicare-hospital-his'], // 3. Custom Software & Hospital HIS
+    PROJECTS_DATA['dental-clinic-growth']   // 4. Social Media & Performance Ads
+  ].filter(Boolean), []);
 
   // Filter projects based on activeCategory
   const filteredProjects = useMemo(() => {
@@ -41,21 +48,16 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
     return allProjects.filter((p) => p.categoryKey === activeCategory);
   }, [activeCategory, allProjects]);
 
-  // Projects to display (handles pagination / view more on "All")
+  // Front page strictly displays only 3 to 4 featured works
   const displayedProjects = useMemo(() => {
     if (activeCategory === 'all') {
-      return filteredProjects.slice(0, visibleCount);
+      return featuredFlagships;
     }
-    return filteredProjects;
-  }, [activeCategory, filteredProjects, visibleCount]);
+    return filteredProjects.slice(0, 4);
+  }, [activeCategory, featuredFlagships, filteredProjects]);
 
   const handleCategoryChange = (catId) => {
     setActiveCategory(catId);
-    setVisibleCount(9);
-  };
-
-  const handleShowAll = () => {
-    setVisibleCount(allProjects.length);
   };
 
   return (
@@ -146,9 +148,9 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
         </div>
 
         {/* ===================================================================== */}
-        {/* 3. BEAUTIFUL IMAGE-BASED PROJECT CARDS GRID                           */}
+        {/* 3. BEAUTIFUL IMAGE-BASED PROJECT CARDS GRID (4 Flagship Projects)     */}
         {/* ===================================================================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {displayedProjects.map((project) => {
             const Icon = CATEGORY_ICONS[project.categoryKey] || Globe;
             return (
@@ -264,31 +266,27 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
         {/* ===================================================================== */}
         {/* 4. DEDICATED PORTFOLIO ARCHIVE & SHAREABLE REFERENCE BANNER          */}
         {/* ===================================================================== */}
-        <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3.5 text-center">
-          {activeCategory === 'all' && visibleCount < allProjects.length && (
-            <button
-              onClick={handleShowAll}
-              className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full bg-white hover:bg-slate-100 border-2 border-[#0A1F6B] text-[#0A1F6B] text-xs sm:text-sm font-heading font-bold shadow-xs transition-all hover:scale-102 cursor-pointer group"
+        <div className="mt-10 sm:mt-14 text-center space-y-3">
+          <div>
+            <a
+              href="#portfolio"
+              onClick={(e) => {
+                if (onOpenPortfolio) {
+                  e.preventDefault();
+                  onOpenPortfolio(activeCategory);
+                }
+              }}
+              className="inline-flex items-center gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-[#0A1F6B] hover:bg-[var(--primary-blue)] text-white text-xs sm:text-sm font-heading font-extrabold shadow-lg hover:shadow-xl transition-all hover:scale-105 cursor-pointer group"
             >
-              <span>Load More ({allProjects.length - visibleCount} more)</span>
-              <ArrowRight className="w-4 h-4 text-[var(--brand-orange)] group-hover:translate-x-1 transition-transform" />
-            </button>
-          )}
+              <Layers className="w-4 h-4 text-[var(--brand-orange)] group-hover:rotate-12 transition-transform" />
+              <span>Explore Full Portfolio &amp; Case Studies Archive (20+ Projects)</span>
+              <ArrowRight className="w-4 h-4 text-[var(--cyan-accent)] group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
 
-          <a
-            href="#portfolio"
-            onClick={(e) => {
-              if (onOpenPortfolio) {
-                e.preventDefault();
-                onOpenPortfolio(activeCategory);
-              }
-            }}
-            className="inline-flex items-center gap-2 px-7 sm:px-9 py-3.5 rounded-full bg-[#0A1F6B] hover:bg-[var(--primary-blue)] text-white text-xs sm:text-sm font-heading font-extrabold shadow-lg hover:shadow-xl transition-all hover:scale-105 cursor-pointer group"
-          >
-            <Layers className="w-4 h-4 text-[var(--brand-orange)] group-hover:rotate-12 transition-transform" />
-            <span>Open Dedicated Portfolio Page (20+ Case Studies)</span>
-            <ArrowRight className="w-4 h-4 text-[var(--cyan-accent)] group-hover:translate-x-1 transition-transform" />
-          </a>
+          <p className="text-xs text-slate-500 font-medium">
+            Showing 4 flagship highlights on front page • Browse all {allProjects.length} client works, live websites &amp; ROI case studies in the dedicated portfolio
+          </p>
         </div>
 
         {/* ===================================================================== */}
