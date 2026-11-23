@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, ArrowRight, Instagram, Linkedin, Twitter, Youtube, CheckCircle2 } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowRight, Instagram, Linkedin, Twitter, Youtube, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import Logo from './Logo';
 import LegalModal from './LegalModal';
+import { submitNewsletter } from '../services/apiService';
 
 export default function Footer({ onOpenQuote, onSelectService, onOpenPortfolio }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscribeError, setSubscribeError] = useState(null);
   const [legalModalOpen, setLegalModalOpen] = useState(false);
   const [legalModalTab, setLegalModalTab] = useState('privacy');
 
@@ -14,13 +17,22 @@ export default function Footer({ onOpenQuote, onSelectService, onOpenPortfolio }
     setLegalModalOpen(true);
   };
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    const sanitizedEmail = email.replace(/[<>]/g, '').trim();
-    if (sanitizedEmail && sanitizedEmail.includes('@')) {
+    setIsSubscribing(true);
+    setSubscribeError(null);
+    setSubscribed(false);
+
+    const result = await submitNewsletter(email);
+    setIsSubscribing(false);
+
+    if (result.success) {
       setSubscribed(true);
       setEmail('');
-      setTimeout(() => setSubscribed(false), 5000);
+      setTimeout(() => setSubscribed(false), 6000);
+    } else {
+      setSubscribeError(result.error || 'Subscription failed. Please contact us directly at info@clickonmedia.in.');
+      setTimeout(() => setSubscribeError(null), 6000);
     }
   };
 
@@ -189,21 +201,31 @@ export default function Footer({ onOpenQuote, onSelectService, onOpenPortfolio }
                   required
                   maxLength={100}
                   aria-label="Work email for newsletter"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:border-[var(--primary-blue)] focus:ring-1 focus:ring-[var(--primary-blue)] transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:border-[var(--primary-blue)] focus:ring-1 focus:ring-[var(--primary-blue)] transition-colors pr-12"
                 />
                 <button
                   type="submit"
+                  disabled={isSubscribing}
                   aria-label="Subscribe to newsletter"
-                  className="absolute right-1 top-1 bottom-1 px-3.5 btn-primary text-white rounded-lg text-xs font-heading font-bold transition-all flex items-center justify-center cursor-pointer shadow-md"
+                  className={`absolute right-1 top-1 bottom-1 px-3.5 btn-primary text-white rounded-lg text-xs font-heading font-bold transition-all flex items-center justify-center shadow-md ${
+                    isSubscribing ? 'opacity-80 cursor-wait' : 'cursor-pointer hover:scale-105'
+                  }`}
                 >
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  {isSubscribing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ArrowRight className="w-3.5 h-3.5" />}
                 </button>
               </div>
 
               {subscribed && (
                 <div className="flex items-center gap-1.5 text-xs text-emerald-600 pt-1 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Subscribed successfully! Welcome aboard.</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                  <span>Subscribed successfully! Welcome to Click On Media insights.</span>
+                </div>
+              )}
+
+              {subscribeError && (
+                <div className="flex items-center gap-1.5 text-xs text-rose-600 pt-1 font-medium">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  <span>{subscribeError}</span>
                 </div>
               )}
             </form>

@@ -1686,7 +1686,7 @@ export const SERVICES_CATALOG = {
         id: 'youtube-adsense-monetization',
         title: 'YouTube Channel Monetization & High-RPM Strategy',
         badge: 'High Ad Revenue',
-        tagline: 'Fast-track 4,000 watch hours & maximize ad dollars per 1,000 views',
+        tagline: 'Fast-track 4,000 watch hours & maximize ad revenue (RPM) per 1,000 views',
         image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
         explanation: 'Complete YouTube Partner Program (YPP) compliance roadmap, strategic mid-roll ad placement for 8+ minute videos, high-RPM commercial topic research, and copyright cleanup to maximize monthly AdSense payouts.',
         idealFor: 'Aspiring creators, News channels, Educational institutions, Podcast hosts, Niche bloggers.',
@@ -1695,7 +1695,7 @@ export const SERVICES_CATALOG = {
           { title: 'YouTube Partner Program (YPP) Fast-Track Audit', desc: 'Audit content for 1,000 subscribers & 4,000 watch hours compliance without strikes.' },
           { title: 'High-RPM Keyword & Niche Research', desc: 'Targeting commercial search topics (Finance, Tech, Education, Real Estate) paying 5x higher RPM.' },
           { title: 'Strategic Mid-Roll Ad Placement Optimization', desc: 'Placing mid-roll ads at natural narrative pauses to maximize impressions without alienating viewers.' },
-          { title: 'Copyright Claim & Reused Content Cleanup', desc: 'Resolving yellow dollar signs, copyright disputes, and policy violations preventing monetization.' },
+          { title: 'Copyright Claim & Reused Content Cleanup', desc: 'Resolving demonetization flags, copyright disputes, and policy violations preventing monetization.' },
           { title: 'Channel Audience Retention Engineering', desc: 'Structuring video hooks and chapter pacing to drive watch-time to the algorithm’s sweet spot.' },
           { title: 'Monthly Revenue Analytics & RPM Coaching', desc: 'Detailed breakdown of playback-based CPM vs RPM to forecast compounding channel earnings.' }
         ],

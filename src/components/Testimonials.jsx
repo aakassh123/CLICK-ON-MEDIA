@@ -168,6 +168,9 @@ export default function Testimonials({ onOpenQuote }) {
                     alt={`${rev.name} - ${rev.company} Review for Click On Media`}
                     className="w-10 h-10 rounded-full object-cover border border-slate-200"
                     loading="lazy"
+                    decoding="async"
+                    width="40"
+                    height="40"
                   />
                   <div className="min-w-0">
                     <div className="flex items-center gap-1">

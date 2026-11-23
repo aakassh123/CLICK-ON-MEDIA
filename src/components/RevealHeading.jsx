@@ -14,14 +14,22 @@ export default function RevealHeading({
   delay = 0,
   direction = 'up', // 'up' | 'down' | 'left' | 'right'
   threshold = 0.12,
-  blur = false
+  blur = false,
+  immediate = false
 }) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(immediate);
   const elementRef = useRef(null);
 
   useEffect(() => {
+    if (immediate) return;
     const el = elementRef.current;
     if (!el) return;
+
+    // Respect prefers-reduced-motion: immediately reveal without transitions
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIsVisible(true);
+      return;
+    }
 
     // Check if IntersectionObserver is supported
     if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
@@ -44,7 +52,7 @@ export default function RevealHeading({
       // Fallback for environments without observer
       setIsVisible(true);
     }
-  }, [threshold]);
+  }, [immediate, threshold]);
 
   const getTransform = () => {
     if (isVisible) return 'translate3d(0, 0, 0)';

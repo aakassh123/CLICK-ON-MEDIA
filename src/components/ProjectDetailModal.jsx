@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
 
 export default function ProjectDetailModal({ project, onClose, onOpenQuote }) {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose?.();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   if (!project) return null;
 
   return (
@@ -10,6 +18,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenQuote }) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-modal-title"
+      onClick={onClose}
     >
       <div 
         className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden"

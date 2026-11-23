@@ -374,10 +374,13 @@ export default function AboutUs({ onOpenConsultation }) {
             
             {/* Background Photographic Scene: Team outdoor terrace collaboration (like reference) */}
             <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=75" 
               alt="Click On Media Team Collaboration in Gorakhpur, UP"
               className="absolute inset-0 w-full h-full object-cover object-center filter brightness-90 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
               loading="lazy"
+              decoding="async"
+              width="800"
+              height="520"
             />
 
             {/* Dark Scrim Vignette for 100% Text Legibility */}

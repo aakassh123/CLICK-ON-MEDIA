@@ -11,6 +11,7 @@ import React, { useEffect, useRef } from 'react';
  * - True multi-input support (mouse, trackpad, touch-hybrid laptops)
  */
 export default function RobotCursor() {
+  const [isEnabled, setIsEnabled] = React.useState(false);
   const containerRef = useRef(null);
   const leftEyeRef = useRef(null);
   const rightEyeRef = useRef(null);
@@ -23,6 +24,11 @@ export default function RobotCursor() {
     const isTouchOnly = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (isTouchOnly || prefersReducedMotion) return;
+    setIsEnabled(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isEnabled) return;
 
     // Movement coordinates & physics states (stored in memory, zero React re-renders)
     const cursor = { x: -200, y: -200 };
@@ -249,7 +255,9 @@ export default function RobotCursor() {
       clearTimeout(blinkTimeout);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [isEnabled]);
+
+  if (!isEnabled) return null;
 
   return (
     <div

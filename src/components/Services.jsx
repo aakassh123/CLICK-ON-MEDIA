@@ -355,30 +355,54 @@ export default function Services({ onSelectService, onOpenQuote }) {
 
   // Scroll-driven automatic card rotation: as the user scrolls the website,
   // the cards rotate and progress smoothly in 3D!
+  // Uses IntersectionObserver to completely ELIMINATE getBoundingClientRect forced reflows!
+  const isSectionInViewRef = useRef(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof window === 'undefined') return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          isSectionInViewRef.current = entry.isIntersecting;
+        },
+        { rootMargin: '20% 0px 20% 0px' }
+      );
+      observer.observe(el);
+      return () => observer.disconnect();
+    } else {
+      isSectionInViewRef.current = true;
+    }
+  }, []);
+
   useEffect(() => {
     let lastScrollY = window.scrollY;
     let accumulatedDelta = 0;
-    const scrollThreshold = 40; // Responsive threshold: smooth natural rotation as user scrolls
+    const scrollThreshold = 40;
+    let ticking = false;
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-      lastScrollY = currentScrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const delta = currentScrollY - lastScrollY;
+          lastScrollY = currentScrollY;
 
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight * 1.15 && rect.bottom > -window.innerHeight * 0.15;
+          if (isSectionInViewRef.current && Math.abs(delta) > 1) {
+            accumulatedDelta += delta;
 
-      if (inView && Math.abs(delta) > 1) {
-        accumulatedDelta += delta;
-
-        if (accumulatedDelta > scrollThreshold) {
-          setActiveCardIndex((prev) => (prev + 1) % totalCards);
-          accumulatedDelta = 0;
-        } else if (accumulatedDelta < -scrollThreshold) {
-          setActiveCardIndex((prev) => (prev - 1 + totalCards) % totalCards);
-          accumulatedDelta = 0;
-        }
+            if (accumulatedDelta > scrollThreshold) {
+              setActiveCardIndex((prev) => (prev + 1) % totalCards);
+              accumulatedDelta = 0;
+            } else if (accumulatedDelta < -scrollThreshold) {
+              setActiveCardIndex((prev) => (prev - 1 + totalCards) % totalCards);
+              accumulatedDelta = 0;
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -526,6 +550,9 @@ export default function Services({ onSelectService, onOpenQuote }) {
           alt={`${service.title} - Click On Media Digital Services in Gorakhpur`}
           className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-106"
           loading="lazy"
+          decoding="async"
+          width="600"
+          height="375"
         />
         {/* Soft Vignette Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />

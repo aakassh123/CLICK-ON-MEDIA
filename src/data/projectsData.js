@@ -58,39 +58,41 @@ export const PROJECTS_DATA = {
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'Razorpay', 'WhatsApp Business API', 'Google Search Console']
   },
 
-  'royal-awadh': {
-    id: 'royal-awadh',
+  'hotel-adalat': {
+    id: 'hotel-adalat',
     number: '02',
     categoryKey: 'websites',
     category: 'Website Development',
-    categoryLabel: 'Fine Dining & Online Table Booking',
-    title: 'The Royal Awadh Restaurant',
-    client: 'Royal Awadh Hospitality',
+    categoryLabel: 'Heritage Dining & Handi Specialist',
+    title: 'Hotel Adalat & Restaurant',
+    client: 'Adalat Restaurant & Hospitality',
     year: '2024',
-    duration: '4 Weeks Sprint',
-    liveUrl: 'https://royalawadh.in',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85',
-    summary: 'Aesthetic restaurant website with dynamic food menu, table reservation engine, and instant directions.',
-    description: 'Engineered a sensory-rich culinary flagship website for The Royal Awadh, featuring an interactive digital food menu, real-time table reservation system, and direct WhatsApp banquet inquiry funnels.',
-    tags: ['Table Booking', 'Digital Menu', 'Mobile-First', 'Instant Calls'],
-    metrics: '3.2x Table Inquiries',
-    results: '+220% Weekend Reservations, 3.2x Dine-in Inquiries',
-    accentColor: 'from-amber-600 to-rose-600',
+    duration: '3 Weeks Sprint',
+    liveUrl: 'https://adalatrestaurant.com',
+    videoUrl: '/projects/hotel-adalat-video.mp4',
+    image: '/projects/hotel-adalat.jpg',
+    summary: 'Iconic heritage culinary platform with interactive visual menu, table reservation engine, and instant WhatsApp ordering for Gorakhpur’s legendary Handi Meat.',
+    description: 'Designed and engineered a high-converting digital culinary flagship for Gorakhpur’s iconic Adalat Hotel & Restaurant. Celebrated across Eastern UP for 20+ years for their authentic wood-fire Handi Meat, the new platform features a mobile-first digital menu, direct table booking, instant WhatsApp takeaway funnels, and top Google Map Pack local search ranking.',
+    tags: ['Handi Meat Specialist', 'Digital Menu', 'Table Booking', 'Kunraghat Gorakhpur'],
+    metrics: '3.1x Online Inquiries',
+    results: '+310% Weekend Reservations, #1 Handi Mutton on Google',
+    accentColor: 'from-amber-600 via-orange-600 to-red-600',
     stats: [
-      { label: 'Table Bookings', value: '3.2x Growth', desc: 'Direct online table requests' },
-      { label: 'Menu Views', value: '28,000+/mo', desc: 'Interactive digital QR & web views' },
-      { label: 'Weekend Footfall', value: '+45%', desc: 'Sustained full-house seating' },
-      { label: 'Google Rating', value: '4.8 ★', desc: 'Over 850+ verified local reviews' }
+      { label: 'Online Inquiries', value: '3.1x Growth', desc: 'Direct web & WhatsApp orders' },
+      { label: 'Monthly Menu Views', value: '34,000+', desc: 'Interactive digital QR & web views' },
+      { label: 'Weekend Footfall', value: '+55%', desc: 'Sustained full-house dining' },
+      { label: 'Google Rating', value: '4.8 ★', desc: 'Over 1,200+ verified customer reviews' }
     ],
-    challenge: 'The restaurant suffered from empty weekday tables and long weekend chaos due to lack of automated reservation systems. Customers relied on phone calls that often went unanswered during peak kitchen hours.',
-    strategy: 'Designed a mobile-first digital experience showcasing authentic Awadhi dishes with high-res food photography, seamless 1-tap table booking with instant SMS confirmation, and localized Google Maps ranking.',
+    challenge: 'Despite being Gorakhpur’s most renowned 20-year culinary destination for authentic clay-pot Handi Meat, Adalat Restaurant faced severe phone call bottlenecks during peak dinner rushes, unorganized table queues on weekends, and high commission costs on third-party food delivery aggregators.',
+    strategy: 'Click On Media architected a high-speed, mobile-optimized digital presence showcasing Adalat’s wood-fire Handi heritage with professional culinary photography. We integrated a frictionless 1-tap WhatsApp ordering channel, dynamic digital food menu with pricing, and local SEO domination for non-veg dining queries across Gorakhpur and NH-28.',
     deliverables: [
-      'Interactive visual food & beverage menu with pricing and allergy tags',
-      'Frictionless table reservation system with automated SMS & WhatsApp alerts',
-      'Google My Business local pack optimization in Mohaddipur and Gorakhpur',
-      'Event and private dining hall booking lead generator'
+      'Interactive visual menu highlighting Gorakhpur Special Handi Meat & Biryani with live pricing',
+      'Zero-friction table reservation system with automated WhatsApp booking alerts',
+      'Google My Business Local Map Pack optimization (#1 for Handi Meat in Kunraghat & Gorakhpur)',
+      'Direct-to-kitchen WhatsApp takeaway ordering eliminating 20%+ aggregator commissions',
+      'News18 media feature integration & verified customer review highlights'
     ],
-    technologies: ['React', 'Tailwind CSS', 'Vite', 'Twilio SMS', 'WhatsApp API']
+    technologies: ['React', 'Tailwind CSS', 'Vite', 'WhatsApp Business API', 'Google Search Console']
   },
 
   'apex-legal': {
@@ -725,3 +727,11 @@ export const PROJECTS_DATA = {
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'Stripe & Razorpay', 'PDFKit']
   }
 };
+
+// Backward-compatibility alias for legacy or cached references
+Object.defineProperty(PROJECTS_DATA, 'royal-awadh', {
+  get() {
+    return PROJECTS_DATA['hotel-adalat'];
+  },
+  enumerable: false
+});

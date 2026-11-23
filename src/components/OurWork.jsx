@@ -35,8 +35,8 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
   // 3 diverse premier flagship projects for the front page overview
   const featuredFlagships = useMemo(() => [
     PROJECTS_DATA['mapaz-hotel'],          // 1. Websites: MAPAZ Hotel & Booking Platform
-    PROJECTS_DATA['viral-food-reels'],     // 2. Video Editing: Viral Food & 9:16 Restaurant Reels
-    PROJECTS_DATA['medix-hospital-pms']    // 3. Software: Medix Hospital Patient Management EMR
+    PROJECTS_DATA['hotel-adalat'],         // 2. Websites / Hospitality: Hotel Adalat & Restaurant
+    PROJECTS_DATA['viral-food-reels'],     // 3. Video Editing: Viral Food & 9:16 Restaurant Reels
   ].filter(Boolean), []);
 
   // Filter projects based on activeCategory
@@ -165,6 +165,9 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
                     alt={`${project.title} - ${project.categoryLabel}`}
                     className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
                     loading="lazy"
+                    decoding="async"
+                    width="800"
+                    height="500"
                   />
                   
                   {/* Subtle Gradient Vignette */}
@@ -260,73 +263,6 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
               </div>
             );
           })}
-        </div>
-
-        {/* ===================================================================== */}
-        {/* 4. DEDICATED PORTFOLIO ARCHIVE & SHAREABLE REFERENCE BANNER          */}
-        {/* ===================================================================== */}
-        <div className="mt-10 sm:mt-14 text-center space-y-3">
-          <div>
-            <a
-              href="#portfolio"
-              onClick={(e) => {
-                if (onOpenPortfolio) {
-                  e.preventDefault();
-                  onOpenPortfolio(activeCategory);
-                }
-              }}
-              className="inline-flex items-center gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-[#0A1F6B] hover:bg-[var(--primary-blue)] text-white text-xs sm:text-sm font-heading font-extrabold shadow-lg hover:shadow-xl transition-all hover:scale-105 cursor-pointer group"
-            >
-              <Layers className="w-4 h-4 text-[var(--brand-orange)] group-hover:rotate-12 transition-transform" />
-              <span>Explore Full Portfolio &amp; Case Studies Archive (20+ Projects)</span>
-              <ArrowRight className="w-4 h-4 text-[var(--cyan-accent)] group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-
-          <p className="text-xs text-slate-500 font-medium">
-            Showing 3 flagship highlights on front page • Browse all {allProjects.length} client works, live websites &amp; ROI case studies in the dedicated portfolio
-          </p>
-        </div>
-
-        {/* ===================================================================== */}
-        {/* 5. BOTTOM HIGH-CONVERSION CTA RIBBON                                  */}
-        {/* ===================================================================== */}
-        <div className="mt-12 sm:mt-16 p-5 xs:p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#0A1F6B] via-[#0B257A] to-[#0A1F6B] text-white border border-blue-900/50 shadow-xl relative overflow-hidden">
-          {/* Subtle Glow */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[var(--brand-orange)]/15 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 text-center md:text-left">
-            <div className="space-y-1.5 max-w-xl">
-              <span className="text-xs font-mono font-bold text-[var(--cyan-accent)] uppercase tracking-wider block">
-                Start Your Project Today
-              </span>
-              <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-heading font-extrabold text-white tracking-tight leading-snug">
-                Have a Project in Mind? Let's Build Something Exceptional Together.
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 font-normal">
-                Partner with Click On Media for high-speed websites, viral video editing, scalable software, and high-ROAS marketing in Gorakhpur and India.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full md:w-auto flex-shrink-0">
-              <a
-                href="#quote"
-                className="btn-primary text-xs sm:text-sm !py-3 !px-6 font-heading font-bold shadow-md cursor-pointer text-center"
-              >
-                Request Free Proposal
-              </a>
-
-              <a
-                href="https://wa.me/918303534063?text=Hi%20Click%20On%20Media,%20I'm%20interested%20in%20discussing%20a%20project%20after%20viewing%20your%20portfolio."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-heading font-bold shadow-sm transition-all hover:scale-102 text-center"
-              >
-                <MessageCircle className="w-4 h-4 flex-shrink-0" />
-                <span>Chat on WhatsApp</span>
-              </a>
-            </div>
-          </div>
         </div>
 
       </div>

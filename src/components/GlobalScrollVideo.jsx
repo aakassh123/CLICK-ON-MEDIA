@@ -6,6 +6,18 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
   const lastScrollYRef = useRef(0);
   const lastTimeRef = useRef(Date.now());
   const velocityTimerRef = useRef(null);
+  const cachedMaxScrollRef = useRef(1);
+  const lastReportedProgressRef = useRef(0);
+
+  // Cache max scroll geometry on mount and resize to eliminate forced reflows on scroll
+  useEffect(() => {
+    const updateMaxScroll = () => {
+      cachedMaxScrollRef.current = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    };
+    updateMaxScroll();
+    window.addEventListener('resize', updateMaxScroll, { passive: true });
+    return () => window.removeEventListener('resize', updateMaxScroll);
+  }, []);
 
   // Smooth scroll listener that calculates progress and velocity
   useEffect(() => {
@@ -15,9 +27,14 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const y = window.scrollY;
-          const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+          const maxScroll = cachedMaxScrollRef.current || 1;
           const progress = Math.min(Math.max(y / maxScroll, 0), 1);
-          setScrollProgress(progress);
+
+          // Only trigger React state updates when progress changes significantly (> 1.2%)
+          if (Math.abs(progress - lastReportedProgressRef.current) > 0.012) {
+            lastReportedProgressRef.current = progress;
+            setScrollProgress(progress);
+          }
 
           const now = Date.now();
           const dt = Math.max(1, now - lastTimeRef.current);
@@ -48,7 +65,6 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
     handleScroll();
 
     // Auto-pause when tab is hidden or user switches apps to conserve 100% device battery & memory
@@ -108,6 +124,7 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
           playsInline
           webkit-playsinline="true"
           preload="metadata"
+          poster="/hero-hand-showcase.jpg"
           disablePictureInPicture
           disableRemotePlayback
           className="w-full h-full object-cover filter brightness-100 contrast-112 saturate-115 transition-opacity duration-300 pointer-events-none"
@@ -116,8 +133,8 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
             imageRendering: '-webkit-optimize-contrast'
           }}
         >
-          <source src="./hero-office-team.mp4" type="video/mp4" />
-          <source src="./hero-video.mp4" type="video/mp4" />
+          <source src="/hero-office-team.mp4" type="video/mp4" />
+          <source src="/hero-video.mp4" type="video/mp4" />
         </video>
 
         {/* 2. AMBIENT BRAND WALL WATERMARK IN OFFICE BACKGROUND */}
@@ -126,9 +143,12 @@ export default function GlobalScrollVideo({ isVideoModalOpen = false }) {
           style={{ opacity: watermarkOpacity }}
         >
           <img 
-            src="./clickonmedia-logo-trans.png" 
+            src="/clickonmedia-logo-trans.png" 
             alt="Click On Media Brand Watermark" 
             className="w-48 sm:w-64 lg:w-80 object-contain"
+            decoding="async"
+            width="320"
+            height="80"
           />
         </div>
       </div>

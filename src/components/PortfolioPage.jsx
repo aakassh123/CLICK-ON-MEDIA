@@ -100,7 +100,7 @@ export default function PortfolioPage({
   // Copy reference link handler
   const handleCopyReference = (e, project) => {
     e.stopPropagation();
-    const url = `${window.location.origin}/#project/${project.id}`;
+    const url = `${window.location.origin}/projects/${project.id}`;
     navigator.clipboard.writeText(url).then(() => {
       setCopiedId(project.id);
       setToastMessage(`Reference link for "${project.title}" copied! Ready to share.`);
@@ -113,7 +113,7 @@ export default function PortfolioPage({
 
   // Copy entire portfolio link handler
   const handleCopyPortfolioLink = () => {
-    const url = `${window.location.origin}/#portfolio`;
+    const url = `${window.location.origin}/portfolio`;
     navigator.clipboard.writeText(url).then(() => {
       setToastMessage('Complete Portfolio Link copied! Share with clients anytime.');
       setTimeout(() => setToastMessage(''), 3500);
@@ -355,7 +355,7 @@ export default function PortfolioPage({
                   onClick={() => {
                     setActiveCategory('all');
                     setSearchQuery('');
-                    window.history.replaceState(null, '', '#portfolio');
+                    window.history.replaceState(null, '', '/portfolio');
                   }}
                   className="text-xs font-heading font-bold text-[var(--brand-orange)] hover:underline cursor-pointer"
                 >
@@ -400,7 +400,7 @@ export default function PortfolioPage({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {filteredProjects.map((project, idx) => {
                   const isCopied = copiedId === project.id;
-                  const whatsappShareUrl = `https://wa.me/?text=Check%20out%20this%20verified%20work%20reference%20by%20Click%20On%20Media:%0A%0A*${encodeURIComponent(project.title)}*%20(${encodeURIComponent(project.category)})%0A${encodeURIComponent(project.summary)}%0A%0AView%20Case%20Study:%20${encodeURIComponent(`${window.location.origin}/#project/${project.id}`)}`;
+                  const whatsappShareUrl = `https://wa.me/?text=Check%20out%20this%20verified%20work%20reference%20by%20Click%20On%20Media:%0A%0A*${encodeURIComponent(project.title)}*%20(${encodeURIComponent(project.category)})%0A${encodeURIComponent(project.summary)}%0A%0AView%20Case%20Study:%20${encodeURIComponent(`${window.location.origin}/projects/${project.id}`)}`;
 
                   return (
                     <article

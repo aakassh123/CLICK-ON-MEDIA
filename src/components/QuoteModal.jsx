@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { X, CheckCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, CheckCircle, ArrowRight, ShieldCheck, Loader2, AlertCircle, MessageCircle } from 'lucide-react';
+import { submitEnquiry } from '../services/apiService';
 
 export default function QuoteModal({ isOpen, onClose, preselectedService }) {
   const [formData, setFormData] = useState({
@@ -8,12 +9,25 @@ export default function QuoteModal({ isOpen, onClose, preselectedService }) {
     phone: '',
     company: '',
     services: preselectedService ? [preselectedService] : ['Website Development'],
-    budget: '$5,000 - $15,000',
+    budget: '₹5,000 - ₹15,000',
     timeline: '1-2 Months',
     message: ''
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+  const [referenceId, setReferenceId] = useState('');
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -31,10 +45,10 @@ export default function QuoteModal({ isOpen, onClose, preselectedService }) {
   ];
 
   const budgetOptions = [
-    '< $5,000',
-    '$5,000 - $15,000',
-    '$15,000 - $35,000',
-    '$35,000+'
+    '< ₹5,000',
+    '₹5,000 - ₹15,000',
+    '₹15,000 - ₹35,000',
+    '₹35,000+'
   ];
 
   const sanitizeInput = (val) => (typeof val === 'string' ? val.replace(/[<>]/g, '').trim() : val);
@@ -49,9 +63,12 @@ export default function QuoteModal({ isOpen, onClose, preselectedService }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormData({
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const result = await submitEnquiry({
       ...formData,
       name: sanitizeInput(formData.name),
       email: sanitizeInput(formData.email),
@@ -59,8 +76,18 @@ export default function QuoteModal({ isOpen, onClose, preselectedService }) {
       company: sanitizeInput(formData.company),
       message: sanitizeInput(formData.message)
     });
-    setSubmitted(true);
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      setReferenceId(result.referenceId || '');
+      setSubmitted(true);
+    } else {
+      setSubmitError(result.error || 'Direct transmission failed. Please connect with our team directly via WhatsApp or Call.');
+    }
   };
+
+  const whatsappFallbackUrl = `https://wa.me/918303534063?text=Hi%20Click%20On%20Media,%20my%20name%20is%20${encodeURIComponent(formData.name || 'Client')}.%20I%20am%20looking%20for%20${encodeURIComponent((formData.services || []).join(', '))}%20services.%20Budget:%20${encodeURIComponent(formData.budget)}.%20Phone:%20${encodeURIComponent(formData.phone)}.%20Email:%20${encodeURIComponent(formData.email)}`;
 
   return (
     <div 
@@ -97,19 +124,33 @@ export default function QuoteModal({ isOpen, onClose, preselectedService }) {
             <div className="w-16 h-16 rounded-full bg-[var(--bg-soft)] text-emerald-600 flex items-center justify-center mx-auto shadow-inner border border-emerald-500/30">
               <CheckCircle className="w-10 h-10" />
             </div>
+            {referenceId && (
+              <span className="inline-block px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-xs font-bold">
+                Reference ID: {referenceId}
+              </span>
+            )}
             <h4 className="text-2xl font-heading font-black text-[var(--deep-navy)]">
               Proposal Request Received!
             </h4>
             <p className="text-[var(--text-muted)] max-w-md mx-auto text-sm leading-relaxed">
-              Thank you, <span className="font-semibold text-[var(--deep-navy)]">{formData.name || 'Friend'}</span>. One of our Senior Growth Strategists will review your specifications and email you a customized proposal within 24 hours.
+              Thank you, <span className="font-semibold text-[var(--deep-navy)]">{formData.name || 'Friend'}</span>. Your requirements have been securely logged. One of our Senior Growth Strategists will review your specifications and reach out with a tailored proposal within 24 hours.
             </p>
-            <div className="pt-4">
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={whatsappFallbackUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-heading font-bold text-xs shadow-md transition-all"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>Discuss Instantly on WhatsApp</span>
+              </a>
               <button
                 onClick={() => {
                   setSubmitted(false);
                   onClose();
                 }}
-                className="btn-primary px-8 py-3 min-h-[44px] rounded-full text-white font-heading font-bold text-sm shadow-md transition-all cursor-pointer"
+                className="btn-primary px-8 py-3 min-h-[44px] rounded-full text-white font-heading font-bold text-xs shadow-md transition-all cursor-pointer"
               >
                 Back to Site
               </button>
@@ -117,6 +158,24 @@ export default function QuoteModal({ isOpen, onClose, preselectedService }) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5 max-h-[80vh] overflow-y-auto">
+            {submitError && (
+              <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs space-y-2">
+                <div className="flex items-center gap-2 font-bold text-sm">
+                  <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                  <span>Submission Notice</span>
+                </div>
+                <p>{submitError}</p>
+                <a
+                  href={whatsappFallbackUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 underline mt-1"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Click here to send your enquiry via WhatsApp instead &rarr;</span>
+                </a>
+              </div>
+            )}
             {/* Services Multi-selector */}
             <div>
               <label className="block text-xs font-heading font-bold uppercase tracking-wider text-[var(--deep-navy)] mb-2">
@@ -243,10 +302,22 @@ export default function QuoteModal({ isOpen, onClose, preselectedService }) {
             <div className="pt-2">
               <button
                 type="submit"
-                className="btn-primary w-full py-4 min-h-[48px] rounded-full text-white font-heading font-extrabold text-sm sm:text-base shadow-lg shadow-[var(--brand-orange)]/30 flex items-center justify-center gap-2 transition-all cursor-pointer"
+                disabled={isSubmitting}
+                className={`btn-primary w-full py-4 min-h-[48px] rounded-full text-white font-heading font-extrabold text-sm sm:text-base shadow-lg shadow-[var(--brand-orange)]/30 flex items-center justify-center gap-2 transition-all ${
+                  isSubmitting ? 'opacity-80 cursor-wait' : 'cursor-pointer hover:scale-[1.01]'
+                }`}
               >
-                <span>Request Custom Quote & Strategy</span>
-                <ArrowRight className="w-4 h-4" />
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Submitting Specifications...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Request Custom Quote & Strategy</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
               </button>
             </div>
           </form>

@@ -30,11 +30,20 @@ export default function Navbar({ onOpenQuote, onSelectService, onOpenPortfolio }
   const dropdownRef = useRef(null);
 
   useEffect(() => {
+    let ticking = false;
+    let prevScrolled = false;
+
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const nowScrolled = window.scrollY > 20;
+          if (nowScrolled !== prevScrolled) {
+            setIsScrolled(nowScrolled);
+            prevScrolled = nowScrolled;
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -270,7 +279,20 @@ export default function Navbar({ onOpenQuote, onSelectService, onOpenPortfolio }
                       if (link.href === '#portfolio') {
                         e.preventDefault();
                         if (onOpenPortfolio) onOpenPortfolio();
-                        else window.location.hash = '#portfolio';
+                        else window.history.pushState(null, '', '/portfolio');
+                      } else if (link.href === '#home') {
+                        e.preventDefault();
+                        window.history.pushState(null, '', '/');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      } else if (link.href.startsWith('#')) {
+                        if (window.location.pathname !== '/' && window.location.pathname !== '') {
+                          e.preventDefault();
+                          window.history.pushState(null, '', `/${link.href}`);
+                          setTimeout(() => {
+                            const el = document.querySelector(link.href);
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                          }, 60);
+                        }
                       }
                     }}
                     className="px-3.5 xl:px-4 py-1.5 text-xs xl:text-sm font-bold tracking-wide transition-all rounded-full text-slate-800 hover:text-[var(--primary-blue)] hover:bg-white shadow-none hover:shadow-xs"
@@ -357,7 +379,20 @@ export default function Navbar({ onOpenQuote, onSelectService, onOpenPortfolio }
                   if (link.href === '#portfolio') {
                     e.preventDefault();
                     if (onOpenPortfolio) onOpenPortfolio();
-                    else window.location.hash = '#portfolio';
+                    else window.history.pushState(null, '', '/portfolio');
+                  } else if (link.href === '#home') {
+                    e.preventDefault();
+                    window.history.pushState(null, '', '/');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } else if (link.href.startsWith('#')) {
+                    if (window.location.pathname !== '/' && window.location.pathname !== '') {
+                      e.preventDefault();
+                      window.history.pushState(null, '', `/${link.href}`);
+                      setTimeout(() => {
+                        const el = document.querySelector(link.href);
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }, 60);
+                    }
                   }
                 }}
                 className="block px-3 py-2.5 rounded-xl text-sm font-bold text-slate-800 hover:text-[var(--primary-blue)] hover:bg-slate-50 min-h-[44px] flex items-center justify-between"

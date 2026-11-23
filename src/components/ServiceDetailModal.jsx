@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function ServiceDetailModal({ serviceId, onClose, onOpenQuoteWithService }) {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose?.();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   if (!serviceId) return null;
 
   const serviceData = {
@@ -117,6 +125,7 @@ export default function ServiceDetailModal({ serviceId, onClose, onOpenQuoteWith
       role="dialog"
       aria-modal="true"
       aria-labelledby="service-modal-title"
+      onClick={onClose}
     >
       <div 
         className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden"

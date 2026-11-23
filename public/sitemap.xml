@@ -3,239 +3,268 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <!-- Homepage -->
   <url>
     <loc>https://clickonmedia.in/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Core Landing Routes -->
   <url>
-    <loc>https://clickonmedia.in/#local-seo-hub</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/portfolio</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#portfolio</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#services</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/quote</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#work</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/services/web-dev</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#quote</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/services/software-dev</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#contact</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/services/digital-marketing</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#about</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://clickonmedia.in/services/social-media</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/google-ads</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/social-ads</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/graphics-logo</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/posters</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/short-reels</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/youtube-videos</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/whatsapp-bulk</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/crm</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/monetization</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/seo</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/graphics-designing</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/video-editing</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/ads</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/marketing</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/branding</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/content</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/services/monetization-service</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://clickonmedia.in/projects/mapaz-hotel</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- 10 Flagship Services -->
   <url>
-    <loc>https://clickonmedia.in/#service/social-media</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/hotel-adalat</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#service/web-dev</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/apex-legal</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#service/whatsapp-bulk</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/krishna-inn</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#service/graphics</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/viral-food-reels</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#service/video-editing</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/cinematic-commercial</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#service/seo</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/flash-sale-promo</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#service/ads</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/corporate-podcast</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#service/software-dev</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/shivoy-distributors</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#service/crm</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/era-of-education</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#service/monetization</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://clickonmedia.in/projects/medix-hospital-pms</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- 20 Verified Client Case Studies -->
-  <url>
-    <loc>https://clickonmedia.in/#project/mapaz-hotel</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#project/royal-awadh</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://clickonmedia.in/projects/smart-inventory-pos</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#project/apex-legal</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://clickonmedia.in/projects/heritage-brand-identity</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#project/urban-oasis</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://clickonmedia.in/projects/festival-social-posters</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#project/gym-transform-reel</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://clickonmedia.in/projects/real-estate-billboards</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#project/realestate-villa-tour</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://clickonmedia.in/projects/instagram-brand-kit</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#project/podcast-clip-engine</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://clickonmedia.in/projects/banquet-meta-ads</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#project/street-food-reel</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://clickonmedia.in/projects/fashion-boutique-growth</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#project/omni-inventory-erp</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://clickonmedia.in/projects/local-seo-gmb-domination</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://clickonmedia.in/#project/medicare-hospital-his</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/saas-analytics-flow</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/smart-school-lms</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/ayurveda-brand-identity</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/festival-retail-campaign</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/billboard-realestate</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/cafe-menu-creative</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/dental-clinic-growth</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/bistro-community-feed</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/b2b-logistics-linkedin</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://clickonmedia.in/#project/fashion-reels-scale</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://clickonmedia.in/projects/barkat-welfare</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

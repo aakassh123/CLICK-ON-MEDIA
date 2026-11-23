@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  CheckCircle, 
-  ShieldCheck, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Sparkles, 
-  Clock, 
-  Zap, 
-  Lock, 
-  Users, 
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle,
+  ShieldCheck,
+  Phone,
+  Mail,
+  MapPin,
+  Sparkles,
+  Clock,
+  Zap,
+  Lock,
+  Users,
   ChevronRight,
-  Send
+  Send,
+  Loader2,
+  AlertCircle,
+  MessageCircle
 } from 'lucide-react';
 import Logo from './Logo';
+import { submitEnquiry } from '../services/apiService';
 
 export default function QuotePage({ onBack, preselectedService = '' }) {
   const [formData, setFormData] = useState({
@@ -24,12 +28,15 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
     phone: '',
     company: '',
     services: preselectedService ? [preselectedService] : ['Website Development'],
-    budget: '$5,000 - $15,000',
+    budget: '₹5,000 - ₹15,000',
     timeline: '1-2 Months',
     message: ''
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+  const [referenceId, setReferenceId] = useState('');
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -55,10 +62,10 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
   ];
 
   const budgetOptions = [
-    '< $5,000',
-    '$5,000 - $15,000',
-    '$15,000 - $35,000',
-    '$35,000+'
+    '< ₹5,000',
+    '₹5,000 - ₹15,000',
+    '₹15,000 - ₹35,000',
+    '₹35,000+'
   ];
 
   const timelineOptions = [
@@ -80,9 +87,12 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormData({
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const result = await submitEnquiry({
       ...formData,
       name: sanitizeInput(formData.name),
       email: sanitizeInput(formData.email),
@@ -90,13 +100,23 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
       company: sanitizeInput(formData.company),
       message: sanitizeInput(formData.message)
     });
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      setReferenceId(result.referenceId || '');
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setSubmitError(result.error || 'Direct transmission failed. Please connect with our team directly via WhatsApp or Call.');
+    }
   };
+
+  const whatsappFallbackUrl = `https://wa.me/918303534063?text=Hi%20Click%20On%20Media,%20my%20name%20is%20${encodeURIComponent(formData.name || 'Client')}.%20I%20am%20looking%20for%20${encodeURIComponent((formData.services || []).join(', '))}%20services.%20Budget:%20${encodeURIComponent(formData.budget)}.%20Phone:%20${encodeURIComponent(formData.phone)}.%20Email:%20${encodeURIComponent(formData.email)}`;
 
   return (
     <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-[var(--brand-orange)] selection:text-white relative">
-      
+
       {/* ========================================================================= */}
       {/* 1. TOP STICKY HEADER & BREADCRUMB BAR                                     */}
       {/* ========================================================================= */}
@@ -105,7 +125,7 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
         <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-[var(--cyan-accent)] via-[var(--primary-blue)] to-[var(--brand-orange)] pointer-events-none opacity-90" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          
+
           {/* Left: Brand Logo & Back to Site */}
           <div className="flex items-center gap-3 sm:gap-4">
             <button
@@ -120,8 +140,8 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
             <div className="hidden sm:block h-6 w-px bg-slate-200" />
 
             {/* Official Logo */}
-            <button 
-              onClick={onBack} 
+            <button
+              onClick={onBack}
               className="focus:outline-none flex items-center cursor-pointer"
               aria-label="Return to Click On Media Home"
             >
@@ -137,8 +157,8 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
           </div>
 
           {/* Right Action: Direct Phone Support */}
-          <a 
-            href="tel:+918303534063" 
+          <a
+            href="tel:+918303534063"
             className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold hover:bg-slate-200 transition-colors"
           >
             <div className="relative flex h-2 w-2">
@@ -156,20 +176,20 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
       {/* 2. DEDICATED FULL-PAGE PROPOSAL & QUOTE CONTAINER (PREMIUM WHITE PALETTE) */}
       {/* ========================================================================= */}
       <main className="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FAFBFF] via-white to-[#F4F7FF] text-slate-800">
-        
+
         {/* Ambient Brand Glow Orbs */}
         <div className="absolute top-10 left-10 w-96 h-96 bg-[var(--primary-blue)]/5 rounded-full blur-[140px] pointer-events-none z-0" />
         <div className="absolute top-1/3 right-10 w-96 h-96 bg-[var(--brand-orange)]/5 rounded-full blur-[140px] pointer-events-none z-0" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            
+
             {/* ------------------------------------------------------------------- */}
             {/* LEFT COLUMN: BRAND PROMISE & TRUST ARCHITECTURE (5 Cols)           */}
             {/* ------------------------------------------------------------------- */}
             <div className="lg:col-span-5 space-y-8">
-              
+
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--primary-blue)]/10 border border-[var(--primary-blue)]/20 text-xs font-heading font-bold tracking-wider uppercase shadow-xs">
                   <Sparkles className="w-3.5 h-3.5 text-[var(--brand-orange)]" />
@@ -244,11 +264,11 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                   <div className="flex items-center gap-2.5 text-slate-700">
                     <Mail className="w-4 h-4 text-[var(--primary-blue)]" />
                     <div className="space-y-1">
-                        <div>info@clickonmedia.in</div>
-                        <div className="text-xs text-slate-500">clickonmedia3@gmail.com</div>
-                      </div>
+                      <div>info@clickonmedia.in</div>
+                      <div className="text-xs text-slate-500">clickonmedia3@gmail.com</div>
+                    </div>
                   </div>
-                  <a 
+                  <a
                     href="https://www.google.com/maps/place/Click+On+Media+-Digital+Marketing+Agency/@26.7483214,83.4117146,17z"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -269,9 +289,9 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
             {/* RIGHT COLUMN: HIGH-END INTERACTIVE QUOTE PROPOSAL CARD (7 Cols)    */}
             {/* ------------------------------------------------------------------- */}
             <div className="lg:col-span-7">
-              
+
               <div className="rounded-3xl bg-white text-[var(--text-dark)] shadow-2xl border border-slate-200 overflow-hidden">
-                
+
                 {/* Card Header Strip */}
                 <div className="bg-[var(--deep-navy)] px-6 sm:px-8 py-6 text-white border-b border-[var(--cyan-accent)]/20 flex items-center justify-between">
                   <div>
@@ -300,14 +320,21 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                     </div>
 
                     <div className="space-y-2">
-                      <span className="text-xs font-heading font-bold uppercase tracking-wider text-[var(--brand-orange)]">
-                        PROPOSAL REQUEST RECEIVED
-                      </span>
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="text-xs font-heading font-bold uppercase tracking-wider text-[var(--brand-orange)]">
+                          PROPOSAL REQUEST RECEIVED
+                        </span>
+                        {referenceId && (
+                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-[11px] font-bold">
+                            Ref: {referenceId}
+                          </span>
+                        )}
+                      </div>
                       <h3 className="text-2xl sm:text-3xl font-heading font-black text-[var(--deep-navy)]">
                         Thank You, {formData.name || 'Partner'}!
                       </h3>
                       <p className="text-slate-600 max-w-md mx-auto text-sm sm:text-base leading-relaxed">
-                        Your project specifications have been logged and assigned to a Senior Growth Strategist at <strong className="text-[var(--deep-navy)]">Click On Media</strong>. We will review your goals and email your customized proposal and roadmap to <span className="text-[var(--primary-blue)] font-semibold">{formData.email}</span> within 24 hours.
+                        Your project specifications have been securely recorded. One of our Senior Growth Strategists at <strong className="text-[var(--deep-navy)]">Click On Media</strong> will review your requirements and contact you directly via phone or email within 24 hours.
                       </p>
                     </div>
 
@@ -316,19 +343,29 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                         <Clock className="w-4 h-4 text-[var(--brand-orange)]" />
                         <span>What happens next?</span>
                       </div>
-                      <p>1. Technical feasibility & competitor audit by our team.</p>
-                      <p>2. Customized milestone roadmap & transparent budget deliverable.</p>
+                      <p>1. Technical feasibility &amp; competitor audit by our team.</p>
+                      <p>2. Customized milestone roadmap &amp; transparent budget deliverable.</p>
                       <p>3. Direct strategy call to align on execution timelines.</p>
                     </div>
 
                     <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                      <a
+                        href={whatsappFallbackUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-heading font-bold text-xs shadow-md transition-all"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        <span>Connect on WhatsApp</span>
+                      </a>
+
                       <button
                         onClick={onBack}
                         className="btn-primary px-8 py-3.5 rounded-full text-white font-heading font-bold text-sm shadow-md"
                       >
                         Return to Homepage
                       </button>
-                      
+
                       <button
                         onClick={() => setSubmitted(false)}
                         className="text-xs font-bold text-slate-500 hover:text-[var(--deep-navy)] px-4 py-2 transition-colors cursor-pointer"
@@ -340,7 +377,25 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                 ) : (
                   /* Main Interactive Proposal Form */
                   <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6">
-                    
+                    {submitError && (
+                      <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs space-y-2">
+                        <div className="flex items-center gap-2 font-bold text-sm">
+                          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                          <span>Submission Notice</span>
+                        </div>
+                        <p>{submitError}</p>
+                        <a
+                          href={whatsappFallbackUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 underline mt-1"
+                        >
+                          <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                          <span>Click here to send your specifications directly via WhatsApp &rarr;</span>
+                        </a>
+                      </div>
+                    )}
+
                     {/* 1. Services Multi-selector */}
                     <div className="space-y-2.5">
                       <div className="flex items-center justify-between">
@@ -351,7 +406,7 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                           {formData.services.length} selected
                         </span>
                       </div>
-                      
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {serviceOptions.map((srv) => {
                           const isChecked = formData.services.includes(srv);
@@ -360,16 +415,14 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                               key={srv}
                               type="button"
                               onClick={() => toggleService(srv)}
-                              className={`p-3 rounded-xl text-left text-xs font-heading font-bold transition-all cursor-pointer flex items-center justify-between border ${
-                                isChecked
+                              className={`p-3 rounded-xl text-left text-xs font-heading font-bold transition-all cursor-pointer flex items-center justify-between border ${isChecked
                                   ? 'bg-[var(--deep-navy)] text-white border-[var(--primary-blue)] shadow-md ring-2 ring-[var(--primary-blue)]/30'
                                   : 'bg-[var(--bg-soft)] text-slate-800 hover:bg-slate-200/80 border-slate-200'
-                              }`}
+                                }`}
                             >
                               <span>{srv}</span>
-                              <span className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-mono font-bold ${
-                                isChecked ? 'bg-[var(--brand-orange)] text-white' : 'border border-slate-300 text-slate-400'
-                              }`}>
+                              <span className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-mono font-bold ${isChecked ? 'bg-[var(--brand-orange)] text-white' : 'border border-slate-300 text-slate-400'
+                                }`}>
                                 {isChecked ? '✓' : '+'}
                               </span>
                             </button>
@@ -389,11 +442,10 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                             key={b}
                             type="button"
                             onClick={() => setFormData({ ...formData, budget: b })}
-                            className={`py-3 px-2 rounded-xl text-xs font-heading font-bold border transition-all text-center cursor-pointer ${
-                              formData.budget === b
+                            className={`py-3 px-2 rounded-xl text-xs font-heading font-bold border transition-all text-center cursor-pointer ${formData.budget === b
                                 ? 'border-[var(--brand-orange)] bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] shadow-xs ring-2 ring-[var(--brand-orange)]/25'
                                 : 'border-slate-200 bg-[var(--bg-soft)] text-slate-600 hover:bg-slate-100'
-                            }`}
+                              }`}
                           >
                             {b}
                           </button>
@@ -412,11 +464,10 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                             key={t}
                             type="button"
                             onClick={() => setFormData({ ...formData, timeline: t })}
-                            className={`py-2.5 px-2 rounded-xl text-[11px] font-heading font-bold border transition-all text-center cursor-pointer ${
-                              formData.timeline === t
+                            className={`py-2.5 px-2 rounded-xl text-[11px] font-heading font-bold border transition-all text-center cursor-pointer ${formData.timeline === t
                                 ? 'border-[var(--primary-blue)] bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] font-bold'
                                 : 'border-slate-200 bg-[var(--bg-soft)] text-slate-600 hover:bg-slate-100'
-                            }`}
+                              }`}
                           >
                             {t}
                           </button>
@@ -429,7 +480,7 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                       <label className="block text-xs font-heading font-bold uppercase tracking-wider text-[var(--deep-navy)]">
                         4. Your Contact Details
                       </label>
-                      
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label className="block text-[11px] font-heading font-bold text-slate-700 mb-1">Your Full Name *</label>
@@ -509,10 +560,22 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="btn-primary w-full py-4 min-h-[52px] rounded-full text-white font-heading font-extrabold text-base shadow-xl shadow-[var(--brand-orange)]/35 flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                        disabled={isSubmitting}
+                        className={`btn-primary w-full py-4 min-h-[52px] rounded-full text-white font-heading font-extrabold text-base shadow-xl shadow-[var(--brand-orange)]/35 flex items-center justify-center gap-2 transition-all ${
+                          isSubmitting ? 'opacity-80 cursor-wait' : 'hover:scale-[1.01] active:scale-[0.99] cursor-pointer'
+                        }`}
                       >
-                        <span>Submit Project Specifications & Request Proposal</span>
-                        <Send className="w-4 h-4" />
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                            <span>Submitting Specifications...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Submit Project Specifications & Request Proposal</span>
+                            <Send className="w-4 h-4" />
+                          </>
+                        )}
                       </button>
                     </div>
 
@@ -540,7 +603,7 @@ export default function QuotePage({ onBack, preselectedService = '' }) {
           </div>
 
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={onBack}
               className="text-slate-300 hover:text-[var(--brand-orange)] font-semibold transition-colors cursor-pointer"
             >

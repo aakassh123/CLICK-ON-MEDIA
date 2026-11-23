@@ -1,8 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { X, ArrowRight } from 'lucide-react';
 
 export default function VideoModal({ isOpen, onClose, onOpenQuote }) {
   const videoRef = useRef(null);
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -43,8 +53,8 @@ export default function VideoModal({ isOpen, onClose, onOpenQuote }) {
             playsInline
             className="w-full h-full object-contain"
           >
-            <source src="./hero-office-team.mp4" type="video/mp4" />
-            <source src="./hero-video.mp4" type="video/mp4" />
+            <source src="/hero-office-team.mp4" type="video/mp4" />
+            <source src="/hero-video.mp4" type="video/mp4" />
           </video>
         </div>
 

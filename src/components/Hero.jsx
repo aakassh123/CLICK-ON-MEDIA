@@ -55,16 +55,16 @@ export default function Hero({ onOpenQuote, onOpenVideo, onSelectService }) {
               </span>
             </div>
 
-            {/* Main Single H1 with Logo Colors (Deep Logo Blue + Vibrant Brand Gradient) */}
-            <RevealHeading tag="h1" delay={150} direction="up" blur={true} className="text-[26px] xs:text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#0A1F6B] tracking-tight leading-[1.14] font-heading">
-              We Build Digital Experiences That Drive{' '}
+            {/* Main Single H1 with Logo Colors (Immediate Paint for Core Web Vitals LCP) */}
+            <RevealHeading tag="h1" immediate={true} className="text-[26px] xs:text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#0A1F6B] tracking-tight leading-[1.14] font-heading">
+              Your Success Story Starts With{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00]">
-                Real Growth
+                One Click.
               </span>
             </RevealHeading>
 
-            {/* Subtitle with High-Contrast Legibility & Rich Dark Text */}
-            <RevealHeading tag="p" delay={250} direction="up" className="text-sm sm:text-base md:text-lg text-[#071133] font-bold leading-relaxed max-w-2xl drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
+            {/* Subtitle with High-Contrast Legibility & Immediate Paint */}
+            <RevealHeading tag="p" immediate={true} className="text-sm sm:text-base md:text-lg text-[#071133] font-bold leading-relaxed max-w-2xl drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
               Gorakhpur&apos;s premier digital agency for high-converting websites, custom software, Google Ads, localized SEO, viral reels &amp; data-driven marketing. We scale ambitious businesses across Gorakhpur and Uttar Pradesh with guaranteed ROI.
             </RevealHeading>
 
@@ -124,10 +124,14 @@ export default function Hero({ onOpenQuote, onOpenVideo, onSelectService }) {
                   className="relative w-full h-full rounded-[24px] sm:rounded-[30px] overflow-hidden bg-white flex items-center justify-center cursor-pointer shadow-inner"
                 >
                   <img
-                    src="./hero-hand-showcase.jpg?v=seo_web_soft_mktg"
+                    src="/hero-hand-showcase.jpg"
                     alt="Click On Media - SEO, Website Development, Software Development, Marketing Showcase"
                     className="w-full h-full object-cover object-center filter brightness-102 contrast-102 transition-transform duration-700 group-hover:scale-105 pointer-events-none"
                     loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    width="597"
+                    height="800"
                   />
                 </div>
 
