@@ -1,6 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import RevealHeading from './RevealHeading';
-import { ArrowLeft, ArrowRight, Zap, CheckCircle2, ChevronRight, Award, Users } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+  Zap, 
+  CheckCircle2, 
+  ChevronRight, 
+  Award, 
+  Users, 
+  Code2, 
+  Search, 
+  Globe, 
+  FileText, 
+  GraduationCap, 
+  TrendingUp, 
+  Sparkles, 
+  Star, 
+  ShieldCheck, 
+  Layers, 
+  CreditCard 
+} from 'lucide-react';
 import Logo from './Logo';
 
 export default function AboutUs({ onOpenConsultation }) {
@@ -113,10 +132,239 @@ export default function AboutUs({ onOpenConsultation }) {
       <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-[var(--primary-blue)]/10 rounded-full blur-[140px] pointer-events-none z-0" />
 
       {/* ========================================================================= */}
-      {/* 2. MAIN CENTER SHOWCASE "OUR STORY" CARD CONTAINER                        */}
+      {/* 2. MAIN ABOUT SECTION CONTENT                                             */}
       {/* ========================================================================= */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16 sm:space-y-24">
         
+        {/* ------------------------------------------------------------------------- */}
+        {/* SECTION HEADER & RECREATED EXECUTIVE OVERVIEW                             */}
+        {/* ------------------------------------------------------------------------- */}
+        <div className="text-center max-w-4xl mx-auto space-y-5">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[var(--primary-blue)]/20 text-xs font-semibold text-[#0A1F6B] shadow-xs">
+            <Sparkles className="w-4 h-4 text-[var(--brand-orange)]" />
+            <span className="text-[var(--brand-orange)] uppercase tracking-wider text-[11px] font-bold">About Click On Media</span>
+            <span className="text-slate-300">•</span>
+            <span className="text-slate-600 font-medium">Premier IT &amp; Digital Growth Company in Gorakhpur</span>
+          </div>
+
+          <RevealHeading tag="h2" delay={100} direction="up" blur={true} className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0A1F6B] tracking-tight leading-[1.15] font-heading">
+            Engineering Custom Software &amp; High-Speed Websites —{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B5CFF] via-[#00C8FF] to-[#FF7A00]">
+              Built for Measurable Business Growth
+            </span>
+          </RevealHeading>
+
+          <RevealHeading tag="p" delay={200} direction="up" className="text-sm sm:text-base md:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl mx-auto">
+            Click On Media stands as Gorakhpur’s premier software development and full-stack digital marketing agency. We engineer custom cloud software, high-speed billing platforms, school ERPs, and SEO-engineered websites that streamline operations and accelerate qualified revenue. From bespoke cloud architecture to viral social campaigns and Google search domination, we deliver tailor-made technology with zero generic templates and 100% asset ownership.
+          </RevealHeading>
+
+          {/* Core Service Capability Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-2">
+            {[
+              { icon: Code2, label: 'Custom Software Development' },
+              { icon: CreditCard, label: 'Advanced Billing & POS' },
+              { icon: GraduationCap, label: 'School & College ERP' },
+              { icon: Globe, label: 'SEO-Friendly Web Development' },
+              { icon: Search, label: 'Google Search & GMB Domination' },
+              { icon: TrendingUp, label: 'Performance Ads & Social Growth' }
+            ].map((pill, idx) => {
+              const Icon = pill.icon;
+              return (
+                <div 
+                  key={idx}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:border-[var(--brand-orange)]/40 hover:bg-orange-50/50 transition-colors shadow-2xs"
+                >
+                  <Icon className="w-3.5 h-3.5 text-[var(--primary-blue)]" />
+                  <span>{pill.label}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ------------------------------------------------------------------------- */}
+        {/* STATS THAT MATTER — 4 KEY PILLARS                                         */}
+        {/* ------------------------------------------------------------------------- */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {[
+            {
+              metric: '#1 Rated',
+              label: 'IT Services Agency',
+              sub: 'Top software company in Gorakhpur & Eastern UP',
+              icon: Award,
+              accent: 'from-[#0B5CFF]/10 to-[#0B5CFF]/5',
+              border: 'border-[#0B5CFF]/25',
+              textColor: 'text-[#0B5CFF]'
+            },
+            {
+              metric: '250+',
+              label: 'Global & Local Clients',
+              sub: 'Businesses scaled across India and overseas',
+              icon: Users,
+              accent: 'from-[#FF7A00]/10 to-[#FF7A00]/5',
+              border: 'border-[#FF7A00]/25',
+              textColor: 'text-[#FF7A00]'
+            },
+            {
+              metric: '9+ Years',
+              label: 'Engineering Expertise',
+              sub: 'Proven track record in high-load digital systems',
+              icon: Zap,
+              accent: 'from-[#0A1A4A]/10 to-[#0A1A4A]/5',
+              border: 'border-[#0A1A4A]/20',
+              textColor: 'text-[#0A1F6B]'
+            },
+            {
+              metric: '4.9 / 5',
+              label: 'Client Satisfaction',
+              sub: '98% client retention rate year-over-year',
+              icon: Star,
+              accent: 'from-amber-500/10 to-amber-500/5',
+              border: 'border-amber-400/30',
+              textColor: 'text-amber-600'
+            }
+          ].map((stat, idx) => {
+            const Icon = stat.icon;
+            return (
+              <div 
+                key={idx}
+                className={`p-5 sm:p-6 rounded-2xl bg-gradient-to-br ${stat.accent} bg-white/90 backdrop-blur-sm border ${stat.border} shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between`}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div className={`p-2.5 rounded-xl bg-white shadow-xs ${stat.textColor}`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Verified</span>
+                </div>
+                <div>
+                  <div className={`text-2xl sm:text-3xl lg:text-4xl font-black font-heading tracking-tight ${stat.textColor}`}>
+                    {stat.metric}
+                  </div>
+                  <div className="text-sm font-bold text-[#0A1F6B] mt-1">
+                    {stat.label}
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    {stat.sub}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ------------------------------------------------------------------------- */}
+        {/* WHY CHOOSE US? — 3 VALUE PILLARS                                          */}
+        {/* ------------------------------------------------------------------------- */}
+        <div className="space-y-6">
+          <div className="text-center max-w-xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-widest text-[var(--brand-orange)]">Why Choose Click On Media?</span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0A1F6B] font-heading mt-1">
+              Built on Modern Tech. Delivered with Absolute Integrity.
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1: 100% Customized Software */}
+            <div className="p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-[#0B5CFF]/10 text-[#0B5CFF] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#0B5CFF] group-hover:text-white transition-all duration-300">
+                  <Code2 className="w-6 h-6" />
+                </div>
+                <div className="inline-block px-2.5 py-0.5 rounded-full bg-blue-50 text-[11px] font-bold text-[#0B5CFF] uppercase tracking-wider mb-2">
+                  Zero Generic Templates
+                </div>
+                <h4 className="text-xl font-bold text-[#0A1F6B] font-heading mb-2.5">
+                  100% Customized Software
+                </h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  We create tailored software solutions engineered around your exact business logic. No inflexible pre-made templates — from robust retail billing systems to school portals and cloud ERPs, we build modern, scalable architectures with full source code ownership.
+                </p>
+              </div>
+              <ul className="mt-5 pt-4 border-t border-slate-100 space-y-2 text-xs font-medium text-slate-700">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>Bespoke Billing &amp; Inventory Systems</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>Modular School &amp; Institute ERP Portals</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>Cloud Database &amp; Automated Backups</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Card 2: SEO-Friendly Websites */}
+            <div className="p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-[#FF7A00]/10 text-[var(--brand-orange)] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[var(--brand-orange)] group-hover:text-white transition-all duration-300">
+                  <Search className="w-6 h-6" />
+                </div>
+                <div className="inline-block px-2.5 py-0.5 rounded-full bg-orange-50 text-[11px] font-bold text-[var(--brand-orange)] uppercase tracking-wider mb-2">
+                  Sub-0.6s &amp; Top Rankings
+                </div>
+                <h4 className="text-xl font-bold text-[#0A1F6B] font-heading mb-2.5">
+                  SEO-Engineered Fast Websites
+                </h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  We design and develop lightning-fast websites engineered to dominate Google Search. Clean code, rich schema integration, mobile responsiveness, and high conversion rate optimization (CRO) ensure you attract continuous organic traffic and turn visitors into buyers.
+                </p>
+              </div>
+              <ul className="mt-5 pt-4 border-t border-slate-100 space-y-2 text-xs font-medium text-slate-700">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>Google Core Web Vitals 95+ Score</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>Local SEO &amp; Google Business Profile Sync</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>Conversion-Driven Visual UX Design</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Card 3: Affordable & Transparent */}
+            <div className="p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-[#0A1A4A]/10 text-[#0A1F6B] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#0A1F6B] group-hover:text-white transition-all duration-300">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <div className="inline-block px-2.5 py-0.5 rounded-full bg-indigo-50 text-[11px] font-bold text-[#0A1F6B] uppercase tracking-wider mb-2">
+                  Maximum ROI for Any Budget
+                </div>
+                <h4 className="text-xl font-bold text-[#0A1F6B] font-heading mb-2.5">
+                  Affordable &amp; Milestone-Based
+                </h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Get enterprise-grade technology and growth marketing without bloated agency fees. We offer transparent, milestone-based pricing designed to deliver measurable ROI, so growing businesses in Gorakhpur and beyond can scale affordably without compromise.
+                </p>
+              </div>
+              <ul className="mt-5 pt-4 border-t border-slate-100 space-y-2 text-xs font-medium text-slate-700">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>100% Transparent Milestone Deliverables</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>Zero Hidden Retainers or Maintenance Traps</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>Dedicated Post-Launch Warranty Support</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* ------------------------------------------------------------------------- */}
+        {/* OUR STORY — CHRONICLE SHOWCASE                                            */}
+        {/* ------------------------------------------------------------------------- */}
         <div className="rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/90 bg-white grid grid-cols-1 lg:grid-cols-12 min-h-[520px]">
           
           {/* --------------------------------------------------------------------- */}
