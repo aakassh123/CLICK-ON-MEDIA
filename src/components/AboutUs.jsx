@@ -34,6 +34,16 @@ export default function AboutUs({ onOpenConsultation }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const coreCapabilities = [
+    { icon: Code2, label: 'Custom Software Development' },
+    { icon: CreditCard, label: 'Advanced Billing & POS' },
+    { icon: GraduationCap, label: 'School & College ERP' },
+    { icon: Globe, label: 'SEO-Friendly Web Development' },
+    { icon: Search, label: 'Google Search & GMB Domination' },
+    { icon: TrendingUp, label: 'Performance Ads & Social Growth' }
+  ];
+  const marqueeCapabilities = [...coreCapabilities, ...coreCapabilities, ...coreCapabilities, ...coreCapabilities];
+
   const storyCards = [
     {
       id: 1,
@@ -158,27 +168,57 @@ export default function AboutUs({ onOpenConsultation }) {
             Click On Media stands as Gorakhpur’s premier software development and full-stack digital marketing agency. We engineer custom cloud software, high-speed billing platforms, school ERPs, and SEO-engineered websites that streamline operations and accelerate qualified revenue. From bespoke cloud architecture to viral social campaigns and Google search domination, we deliver tailor-made technology with zero generic templates and 100% asset ownership.
           </RevealHeading>
 
-          {/* Core Service Capability Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-2">
-            {[
-              { icon: Code2, label: 'Custom Software Development' },
-              { icon: CreditCard, label: 'Advanced Billing & POS' },
-              { icon: GraduationCap, label: 'School & College ERP' },
-              { icon: Globe, label: 'SEO-Friendly Web Development' },
-              { icon: Search, label: 'Google Search & GMB Domination' },
-              { icon: TrendingUp, label: 'Performance Ads & Social Growth' }
-            ].map((pill, idx) => {
-              const Icon = pill.icon;
-              return (
-                <div 
-                  key={idx}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:border-[var(--brand-orange)]/40 hover:bg-orange-50/50 transition-colors shadow-2xs"
-                >
-                  <Icon className="w-3.5 h-3.5 text-[var(--primary-blue)]" />
-                  <span>{pill.label}</span>
+          {/* Highlighted Moving Box: Core Service Capability Marquee */}
+          <div className="w-full max-w-5xl mx-auto pt-3">
+            <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-r from-blue-50/95 via-white to-amber-50/90 p-2 sm:p-2.5 border border-blue-200/90 shadow-[0_8px_30px_rgba(11,92,255,0.08)] ring-1 ring-blue-500/15 overflow-hidden group/moving-box">
+              
+              {/* Subtle Ambient Glow inside Box */}
+              <div className="absolute -top-10 left-1/4 w-48 h-20 bg-[var(--primary-blue)]/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-10 right-1/4 w-48 h-20 bg-[var(--brand-orange)]/10 rounded-full blur-2xl pointer-events-none" />
+
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+                
+                {/* Left Highlight Pill Badge */}
+                <div className="flex-shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#0A1F6B] via-[#0B5CFF] to-[#0A1F6B] text-white shadow-sm border border-white/20">
+                  <span className="w-2 h-2 rounded-full bg-[var(--brand-orange)] shadow-[0_0_8px_#FF7A00] animate-pulse flex-shrink-0" />
+                  <span className="text-[10px] sm:text-[11px] font-heading font-extrabold uppercase tracking-wider whitespace-nowrap">
+                    Core Capabilities
+                  </span>
                 </div>
-              );
-            })}
+
+                {/* Moving Infinite Marquee Track with Soft Gradient Fade Edges */}
+                <div className="w-full overflow-hidden relative py-0.5">
+                  
+                  {/* Left & Right Soft Fade Masks */}
+                  <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
+                  <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+
+                  {/* Infinite Moving Loop Track */}
+                  <div className="animate-client-marquee flex items-center gap-2.5 sm:gap-3">
+                    {marqueeCapabilities.map((pill, idx) => {
+                      const Icon = pill.icon;
+                      return (
+                        <div 
+                          key={idx}
+                          className="flex-shrink-0 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 hover:border-[var(--brand-orange)] text-slate-800 hover:text-[#0A1F6B] shadow-2xs hover:shadow-md transition-all duration-300 hover:scale-105 group/pill cursor-pointer select-none"
+                        >
+                          <div className="w-5 h-5 rounded-full bg-blue-50 group-hover/pill:bg-orange-50 flex items-center justify-center text-[var(--primary-blue)] group-hover/pill:text-[var(--brand-orange)] transition-colors flex-shrink-0">
+                            <Icon className="w-3 h-3" />
+                          </div>
+                          <span className="text-xs sm:text-[13px] font-bold font-heading whitespace-nowrap">
+                            {pill.label}
+                          </span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.7)] flex-shrink-0" />
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
           </div>
         </div>
 
