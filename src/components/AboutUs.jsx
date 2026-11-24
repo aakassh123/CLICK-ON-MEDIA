@@ -121,7 +121,7 @@ export default function AboutUs({ onOpenConsultation }) {
   const stepSize = windowWidth < 640 ? 256 : 290;
 
   return (
-    <section id="about" className="py-20 sm:py-24 lg:py-32 bg-transparent text-slate-800 relative overflow-hidden">
+    <section id="about" className="pt-6 sm:pt-8 lg:pt-10 pb-16 sm:pb-20 lg:pb-28 bg-transparent text-slate-800 relative overflow-hidden">
       
       {/* ========================================================================= */}
       {/* 1. BACKGROUND GEOMETRIC AMBIENCE MATCHING LOGO PALETTE                    */}
