@@ -7,7 +7,8 @@ import {
   ChevronRight, 
   CheckCircle2, 
   Video,
-  Loader2
+  Loader2,
+  ExternalLink
 } from 'lucide-react';
 
 const CLIENT_STORIES = [
@@ -57,10 +58,11 @@ const CLIENT_STORIES = [
   },
   {
     id: 'agastya-yoga',
-    name: 'Agastya Yoga',
-    fullName: 'Agastya Yoga Goa Retreat',
-    subtitle: 'Goa Retreat & Yoga Immersion',
-    location: 'Goa, India',
+    name: 'Agastya Yoga Goa',
+    fullName: 'Agastya Yoga — Best Yoga Teacher Training School In Goa',
+    subtitle: 'Best Yoga TTC & Goa Retreat',
+    location: 'Querim, Goa, India',
+    websiteUrl: 'https://www.agastyayogagoa.com/',
     videoSrc: '/projects/agastya-yoga-video.mp4',
     poster: '/projects/thumb-agastya-yoga.jpg',
     duration: '0:47',
@@ -86,6 +88,17 @@ const CLIENT_STORIES = [
     videoSrc: '/projects/madhav-school-video.mp4',
     poster: '/projects/thumb-madhav-school.jpg',
     duration: '0:35',
+    verified: true
+  },
+  {
+    id: 'shri-ganga-furniture',
+    name: 'Shri Ganga Furniture',
+    fullName: 'Shri Ganga Furniture & Sleepwell Shoppe',
+    subtitle: 'Premium Home & Temple Furniture',
+    location: 'Kunraghat, Gorakhpur',
+    videoSrc: '/projects/shri-ganga-furniture-video.mp4',
+    poster: '/projects/thumb-shri-ganga-furniture.jpg',
+    duration: '0:30',
     verified: true
   }
 ];
@@ -325,9 +338,24 @@ export default function ClientVideoShowcase() {
                       {story.subtitle}
                     </p>
 
-                    {/* Golden / Amber Pill Badge with Client Name */}
-                    <div className="px-4 py-1.5 rounded-full bg-[#F59E0B] text-slate-950 font-heading font-black text-xs sm:text-[13px] tracking-wide shadow-lg group-hover:scale-105 transition-transform flex items-center gap-1.5">
-                      <span>{story.name}</span>
+                    {/* Golden / Amber Pill Badge with Client Name & Optional Live Website Link */}
+                    <div className="flex items-center gap-1.5 flex-wrap justify-center">
+                      <div className="px-3.5 sm:px-4 py-1.5 rounded-full bg-[#F59E0B] text-slate-950 font-heading font-black text-xs sm:text-[13px] tracking-wide shadow-lg group-hover:scale-105 transition-transform flex items-center gap-1.5">
+                        <span>{story.name}</span>
+                      </div>
+                      {story.websiteUrl && (
+                        <a
+                          href={story.websiteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="px-2.5 py-1.5 rounded-full bg-white/95 hover:bg-white text-[#0A1F6B] hover:text-[var(--brand-orange)] shadow-md transition-transform hover:scale-110 flex items-center gap-1 text-[11px] font-bold font-heading cursor-pointer"
+                          title={`Visit ${story.name} Official Website`}
+                        >
+                          <span>Visit Site</span>
+                          <ExternalLink className="w-3 h-3 stroke-[2.5]" />
+                        </a>
+                      )}
                     </div>
 
                   </div>

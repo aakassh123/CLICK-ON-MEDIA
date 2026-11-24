@@ -21,32 +21,32 @@ export const PROJECTS_DATA = {
   // --------------------------------------------------------------------------
   // 1. WEBSITE DEVELOPMENT (Business, Hotel, Restaurant, Corporate)
   // --------------------------------------------------------------------------
-  'mapaz-hotel': {
-    id: 'mapaz-hotel',
+  'shree-krishna-inn': {
+    id: 'shree-krishna-inn',
     number: '01',
     categoryKey: 'websites',
     category: 'Website Development',
-    categoryLabel: 'Luxury Hospitality & Booking Engine',
-    title: 'MAPAZ Hotel & Luxury Stays',
-    client: 'MAPAZ Hospitality Group',
+    categoryLabel: 'Luxury Hospitality & Direct Reservation Engine',
+    title: 'Shree Krishna Inn — Best Hotel In Gorakhpur',
+    client: 'Hotel Shree Krishna Inn',
     year: '2024',
     duration: '6 Weeks Sprint',
-    liveUrl: 'https://mapazhotel.com',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85',
-    summary: 'Direct reservation engine and local SEO domination eliminating high OTA commissions for a premium hotel chain.',
-    description: 'Complete brand overhaul, direct booking web platform, and local SEO domination for a premium luxury hotel in Uttar Pradesh. We eliminated high OTA commission dependencies by engineering a blazing-fast direct reservation platform with sub-0.6s loading speeds.',
-    tags: ['Next.js', 'Direct Booking', 'Local SEO', '0.6s Speed'],
-    metrics: '+240% Direct Bookings',
-    results: '+240% Direct Bookings, #1 Local Ranking in 90 Days',
+    liveUrl: 'https://www.shreekrishnainn.com/',
+    image: '/projects/shree-krishna-inn.jpg',
+    summary: 'Direct room booking engine, banquet inquiry funnels, and local SEO domination near Nauka Vihar & Ramgarh Tal.',
+    description: 'Complete digital brand architecture, direct reservation platform, and local SEO dominance for Shree Krishna Inn — celebrated as the best hotel in Gorakhpur. Located near Nauka Vihar and Ramgarh Tal Lake on Taramandal Road, the platform eliminates high OTA commissions with instant room bookings, fine-dining multi-cuisine menus, banquet lawns booking, and top Google Map Pack local search rankings.',
+    tags: ['Best Hotel Gorakhpur', 'Nauka Vihar Ramgarh Tal', 'Direct Room Booking', 'Banquets & Lawns', '0.6s Speed'],
+    metrics: '+260% Direct Bookings',
+    results: '+260% Direct Bookings, #1 Hotel Near Ramgarh Tal Gorakhpur',
     accentColor: 'from-amber-500 to-orange-600',
     stats: [
-      { label: 'Direct Bookings', value: '+240%', desc: 'Bypassing high OTA commissions' },
-      { label: 'Google Map Pack', value: '#1 Rank', desc: 'Across Gorakhpur & Eastern UP' },
+      { label: 'Direct Bookings', value: '+260%', desc: 'Bypassing high OTA commissions' },
+      { label: 'Google Map Pack', value: '#1 Rank', desc: 'Across Gorakhpur & Nauka Vihar' },
       { label: 'Mobile Page Speed', value: '0.6s', desc: 'Lighthouse 98/100 score' },
-      { label: 'Commission Saved', value: '₹14.2L+', desc: 'Retained annual net revenue' }
+      { label: 'Commission Saved', value: '₹16.5L+', desc: 'Retained annual net revenue' }
     ],
-    challenge: 'MAPAZ Hotel was paying up to 22% in commissions to third-party travel aggregators (OTAs) for every room reservation. Their legacy website was slow, non-responsive on budget Android phones, and completely invisible on Google Local Search for travelers arriving in Eastern UP.',
-    strategy: 'Click On Media engineered a high-performance direct reservation engine with instant UPI/card payment verification and automated WhatsApp booking confirmations. Simultaneously, we executed a dominant local SEO sprint targeting 45+ high-intent commercial travel keywords.',
+    challenge: 'Shree Krishna Inn was paying up to 22% in heavy commissions to third-party travel aggregators (OTAs) for every room reservation. Their legacy web presence was slow, non-responsive on budget Android phones, and completely invisible on Google Local Search for travelers arriving in Gorakhpur and Ramgarh Tal.',
+    strategy: 'Click On Media engineered a high-performance direct reservation engine with instant UPI/card payment verification and automated WhatsApp booking confirmations. Simultaneously, we executed a dominant local SEO sprint targeting 45+ high-intent commercial travel keywords in Gorakhpur.',
     deliverables: [
       'Custom React & Next.js reservation engine with 0% OTA commission leakage',
       'Google Business Profile overhaul & local map pack domination (#1 in 90 days)',
@@ -165,6 +165,116 @@ export const PROJECTS_DATA = {
     technologies: ['React', 'Tailwind CSS', 'Meta Ads Manager', 'Google Ads', 'HubSpot CRM']
   },
 
+  'agastya-yoga': {
+    id: 'agastya-yoga',
+    number: '05',
+    categoryKey: 'websites',
+    category: 'Website Development',
+    categoryLabel: 'Yoga Teacher Training & Retreat Booking',
+    title: 'Agastya Yoga Goa — Best TTC School In Goa',
+    client: 'Agastya Yoga Village',
+    year: '2024',
+    duration: '4 Weeks Sprint',
+    liveUrl: 'https://www.agastyayogagoa.com/',
+    videoUrl: '/projects/agastya-yoga-video.mp4',
+    image: '/projects/thumb-agastya-yoga.jpg',
+    summary: 'Direct booking engine and international student enrollment portal for Goa’s premier Yoga Alliance certified teacher training school and beachside retreat in Querim.',
+    description: 'Designed and engineered an international digital flagship for Agastya Yoga Goa — recognized as the best Yoga Teacher Training (TTC) school in North Goa (Querim / Pernem). The platform features comprehensive course curriculums for 50-Hour, 100-Hour, 200-Hour Multi-Style (Hatha, Ashtanga, Vinyasa, Yin & Meditation) and 300-Hour Advanced Yoga Teacher Training programs, international student registration with multi-currency checkout, and top-tier global SEO for wellness retreats.',
+    tags: ['Yoga Teacher Training', 'Yoga Alliance Certified', 'Querim Goa', 'Direct Booking Engine', 'Global SEO'],
+    metrics: '+380% Global Inquiries',
+    results: '+380% International Enrollments, #1 Yoga TTC in North Goa',
+    accentColor: 'from-emerald-600 via-teal-600 to-amber-500',
+    stats: [
+      { label: 'Global Enrollments', value: '+380%', desc: 'Students from Europe, Americas & Asia' },
+      { label: 'Direct Course Bookings', value: '4.2x', desc: 'Bypassing 3rd party retreat portals' },
+      { label: 'Mobile Page Speed', value: '0.5s', desc: 'Lighthouse 99/100 performance score' },
+      { label: 'Organic Search Rank', value: 'Top 3', desc: 'Ranked for Best Yoga TTC in Goa' }
+    ],
+    challenge: 'Agastya Yoga Village attracted students worldwide through word-of-mouth and third-party wellness directories, but lost 18-25% in high portal listing fees. Their digital presence needed an international-grade booking engine, transparent syllabus explorer, and seamless mobile experience to convert global yoga practitioners into enrolled students.',
+    strategy: 'Click On Media engineered a high-converting, serene visual portal capturing the natural beachside ashram ambiance of Querim, Goa. We built detailed daily schedules, Yoga Alliance certification breakdowns, multi-currency payment options (Stripe/Razorpay/UPI), automated WhatsApp student consultation, and an international SEO strategy targeting European and American yoga aspirants.',
+    deliverables: [
+      'Comprehensive 200-Hour & 300-Hour TTC syllabus explorer with daily retreat schedules',
+      'International direct student registration engine with secure payment gateways',
+      'High-speed mobile UX optimized for global travelers and low-bandwidth connections',
+      'Yoga Alliance USA & UK credential showcase and verified student video testimonials',
+      'Direct WhatsApp admissions hotline with automated timezone-aware responses',
+      'Global and national SEO campaign for "Best Yoga Teacher Training School in Goa"'
+    ],
+    technologies: ['React', 'Next.js', 'Tailwind CSS', 'Stripe', 'Razorpay', 'WhatsApp Business API', 'Global SEO']
+  },
+
+  'new-spaces-interior': {
+    id: 'new-spaces-interior',
+    number: '06',
+    categoryKey: 'websites',
+    category: 'Website Development',
+    categoryLabel: 'Luxury Residential & Office Interiors',
+    title: 'New Spaces Interior — Best Interior Designer In Nagpur',
+    client: 'New Spaces Interior & Architecture',
+    year: '2024',
+    duration: '4 Weeks Sprint',
+    liveUrl: 'https://www.newspacesinterior.com/',
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85',
+    summary: 'Interactive 3D project gallery, modular kitchen cost estimator, and local SEO domination for Nagpur’s leading turnkey interior design studio.',
+    description: 'Designed and engineered a high-converting digital showroom for New Spaces Interior — recognized as Nagpur’s top interior design and turnkey execution firm led by Surbhi Babhulkar. Featuring ultra-fast 3D project galleries, modular kitchen and corporate office workspace design catalogues, instant WhatsApp design consultation booking, and top Google Map Pack local search rankings.',
+    tags: ['Interior Designer Nagpur', 'Home & Office Interiors', 'Modular Kitchens', 'Turnkey Execution', '3D Walkthroughs'],
+    metrics: '+340% Design Leads',
+    results: '+340% High-Ticket Inquiries, #1 Interior Designer in Nagpur',
+    accentColor: 'from-amber-700 via-orange-600 to-stone-700',
+    stats: [
+      { label: 'Design Inquiries', value: '+340%', desc: 'Pre-qualified residential & office projects' },
+      { label: 'Monthly Visitors', value: '28,000+', desc: 'High-intent Nagpur & Vidarbha traffic' },
+      { label: 'Google Search Rank', value: '#1 Rank', desc: 'Ranked for Best Interior Designer in Nagpur' },
+      { label: 'Consultation Bookings', value: '80+/mo', desc: 'Direct WhatsApp and web intake' }
+    ],
+    challenge: 'New Spaces Interior had executed dozens of prestigious home and corporate interior projects across Nagpur, but their previous web presence lacked modern visual elegance and was buried on page 3 of Google search, allowing generic contractors to capture local leads.',
+    strategy: 'Click On Media engineered an ultra-fast, visually stunning portfolio showcasing high-resolution project transformations, categorizing residential, commercial, modular kitchen, and custom furniture works. We integrated a frictionless 1-tap WhatsApp consultation funnel and executed an aggressive local SEO campaign for interior design keywords in Nagpur.',
+    deliverables: [
+      'Interactive visual portfolio showcase for luxury living rooms, bedrooms, and modular kitchens',
+      'Turnkey commercial office space design catalogue with client testimonials',
+      'Local SEO sprint securing #1 Google search ranking across Nagpur and Vidarbha',
+      'Direct WhatsApp inquiry funnel with automated design consultation scheduling',
+      'Lighthouse 98+ mobile page performance score for instantaneous image loading'
+    ],
+    technologies: ['React', 'Next.js', 'Tailwind CSS', 'WhatsApp Business API', 'Local SEO', 'Google Search Console']
+  },
+
+  'new-decor-window-film': {
+    id: 'new-decor-window-film',
+    number: '07',
+    categoryKey: 'websites',
+    category: 'Website Development',
+    categoryLabel: 'Sun Control & Architectural Glass Films',
+    title: 'New Decor Window Sun Control Film — Pimpri-Chinchwad',
+    client: 'New Decor Glass & Window Solutions',
+    year: '2024',
+    duration: '3 Weeks Sprint',
+    liveUrl: 'https://newdecorwindowsuncontrolfilm.com/',
+    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85',
+    summary: 'Direct lead-generation web platform, instant measurement booking funnel, and local SEO domination for Pimpri-Chinchwad & Pune’s premier window film specialist.',
+    description: 'Engineered a high-converting digital storefront and local lead generation engine for New Decor Window Sun Control Film. Serving corporate offices, tech parks, and residential societies across Pimpri-Chinchwad, Hinjewadi, and Pune, the platform features interactive film comparison guides (Sun Control, Frosted, Blackout, UV Safety), 1-click free measurement & quote booking via WhatsApp, and top Google Map Pack local search rankings.',
+    tags: ['Sun Control Film', 'Pimpri-Chinchwad', 'Pune Window Film', 'Heat Reduction 99% UV', 'Local SEO #1'],
+    metrics: '+290% Local Calls',
+    results: '+290% On-Site Measurement Requests, #1 Window Film in PCMC',
+    accentColor: 'from-blue-600 via-cyan-600 to-sky-500',
+    stats: [
+      { label: 'Measurement Bookings', value: '+290%', desc: 'Residential societies & commercial IT parks' },
+      { label: 'Monthly Search Traffic', value: '18,500+', desc: 'Targeted PCMC, Hinjewadi & Pune queries' },
+      { label: 'Google Map Pack Rank', value: '#1 Rank', desc: 'Ranked for Window Film in Pimpri-Chinchwad' },
+      { label: 'Inquiry Response Time', value: '< 60 Sec', desc: 'Automated WhatsApp lead routing' }
+    ],
+    challenge: 'New Decor had exceptional hands-on expertise in installing premium sun control, frosted, and UV protection films across Pune and PCMC, but relied heavily on word-of-mouth. Corporate clients and high-rise apartment owners in Hinjewadi and Pimpri were searching on Google and choosing competitors with modern web presences.',
+    strategy: 'Click On Media engineered an ultra-fast, mobile-first lead capture platform highlighting heat rejection specs, 99% UV blocking metrics, and frosted glass privacy solutions. We integrated a frictionless 1-tap "Book Free Site Measurement" WhatsApp funnel and launched an aggressive local SEO campaign targeting Pimpri-Chinchwad and West Pune.',
+    deliverables: [
+      'Interactive window film catalog (Sun Control, Frosted Privacy, Blackout, Safety & Decorative Films)',
+      'Free site visit & measurement request funnel with instant WhatsApp dispatch',
+      'Local Map Pack SEO domination securing top ranking for window film searches in PCMC',
+      'Corporate office partition gallery with real installation before/after showcases',
+      'High-speed mobile performance optimized for local homeowners and facility managers'
+    ],
+    technologies: ['React', 'Next.js', 'Tailwind CSS', 'WhatsApp Business API', 'Local SEO', 'Google Search Console']
+  },
+
   // --------------------------------------------------------------------------
   // 2. VIDEO EDITING & REELS (Promotional, Reels, Cinematic, Commercials)
   // --------------------------------------------------------------------------
@@ -210,13 +320,13 @@ export const PROJECTS_DATA = {
     category: 'Video Editing & Reels',
     categoryLabel: 'Cinematic Brand Film & 4K Commercial',
     title: '4K Cinematic Resort Commercial',
-    client: 'MAPAZ Luxury Stays',
+    client: 'Shree Krishna Inn',
     year: '2024',
     duration: '3 Weeks Production',
-    liveUrl: 'https://mapazhotel.com',
-    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=85',
+    liveUrl: 'https://www.shreekrishnainn.com/',
+    image: '/projects/shree-krishna-inn-front.jpg',
     summary: 'Luxury commercial with 4K drone cinematography, DaVinci Resolve color grading, and custom sound design.',
-    description: 'Produced a cinematic 90-second flagship commercial film combining sweeping 4K drone shots, warm cinematic color grading, orchestral audio mastering, and evocative voiceover storytelling for MAPAZ Luxury Stays.',
+    description: 'Produced a cinematic 90-second flagship commercial film combining sweeping 4K drone shots, warm cinematic color grading, orchestral audio mastering, and evocative voiceover storytelling for Shree Krishna Inn Gorakhpur.',
     tags: ['4K Commercial', 'DaVinci Resolve', 'Color Grading', 'Sound Design'],
     metrics: '88% Watch Retention',
     results: '88% Average Completion Rate, Broadcast Quality',
@@ -227,7 +337,7 @@ export const PROJECTS_DATA = {
       { label: 'Color Grade', value: 'ACES 3D', desc: 'Hollywood cinematic color grading' },
       { label: 'Brand Recall', value: '+310%', desc: 'Post-campaign survey rating' }
     ],
-    challenge: 'MAPAZ needed a flagship video asset to pitch corporate retreats, high-net-worth destination travelers, and wedding planners that positioned them far above regional competition.',
+    challenge: 'Shree Krishna Inn needed a flagship video asset to pitch corporate retreats, destination travelers visiting Ramgarh Tal, and wedding planners that positioned them far above regional competition.',
     strategy: 'Structured a three-act narrative: Morning Tranquility, Daytime Adventure & Poolside Luxury, and Evening Royal Dining under the stars.',
     deliverables: [
       '90-second Master 4K Cinema cut for YouTube and website hero banner',
@@ -732,6 +842,13 @@ export const PROJECTS_DATA = {
 Object.defineProperty(PROJECTS_DATA, 'royal-awadh', {
   get() {
     return PROJECTS_DATA['hotel-adalat'];
+  },
+  enumerable: false
+});
+
+Object.defineProperty(PROJECTS_DATA, 'mapaz-hotel', {
+  get() {
+    return PROJECTS_DATA['shree-krishna-inn'];
   },
   enumerable: false
 });

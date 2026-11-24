@@ -22,7 +22,7 @@ export default function ProjectDetailPage({ projectId, onBack, onOpenQuote, onSe
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [projectId]);
 
-  const project = PROJECTS_DATA[projectId] || PROJECTS_DATA['mapaz-hotel'];
+  const project = PROJECTS_DATA[projectId] || PROJECTS_DATA['shree-krishna-inn'] || PROJECTS_DATA['mapaz-hotel'];
   const allProjects = Object.values(PROJECTS_DATA);
   const otherProjects = allProjects.filter(p => p.id !== project.id);
 
@@ -115,6 +115,19 @@ export default function ProjectDetailPage({ projectId, onBack, onOpenQuote, onSe
                 <span className="font-medium text-slate-500">Delivered In</span>
                 <span className="font-bold text-[var(--brand-orange)]">{project.year}</span>
               </div>
+              {project.liveUrl && (
+                <div className="pt-2 border-t border-slate-100">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-gradient-to-r from-[#0A1F6B] to-[#0B5CFF] hover:from-[#081854] hover:to-[#094acc] text-white font-bold text-xs shadow-sm hover:shadow-md transition-all group cursor-pointer"
+                  >
+                    <span>Visit Live Website</span>
+                    <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                </div>
+              )}
             </div>
           </div>
 

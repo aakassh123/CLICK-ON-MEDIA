@@ -32,11 +32,11 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
 
   const allProjects = useMemo(() => Object.values(PROJECTS_DATA), []);
 
-  // 3 diverse premier flagship projects for the front page overview
+  // Diverse premier flagship projects for the front page overview
   const featuredFlagships = useMemo(() => [
-    PROJECTS_DATA['mapaz-hotel'],          // 1. Websites: MAPAZ Hotel & Booking Platform
-    PROJECTS_DATA['hotel-adalat'],         // 2. Websites / Hospitality: Hotel Adalat & Restaurant
-    PROJECTS_DATA['viral-food-reels'],     // 3. Video Editing: Viral Food & 9:16 Restaurant Reels
+    PROJECTS_DATA['shree-krishna-inn'] || PROJECTS_DATA['mapaz-hotel'], // 1. Websites: Shree Krishna Inn (Best Hotel in Gorakhpur)
+    PROJECTS_DATA['agastya-yoga'],         // 2. Websites / Global: Agastya Yoga Goa (Best TTC School)
+    PROJECTS_DATA['hotel-adalat'],         // 3. Websites / Hospitality: Hotel Adalat & Restaurant
   ].filter(Boolean), []);
 
   // Filter projects based on activeCategory
@@ -254,10 +254,24 @@ export default function OurWork({ onSelectProject, onOpenPortfolio }) {
                     <span>Verified Result</span>
                   </span>
 
-                  <span className="font-heading font-bold text-xs text-[var(--brand-orange)] group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                    <span>View Project</span>
-                    <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-1.5 rounded-lg bg-white hover:bg-blue-50 text-slate-600 hover:text-[var(--primary-blue)] border border-slate-200/80 transition-all shadow-2xs"
+                        title={`Visit ${project.title} live website`}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                    <span className="font-heading font-bold text-xs text-[var(--brand-orange)] group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                      <span>View Case Study</span>
+                      <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
+                    </span>
+                  </div>
                 </div>
 
               </div>
