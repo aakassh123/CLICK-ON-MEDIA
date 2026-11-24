@@ -76,6 +76,17 @@ const CLIENT_STORIES = [
     poster: '/projects/thumb-devki-inn-banquet.jpg',
     duration: '0:43',
     verified: true
+  },
+  {
+    id: 'madhav-public-school',
+    name: 'Madhav Public School',
+    fullName: 'Madhav Public School (CBSE 10+2)',
+    subtitle: 'CBSE 10+2 Education & Campus',
+    location: 'Dawarpar, Gorakhpur',
+    videoSrc: '/projects/madhav-school-video.mp4',
+    poster: '/projects/thumb-madhav-school.jpg',
+    duration: '0:35',
+    verified: true
   }
 ];
 
