@@ -67,14 +67,14 @@ const CLIENT_STORIES = [
     verified: true
   },
   {
-    id: 'onkar-furniture',
-    name: 'Onkar Furniture',
-    fullName: 'Onkar Furniture & Luxury Decor',
-    subtitle: 'Luxury Furniture & Home Decor',
-    location: 'Daudpur, Gorakhpur',
-    videoSrc: '/projects/onkar-furniture-video.mp4',
-    poster: '/projects/thumb-onkar-furniture.jpg',
-    duration: '0:46',
+    id: 'devki-inn-banquet',
+    name: 'Devki Inn Banquet',
+    fullName: 'Hotel Devki Inn Luxury Banquet & Events',
+    subtitle: 'Luxury Banquet & Celebrations',
+    location: 'Transport Nagar, Gorakhpur',
+    videoSrc: '/projects/devki-inn-banquet-video.mp4',
+    poster: '/projects/thumb-devki-inn-banquet.jpg',
+    duration: '0:43',
     verified: true
   }
 ];
